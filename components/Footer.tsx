@@ -1,0 +1,180 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { LogoSVG } from "./LogoImage";
+import { useModal } from "@/context/ModalContext";
+
+gsap.registerPlugin(ScrollTrigger);
+
+const links = {
+  Company:  ["About Us", "Our Story", "Careers", "Press & Media"],
+  Services: ["Passenger Lifts", "Home Lifts", "Goods Lifts", "Escalators", "Modernisation", "AMC"],
+  Support:  ["Breakdown Service", "Spare Parts", "Documentation", "FAQs"],
+};
+
+const cities = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad"];
+
+const certs = ["ISO 9001:2015", "EN 81", "BIS Approved", "IS:14665", "OHSAS 18001"];
+
+const socials = [
+  { label: "LinkedIn",  href: "#", path: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
+  { label: "Instagram", href: "#", path: "M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M6.5 6.5h11a3 3 0 013 3v7a3 3 0 01-3 3h-11a3 3 0 01-3-3v-7a3 3 0 013-3z" },
+  { label: "YouTube",   href: "#", path: "M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" },
+  { label: "Facebook",  href: "#", path: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
+];
+
+export default function Footer() {
+  const { toggle } = useModal();
+  const footerRef  = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(footerRef.current?.querySelectorAll(".f-reveal") ?? [],
+        { y: 20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.7, stagger: 0.07, ease: "power3.out",
+          scrollTrigger: { trigger: footerRef.current, start: "top 88%" } }
+      );
+    }, footerRef);
+    return () => ctx.revert();
+  }, []);
+
+  const scrollTo = (id: string) =>
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+
+  return (
+    <footer ref={footerRef} className="bg-[#0A0A0A] font-jakarta border-t border-white/5">
+
+      {/* ── Main grid ─────────────────────────── */}
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-10 f-reveal">
+
+          {/* Brand — 2 cols */}
+          <div className="col-span-2">
+            <a href="#home" onClick={e => { e.preventDefault(); scrollTo("#home"); }} className="inline-block mb-5">
+              <LogoSVG height={44} variant="dark" />
+            </a>
+
+            <p className="text-white/40 text-sm leading-relaxed mb-6 max-w-[260px]">
+              India&apos;s trusted elevator & lift specialists. Engineering precision since 1998.
+            </p>
+
+            {/* Globe + cities */}
+            <div className="flex items-start gap-3 mb-6">
+              <div className="w-9 h-9 border border-white/10 flex items-center justify-center text-white/30 shrink-0 mt-0.5">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="10" />
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-white/50 text-xs font-semibold mb-2 uppercase tracking-widest">Pan-India Presence</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {cities.map((c, i) => (
+                    <span key={c}
+                      className={`text-[11px] px-2 py-0.5 ${i === 0 ? "bg-red-600 text-white font-semibold" : "text-white/35 border border-white/8"}`}>
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Emergency */}
+            <div className="flex items-center gap-2.5 border border-red-600/30 bg-red-600/8 px-4 py-2.5 w-fit">
+              <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
+              <span className="text-red-400 text-xs font-bold uppercase tracking-widest">24/7</span>
+              <a href="tel:+919819002726" className="text-white/60 text-xs hover:text-white transition-colors">
+                +91 98190 02726
+              </a>
+            </div>
+          </div>
+
+          {/* Nav columns */}
+          {Object.entries(links).map(([heading, items]) => (
+            <div key={heading} className="f-reveal">
+              <h4 className="text-white/50 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
+                {heading}
+              </h4>
+              <ul className="space-y-2.5">
+                {items.map(l => (
+                  <li key={l}>
+                    <a href="#"
+                      className="text-white/45 text-sm hover:text-white transition-colors duration-200">
+                      {l}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+
+        </div>
+      </div>
+
+      {/* ── Cert strip ──────────────────────────── */}
+      <div className="border-t border-white/5 f-reveal">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center gap-3">
+          <span className="text-white/20 text-[10px] uppercase tracking-widest mr-2 font-semibold shrink-0">
+            Accreditations
+          </span>
+          {certs.map(c => (
+            <span key={c}
+              className="text-[11px] text-white/40 border border-white/8 px-3 py-1 hover:border-red-600/40 hover:text-white/70 transition-all cursor-default">
+              {c}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ── Bottom bar ──────────────────────────── */}
+      <div className="border-t border-white/5 f-reveal">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+
+            {/* Left — copyright + socials */}
+            <div className="flex flex-wrap items-center gap-5">
+              <span className="text-white/20 text-xs">
+                © {new Date().getFullYear()} Balvir Lifting Pvt. Ltd.
+              </span>
+              <div className="flex items-center gap-2">
+                {socials.map(s => (
+                  <a key={s.label} href={s.href} aria-label={s.label}
+                    className="w-7 h-7 border border-white/8 flex items-center justify-center text-white/25 hover:border-red-600/50 hover:text-red-400 transition-all">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d={s.path} />
+                    </svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Centre — legal links */}
+            <div className="flex flex-wrap justify-center gap-4">
+              {["Privacy", "Terms", "Sitemap"].map(l => (
+                <a key={l} href="#"
+                  className="text-white/20 text-xs hover:text-white/50 transition-colors">
+                  {l}
+                </a>
+              ))}
+            </div>
+
+            {/* Right — developer credit */}
+            <div className="flex items-center gap-1.5">
+              <span className="text-white/15 text-xs">Built by</span>
+              <a href="https://www.nakshatranamahacreations.com" target="_blank" rel="noopener noreferrer"
+                className="text-white/30 text-xs font-semibold hover:text-red-400 transition-colors">
+                Nakshatra Namaha Creations
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom red line */}
+      <div className="h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent" />
+    </footer>
+  );
+}

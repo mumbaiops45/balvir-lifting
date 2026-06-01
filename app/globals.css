@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --red:        #CC1020;
+  --red-bright: #E8192C;
+  --red-dark:   #9B000E;
+
+  /* White theme */
+  --bg:         #FFFFFF;
+  --surface:    #F7F7F7;
+  --surface-2:  #EFEFEF;
+  --text:       #111111;
+  --text-muted: #666666;
+  --text-faint: #999999;
+  --border:     #E5E5E5;
+  --border-red: rgba(204,16,32,0.25);
+
+  /* Dark (footer / hero) */
+  --dark:       #111111;
+  --dark-2:     #1A1A1A;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  font-family: var(--font-plus-jakarta), sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Lenis ──────────────────────────────────── */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth        { scroll-behavior: auto !important; }
+.lenis.lenis-stopped       { overflow: hidden; }
+
+/* ── Scrollbar ──────────────────────────────── */
+::-webkit-scrollbar       { width: 4px; }
+::-webkit-scrollbar-track { background: #F0F0F0; }
+::-webkit-scrollbar-thumb { background: #CC1020; border-radius: 2px; }
+
+/* ── Utilities ──────────────────────────────── */
+.text-red-gradient {
+  background: linear-gradient(135deg, #E8192C 0%, #CC1020 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-pad { @apply py-24 lg:py-32; }
+
+.red-line {
+  height: 3px;
+  background: linear-gradient(90deg, #CC1020, #E8192C 50%, transparent);
+}
+
+/* Grid texture (for dark hero) */
+.grid-tex-dark {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Grid texture (for light sections) */
+.grid-tex-light {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.025) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* Marquee */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 28s linear infinite; }
+
+/* Hero animated gradient fallback (when video is absent) */
+@keyframes heroShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.hero-bg-anim {
+  background: linear-gradient(135deg, #0a0a0a, #1a0005, #200010, #0a0a0a);
+  background-size: 400% 400%;
+  animation: heroShift 12s ease infinite;
+}
+
+/* Buttons */
+.btn-red {
+  @apply inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-7 py-3.5
+         transition-all duration-300 hover:bg-red-500
+         hover:shadow-[0_8px_30px_rgba(200,16,32,0.4)] hover:-translate-y-0.5 tracking-wide;
+}
+
+.btn-outline-dark {
+  @apply inline-flex items-center gap-2 border border-gray-800 text-gray-800 font-semibold
+         px-7 py-3.5 transition-all duration-300 hover:border-red-600 hover:text-red-600
+         hover:-translate-y-0.5 tracking-wide;
+}
+
+.btn-outline-light {
+  @apply inline-flex items-center gap-2 border-2 border-white/50 text-white font-semibold
+         px-7 py-3.5 transition-all duration-300 hover:border-white hover:bg-white/10
+         tracking-wide;
+}
