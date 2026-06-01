@@ -32,9 +32,7 @@ const config: Config = {
           400: "#383838",
         },
       },
-      fontFamily: {
-        jakarta: ["var(--font-plus-jakarta)", "sans-serif"],
-      },
+      
       letterSpacing: {
         tightest: "-0.04em",
         widest: "0.25em",

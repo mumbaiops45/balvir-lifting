@@ -26,7 +26,7 @@ export default function CTA() {
   return (
     <section
       ref={sectionRef}
-      className="relative py-28 overflow-hidden font-jakarta"
+      className="relative py-28 overflow-hidden"
       style={{ background: "linear-gradient(135deg, #880010 0%, #CC1020 45%, #990012 100%)" }}
     >
       <div

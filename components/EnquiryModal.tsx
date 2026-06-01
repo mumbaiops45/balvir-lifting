@@ -92,7 +92,7 @@ export default function EnquiryModal() {
 
       {/* Card — fixed size, no internal scroll */}
       <div ref={cardRef}
-        className="fixed z-[80] inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)] font-jakarta"
+        className="fixed z-[80] inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
         style={{ opacity: 0, maxHeight: "calc(100dvh - 40px)" }}
       >
 

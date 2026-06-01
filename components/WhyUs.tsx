@@ -9,56 +9,56 @@ gsap.registerPlugin(ScrollTrigger);
 const reasons = [
   {
     num:         "01",
-    title:       "Safety Beyond Compliance",
-    short:       "Triple-redundant systems. Zero shortcuts.",
-    desc:        "Every unit we build exceeds IS:14665 and EN 81 international standards. Triple-redundant braking, ARD auto-rescue, load-sensing, and overload protection are included as standard — not optional extras. Our in-house QA team inspects every installation before handover.",
-    metric:      "EN 81 + IS:14665",
-    metricSub:   "Standards Exceeded",
+    title:       "Multi-Brand Product Portfolio",
+    short:       "One trusted source for many brands.",
+    desc:        "BALVIR LIFTING is among the leading suppliers of multi-brand electrical, electronics, mechanical and hardware products, applicable across a wide range of industries and applications. A single, dependable source for elevators and escalators accessories, wire ropes, LED lighting, cables and automation.",
+    metric:      "Multi-Brand",
+    metricSub:   "Electrical · Electronics · Mechanical",
     tag:         "Quality",
   },
   {
     num:         "02",
-    title:       "In-House Manufacturing",
-    short:       "CNC precision. Zero outsourcing.",
-    desc:        "We design, machine, and assemble in our own 40,000 sq. ft. facility. CNC-machined components, powder-coated cabin interiors, and proprietary VVVF controllers — every part engineered and owned by us, giving you full traceability and warranty coverage.",
-    metric:      "Zero",
-    metricSub:   "Outsourced Components",
+    title:       "Global Brand Partnerships",
+    short:       "Sourced from leaders across the world.",
+    desc:        "We have developed many long-lasting relationships with top manufacturing and supplier companies in India and other parts of the world, including CEDES, MEMCO, Fermator, Wittur, KISWIRE, Toshiba and Hitachi — letting us respond to the exact demands of customers seeking the best quality and latest technology.",
+    metric:      "Global",
+    metricSub:   "Trusted Manufacturer Network",
     tag:         "Engineering",
   },
   {
     num:         "03",
-    title:       "On-Time Delivery — Guaranteed",
-    short:       "We commit. We deliver. Every time.",
-    desc:        "Our digital project management system tracks every milestone in real-time. We publish delivery windows at contract signing and maintain a 98% on-time handover rate. If we miss a deadline, we absorb the liquidated damages — no arguments.",
-    metric:      "98%",
-    metricSub:   "On-Time Handover Rate",
+    title:       "Earn Trust With Business",
+    short:       "A simple principle we live by.",
+    desc:        "We have accumulated strong and healthy market trust by following one simple principle — 'Earn Trust with Business'. We are committed to providing our customers a professional experience in a demanding market, with nation building and customer satisfaction as our ultimate goal.",
+    metric:      "Since 2014",
+    metricSub:   "Built on Trust",
     tag:         "Reliability",
   },
   {
     num:         "04",
-    title:       "24 / 7 Breakdown Support",
-    short:       "2-hour response. Pan-India network.",
-    desc:        "Our 200+ engineers are stationed across 8 major cities. AMC clients get a guaranteed 2-hour on-site response — night, weekend, or public holiday. We track every call, every resolution. Silence is not an option when your lift is down.",
-    metric:      "< 2 Hours",
-    metricSub:   "Guaranteed Response Time",
+    title:       "Pan-India Supply & Support",
+    short:       "Stock and support, nationwide.",
+    desc:        "With channel partners holding a wide range of stock across New Delhi, Kolkata, Mumbai and Chennai, we serve elevator and escalator manufacturers, OEMs, users, consultants, contractors and EPCs on a pan-India basis with competitive pricing and timely delivery.",
+    metric:      "Pan India",
+    metricSub:   "Stocked Across Key Metros",
     tag:         "Service",
   },
   {
     num:         "05",
-    title:       "Fully Bespoke Cabin Design",
-    short:       "Your vision. Our craftsmanship.",
-    desc:        "Every lift we build is uniquely yours. From teak wood panels and marble flooring to brushed stainless steel and smart glass — our in-house designers and craftsmen create cabins that complement your building's identity and elevate the user experience.",
-    metric:      "100%",
-    metricSub:   "Customisable Interiors",
-    tag:         "Design",
+    title:       "Reliable & Affordable",
+    short:       "Best quality, latest tech, fair price.",
+    desc:        "In a very competitive industry, we source products that are reliable and affordable. Our focus is on delivering the best quality with the latest technology at prices that make sense — committed to providing products of best quality at best prices to the buyer.",
+    metric:      "Best Value",
+    metricSub:   "Quality at Fair Prices",
+    tag:         "Value",
   },
   {
     num:         "06",
-    title:       "30% Energy Savings — Proven",
-    short:       "Regenerative drives that pay for themselves.",
-    desc:        "Our VVVF drives and regenerative braking technology recover kinetic energy during descent and return it to the building grid. Third-party audits confirm an average 28–33% reduction in lift energy consumption — measurable savings that compound across the building's operational life.",
-    metric:      "30%",
-    metricSub:   "Avg. Energy Reduction",
+    title:       "Greener & Safer Products",
+    short:       "Better products for industry and users.",
+    desc:        "Through business, BALVIR's aim is to provide greener and safer products to the industry and its users. We continually expand a portfolio that supports safer, more sustainable industrial, infrastructure and commercial projects across the country.",
+    metric:      "Greener & Safer",
+    metricSub:   "Our Product Philosophy",
     tag:         "Sustainability",
   },
 ];
@@ -68,7 +68,7 @@ const tagColors: Record<string, string> = {
   Engineering:   "bg-purple-50 text-purple-600 border-purple-200",
   Reliability:   "bg-amber-50 text-amber-600 border-amber-200",
   Service:       "bg-green-50 text-green-600 border-green-200",
-  Design:        "bg-pink-50 text-pink-600 border-pink-200",
+  Value:         "bg-pink-50 text-pink-600 border-pink-200",
   Sustainability:"bg-teal-50 text-teal-600 border-teal-200",
 };
 
@@ -111,7 +111,7 @@ export default function WhyUs() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="bg-white relative overflow-hidden font-jakarta">
+    <section ref={sectionRef} className="bg-white relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-100" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -123,17 +123,18 @@ export default function WhyUs() {
               Why Balvir Lifting
             </p>
             <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.02] tracking-tight">
-              Engineered to<br />
-              <span className="text-red-gradient">Outperform.</span>
+              Trusted to<br />
+              <span className="text-red-gradient">Deliver.</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-gray-400 text-base leading-relaxed">
-              Our competitors install lifts. We build lifetime partnerships — with engineering
-              that lasts, service that responds, and quality you can see and feel every single day.
+              We don't just supply products — we earn trust through every transaction. Reliable
+              multi-brand sourcing, strong global partnerships, and quality you can count on, at
+              prices that make sense for your project.
             </p>
             <div className="flex flex-wrap gap-3">
-              {["3,000+ Installs", "25 Yrs Experience", "200+ Engineers", "8 Cities"].map(s => (
+              {["Since 2014", "Multi-Brand Supplier", "Pan India Network", "Greener & Safer"].map(s => (
                 <span key={s}
                   className="text-xs font-semibold text-gray-500 border border-gray-200 px-4 py-2 bg-gray-50">
                   {s}

@@ -113,7 +113,7 @@ export default function Hero() {
     <section
       id="home"
       ref={sectionRef}
-      className="hero-bg-anim relative w-full h-screen min-h-[700px] flex flex-col overflow-hidden font-jakarta"
+      className="hero-bg-anim relative w-full h-screen min-h-[700px] flex flex-col overflow-hidden "
     >
       {/* ── Video background ─────────────────────
           Place your video at:  public/hero-video.mp4

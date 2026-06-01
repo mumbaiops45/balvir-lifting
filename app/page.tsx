@@ -14,6 +14,7 @@ import Contact         from "@/components/Contact";
 import Footer          from "@/components/Footer";
 import WhatsAppButton  from "@/components/WhatsAppButton";
 import EnquiryModal    from "@/components/EnquiryModal";
+import Products from "@/components/Products";
 
 export default function Home() {
   return (
@@ -22,12 +23,13 @@ export default function Home() {
       <Hero />
       <Marquee />
       <About />
+      <Products />
       <Services />
       <Stats />
       <WhyUs />
       <Projects />
       <Gallery />
-      <VideoShowcase />
+      {/* <VideoShowcase /> */}
       <Testimonials />
       <CTA />
       <Contact />

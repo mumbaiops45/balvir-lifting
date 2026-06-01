@@ -82,7 +82,7 @@ export default function WhatsAppButton() {
           Positioned bottom-right, max-w-[320px], does NOT overlap hero
       ─────────────────────────────────────── */}
       {open && (
-        <div className="fixed bottom-[88px] right-5 z-[60] w-[320px] bg-white rounded-2xl shadow-[0_8px_60px_rgba(0,0,0,0.25)] overflow-hidden font-jakarta border border-gray-100">
+        <div className="fixed bottom-[88px] right-5 z-[60] w-[320px] bg-white rounded-2xl shadow-[0_8px_60px_rgba(0,0,0,0.25)] overflow-hidden border border-gray-100">
 
           {/* Header */}
           <div className="bg-[#075E54] px-4 py-3.5 flex items-center justify-between">

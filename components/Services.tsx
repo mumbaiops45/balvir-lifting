@@ -8,34 +8,40 @@ gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
-    num: "01", title: "Passenger Lifts",
-    desc: "High-speed, smooth-ride passenger elevators for offices, hotels, hospitals and malls — with destination dispatch and energy-regenerative drives.",
-    tags: ["Up to 40 floors", "Up to 2.5 m/s", "Custom cabins"],
+    num: "01",
+    title: "Elevators & Escalators Accessories",
+    desc: "Multi brand elevator and escalator components including infra red door sensors (light curtains), criss cross beams, 3D landing sensors, automatic rescue devices, drives and voice announcement systems.",
+    tags: ["CEDES", "MEMCO", "Door Sensors"],
   },
   {
-    num: "02", title: "Home & Villa Lifts",
-    desc: "Compact, whisper-quiet home elevators that blend with any interior. Available in MRL configurations for minimal footprint.",
-    tags: ["3–8 stops", "Low pit depth", "Bespoke finish"],
+    num: "02",
+    title: "Steel Wire Ropes",
+    desc: "Steel wire ropes for elevators, off-shore, shipping and construction applications, sourced from the world's leading high carbon steel wire producers and conforming to international standards.",
+    tags: ["KISWIRE", "Usha Martin", "Bedmutha"],
   },
   {
-    num: "03", title: "Goods & Freight Lifts",
-    desc: "Heavy-duty platform lifts rated from 500 kg to 10,000 kg for warehouses, factories, and multi-storey industrial facilities.",
-    tags: ["Up to 10 T", "Auto gates", "VVVF drive"],
+    num: "03",
+    title: "LED Lighting & Accessories",
+    desc: "LED lighting and accessories for elevator and industrial use in round panel, SMD and COB types with aluminium housing, available in white and warm white across multiple wattages.",
+    tags: ["Panel / SMD / COB", "5–7 Watt", "Aluminium Housing"],
   },
   {
-    num: "04", title: "Hydraulic Lifts",
-    desc: "Oil-hydraulic and eco-hydraulic systems for low-rise and heritage buildings where a conventional machine room is not possible.",
-    tags: ["Low rise", "Heritage safe", "Silent operation"],
+    num: "04",
+    title: "Cables & Wires",
+    desc: "Flat travelling and shielded cables suitable for any type and speed of elevator, including CCTV and multimedia display systems, alongside a wide range of industrial cables and wires.",
+    tags: ["Flat Travelling Cables", "MACROTHERM", "DEEPCAB"],
   },
   {
-    num: "05", title: "Escalators & Travelators",
-    desc: "Public-grade moving walkways and escalators for transit hubs, airports, and large retail destinations.",
-    tags: ["Variable speed", "Remote monitoring", "Anti-skid steps"],
+    num: "05",
+    title: "Automation & Analytical Products",
+    desc: "Industrial automation and analytical products designed to improve productivity, efficiency and operational reliability across modern industrial and infrastructure environments.",
+    tags: ["Automation", "Analytical", "Multi Brand"],
   },
   {
-    num: "06", title: "Modernisation & AMC",
-    desc: "Full controller, cabin, and drive replacement for aging lifts — plus annual maintenance contracts with 24/7 breakdown response.",
-    tags: ["24/7 support", "OEM parts", "10-yr warranty"],
+    num: "06",
+    title: "Industrial Supply & Project Support",
+    desc: "End to end sourcing for elevator and escalator manufacturers, OEMs, consultants, contractors and EPCs, with auto door mechanisms, AC systems and allied accessories delivered pan India.",
+    tags: ["FERMATOR / WITTUR", "OEMs & EPCs", "Pan India"],
   },
 ];
 
@@ -62,23 +68,35 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden font-jakarta">
+    <section id="services" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden ">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div ref={headRef} className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8">
-          <div>
-            <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">What We Do</p>
-            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-              Complete Lift<br /><span className="text-red-gradient">Solutions</span>
-            </h2>
-          </div>
-          <p className="text-gray-400 max-w-sm text-sm leading-relaxed">
-            From concept to commissioning — and every service interval in between. One partner, every vertical transport need.
-          </p>
-        </div>
+       <div
+  ref={headRef}
+  className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8"
+>
+  <div>
+    <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+      What We Offer
+    </p>
 
+    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
+      Industrial Products
+      <br />
+      <span className="text-red-gradient">
+        & Business Solutions
+      </span>
+    </h2>
+  </div>
+
+  <p className="text-gray-400 max-w-sm text-sm leading-relaxed">
+    Delivering elevators &amp; escalators accessories, steel wire ropes, LED
+    lighting, cables and automation products through trusted partnerships with
+    leading manufacturers and suppliers.
+  </p>
+</div>
         <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
           {services.map(s => (
             <div key={s.num}

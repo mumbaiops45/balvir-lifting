@@ -30,7 +30,7 @@ export default function VideoShowcase() {
   }, []);
 
   return (
-    <section id="videos" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden font-jakarta">
+    <section id="videos" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden ">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 

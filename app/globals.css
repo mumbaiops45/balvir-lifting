@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Swiss721";
+  src: url("/fonts/Swiss721BoldCondensedBT.ttf") format("truetype");
+}
 :root {
   --red:        #CC1020;
   --red-bright: #E8192C;
@@ -25,7 +29,7 @@
 html { scroll-behavior: auto; }
 
 body {
-  font-family: var(--font-plus-jakarta), sans-serif;
+  font-family: "Swiss721", sans-serif;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;

@@ -9,17 +9,17 @@ import { pexelsImg } from "@/lib/media";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { cat: "Commercial",    title: "Skyline Tower, Delhi",        detail: "12 high-speed passenger lifts — 42-floor Grade-A office tower.", tag: "12 Units · 2.5 m/s", imgId: 1115804 },
-  { cat: "Residential",   title: "Prestige Palms, Pune",        detail: "Bespoke home elevators across 120 luxury villas.", tag: "120 Units · Luxury", imgId: 442150 },
-  { cat: "Hospital",      title: "City Care Hospital, Mumbai",   detail: "Stretcher and visitor lifts for 24/7 healthcare.", tag: "6 Lifts · Medical", imgId: 374907 },
-  { cat: "Industrial",    title: "AutoParts Warehouse, Chennai", detail: "3-tonne freight platforms linking 4 warehouse levels.", tag: "4 Freight · 3,000 kg", imgId: 1884283 },
-  { cat: "Hospitality",   title: "Grand Hyatt, Goa",            detail: "8 panoramic glass lifts for a 5-star beachfront resort.", tag: "8 Panoramic", imgId: 3926482 },
-  { cat: "Modernisation", title: "Heritage Hotel, Jaipur",      detail: "Full drive, cabin and controller replacement for 30-yr-old lifts.", tag: "4 Modernised", imgId: 2724749 },
-  { cat: "Commercial",    title: "Nexus Mall, Hyderabad",       detail: "Escalators and travelators for 3-level retail atrium.", tag: "6 Escalators", imgId: 236698 },
-  { cat: "Residential",   title: "Godrej Reserve, Bengaluru",   detail: "Smart-destination lifts with app-based calling for gated community.", tag: "18 Units · Smart", imgId: 323780 },
+  { cat: "Elevators",    title: "Elevators & Escalators",      detail: "Multi-brand accessories — door sensors, drives, ARD, ropes and cables — for elevator & escalator OEMs, users and consultants.", tag: "OEMs · Consultants", imgId: 1115804 },
+  { cat: "Cranes",       title: "Cranes & Material Handling",  detail: "KISWIRE steel wire ropes are OEM-supplied to leading crane makers including Kone Cranes, Tadano, Kobelco and XCMG.", tag: "OEM Wire Ropes", imgId: 1884283 },
+  { cat: "Marine",       title: "Shipping & Off-Shore",        detail: "High-carbon steel wire ropes engineered for shipping, off-shore platforms and demanding marine lifting applications.", tag: "Off-Shore · Shipping", imgId: 3926482 },
+  { cat: "Construction", title: "Construction & Infrastructure", detail: "Reliable wire ropes and industrial products supporting construction sites and large infrastructure projects.", tag: "Infrastructure", imgId: 236698 },
+  { cat: "Industrial",   title: "Oil, Gas & Mining",           detail: "Complete solution provider for oil & gas, mining and heavy structural lifting with internationally certified wire ropes.", tag: "API · DNV · ABS", imgId: 442150 },
+  { cat: "Cranes",       title: "Ports & Heavy Lifting",       detail: "Wire rope solutions for ports and heavy lifting from the world's largest high-carbon steel wire producer.", tag: "Ports · Cranes", imgId: 374907 },
+  { cat: "Elevators",    title: "Architects & Interiors",      detail: "Supporting EPCs, architects and interior teams with LED lighting, cabins and elevator accessories.", tag: "EPCs · Interiors", imgId: 323780 },
+  { cat: "Industrial",   title: "Industrial Automation",       detail: "Automation and analytical products that improve productivity and reliability across industrial environments.", tag: "Automation · Analytical", imgId: 2724749 },
 ];
 
-const cats = ["All", "Commercial", "Residential", "Hospital", "Industrial", "Hospitality", "Modernisation"];
+const cats = ["All", "Elevators", "Cranes", "Marine", "Construction", "Industrial"];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -48,19 +48,19 @@ export default function Projects() {
   }, [active]);
 
   return (
-    <section id="projects" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden font-jakarta">
+    <section id="projects" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden ">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 
       <div className="max-w-7xl mx-auto px-6">
         <div ref={headRef} className="mb-12">
-          <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Our Portfolio</p>
+          <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Industries We Serve</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-              Landmark <span className="text-red-gradient">Projects</span>
+              Applications &amp; <span className="text-red-gradient">Industries</span>
             </h2>
             <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
-              Selected installations across India&apos;s fastest-growing cities.
+              Products and solutions serving diverse industries across India and beyond.
             </p>
           </div>
         </div>
@@ -111,7 +111,7 @@ export default function Projects() {
 
         <div className="mt-10 flex justify-center">
           <button className="btn-outline-dark text-sm">
-            View All Projects
+            Explore Our Range
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

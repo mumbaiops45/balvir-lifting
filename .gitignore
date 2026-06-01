@@ -1,5 +1,11 @@
 node_modules
 .next
+out
+dist
+build
 .env
 .env.local
-tsconfig.tsbuildinfo
+.env.production
+.DS_Store
+npm-debug.log
+yarn-error.log

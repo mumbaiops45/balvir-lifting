@@ -31,7 +31,7 @@ export default function Gallery() {
   }, []);
 
   return (
-    <section id="gallery" ref={sectionRef} className="section-pad bg-white relative overflow-hidden font-jakarta">
+    <section id="gallery" ref={sectionRef} className="section-pad bg-white relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-100" />
 
       <div className="max-w-7xl mx-auto px-6">

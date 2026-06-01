@@ -7,13 +7,32 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const milestones = [
-  { year: "1998", event: "Founded in New Delhi with a team of 4 engineers." },
-  { year: "2005", event: "Expanded to 8 states. 500+ lifts commissioned." },
-  { year: "2012", event: "ISO 9001 certification. In-house manufacturing launched." },
-  { year: "2020", event: "National footprint. 2,500+ installations across India." },
-  { year: "Today", event: "3,000+ lifts running. 200+ staff. 24/7 service network." },
+  {
+    year: "2014",
+    event:
+      "BALVIR LIFTING (formerly Balvir Global Products) was established and registered, with its office located in Navi Mumbai, Kharghar."
+  },
+  {
+    year: "Principle",
+    event:
+      "Built on a simple principle we follow, 'Earn Trust with Business', with the aim of providing greener and safer products to industry and users."
+  },
+  {
+    year: "Growth",
+    event:
+      "Developed many long lasting relationships with top manufacturing and supplier companies across India and other parts of the world."
+  },
+  {
+    year: "Today",
+    event:
+      "Among the leading suppliers of multi brand electrical, electronics, mechanical and hardware products for diverse industries and applications."
+  },
+  {
+    year: "Vision",
+    event:
+      "To be referred as the most favourable trading company in multi brand electrical, electronics, mechanical and automation products."
+  }
 ];
-
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftRef    = useRef<HTMLDivElement>(null);
@@ -42,41 +61,61 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="section-pad bg-white relative overflow-hidden font-jakarta">
+    <section id="about" ref={sectionRef} className="section-pad bg-white relative overflow-hidden ">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-600/20 to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-100" />
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
 
         {/* ── Left ─────────────────────────────────── */}
-        <div ref={leftRef}>
-          <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Who We Are</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
-            India&apos;s Most Trusted<br />
-            <span className="text-red-gradient">Lifting Partner</span>
-          </h2>
-          <div className="red-line w-24 mb-7" />
+     <div ref={leftRef}>
+  <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+    Company Profile
+  </p>
 
-          <p className="text-gray-500 leading-relaxed mb-5">
-            Balvir Lifting is a nationally recognised elevator engineering firm with over 25 years of
-            experience. We design, manufacture, install, and maintain every type of vertical
-            transportation system — from compact home lifts to heavy-duty industrial freight platforms.
-          </p>
-          <p className="text-gray-500 leading-relaxed mb-10">
-            Our in-house manufacturing facility produces cabin interiors, drive systems, and control
-            panels to exacting tolerances — ensuring every unit lasts decades, not years.
-          </p>
+  <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
+    Leading Supplier Of
+    <br />
+    <span className="text-red-gradient">
+      Multi-Brand Industrial Products
+    </span>
+  </h2>
 
-          {/* Cert badges */}
-          <div className="flex flex-wrap gap-3">
-            {["ISO 9001:2015", "EN 81 Certified", "BIS Approved", "IS:14665"].map(c => (
-              <span key={c}
-                className="text-xs font-semibold text-red-600 border border-red-200 bg-red-50 px-4 py-2 tracking-wider">
-                {c}
-              </span>
-            ))}
-          </div>
-        </div>
+  <div className="red-line w-24 mb-7" />
+
+  <p className="text-gray-500 leading-relaxed mb-5">
+    BALVIR LIFTING (formerly Balvir Global Products) was established and
+    registered in 2014, with its office located in Navi Mumbai, Kharghar.
+    We have accumulated strong and healthy market trust through a simple
+    principle we follow, "Earn Trust with Business", with the aim of
+    providing greener and safer products to the industry and its users.
+  </p>
+
+  <p className="text-gray-500 leading-relaxed mb-10">
+    Among the leading suppliers of multi brand electrical, electronics,
+    mechanical and hardware products, we source items that are reliable
+    and affordable, backed by long lasting relationships with top
+    manufacturers and suppliers in India and around the world. This lets
+    us respond to the exact demands of customers seeking the best quality
+    and latest technology at affordable prices.
+  </p>
+
+  <div className="flex flex-wrap gap-3">
+    {[
+      "Established 2014",
+      "Formerly Balvir Global Products",
+      "Multi-Brand Products",
+      "Pan India Supply"
+    ].map((c) => (
+      <span
+        key={c}
+        className="text-xs font-semibold text-red-600 border border-red-200 bg-red-50 px-4 py-2 tracking-wider"
+      >
+        {c}
+      </span>
+    ))}
+  </div>
+</div>
 
         {/* ── Right: Timeline ───────────────────────── */}
         <div ref={rightRef} className="relative pl-8">

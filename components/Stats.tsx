@@ -47,7 +47,7 @@ export default function Stats() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden font-jakarta py-20"
+      className="relative overflow-hidden  py-20"
       style={{ background: "linear-gradient(135deg, #0D0000 0%, #1a0005 40%, #0D0000 100%)" }}
     >
       {/* Top/bottom red lines */}

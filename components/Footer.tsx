@@ -5,18 +5,20 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LogoSVG } from "./LogoImage";
 import { useModal } from "@/context/ModalContext";
+import Link from "next/link";
+import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const links = {
-  Company:  ["About Us", "Our Story", "Careers", "Press & Media"],
-  Services: ["Passenger Lifts", "Home Lifts", "Goods Lifts", "Escalators", "Modernisation", "AMC"],
-  Support:  ["Breakdown Service", "Spare Parts", "Documentation", "FAQs"],
+  Company:  ["About Us", "Our Vision", "Our Goal", "Contact Us"],
+  Products: ["Elevators & Escalators", "Steel Wire Ropes", "LED Lighting", "Cables & Wires", "Automation"],
+  Segments: ["Elevator OEMs / Users", "Consultants & Contractors", "EPCs & Interiors", "Industrial & Infra"],
 };
 
-const cities = ["Mumbai", "Delhi", "Bengaluru", "Hyderabad", "Chennai", "Pune", "Kolkata", "Ahmedabad"];
+const cities = ["Navi Mumbai", "New Delhi", "Mumbai", "Kolkata", "Chennai"];
 
-const certs = ["ISO 9001:2015", "EN 81", "BIS Approved", "IS:14665", "OHSAS 18001"];
+const certs = ["API", "DNV", "ABS", "BV", "LRS", "IS:2365"];
 
 const socials = [
   { label: "LinkedIn",  href: "#", path: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
@@ -44,7 +46,7 @@ export default function Footer() {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <footer ref={footerRef} className="bg-[#0A0A0A] font-jakarta border-t border-white/5">
+    <footer ref={footerRef} className="bg-[#0A0A0A] border-t border-white/5">
 
       {/* ── Main grid ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
@@ -52,13 +54,24 @@ export default function Footer() {
 
           {/* Brand — 2 cols */}
           <div className="col-span-2">
-            <a href="#home" onClick={e => { e.preventDefault(); scrollTo("#home"); }} className="inline-block mb-5">
-              <LogoSVG height={44} variant="dark" />
-            </a>
-
-            <p className="text-white/40 text-sm leading-relaxed mb-6 max-w-[260px]">
-              India&apos;s trusted elevator & lift specialists. Engineering precision since 1998.
+         <Link href="/">
+          <Image
+            src="/logo.PNG"
+            alt="Company Logo"
+            width={180}
+            height={40}
+            priority
+            className="h-[10vh] object-cover"
+          />
+        </Link>
+            <p className="text-white/40 text-sm leading-relaxed mb-4 max-w-[260px]">
+              Trusted supplier of multi-brand electrical, electronics, mechanical, hardware &amp; automation products. Established 2014.
             </p>
+
+            <p className="text-white/35 text-xs leading-relaxed mb-2 max-w-[280px]">
+              Shop No. 18, Plot S, Sector-2, Railway Station Road, Kharghar, Raigad, Navi Mumbai – 410210, Maharashtra, India.
+            </p>
+            <p className="text-white/30 text-[11px] mb-6">GSTIN: 27ADHPA7026N1ZF</p>
 
             {/* Globe + cities */}
             <div className="flex items-start gap-3 mb-6">
@@ -69,7 +82,7 @@ export default function Footer() {
                 </svg>
               </div>
               <div>
-                <div className="text-white/50 text-xs font-semibold mb-2 uppercase tracking-widest">Pan-India Presence</div>
+                <div className="text-white/50 text-xs font-semibold mb-2 uppercase tracking-widest">Pan-India Supply</div>
                 <div className="flex flex-wrap gap-1.5">
                   {cities.map((c, i) => (
                     <span key={c}
@@ -81,14 +94,17 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Emergency */}
+            {/* Contact */}
             <div className="flex items-center gap-2.5 border border-red-600/30 bg-red-600/8 px-4 py-2.5 w-fit">
               <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-              <span className="text-red-400 text-xs font-bold uppercase tracking-widest">24/7</span>
+              <span className="text-red-400 text-xs font-bold uppercase tracking-widest">Sales</span>
               <a href="tel:+919819002726" className="text-white/60 text-xs hover:text-white transition-colors">
                 +91 98190 02726
               </a>
             </div>
+            <a href="mailto:kishore@balvir.in" className="text-white/45 text-xs hover:text-white transition-colors mt-3 inline-block">
+              kishore@balvir.in
+            </a>
           </div>
 
           {/* Nav columns */}
@@ -113,11 +129,11 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* ── Cert strip ──────────────────────────── */}
+      {/* ── Standards strip ─────────────────────── */}
       <div className="border-t border-white/5 f-reveal">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center gap-3">
           <span className="text-white/20 text-[10px] uppercase tracking-widest mr-2 font-semibold shrink-0">
-            Accreditations
+            Product Standards
           </span>
           {certs.map(c => (
             <span key={c}
@@ -136,7 +152,7 @@ export default function Footer() {
             {/* Left — copyright + socials */}
             <div className="flex flex-wrap items-center gap-5">
               <span className="text-white/20 text-xs">
-                © {new Date().getFullYear()} Balvir Lifting Pvt. Ltd.
+                © {new Date().getFullYear()} Balvir Lifting
               </span>
               <div className="flex items-center gap-2">
                 {socials.map(s => (
