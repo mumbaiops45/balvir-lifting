@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
@@ -11,7 +11,7 @@ const slides = [
     line2: "Engineering Trust.",
     sub: "3,000+ precision elevator installations across India's fastest-growing cities — built to last, backed for life.",
     stat: { val: "3,000+", label: "Lifts Installed" },
-    accent: "#CC1020",
+    accent: "#0F3460",
   },
   {
     badge: "ISO 9001:2015 · EN 81 Certified",
@@ -19,7 +19,7 @@ const slides = [
     line2: "Performance Always.",
     sub: "Every unit exceeds international standards — triple-redundant braking, ARD auto-rescue, and overload protection included.",
     stat: { val: "25+", label: "Years of Excellence" },
-    accent: "#CC1020",
+    accent: "#0F3460",
   },
   {
     badge: "Pan-India 24 / 7 Service Network",
@@ -27,7 +27,7 @@ const slides = [
     line2: "Stop Running.",
     sub: "200+ engineers across 8 major cities. Guaranteed 2-hour breakdown response for every AMC client — always.",
     stat: { val: "2 hr", label: "Response Guarantee" },
-    accent: "#CC1020",
+    accent: "#0F3460",
   },
 ];
 
@@ -153,14 +153,16 @@ export default function Hero() {
 
 
             {/* Heading */}
-            <h1 className="text-[56px] md:text-7xl xl:text-[82px] font-extrabold text-white leading-[1.03] tracking-[-0.03em] mb-5">
+            <h1 className="md:text-7xl xl:text-[82px] font-extrabold text-white leading-[1.03] tracking-[-0.03em] mb-5">
               {slide.line1}
               <br />
-              {slide.line2}
+               <span className="text-[var(--blue-bright)]">
+    {slide.line2}
+  </span>
             </h1>
 
             {/* Red rule */}
-            <div className="w-16 h-[3px] bg-red-600 mb-7" />
+            <div className="w-16 h-[3px] bg-blue-600 mb-7" />
 
             {/* Subtext */}
             <p className="text-white/55 text-base md:text-lg leading-relaxed max-w-[480px] mb-10">
@@ -195,7 +197,7 @@ export default function Hero() {
                 <div className="text-white/45 text-xs font-semibold tracking-[0.22em] uppercase">
                   {slide.stat.label}
                 </div>
-                <div className="h-0.5 bg-red-600 mt-5" />
+                <div className="h-0.5 bg-blue-600 mt-5" />
               </div>
 
               {/* Mini stat cards */}
@@ -206,7 +208,7 @@ export default function Hero() {
                 ].map(s => (
                   <div key={s.n}
                     className="bg-white/6 backdrop-blur-md border border-white/10 p-4 text-center">
-                    <div className="text-red-400 font-extrabold text-lg leading-none">{s.n}</div>
+                    <div className="text-blue-400 font-extrabold text-lg leading-none">{s.n}</div>
                     <div className="text-white/35 text-[10px] tracking-widest uppercase mt-1">{s.l}</div>
                   </div>
                 ))}
@@ -222,7 +224,7 @@ export default function Hero() {
         <div className="w-full h-px bg-white/8 mb-6">
           <div
             ref={progressRef}
-            className="h-full bg-red-600 origin-left"
+            className="h-full bg-blue-600 origin-left"
             style={{ transform: "scaleX(0)" }}
           />
         </div>
@@ -235,7 +237,7 @@ export default function Hero() {
                 key={i}
                 onClick={() => manualGo(i)}
                 className={`transition-all duration-400 rounded-full ${i === current
-                    ? "w-8 h-2 bg-red-500"
+                    ? "w-8 h-2 bg-blue-500"
                     : "w-2 h-2 bg-white/25 hover:bg-white/50"
                   }`}
               />

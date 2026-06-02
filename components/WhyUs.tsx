@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -119,12 +119,12 @@ export default function WhyUs() {
         {/* ── Top: heading ──────────────────────────── */}
         <div ref={headRef} className="grid lg:grid-cols-2 gap-12 items-end pt-24 pb-14 border-b border-gray-100">
           <div>
-            <p className="text-red-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
+            <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
               Why Balvir Lifting
             </p>
             <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.02] tracking-tight">
               Trusted to<br />
-              <span className="text-red-gradient">Deliver.</span>
+              <span className="text-blue-gradient">Deliver.</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4">
@@ -151,15 +151,17 @@ export default function WhyUs() {
             const isOpen = active === i;
             return (
               <div key={r.num}
-                className={`group cursor-pointer transition-colors duration-300 ${isOpen ? "bg-white" : "hover:bg-gray-50/60"}`}
-                onClick={() => setActive(isOpen ? -1 : i)}
+                className={`group transition-colors duration-300 ${isOpen ? "bg-white" : "hover:bg-gray-50/60"}`}
               >
                 {/* ── Row header ── */}
-                <div className="grid grid-cols-[80px_1fr_auto_44px] lg:grid-cols-[100px_1fr_220px_44px] items-center gap-4 py-6 lg:py-7">
+                <div
+                  className="grid grid-cols-[80px_1fr_auto_44px] lg:grid-cols-[100px_1fr_220px_44px] items-center gap-4 py-6 lg:py-7 cursor-pointer"
+                  onClick={() => setActive(isOpen ? -1 : i)}
+                >
 
                   {/* Number */}
                   <div className={`text-4xl lg:text-5xl font-extrabold leading-none transition-colors duration-300 ${
-                    isOpen ? "text-red-600" : "text-gray-100 group-hover:text-gray-200"
+                    isOpen ? "text-blue-600" : "text-gray-100 group-hover:text-gray-200"
                   }`}>
                     {r.num}
                   </div>
@@ -168,7 +170,7 @@ export default function WhyUs() {
                   <div>
                     <div className={`flex items-center gap-3 mb-1`}>
                       <h3 className={`text-xl lg:text-2xl font-extrabold tracking-tight transition-colors duration-300 ${
-                        isOpen ? "text-red-600" : "text-gray-900 group-hover:text-gray-700"
+                        isOpen ? "text-blue-600" : "text-gray-900 group-hover:text-gray-700"
                       }`}>
                         {r.title}
                       </h3>
@@ -177,7 +179,7 @@ export default function WhyUs() {
                       </span>
                     </div>
                     <p className={`text-sm transition-colors duration-300 ${
-                      isOpen ? "text-red-400" : "text-gray-400"
+                      isOpen ? "text-blue-400" : "text-gray-400"
                     }`}>
                       {r.short}
                     </p>
@@ -186,7 +188,7 @@ export default function WhyUs() {
                   {/* Metric */}
                   <div className="hidden lg:block text-right">
                     <div className={`text-2xl font-extrabold transition-colors duration-300 ${
-                      isOpen ? "text-red-600" : "text-gray-300 group-hover:text-gray-400"
+                      isOpen ? "text-blue-600" : "text-gray-300 group-hover:text-gray-400"
                     }`}>
                       {r.metric}
                     </div>
@@ -196,7 +198,7 @@ export default function WhyUs() {
                   {/* Toggle icon */}
                   <div className={`w-9 h-9 border flex items-center justify-center transition-all duration-300 shrink-0 ml-auto ${
                     isOpen
-                      ? "border-red-600 bg-red-600 text-white rotate-45"
+                      ? "border-blue-600 bg-blue-600 text-white rotate-45"
                       : "border-gray-200 text-gray-400 group-hover:border-gray-400"
                   }`}>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,11 +211,12 @@ export default function WhyUs() {
                 <div
                   ref={el => { bodyRefs.current[i] = el; }}
                   style={{ height: i === 0 ? "auto" : 0, overflow: "hidden", opacity: i === 0 ? 1 : 0 }}
+                  onClick={(e) => e.stopPropagation()}
                 >
                   <div className="grid lg:grid-cols-[100px_1fr_220px_44px] gap-4 pb-8">
                     {/* Red left bar */}
                     <div className="hidden lg:flex justify-center">
-                      <div className="w-px bg-red-200 mt-1" />
+                      <div className="w-px bg-blue-200 mt-1" />
                     </div>
 
                     {/* Description */}
@@ -226,17 +229,17 @@ export default function WhyUs() {
                     </div>
 
                     {/* Mobile metric (shown in body on mobile) */}
-                    <div className="lg:hidden border border-red-100 bg-red-50 p-4 self-start">
-                      <div className="text-2xl font-extrabold text-red-600">{r.metric}</div>
+                    <div className="lg:hidden border border-blue-100 bg-blue-50 p-4 self-start">
+                      <div className="text-2xl font-extrabold text-blue-600">{r.metric}</div>
                       <div className="text-[11px] text-gray-400 mt-0.5">{r.metricSub}</div>
                     </div>
 
                     {/* Desktop: stat card in expanded state */}
                     <div className="hidden lg:block">
-                      <div className="border border-red-100 bg-red-50/50 p-5 h-full flex flex-col justify-center">
-                        <div className="text-3xl font-extrabold text-red-600 mb-1">{r.metric}</div>
+                      <div className="border border-blue-100 bg-blue-50/50 p-5 h-full flex flex-col justify-center">
+                        <div className="text-3xl font-extrabold text-blue-600 mb-1">{r.metric}</div>
                         <div className="text-xs text-gray-400 tracking-wide leading-tight">{r.metricSub}</div>
-                        <div className="h-px bg-red-200 mt-4" />
+                        <div className="h-px bg-blue-200 mt-4" />
                       </div>
                     </div>
                   </div>

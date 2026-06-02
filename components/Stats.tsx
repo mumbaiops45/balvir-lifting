@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -51,11 +51,11 @@ export default function Stats() {
       style={{ background: "linear-gradient(135deg, #0D0000 0%, #1a0005 40%, #0D0000 100%)" }}
     >
       {/* Top/bottom red lines */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-600/60 to-transparent" />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-600/40 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/60 to-transparent" />
+      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/40 to-transparent" />
 
       {/* Glow */}
-      <div className="absolute inset-0 bg-red-glow opacity-60 pointer-events-none" />
+      <div className="absolute inset-0 bg-blue-glow opacity-60 pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-y divide-white/5">
@@ -68,7 +68,7 @@ export default function Stats() {
                 >
                   0
                 </span>
-                <span className="text-4xl font-extrabold text-red-500 leading-none pb-1">{s.suffix}</span>
+                <span className="text-4xl font-extrabold text-blue-500 leading-none pb-1">{s.suffix}</span>
               </div>
               <div className="text-white font-semibold text-sm mb-1">{s.label}</div>
               <div className="text-white/30 text-xs tracking-wider uppercase">{s.sub}</div>

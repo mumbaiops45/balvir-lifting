@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -61,6 +61,7 @@ export default function Services() {
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
           stagger: { amount: 0.5 },
+          clearProps: "transform,opacity",
           scrollTrigger: { trigger: gridRef.current, start: "top 80%" } }
       );
     }, sectionRef);
@@ -78,14 +79,14 @@ export default function Services() {
   className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8"
 >
   <div>
-    <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+    <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
       What We Offer
     </p>
 
     <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
       Industrial Products
       <br />
-      <span className="text-red-gradient">
+      <span className="text-blue-gradient">
         & Business Solutions
       </span>
     </h2>
@@ -100,21 +101,21 @@ export default function Services() {
         <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
           {services.map(s => (
             <div key={s.num}
-              className="group bg-white hover:bg-red-50 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
+              className="group bg-white hover:bg-blue-50 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
               {/* Hover left red border */}
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-red-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-bottom" />
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-blue-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
-              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-red-100 transition-colors leading-none mb-4 select-none">
+              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-blue-100 transition-colors duration-300 leading-none mb-4 select-none">
                 {s.num}
               </div>
-              <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-red-600 transition-colors duration-300">
+              <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-blue-600 transition-colors duration-300">
                 {s.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-6">{s.desc}</p>
               <div className="flex flex-wrap gap-2">
                 {s.tags.map(t => (
                   <span key={t}
-                    className="text-[11px] text-gray-400 border border-gray-200 px-3 py-1 group-hover:border-red-300 group-hover:text-red-500 transition-all">
+                    className="text-[11px] text-gray-400 border border-gray-200 px-3 py-1 group-hover:border-blue-300 group-hover:text-blue-500 transition-all duration-300">
                     {t}
                   </span>
                 ))}
@@ -122,7 +123,7 @@ export default function Services() {
 
               {/* Arrow */}
               <div className="absolute right-6 bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </div>

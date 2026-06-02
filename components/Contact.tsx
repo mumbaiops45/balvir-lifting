@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -40,7 +40,7 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const inputClass = "w-full bg-white border border-gray-200 focus:border-red-500 text-gray-900 placeholder-gray-300 px-4 py-3 text-sm outline-none transition-colors duration-200 rounded-none shadow-sm";
+  const inputClass = "w-full bg-white border border-gray-200 focus:border-blue-500 text-gray-900 placeholder-gray-300 px-4 py-3 text-sm outline-none transition-colors duration-200 rounded-none shadow-sm";
 
   return (
     <section id="contact" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
@@ -48,9 +48,9 @@ export default function Contact() {
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-14">
-          <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Get In Touch</p>
+          <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Get In Touch</p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-            Let&apos;s Find The Right<br /><span className="text-red-gradient">Products For You</span>
+            Let&apos;s Find The Right<br /><span className="text-blue-gradient">Products For You</span>
           </h2>
         </div>
 
@@ -60,7 +60,7 @@ export default function Contact() {
             <div className="flex flex-col gap-6">
               {info.map(i => (
                 <div key={i.label} className="flex gap-4 items-start">
-                  <div className="w-11 h-11 border border-red-200 bg-red-50 flex items-center justify-center text-red-500 shrink-0">
+                  <div className="w-11 h-11 border border-blue-200 bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
                     {i.icon}
                   </div>
                   <div>
@@ -85,18 +85,18 @@ export default function Contact() {
           {/* Form — 3/5 */}
           <div ref={rightRef} className="lg:col-span-3">
             <div className="bg-white border border-gray-200 shadow-sm p-8">
-              <div className="h-0.5 bg-gradient-to-r from-red-700 to-red-400 -mx-8 -mt-8 mb-8" />
+              <div className="h-0.5 bg-gradient-to-r from-blue-700 to-blue-400 -mx-8 -mt-8 mb-8" />
 
               {sent ? (
                 <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
-                  <div className="w-16 h-16 border border-red-200 bg-red-50 flex items-center justify-center">
-                    <svg className="w-7 h-7 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 border border-blue-200 bg-blue-50 flex items-center justify-center">
+                    <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <h3 className="text-gray-900 font-bold text-xl">Enquiry Received</h3>
                   <p className="text-gray-400 text-sm max-w-xs">Our team will contact you within one business day.</p>
-                  <button onClick={() => setSent(false)} className="text-red-500 text-xs underline underline-offset-4 mt-2">Send another message</button>
+                  <button onClick={() => setSent(false)} className="text-blue-500 text-xs underline underline-offset-4 mt-2">Send another message</button>
                 </div>
               ) : (
                 <form onSubmit={e => { e.preventDefault(); setSent(true); }} className="flex flex-col gap-4">

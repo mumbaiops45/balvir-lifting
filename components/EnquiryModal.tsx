@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -77,7 +77,7 @@ export default function EnquiryModal() {
 
   const f = (k: keyof typeof form, v: string) => setForm(p => ({ ...p, [k]: v }));
 
-  const inp = "w-full bg-gray-50 border border-gray-200 focus:border-red-500 focus:bg-white text-gray-900 placeholder-gray-300 px-3.5 py-2.5 text-sm outline-none transition-all rounded-lg";
+  const inp = "w-full bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white text-gray-900 placeholder-gray-300 px-3.5 py-2.5 text-sm outline-none transition-all rounded-lg";
   const lbl = "text-gray-400 text-[10px] font-bold uppercase tracking-widest block mb-1";
 
   const step0OK = !!(form.name && form.phone && form.email);
@@ -98,7 +98,10 @@ export default function EnquiryModal() {
 
         {/* ── LEFT panel ──────────────────────── */}
         <div className="hidden md:flex w-[260px] shrink-0 flex-col justify-between p-7 relative"
-          style={{ background: "linear-gradient(160deg,#8B0010 0%,#CC1020 55%,#9A0012 100%)" }}>
+         style={{
+  background:
+    "linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 45%, var(--blue-bright) 100%)",
+}}>
           {/* texture */}
           <div className="absolute inset-0 opacity-10" style={{
             backgroundImage: "linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px)",
@@ -149,7 +152,7 @@ export default function EnquiryModal() {
                 <div key={s} className="flex items-center gap-1.5">
                   <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300 ${
                     i < step  ? "bg-green-500 text-white" :
-                    i === step ? "bg-red-600 text-white"  :
+                    i === step ? "bg-blue-600 text-white"  :
                     "bg-gray-100 text-gray-400"
                   }`}>
                     {i < step ? "✓" : i + 1}
@@ -162,7 +165,7 @@ export default function EnquiryModal() {
               ))}
             </div>
             <button onClick={toggle}
-              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-red-500 hover:text-red-500 transition-all">
+              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-blue-500 hover:text-blue-500 transition-all">
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
@@ -207,7 +210,7 @@ export default function EnquiryModal() {
                     New Enquiry
                   </button>
                   <button onClick={toggle}
-                    className="text-sm bg-red-600 text-white px-5 py-2.5 rounded-lg hover:bg-red-500 font-semibold transition-colors">
+                    className="text-sm bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-500 font-semibold transition-colors">
                     Close
                   </button>
                 </div>
@@ -275,11 +278,11 @@ export default function EnquiryModal() {
                           <button key={s.id} type="button" onClick={() => f("service", s.id)}
                             className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border-2 text-center transition-all ${
                               form.service === s.id
-                                ? "border-red-600 bg-red-50"
+                                ? "border-blue-600 bg-blue-50"
                                 : "border-gray-200 bg-white hover:border-gray-300"
                             }`}>
                             <span className="text-xl leading-none">{s.icon}</span>
-                            <span className={`text-[10px] font-semibold leading-tight ${form.service === s.id ? "text-red-600" : "text-gray-500"}`}>
+                            <span className={`text-[10px] font-semibold leading-tight ${form.service === s.id ? "text-blue-600" : "text-gray-500"}`}>
                               {s.label}
                             </span>
                           </button>
@@ -310,7 +313,7 @@ export default function EnquiryModal() {
                           <button key={t} type="button" onClick={() => f("buildingType", t)}
                             className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
                               form.buildingType === t
-                                ? "bg-red-600 text-white border-red-600"
+                                ? "bg-blue-600 text-white border-blue-600"
                                 : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
                             }`}>
                             {t}
@@ -336,7 +339,7 @@ export default function EnquiryModal() {
                           <button key={t} type="button" onClick={() => f("timeline", t)}
                             className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
                               form.timeline === t
-                                ? "bg-red-600 text-white border-red-600"
+                                ? "bg-blue-600 text-white border-blue-600"
                                 : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
                             }`}>
                             {t}
@@ -391,7 +394,7 @@ export default function EnquiryModal() {
                 </button>
               ) : (
                 <a href="tel:+919819002726"
-                  className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-red-600 transition-colors">
+                  className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-blue-600 transition-colors">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>

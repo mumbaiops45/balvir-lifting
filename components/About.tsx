@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -68,26 +68,26 @@ export default function About() {
 
   return (
     <section id="about" ref={sectionRef} className="section-pad bg-white relative overflow-hidden ">
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-600/20 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/20 to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-100" />
 
       <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center">
 
         {/* ── Left ─────────────────────────────────── */}
         <div ref={leftRef}>
-          <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+          <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
             Company Profile
           </p>
 
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
             Leading Supplier Of
             <br />
-            <span className="text-red-gradient">
+            <span className="text-blue-gradient">
               Multi-Brand Industrial Products
             </span>
           </h2>
 
-          <div className="red-line w-24 mb-7" />
+          <div className="blue-line w-24 mb-7" />
 
           <p className="text-gray-500 leading-relaxed mb-5">
             BALVIR LIFTING (formerly Balvir Global Products) was established and
@@ -118,7 +118,7 @@ export default function About() {
             ].map((c) => (
               <span
                 key={c}
-                className="text-xs font-semibold text-red-600 border border-red-200 bg-red-50 px-4 py-2 tracking-wider"
+                className="text-xs font-semibold text-blue-600 border border-blue-200 bg-blue-50 px-4 py-2 tracking-wider"
               >
                 {c}
               </span>
@@ -129,14 +129,14 @@ export default function About() {
         {/* ── Right: Timeline ───────────────────────── */}
         <div ref={rightRef} className="relative pl-8">
           <div ref={lineRef}
-            className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-red-600 via-red-400/50 to-transparent" />
+            className="absolute left-0 top-2 bottom-2 w-px bg-gradient-to-b from-blue-600 via-blue-400/50 to-transparent" />
 
           <div className="flex flex-col gap-10">
             {milestones.map(m => (
               <div key={m.year} className="relative flex gap-5">
-                <div className="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-red-600 shadow-[0_0_10px_rgba(200,16,32,0.5)] shrink-0" />
+                <div className="absolute -left-[37px] top-1 w-3 h-3 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(26,79,196,0.5)] shrink-0" />
                 <div>
-                  <div className="text-red-600 font-extrabold text-sm tracking-widest mb-1">{m.year}</div>
+                  <div className="text-blue-600 font-extrabold text-sm tracking-widest mb-1">{m.year}</div>
                   <p className="text-gray-500 text-sm leading-relaxed">{m.event}</p>
                 </div>
               </div>

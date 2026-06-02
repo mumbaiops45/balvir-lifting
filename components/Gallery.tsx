@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
@@ -37,9 +37,9 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-6">
         <div ref={headRef} className="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div>
-            <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Photo Gallery</p>
+            <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Photo Gallery</p>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-              Precision in Every <span className="text-red-gradient">Frame</span>
+              Precision in Every <span className="text-blue-gradient">Frame</span>
             </h2>
           </div>
           <p className="text-gray-400 text-xs max-w-xs leading-relaxed">
@@ -52,7 +52,7 @@ export default function Gallery() {
         <div ref={gridRef} className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4">
           {galleryImages.map(img => (
             <div key={img.id}
-              className="group relative overflow-hidden bg-gray-100 break-inside-avoid border border-gray-200 hover:border-red-300 hover:shadow-[0_8px_40px_rgba(200,16,32,0.12)] transition-all duration-400">
+              className="group relative overflow-hidden bg-gray-100 break-inside-avoid border border-gray-200 hover:border-blue-300 hover:shadow-[0_8px_40px_rgba(26,79,196,0.12)] transition-all duration-400">
               <div className={`relative w-full ${img.wide ? "h-72" : "h-52"}`}>
                 <Image
                   src={pexelsImg(img.id, 800, img.wide ? 580 : 400)}
@@ -66,12 +66,12 @@ export default function Gallery() {
               {/* Hover overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400" />
               <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-3 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-400">
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-red-400 block mb-1">{img.category}</span>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-blue-400 block mb-1">{img.category}</span>
                 <h4 className="text-white font-semibold text-sm leading-tight">{img.title}</h4>
               </div>
 
               {/* Top red border on hover */}
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-red-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
             </div>
           ))}
         </div>

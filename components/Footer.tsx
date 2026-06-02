@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -11,7 +11,7 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 const links = {
-  Company:  ["About Us", "Our Vision", "Our Goal", "Contact Us"],
+  Company: ["About Us", "Our Vision", "Our Goal", "Contact Us"],
   Products: ["Elevators & Escalators", "Steel Wire Ropes", "LED Lighting", "Cables & Wires", "Automation"],
   Segments: ["Elevator OEMs / Users", "Consultants & Contractors", "EPCs & Interiors", "Industrial & Infra"],
 };
@@ -21,22 +21,24 @@ const cities = ["Navi Mumbai", "New Delhi", "Mumbai", "Kolkata", "Chennai"];
 const certs = ["API", "DNV", "ABS", "BV", "LRS", "IS:2365"];
 
 const socials = [
-  { label: "LinkedIn",  href: "#", path: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
+  { label: "LinkedIn", href: "#", path: "M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z M4 6a2 2 0 100-4 2 2 0 000 4z" },
   { label: "Instagram", href: "#", path: "M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01M6.5 6.5h11a3 3 0 013 3v7a3 3 0 01-3 3h-11a3 3 0 01-3-3v-7a3 3 0 013-3z" },
-  { label: "YouTube",   href: "#", path: "M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" },
-  { label: "Facebook",  href: "#", path: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
+  { label: "YouTube", href: "#", path: "M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z" },
+  { label: "Facebook", href: "#", path: "M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z" },
 ];
 
 export default function Footer() {
   const { toggle } = useModal();
-  const footerRef  = useRef<HTMLElement>(null);
+  const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(footerRef.current?.querySelectorAll(".f-reveal") ?? [],
         { y: 20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, stagger: 0.07, ease: "power3.out",
-          scrollTrigger: { trigger: footerRef.current, start: "top 88%" } }
+        {
+          y: 0, opacity: 1, duration: 0.7, stagger: 0.07, ease: "power3.out",
+          scrollTrigger: { trigger: footerRef.current, start: "top 88%" }
+        }
       );
     }, footerRef);
     return () => ctx.revert();
@@ -46,7 +48,7 @@ export default function Footer() {
     document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <footer ref={footerRef} className="bg-[#0A0A0A] border-t border-white/5">
+    <footer ref={footerRef} className="bg-[var(--blue)] border-t border-white/5">
 
       {/* ── Main grid ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
@@ -54,16 +56,16 @@ export default function Footer() {
 
           {/* Brand — 2 cols */}
           <div className="col-span-2">
-         <Link href="/">
-          <Image
-            src="/logo.PNG"
-            alt="Company Logo"
-            width={180}
-            height={40}
-            priority
-            className="h-[10vh] object-cover"
-          />
-        </Link>
+            <Link href="/">
+              <Image
+                src="/logo.PNG"
+                alt="Company Logo"
+                width={180}
+                height={40}
+                priority
+                className="h-[10vh] object-cover"
+              />
+            </Link>
             <p className="text-white/40 text-sm leading-relaxed mb-4 max-w-[260px]">
               Trusted supplier of multi-brand electrical, electronics, mechanical, hardware &amp; automation products. Established 2014.
             </p>
@@ -86,7 +88,7 @@ export default function Footer() {
                 <div className="flex flex-wrap gap-1.5">
                   {cities.map((c, i) => (
                     <span key={c}
-                      className={`text-[11px] px-2 py-0.5 ${i === 0 ? "bg-red-600 text-white font-semibold" : "text-white/35 border border-white/8"}`}>
+                      className={`text-[11px] px-2 py-0.5 ${i === 0 ? "bg-blue-600 text-white font-semibold" : "text-white/35 border border-white/8"}`}>
                       {c}
                     </span>
                   ))}
@@ -95,9 +97,9 @@ export default function Footer() {
             </div>
 
             {/* Contact */}
-            <div className="flex items-center gap-2.5 border border-red-600/30 bg-red-600/8 px-4 py-2.5 w-fit">
-              <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse" />
-              <span className="text-red-400 text-xs font-bold uppercase tracking-widest">Sales</span>
+            <div className="flex items-center gap-2.5 border border-blue-600/30 bg-blue-600/8 px-4 py-2.5 w-fit">
+              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+              <span className="text-blue-400 text-xs font-bold uppercase tracking-widest">Sales</span>
               <a href="tel:+919819002726" className="text-white/60 text-xs hover:text-white transition-colors">
                 +91 98190 02726
               </a>
@@ -137,7 +139,7 @@ export default function Footer() {
           </span>
           {certs.map(c => (
             <span key={c}
-              className="text-[11px] text-white/40 border border-white/8 px-3 py-1 hover:border-red-600/40 hover:text-white/70 transition-all cursor-default">
+              className="text-[11px] text-white/40 border border-white/8 px-3 py-1 hover:border-blue-600/40 hover:text-white/70 transition-all cursor-default">
               {c}
             </span>
           ))}
@@ -157,7 +159,7 @@ export default function Footer() {
               <div className="flex items-center gap-2">
                 {socials.map(s => (
                   <a key={s.label} href={s.href} aria-label={s.label}
-                    className="w-7 h-7 border border-white/8 flex items-center justify-center text-white/25 hover:border-red-600/50 hover:text-red-400 transition-all">
+                    className="w-7 h-7 border border-white/8 flex items-center justify-center text-white/25 hover:border-blue-600/50 hover:text-blue-400 transition-all">
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d={s.path} />
                     </svg>
@@ -180,7 +182,7 @@ export default function Footer() {
             <div className="flex items-center gap-1.5">
               <span className="text-white/15 text-xs">Built by</span>
               <a href="https://www.nakshatranamahacreations.com" target="_blank" rel="noopener noreferrer"
-                className="text-white/30 text-xs font-semibold hover:text-red-400 transition-colors">
+                className="text-white/30 text-xs font-semibold hover:text-blue-400 transition-colors">
                 Nakshatra Namaha Creations
               </a>
             </div>
@@ -190,7 +192,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom red line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-red-600/50 to-transparent" />
+      <div className="h-px bg-gradient-to-r from-transparent via-blue-600/50 to-transparent" />
     </footer>
   );
 }

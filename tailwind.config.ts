@@ -9,18 +9,18 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        red: {
-          50:  "#fff0f0",
-          100: "#ffd6d6",
-          200: "#ffadad",
-          300: "#ff7575",
-          400: "#ff3b3b",
-          500: "#E8192C",   // Brand red (bright)
-          600: "#CC1020",   // Brand red (primary)
-          700: "#A80D1A",
-          800: "#820916",
-          900: "#5C0610",
-          950: "#3A0209",
+        blue: {
+          50:  "#EFF6FF",
+          100: "#DBEAFE",
+          200: "#BFDBFE",
+          300: "#93C5FD",
+          400: "#60A5FA",
+          500: "#1A4FC4",   // Brand blue (bright)
+          600: "#0F3460",   // Brand blue (primary)
+          700: "#0C2850",
+          800: "#091D3C",
+          900: "#07152A",
+          950: "#040D1A",
         },
         dark: {
           950: "#030303",
@@ -32,14 +32,16 @@ const config: Config = {
           400: "#383838",
         },
       },
-      
+      fontFamily: {
+        sans: ["var(--font-plus-jakarta)", "Plus Jakarta Sans", "sans-serif"],
+      },
       letterSpacing: {
         tightest: "-0.04em",
         widest: "0.25em",
       },
       backgroundImage: {
-        "red-glow": "radial-gradient(ellipse at center, rgba(200,16,32,0.18) 0%, transparent 70%)",
-        "red-glow-sm": "radial-gradient(ellipse at center, rgba(200,16,32,0.12) 0%, transparent 60%)",
+        "blue-glow":    "radial-gradient(ellipse at center, rgba(26,79,196,0.18) 0%, transparent 70%)",
+        "blue-glow-sm": "radial-gradient(ellipse at center, rgba(26,79,196,0.12) 0%, transparent 60%)",
       },
     },
   },

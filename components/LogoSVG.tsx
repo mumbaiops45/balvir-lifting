@@ -1,12 +1,12 @@
-interface LogoSVGProps {
+﻿interface LogoSVGProps {
   size?: number;
   showText?: boolean;
   inverted?: boolean;
 }
 
 export default function LogoSVG({ size = 40, showText = true, inverted = false }: LogoSVGProps) {
-  const markColor   = inverted ? "#CC1020" : "#ffffff";
-  const barColor    = inverted ? "#ffffff" : "#CC1020";
+  const markColor   = inverted ? "#0F3460" : "#ffffff";
+  const barColor    = inverted ? "#ffffff" : "#0F3460";
   const textColor   = inverted ? "#080808" : "#ffffff";
 
   return (

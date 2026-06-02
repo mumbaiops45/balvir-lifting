@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -24,11 +24,10 @@ export default function CTA() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative py-28 overflow-hidden"
-      style={{ background: "linear-gradient(135deg, #880010 0%, #CC1020 45%, #990012 100%)" }}
-    >
+   <section
+  ref={sectionRef}
+  className="relative py-28 overflow-hidden bg-[linear-gradient(135deg,var(--blue-dark)_0%,var(--blue)_45%,var(--blue-bright)_100%)]"
+>
       <div
         className="absolute inset-0 opacity-10"
         style={{
@@ -41,7 +40,7 @@ export default function CTA() {
       <div className="absolute bottom-0 inset-x-0 h-px bg-black/20" />
 
       <div className="relative max-w-5xl mx-auto px-6 text-center" ref={contentRef}>
-        <p className="text-red-100/60 text-xs font-bold uppercase tracking-[0.3em] mb-5">
+        <p className="text-blue-100/60 text-xs font-bold uppercase tracking-[0.3em] mb-5">
           Start Your Project Today
         </p>
         <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
@@ -53,7 +52,7 @@ export default function CTA() {
 
         <div className="flex flex-wrap justify-center gap-4">
           <button onClick={toggle}
-            className="inline-flex items-center gap-2 bg-white text-red-700 font-bold px-9 py-4 hover:bg-red-50 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 tracking-wide text-sm">
+            className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-9 py-4 hover:bg-blue-50 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 tracking-wide text-sm">
             Get a Free Quote
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

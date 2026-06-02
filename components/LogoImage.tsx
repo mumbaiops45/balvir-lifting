@@ -1,4 +1,4 @@
-/**
+﻿/**
  * LogoImage — renders the Balvir Lifting brand mark.
  *
  * variant="light"  → for white/light backgrounds  (red diamond, dark text)
@@ -42,8 +42,8 @@ export function LogoSVG({ height = 44, variant = "dark" }: LogoImageProps) {
 
   // Light bg: red diamond + white bars + dark text
   // Dark bg:  white diamond + red bars + white text
-  const diamondFill = isLight ? "#CC1020" : "#FFFFFF";
-  const barFill     = isLight ? "#FFFFFF" : "#CC1020";
+  const diamondFill = isLight ? "#0F3460" : "#FFFFFF";
+  const barFill     = isLight ? "#FFFFFF" : "#0F3460";
   const textColor   = isLight ? "#111111" : "#FFFFFF";
   const subColor    = isLight ? "#666666" : "rgba(255,255,255,0.65)";
 

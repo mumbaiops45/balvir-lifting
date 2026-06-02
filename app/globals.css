@@ -2,16 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Swiss721";
-  src: url("/fonts/Swiss721BoldCondensedBT.ttf") format("truetype");
-}
 :root {
-  --red:        #CC1020;
-  --red-bright: #E8192C;
-  --red-dark:   #9B000E;
+  --blue:        #0F3460;
+  --blue-bright: #1A4FC4;
+  --blue-dark:   #07192E;
 
-  /* White theme */
   --bg:         #FFFFFF;
   --surface:    #F7F7F7;
   --surface-2:  #EFEFEF;
@@ -19,9 +14,8 @@
   --text-muted: #666666;
   --text-faint: #999999;
   --border:     #E5E5E5;
-  --border-red: rgba(204,16,32,0.25);
+  --border-blue: rgba(15,52,96,0.25);
 
-  /* Dark (footer / hero) */
   --dark:       #111111;
   --dark-2:     #1A1A1A;
 }
@@ -29,11 +23,15 @@
 html { scroll-behavior: auto; }
 
 body {
-  font-family: "Swiss721", sans-serif;
+  font-family: var(--font-plus-jakarta), 'Plus Jakarta Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.65;
   background: var(--bg);
   color: var(--text);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* ── Lenis ──────────────────────────────────── */
@@ -44,11 +42,11 @@ html.lenis, html.lenis body { height: auto; }
 /* ── Scrollbar ──────────────────────────────── */
 ::-webkit-scrollbar       { width: 4px; }
 ::-webkit-scrollbar-track { background: #F0F0F0; }
-::-webkit-scrollbar-thumb { background: #CC1020; border-radius: 2px; }
+::-webkit-scrollbar-thumb { background: #0F3460; border-radius: 2px; }
 
 /* ── Utilities ──────────────────────────────── */
-.text-red-gradient {
-  background: linear-gradient(135deg, #E8192C 0%, #CC1020 100%);
+.text-blue-gradient {
+  background: linear-gradient(135deg, #1A4FC4 0%, #0F3460 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -56,10 +54,11 @@ html.lenis, html.lenis body { height: auto; }
 
 .section-pad { @apply py-24 lg:py-32; }
 
-.red-line {
+.blue-line {
   height: 3px;
-  background: linear-gradient(90deg, #CC1020, #E8192C 50%, transparent);
+  background: linear-gradient(90deg, #0F3460, #1A4FC4 50%, transparent);
 }
+
 
 /* Grid texture (for dark hero) */
 .grid-tex-dark {
@@ -91,21 +90,28 @@ html.lenis, html.lenis body { height: auto; }
   100% { background-position: 0% 50%; }
 }
 .hero-bg-anim {
-  background: linear-gradient(135deg, #0a0a0a, #1a0005, #200010, #0a0a0a);
+  background: linear-gradient(135deg, #0a0a0a, #000a1a, #001020, #0a0a0a);
   background-size: 400% 400%;
   animation: heroShift 12s ease infinite;
 }
 
 /* Buttons */
+.btn-blue {
+  @apply inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-7 py-3.5
+         transition-all duration-300 hover:bg-blue-500
+         hover:shadow-[0_8px_30px_rgba(26,79,196,0.4)] hover:-translate-y-0.5 tracking-wide;
+}
+
+/* kept so any component still using .btn-red renders correctly */
 .btn-red {
-  @apply inline-flex items-center gap-2 bg-red-600 text-white font-semibold px-7 py-3.5
-         transition-all duration-300 hover:bg-red-500
-         hover:shadow-[0_8px_30px_rgba(200,16,32,0.4)] hover:-translate-y-0.5 tracking-wide;
+  @apply inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-7 py-3.5
+         transition-all duration-300 hover:bg-blue-500
+         hover:shadow-[0_8px_30px_rgba(26,79,196,0.4)] hover:-translate-y-0.5 tracking-wide;
 }
 
 .btn-outline-dark {
   @apply inline-flex items-center gap-2 border border-gray-800 text-gray-800 font-semibold
-         px-7 py-3.5 transition-all duration-300 hover:border-red-600 hover:text-red-600
+         px-7 py-3.5 transition-all duration-300 hover:border-blue-600 hover:text-blue-600
          hover:-translate-y-0.5 tracking-wide;
 }
 

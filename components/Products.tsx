@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -73,6 +73,7 @@ export default function Products() {
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
           stagger: { amount: 0.5 },
+          clearProps: "transform,opacity",
           scrollTrigger: { trigger: gridRef.current, start: "top 80%" } }
       );
     }, sectionRef);
@@ -83,13 +84,13 @@ export default function Products() {
     <section
       id="products"
       ref={sectionRef}
-      className="section-pad relative overflow-hidden bg-gradient-to-b from-white via-red-50/30 to-white"
+      className="section-pad relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white"
     >
       {/* Decorative hairlines + soft red glow */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-red-600/30 to-transparent" />
+      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/30 to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-100" />
-      <div className="absolute -top-40 -right-32 w-[28rem] h-[28rem] rounded-full bg-red-100/40 blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-red-50/60 blur-3xl pointer-events-none" />
+      <div className="absolute -top-40 -right-32 w-[28rem] h-[28rem] rounded-full bg-blue-100/40 blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-40 -left-40 w-[28rem] h-[28rem] rounded-full bg-blue-50/60 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative">
 
@@ -99,17 +100,17 @@ export default function Products() {
           className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8"
         >
           <div>
-            <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+            <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
               Our Products
             </p>
 
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
               Multi-Brand Product
               <br />
-              <span className="text-red-gradient">Range We Supply</span>
+              <span className="text-blue-gradient">Range We Supply</span>
             </h2>
 
-            <div className="red-line w-24 mt-6" />
+            <div className="blue-line w-24 mt-6" />
           </div>
 
           <p className="text-gray-500 max-w-sm text-sm leading-relaxed">
@@ -126,16 +127,16 @@ export default function Products() {
           {products.map(p => (
             <div
               key={p.num}
-              className="group bg-white border border-gray-100 shadow-sm hover:border-red-200 hover:shadow-[0_14px_44px_rgba(200,16,32,0.12)] p-7 transition-all duration-300 relative overflow-hidden"
+              className="group bg-white border border-gray-100 shadow-sm hover:border-blue-200 hover:shadow-[0_14px_44px_rgba(26,79,196,0.12)] p-7 transition-all duration-300 relative overflow-hidden"
             >
               {/* Hover top red accent bar */}
-              <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-red-600 to-red-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+              <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
 
-              <div className="text-5xl font-extrabold text-red-100 group-hover:text-red-200 transition-colors leading-none mb-4 select-none">
+              <div className="text-5xl font-extrabold text-blue-100 group-hover:text-blue-200 transition-colors duration-300 leading-none mb-4 select-none">
                 {p.num}
               </div>
 
-              <h3 className="text-gray-900 font-bold text-lg mb-3 leading-snug group-hover:text-red-600 transition-colors duration-300">
+              <h3 className="text-gray-900 font-bold text-lg mb-3 leading-snug group-hover:text-blue-600 transition-colors duration-300">
                 {p.title}
               </h3>
 
@@ -147,7 +148,7 @@ export default function Products() {
                 {p.brands.map(b => (
                   <span
                     key={b}
-                    className="text-[11px] text-gray-400 border border-gray-200 px-3 py-1 group-hover:border-red-300 group-hover:text-red-500 transition-all"
+                    className="text-[11px] text-gray-400 border border-gray-200 px-3 py-1 group-hover:border-blue-300 group-hover:text-blue-500 transition-all duration-300"
                   >
                     {b}
                   </span>

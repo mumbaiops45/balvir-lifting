@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
@@ -54,10 +54,10 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto px-6">
         <div ref={headRef} className="mb-12">
-          <p className="text-red-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Industries We Serve</p>
+          <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Industries We Serve</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-              Applications &amp; <span className="text-red-gradient">Industries</span>
+              Applications &amp; <span className="text-blue-gradient">Industries</span>
             </h2>
             <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
               Products and solutions serving diverse industries across India and beyond.
@@ -71,8 +71,8 @@ export default function Projects() {
             <button key={c} onClick={() => setActive(c)}
               className={`px-4 py-2 text-xs font-semibold tracking-wider uppercase transition-all duration-300 border ${
                 active === c
-                  ? "bg-red-600 text-white border-red-600 shadow-[0_4px_20px_rgba(200,16,32,0.3)]"
-                  : "bg-white text-gray-500 border-gray-200 hover:border-red-300 hover:text-red-600"
+                  ? "bg-blue-600 text-white border-blue-600 shadow-[0_4px_20px_rgba(26,79,196,0.3)]"
+                  : "bg-white text-gray-500 border-gray-200 hover:border-blue-300 hover:text-blue-600"
               }`}
             >
               {c}
@@ -83,7 +83,7 @@ export default function Projects() {
         <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {filtered.map(p => (
             <div key={p.title}
-              className="group bg-white border border-gray-200 hover:border-red-300 hover:shadow-[0_8px_40px_rgba(200,16,32,0.12)] transition-all duration-300 cursor-pointer flex flex-col overflow-hidden shadow-sm">
+              className="group bg-white border border-gray-200 hover:border-blue-300 hover:shadow-[0_8px_40px_rgba(26,79,196,0.12)] transition-all duration-300 cursor-pointer flex flex-col overflow-hidden shadow-sm">
               {/* Image */}
               <div className="relative h-44 overflow-hidden">
                 <Image src={pexelsImg(p.imgId, 600, 350)} alt={p.title}
@@ -91,17 +91,17 @@ export default function Projects() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
                   loading="lazy" unoptimized />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white bg-red-600 px-2 py-1">
+                <span className="absolute top-3 left-3 text-[9px] font-bold uppercase tracking-[0.2em] text-white bg-blue-600 px-2 py-1">
                   {p.cat}
                 </span>
               </div>
 
               <div className="p-5 flex flex-col flex-1">
-                <h3 className="text-gray-900 font-bold text-base mb-2 group-hover:text-red-600 transition-colors">
+                <h3 className="text-gray-900 font-bold text-base mb-2 group-hover:text-blue-600 transition-colors">
                   {p.title}
                 </h3>
                 <p className="text-gray-400 text-xs leading-relaxed mb-4 flex-1">{p.detail}</p>
-                <div className="text-[10px] text-gray-400 border border-gray-200 group-hover:border-red-300 group-hover:text-red-500 px-3 py-1.5 inline-block transition-all w-fit">
+                <div className="text-[10px] text-gray-400 border border-gray-200 group-hover:border-blue-300 group-hover:text-blue-500 px-3 py-1.5 inline-block transition-all w-fit">
                   {p.tag}
                 </div>
               </div>
