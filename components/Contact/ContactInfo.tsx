@@ -20,7 +20,7 @@ const contactDetails = [
     lines: [
       "Shop No.18, Plot No. S, Sector-2",
       "Railway Station Road, Kharghar",
-      "Raigad District, Navi Mumba – 410210",
+      "Raigad District, Navi Mumbai – 410210",
       "Maharashtra, BHARAT (India)",
     ],
   },

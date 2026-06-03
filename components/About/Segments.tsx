@@ -33,9 +33,9 @@ const segments = [
   },
   {
     num: "05",
-    title: "Industrial Automation & Analytical Products",
-    desc: "A wide range of industrial automation and analytical products designed to improve productivity, efficiency and operational reliability across modern industrial environments.",
-    icon: "⚙️",
+    title: "Other Accessories & Hardware",
+    desc: "Complete range of hardware and electrical accessories — fans, junction boxes, LOP / COP panels, limit switches, floor detection sensors (P&F German Make), DOB / VA cards and emergency communication systems.",
+    icon: "🔧",
   },
 ];
 
@@ -43,7 +43,6 @@ const verticals = [
   { title: "Elevator & Escalator Manufacturers / OEMs / Users", icon: "🏭" },
   { title: "Consultants & Contractors", icon: "📋" },
   { title: "EPCs / Architectures & Interiors", icon: "🏗️" },
-  { title: "Industrial & Infrastructure Projects", icon: "🔧" },
 ];
 
 export default function Segments() {

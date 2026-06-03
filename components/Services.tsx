@@ -21,9 +21,9 @@ const services = [
   },
   {
     num: "03",
-    title: "LED Lighting & Accessories",
-    desc: "LED lighting and accessories for elevator and industrial use in round panel, SMD and COB types with aluminium housing, available in white and warm white across multiple wattages.",
-    tags: ["Panel / SMD / COB", "5–7 Watt", "Aluminium Housing"],
+    title: "LED Lighting & Elevator AC",
+    desc: "Round LED panels in SMD and COB types with aluminium housing across multiple wattages, plus Korean-make elevator air conditioning — lightweight, zero water discharge, programmable.",
+    tags: ["Panel / SMD / COB", "5–7 Watt", "Elevator AC"],
   },
   {
     num: "04",
@@ -39,9 +39,9 @@ const services = [
   },
   {
     num: "06",
-    title: "Industrial Supply & Project Support",
-    desc: "End to end sourcing for elevator and escalator manufacturers, OEMs, consultants, contractors and EPCs, with auto door mechanisms, AC systems and allied accessories delivered pan India.",
-    tags: ["FERMATOR / WITTUR", "OEMs & EPCs", "Pan India"],
+    title: "Other Accessories & Hardware",
+    desc: "Complete range of hardware and electrical accessories — fans, junction boxes, motion sensors, LOP / COP panels, limit switches, floor detection sensors (P&F), DOB / VA cards and emergency communication systems.",
+    tags: ["Multi-Brand", "P&F German Make", "13+ Items"],
   },
 ];
 

@@ -7,16 +7,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const productOptions = [
-  "Elevator Accessories",
-  "Door Sensors / Light Curtains",
-  "Auto Doors & Mechanisms",
+  "Elevators & Escalators Accessories",
+  "Infra Red Door Sensors (Light Curtains)",
+  "Auto Door & Mechanism",
+  "Wireless / Wired CCTV",
   "ARD / UPS",
-  "Elevator Drives",
-  "Steel Wire Ropes",
+  "Elevator Drives (VFD)",
   "Flat Travelling Cables",
-  "LED Lighting",
+  "Steel Wire Ropes — Elevator",
+  "Steel Wire Ropes — Offshore / Shipping / Construction",
+  "LED Lighting for Elevators",
   "Elevator Air Conditioning",
-  "Industrial Automation",
+  "Other Accessories & Hardware",
   "Other",
 ];
 
@@ -60,14 +62,24 @@ export default function ContactForm() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    // Simulate form submission — wire up to your backend/email service
-    setTimeout(() => {
+    try {
+      const res = await fetch("https://formsubmit.co/ajax/mumbaiops45@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(e.currentTarget),
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        setSubmitted(true);
+      }
+    } catch {
+      // silent — form values still show; user can retry
+    } finally {
       setLoading(false);
-      setSubmitted(true);
-    }, 1200);
+    }
   };
 
   const inputCls = "w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-200";
@@ -129,6 +141,11 @@ export default function ContactForm() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="border border-gray-100 bg-white p-8 space-y-5">
+                {/* formsubmit.co config */}
+                <input type="hidden" name="_subject" value="New Product Enquiry — Balvir Lifting" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="table" />
+
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">

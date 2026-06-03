@@ -30,9 +30,10 @@ export default function EnquiryModal() {
   const cardRef    = useRef<HTMLDivElement>(null);
   const bodyRef    = useRef<HTMLDivElement>(null);
 
-  const [step, setStep] = useState(0);
-  const [sent, setSent]  = useState(false);
-  const [form, setForm]  = useState({
+  const [step, setStep]       = useState(0);
+  const [sent, setSent]       = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [form, setForm]       = useState({
     name: "", phone: "", email: "", company: "",
     service: "", floors: "", city: "", buildingType: "",
     timeline: "", message: "",
@@ -77,6 +78,40 @@ export default function EnquiryModal() {
 
   const f = (k: keyof typeof form, v: string) => setForm(p => ({ ...p, [k]: v }));
 
+  const handleSubmit = async () => {
+    setLoading(true);
+    try {
+      const fd = new FormData();
+      fd.append("_subject",      `New Enquiry from ${form.name} — Balvir Lifting`);
+      fd.append("_captcha",      "false");
+      fd.append("_template",     "table");
+      fd.append("Name",          form.name);
+      fd.append("Phone",         `+91 ${form.phone}`);
+      fd.append("Email",         form.email);
+      fd.append("Company",       form.company || "—");
+      fd.append("Service",       services.find(s => s.id === form.service)?.label ?? "—");
+      fd.append("Floors",        form.floors || "—");
+      fd.append("City",          form.city);
+      fd.append("Building Type", form.buildingType || "—");
+      fd.append("Timeline",      form.timeline || "—");
+      fd.append("Message",       form.message || "—");
+
+      const res = await fetch("https://formsubmit.co/ajax/kishore@balvir.in", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: fd,
+      });
+      const data = await res.json();
+      if (data.success === "true" || data.success === true) {
+        setSent(true);
+      }
+    } catch {
+      // silent — user can retry
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const inp = "w-full bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white text-gray-900 placeholder-gray-300 px-3.5 py-2.5 text-sm outline-none transition-all rounded-lg";
   const lbl = "text-gray-400 text-[10px] font-bold uppercase tracking-widest block mb-1";
 
@@ -93,7 +128,7 @@ export default function EnquiryModal() {
       {/* Card — fixed size, no internal scroll */}
       <div ref={cardRef}
         className="fixed z-[80] inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
-        style={{ opacity: 0, maxHeight: "calc(100dvh - 40px)" }}
+        style={{ opacity: 0, maxHeight: "calc(100dvh - 40px)", pointerEvents: open ? "auto" : "none" }}
       >
 
         {/* ── LEFT panel ──────────────────────── */}
@@ -412,12 +447,24 @@ export default function EnquiryModal() {
                   </svg>
                 </button>
               ) : (
-                <button onClick={() => setSent(true)}
-                  className="btn-red text-sm py-2.5 px-7 group">
-                  Submit Enquiry
-                  <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                  </svg>
+                <button onClick={handleSubmit} disabled={loading}
+                  className="btn-red text-sm py-2.5 px-7 group disabled:opacity-60 disabled:cursor-not-allowed">
+                  {loading ? (
+                    <>
+                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                      </svg>
+                      Sending…
+                    </>
+                  ) : (
+                    <>
+                      Submit Enquiry
+                      <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+                      </svg>
+                    </>
+                  )}
                 </button>
               )}
             </div>

@@ -8,20 +8,20 @@ gsap.registerPlugin(ScrollTrigger);
 
 const testimonials = [
   {
-    quote: "Balvir Lifting delivered on every commitment — on time, within budget, and with zero punch-list items at handover. The ride quality is exceptional.",
-    name: "Rajiv Mehta", role: "MD, Skyline Developers Pvt. Ltd.", init: "R",
+    quote: "KISWIRE wire ropes sourced through Balvir Lifting have delivered unmatched performance on our crane fleet. Operational efficiency has improved significantly since switching to their supply.",
+    name: "Rajiv Mehta", role: "Purchase Manager, AP Cranes India", init: "R",
   },
   {
-    quote: "Their medical-grade stretcher lifts have run flawlessly for four years. When we had a minor fault at 2 AM, the engineer was on site within 90 minutes.",
-    name: "Dr. Anita Sharma", role: "Administrator, City Care Hospital", init: "A",
+    quote: "We specify CEDES light curtains and Fermator auto doors on every project. Balvir's pricing is competitive and their delivery across India has never let us down.",
+    name: "Anita Sharma", role: "Consultant, Elevator Systems Advisory", init: "A",
   },
   {
-    quote: "Our home lift is a showpiece. The teak wood panelling, LED ceiling, and glass door are exactly what we envisioned. Impeccable finish.",
-    name: "Sunita Patel", role: "Homeowner, Prestige Palms Pune", init: "S",
+    quote: "Their flat travelling cables and ARD units from Balvir are now our standard specification. Reliable stock availability in Mumbai and prompt response to bulk orders.",
+    name: "Suresh Patel", role: "Procurement Head, Otis Elevator OEM Partner", init: "S",
   },
   {
-    quote: "We modernised four aging lifts without shutting down hotel operations. Balvir managed the whole sequence seamlessly. Guests noticed the difference immediately.",
-    name: "Karan Singhania", role: "GM, Heritage Palace Hotel", init: "K",
+    quote: "Balvir's multi-brand portfolio is exactly what we need for EPC projects. One supplier for door sensors, cables, LED lighting and wire ropes — saving us significant sourcing effort.",
+    name: "Karan Singhania", role: "Project Director, Infrastructure EPC Firm", init: "K",
   },
 ];
 
@@ -40,6 +40,7 @@ export default function Testimonials() {
       gsap.fromTo(cardsRef.current?.children ?? [],
         { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.7, stagger: 0.13, ease: "power3.out",
+          clearProps: "transform,opacity",
           scrollTrigger: { trigger: cardsRef.current, start: "top 80%" } }
       );
     }, sectionRef);

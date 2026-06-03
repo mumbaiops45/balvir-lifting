@@ -12,8 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
 
 const links = {
   Company: ["About Us", "Our Vision", "Our Goal", "Contact Us"],
-  Products: ["Elevators & Escalators", "Steel Wire Ropes", "LED Lighting", "Cables & Wires", "Automation"],
-  Segments: ["Elevator OEMs / Users", "Consultants & Contractors", "EPCs & Interiors", "Industrial & Infra"],
+  Products: ["Elevators & Escalators", "Steel Wire Ropes", "LED Lighting & Elevator AC", "Cables & Wires", "Other Accessories"],
+  Segments: ["Elevator OEMs / Users", "Consultants & Contractors", "EPCs & Interiors"],
 };
 
 const cities = ["Navi Mumbai", "New Delhi", "Mumbai", "Kolkata", "Chennai"];
@@ -132,9 +132,9 @@ export default function Footer() {
       </div>
 
       {/* ── Standards strip ─────────────────────── */}
-      <div className="border-t border-white/5 f-reveal">
+      {/* <div className="border-t border-white/5 f-reveal">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 py-5 flex flex-wrap items-center gap-3">
-          <span className="text-white/20 text-[10px] uppercase tracking-widest mr-2 font-semibold shrink-0">
+          <span className="text-white/40 text-[10px] uppercase tracking-widest mr-2 font-semibold shrink-0">
             Product Standards
           </span>
           {certs.map(c => (
@@ -144,7 +144,7 @@ export default function Footer() {
             </span>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* ── Bottom bar ──────────────────────────── */}
       <div className="border-t border-white/5 f-reveal">
@@ -153,36 +153,27 @@ export default function Footer() {
 
             {/* Left — copyright + socials */}
             <div className="flex flex-wrap items-center gap-5">
-              <span className="text-white/20 text-xs">
-                © {new Date().getFullYear()} Balvir Lifting
+              <span className="text-white/40 text-xs">
+               © {new Date().getFullYear()} Balvir Lifting. All Rights Reserved.
               </span>
-              <div className="flex items-center gap-2">
-                {socials.map(s => (
-                  <a key={s.label} href={s.href} aria-label={s.label}
-                    className="w-7 h-7 border border-white/8 flex items-center justify-center text-white/25 hover:border-blue-600/50 hover:text-blue-400 transition-all">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={1.5} viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d={s.path} />
-                    </svg>
-                  </a>
-                ))}
-              </div>
+           
             </div>
 
             {/* Centre — legal links */}
-            <div className="flex flex-wrap justify-center gap-4">
-              {["Privacy", "Terms", "Sitemap"].map(l => (
+            {/* <div className="flex flex-wrap justify-center gap-4">
+              {["Privacy", "Terms"].map(l => (
                 <a key={l} href="#"
-                  className="text-white/20 text-xs hover:text-white/50 transition-colors">
+                  className="text-white/40 text-xs hover:text-white/50 transition-colors">
                   {l}
                 </a>
               ))}
-            </div>
+            </div> */}
 
             {/* Right — developer credit */}
             <div className="flex items-center gap-1.5">
-              <span className="text-white/15 text-xs">Built by</span>
+              <span className="text-white/40 text-xs">Built by</span>
               <a href="https://www.nakshatranamahacreations.com" target="_blank" rel="noopener noreferrer"
-                className="text-white/30 text-xs font-semibold hover:text-blue-400 transition-colors">
+                className="text-white/50 text-xs font-semibold hover:text-blue-400 transition-colors">
                 Nakshatra Namaha Creations
               </a>
             </div>

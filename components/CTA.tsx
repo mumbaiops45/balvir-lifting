@@ -41,19 +41,19 @@ export default function CTA() {
 
       <div className="relative max-w-5xl mx-auto px-6 text-center" ref={contentRef}>
         <p className="text-blue-100/60 text-xs font-bold uppercase tracking-[0.3em] mb-5">
-          Start Your Project Today
+          Request a Product Quote
         </p>
         <h2 className="text-5xl md:text-6xl font-extrabold text-white leading-tight tracking-tight mb-6">
-          Ready to Elevate<br />Your Building?
+          Need Reliable<br />Industrial Products?
         </h2>
         <p className="text-white/55 text-lg max-w-xl mx-auto mb-10 leading-relaxed">
-          Our engineers will survey your site, design the optimal system, and deliver a no-obligation quote within 48 hours.
+          Send us your requirements and our sales team will respond with pricing, availability and technical details within 24 business hours.
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
           <button onClick={toggle}
             className="inline-flex items-center gap-2 bg-white text-blue-700 font-bold px-9 py-4 hover:bg-blue-50 transition-all duration-300 hover:shadow-[0_8px_40px_rgba(0,0,0,0.3)] hover:-translate-y-0.5 tracking-wide text-sm">
-            Get a Free Quote
+            Send Product Enquiry
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

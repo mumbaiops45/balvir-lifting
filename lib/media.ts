@@ -24,21 +24,21 @@ export interface PexelsImage {
 }
 
 export const galleryImages: PexelsImage[] = [
-  { id: 1004409,  title: "Modern elevator interior",        category: "Elevator",     wide: true },
-  { id: 2724749,  title: "Glass curtain-wall tower",        category: "Architecture" },
-  { id: 374907,   title: "Corporate office building",       category: "Commercial" },
-  { id: 1115804,  title: "Skyscraper at dusk",              category: "Architecture", wide: true },
-  { id: 290386,   title: "High-rise construction",          category: "Construction" },
-  { id: 1438037,  title: "Luxury building facade",          category: "Commercial" },
-  { id: 3926482,  title: "Grand hotel lobby",               category: "Hospitality", wide: true },
-  { id: 1884283,  title: "Industrial steel framework",      category: "Industrial" },
-  { id: 323780,   title: "Modern office atrium",            category: "Commercial" },
-  { id: 442150,   title: "Interior design — lobby",         category: "Interiors",   wide: true },
-  { id: 325185,   title: "Warehouse facility",              category: "Industrial" },
-  { id: 1105766,  title: "Construction crane at work",      category: "Construction" },
-  { id: 273209,   title: "Night-time city skyline",         category: "Architecture", wide: true },
-  { id: 209251,   title: "Corporate headquarters",          category: "Commercial" },
-  { id: 236698,   title: "Modern glass skyscraper",         category: "Architecture" },
+  { id: 1004409,  title: "Elevator Interior & Components",   category: "Elevators",    wide: true },
+  { id: 1884283,  title: "Cranes & Material Handling",       category: "Wire Ropes" },
+  { id: 3926482,  title: "Offshore & Shipping Applications", category: "Offshore",     wide: true },
+  { id: 1105766,  title: "Crane Wire Rope Operations",       category: "Wire Ropes" },
+  { id: 442150,   title: "Oil, Gas & Mining",                category: "Industrial" },
+  { id: 374907,   title: "Ports & Heavy Lifting",            category: "Wire Ropes",   wide: true },
+  { id: 290386,   title: "Construction Infrastructure",      category: "Construction" },
+  { id: 323780,   title: "Elevator Lobby & LED Lighting",    category: "LED Lighting" },
+  { id: 2724749,  title: "Industrial Automation Systems",    category: "Automation",   wide: true },
+  { id: 325185,   title: "Warehouse & Supply Chain",         category: "Industrial" },
+  { id: 1438037,  title: "Elevator Cabin Accessories",       category: "Elevators" },
+  { id: 236698,   title: "Steel Structure Construction",     category: "Construction", wide: true },
+  { id: 1115804,  title: "High-Rise Vertical Transport",     category: "Elevators" },
+  { id: 209251,   title: "Commercial Building Systems",      category: "Elevators" },
+  { id: 273209,   title: "Infrastructure Projects",          category: "Construction" },
 ];
 
 // ─────────────────────────────────────────────

@@ -9,17 +9,86 @@ import { pexelsImg } from "@/lib/media";
 gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
-  { cat: "Elevators",    title: "Elevators & Escalators",      detail: "Multi-brand accessories — door sensors, drives, ARD, ropes and cables — for elevator & escalator OEMs, users and consultants.", tag: "OEMs · Consultants", imgId: 1115804 },
-  { cat: "Cranes",       title: "Cranes & Material Handling",  detail: "KISWIRE steel wire ropes are OEM-supplied to leading crane makers including Kone Cranes, Tadano, Kobelco and XCMG.", tag: "OEM Wire Ropes", imgId: 1884283 },
-  { cat: "Marine",       title: "Shipping & Off-Shore",        detail: "High-carbon steel wire ropes engineered for shipping, off-shore platforms and demanding marine lifting applications.", tag: "Off-Shore · Shipping", imgId: 3926482 },
-  { cat: "Construction", title: "Construction & Infrastructure", detail: "Reliable wire ropes and industrial products supporting construction sites and large infrastructure projects.", tag: "Infrastructure", imgId: 236698 },
-  { cat: "Industrial",   title: "Oil, Gas & Mining",           detail: "Complete solution provider for oil & gas, mining and heavy structural lifting with internationally certified wire ropes.", tag: "API · DNV · ABS", imgId: 442150 },
-  { cat: "Cranes",       title: "Ports & Heavy Lifting",       detail: "Wire rope solutions for ports and heavy lifting from the world's largest high-carbon steel wire producer.", tag: "Ports · Cranes", imgId: 374907 },
-  { cat: "Elevators",    title: "Architects & Interiors",      detail: "Supporting EPCs, architects and interior teams with LED lighting, cabins and elevator accessories.", tag: "EPCs · Interiors", imgId: 323780 },
-  { cat: "Industrial",   title: "Industrial Automation",       detail: "Automation and analytical products that improve productivity and reliability across industrial environments.", tag: "Automation · Analytical", imgId: 2724749 },
+  {
+    cat: "Elevators",
+    title: "Elevator & Escalator Accessories",
+    detail:
+      "Complete range of door sensors, auto doors, CCTV systems, voice announcements, ARD units, elevator drives and travelling cables sourced from global brands.",
+    tag: "7+ Product Groups",
+    imgId: 1115804,
+  },
+
+  {
+    cat: "Elevators",
+    title: "Infra Red Door Sensors",
+    detail:
+      "CEDES, MEMCO, SFT, WECO and TVS light curtain systems with full entrance monitoring and plug and play installation.",
+    tag: "CEDES • MEMCO",
+    imgId: 323780,
+  },
+
+  {
+    cat: "Elevators",
+    title: "Auto Doors & Mechanisms",
+    detail:
+      "FERMATOR, WITTUR and SHIVAM automatic door systems available in MS and SS configurations for residential and commercial elevators.",
+    tag: "FERMATOR • WITTUR",
+    imgId: 236698,
+  },
+
+  {
+    cat: "Wire Ropes",
+    title: "Elevator Steel Wire Ropes",
+    detail:
+      "IS 2365 compliant wire ropes available in 6mm, 8mm, 10mm and 13mm diameters for elevators of all capacities.",
+    tag: "KISWIRE • USHA MARTIN",
+    imgId: 1884283,
+  },
+
+  {
+    cat: "Wire Ropes",
+    title: "Offshore & Construction Wire Ropes",
+    detail:
+      "High tensile steel wire ropes for cranes, ports, mining, infrastructure, oil & gas and offshore applications.",
+    tag: "API • DNV • ABS",
+    imgId: 374907,
+  },
+
+  {
+    cat: "Lighting",
+    title: "LED Lighting Solutions",
+    detail:
+      "Premium elevator cabin lighting in Panel, COB and SMD configurations with aluminium housing and multiple wattage options.",
+    tag: "3W to 7W",
+    imgId: 442150,
+  },
+
+  {
+    cat: "Lighting",
+    title: "Elevator Air Conditioning",
+    detail:
+      "Korean elevator air conditioning systems with programmable temperature control, low vibration and easy installation.",
+    tag: "Korean Make",
+    imgId: 2724749,
+  },
+
+  {
+    cat: "Hardware",
+    title: "Accessories & Hardware",
+    detail:
+      "LOP, COP, switches, sensors, guide rails, intercoms, alarms, junction boxes, fans, wires and other elevator components.",
+    tag: "13+ Product Lines",
+    imgId: 3926482,
+  },
 ];
 
-const cats = ["All", "Elevators", "Cranes", "Marine", "Construction", "Industrial"];
+const cats = [
+  "All",
+  "Elevators",
+  "Wire Ropes",
+  "Lighting",
+  "Hardware",
+];
 
 export default function Projects() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -43,7 +112,8 @@ export default function Projects() {
     if (!gridRef.current) return;
     gsap.fromTo(gridRef.current.children,
       { y: 30, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.5, stagger: 0.07, ease: "power3.out" }
+      { y: 0, opacity: 1, duration: 0.5, stagger: 0.07, ease: "power3.out",
+        clearProps: "transform,opacity" }
     );
   }, [active]);
 
@@ -54,13 +124,15 @@ export default function Projects() {
 
       <div className="max-w-7xl mx-auto px-6">
         <div ref={headRef} className="mb-12">
-          <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Industries We Serve</p>
+         <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+  Product Categories
+</p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-              Applications &amp; <span className="text-blue-gradient">Industries</span>
+              <span className="text-blue-gradient">Our Product Portfolio</span>
             </h2>
             <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
-              Products and solutions serving diverse industries across India and beyond.
+             Multi brand electrical, electronics, mechanical and hardware products for elevators, wire ropes, offshore, infrastructure and industrial applications.
             </p>
           </div>
         </div>
