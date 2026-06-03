@@ -159,21 +159,21 @@ export default function WireRopesSection() {
 
           {/* Right — OEM list */}
           <div ref={rightRef}>
-            <div className="border border-gray-200 bg-white p-7">
+            <div className="border border-gray-200 bg-gradient-to-b from-[var(--blue)] to-blue-500 p-7">
               <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-6">
                 KISWIRE — OEM Wire Rope Supplier To
               </p>
               <div className="grid gap-0">
                 {craneOEMs.map((oem, i) => (
                   <div key={i}
-                    className="flex items-center gap-3 py-2.5 border-b border-gray-100 last:border-0 group/item">
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-600 shrink-0" />
-                    <span className="text-gray-600 text-sm group-hover/item:text-gray-900 transition-colors">
+                    className="flex items-center gap-3 py-2.5  group/item">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white  shrink-0" />
+                    <span className="text-white/80 text-sm group-hover/item:text-white transition-colors">
                       {oem}
                     </span>
                   </div>
                 ))}
-                <p className="text-gray-400 text-xs mt-4 italic">
+                <p className="justify-self-end text-gray-300 text-xs mt-4 italic">
                   And many other reputed customers world-wide.
                 </p>
               </div>

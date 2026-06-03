@@ -7,31 +7,31 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const milestones = [
-  {
-    year: "2014",
-    label: "Founded",
-    desc: "Established and registered as Balvir Global Products in Navi Mumbai, Kharghar, with a mission to supply high-quality, multi-brand industrial products.",
-  },
-  {
-    year: "Principle",
-    label: "Earn Trust with Business",
-    desc: "Built a strong and healthy market trust by following a single guiding principle — 'Earn Trust with Business' — committed to delivering professional experiences in a demanding market.",
-  },
-  {
-    year: "Growth",
-    label: "Global Partnerships",
-    desc: "Developed many long-lasting relationships with top manufacturing and supplier companies in India and around the world, including CEDES, MEMCO, Fermator, KISWIRE, Toshiba and Hitachi.",
-  },
-  {
-    year: "Today",
-    label: "Balvir Lifting",
-    desc: "Renamed Balvir Lifting — now a leading supplier of multi-brand Electrical, Electronics, Mechanical and Hardware products applicable to various industries and applications across India.",
-  },
-  {
-    year: "Vision",
-    label: "Nation Building",
-    desc: "Committed to becoming the most favourable trading company in multi-brand Electrical, Electronics, Mechanical and Automation products, with customer satisfaction and nation building as our ultimate goal.",
-  },
+ {
+  year: "2014",
+  label: "Founded",
+  desc: "Established and registered as Balvir Global Products in Navi Mumbai, Kharghar, with a mission to supply high quality, multi brand industrial products.",
+},
+{
+  year: "Principle",
+  label: "Earn Trust with Business",
+  desc: "Built a strong and healthy market trust by following a single guiding principle, 'Earn Trust with Business', committed to delivering professional experiences in a demanding market.",
+},
+{
+  year: "Growth",
+  label: "Global Partnerships",
+  desc: "Developed many long lasting relationships with top manufacturing and supplier companies in India and around the world, including CEDES, MEMCO, Fermator, KISWIRE, Toshiba and Hitachi.",
+},
+{
+  year: "Today",
+  label: "Balvir Lifting",
+  desc: "Renamed Balvir Lifting, now a leading supplier of multi brand Electrical, Electronics, Mechanical and Hardware products applicable to various industries and applications across India.",
+},
+{
+  year: "Vision",
+  label: "Nation Building",
+  desc: "Committed to becoming the most favourable trading company in multi brand Electrical, Electronics, Mechanical and Automation products, with customer satisfaction and nation building as our ultimate goal.",
+},
 ];
 
 export default function CompanyStory() {

@@ -9,21 +9,21 @@ gsap.registerPlugin(ScrollTrigger);
 const services = [
   {
     num: "01",
-    title: "Elevators & Escalators Accessories",
-    desc: "Multi brand elevator and escalator components including infra red door sensors (light curtains), criss cross beams, 3D landing sensors, automatic rescue devices, drives and voice announcement systems.",
+    title: "Elevator & Escalator Accessories",
+    desc: "Multi brand elevator and escalator components including infra red door sensors, light curtains, criss cross beams, 3D landing sensors, automatic rescue devices, drives and voice announcement systems.",
     tags: ["CEDES", "MEMCO", "Door Sensors"],
   },
   {
     num: "02",
     title: "Steel Wire Ropes",
-    desc: "Steel wire ropes for elevators, off-shore, shipping and construction applications, sourced from the world's leading high carbon steel wire producers and conforming to international standards.",
+    desc: "Steel wire ropes for elevators, offshore, shipping and construction applications, sourced from the world's leading high carbon steel wire producers and conforming to international standards.",
     tags: ["KISWIRE", "Usha Martin", "Bedmutha"],
   },
   {
     num: "03",
     title: "LED Lighting & Elevator AC",
-    desc: "Round LED panels in SMD and COB types with aluminium housing across multiple wattages, plus Korean-make elevator air conditioning — lightweight, zero water discharge, programmable.",
-    tags: ["Panel / SMD / COB", "5–7 Watt", "Elevator AC"],
+    desc: "Round LED panels in SMD and COB types with aluminium housing across multiple wattages, plus Korean make elevator air conditioning, lightweight, zero water discharge and programmable.",
+    tags: ["Panel / SMD / COB", "5 to 7 Watt", "Elevator AC"],
   },
   {
     num: "04",
@@ -40,8 +40,8 @@ const services = [
   {
     num: "06",
     title: "Other Accessories & Hardware",
-    desc: "Complete range of hardware and electrical accessories — fans, junction boxes, motion sensors, LOP / COP panels, limit switches, floor detection sensors (P&F), DOB / VA cards and emergency communication systems.",
-    tags: ["Multi-Brand", "P&F German Make", "13+ Items"],
+    desc: "Complete range of hardware and electrical accessories, fans, junction boxes, motion sensors, LOP / COP panels, limit switches, floor detection sensors, DOB / VA cards and emergency communication systems.",
+    tags: ["Multi Brand", "P&F German Make", "13 Plus Items"],
   },
 ];
 
@@ -122,11 +122,11 @@ export default function Services() {
               </div>
 
               {/* Arrow */}
-              <div className="absolute right-6 bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              {/* <div className="absolute right-6 bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
-              </div>
+              </div> */}
             </div>
           ))}
         </div>

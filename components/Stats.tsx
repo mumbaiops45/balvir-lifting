@@ -3,27 +3,31 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Image from "next/image";
+import Link from "next/link";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 3000, suffix: "+",  label: "Lifts Installed",       sub: "Across India" },
-  { value: 25,   suffix: "+",  label: "Years Experience",       sub: "Since 1998" },
-  { value: 200,  suffix: "+",  label: "Engineers & Technicians", sub: "Pan-India" },
-  { value: 98,   suffix: "%",  label: "Client Retention Rate",  sub: "Year on year" },
+  { value: 500, suffix: "+", label: "Product Variants", sub: "Across all categories" },
+  { value: 25, suffix: "+", label: "Years Experience", sub: "Since 1998" },
+  { value: 200, suffix: "+", label: "Engineers & Technicians", sub: "Pan-India" },
+  { value: 98, suffix: "%", label: "Client Retention Rate", sub: "Year on year" },
 ];
 
 export default function Stats() {
   const sectionRef = useRef<HTMLElement>(null);
-  const numRefs    = useRef<(HTMLSpanElement | null)[]>([]);
+  const numRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Container reveal
       gsap.fromTo(sectionRef.current?.querySelectorAll(".stat-item") ?? [],
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: "power3.out",
-          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" } }
+        {
+          y: 0, opacity: 1, duration: 0.7, stagger: 0.12, ease: "power3.out",
+          scrollTrigger: { trigger: sectionRef.current, start: "top 80%" }
+        }
       );
 
       // Number counters
@@ -47,17 +51,26 @@ export default function Stats() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden  py-20"
-      style={{ background: "linear-gradient(135deg, #0D0000 0%, #1a0005 40%, #0D0000 100%)" }}
-    >
-      {/* Top/bottom red lines */}
-      <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/60 to-transparent" />
-      <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/40 to-transparent" />
+      className="relative overflow-hidden py-32"
 
-      {/* Glow */}
-      <div className="absolute inset-0 bg-blue-glow opacity-60 pointer-events-none" />
+    >
+
+
+      <div className="absolute inset-0 w-full h-auto overflow-hidden">
+        <Image
+          src="/statbg.jpg"
+          alt="Balvir Lifting"
+          fill
+          className="object-cover"
+          priority
+        />
+      </div>
+      <div className="absolute inset-0 bg-[var(--blue-bright)] opacity-40" />
+      <div className="absolute inset-0 bg-black opacity-40" />
 
       <div className="relative max-w-7xl mx-auto px-6">
+      
+
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-y divide-white/5">
           {stats.map((s, i) => (
             <div key={s.label} className="stat-item px-10 py-8 text-center">
@@ -74,6 +87,19 @@ export default function Stats() {
               <div className="text-white/30 text-xs tracking-wider uppercase">{s.sub}</div>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-6">
+        
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-7 py-3 rounded-full transition-colors duration-200"
+          >
+            View All Products
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>

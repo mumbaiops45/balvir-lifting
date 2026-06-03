@@ -6,26 +6,26 @@ import { useModal } from "@/context/ModalContext";
 
 const slides = [
   {
-    badge: "India's Premier Lift Specialists · Since 1998",
+    badge: "India's Premier Lift Specialists, Since 1998",
     line1: "Elevating Spaces,",
     line2: "Engineering Trust.",
-    sub: "3,000+ precision elevator installations across India's fastest-growing cities — built to last, backed for life.",
+    sub: "3,000+ precision elevator installations across India's fastest growing cities, built to last, backed for life.",
     stat: { val: "3,000+", label: "Lifts Installed" },
     accent: "#0F3460",
   },
   {
-    badge: "ISO 9001:2015 · EN 81 Certified",
+    badge: "ISO 9001:2015, EN 81 Certified",
     line1: "Safety First.",
     line2: "Performance Always.",
-    sub: "Every unit exceeds international standards — triple-redundant braking, ARD auto-rescue, and overload protection included.",
+    sub: "Every unit exceeds international standards, triple redundant braking, ARD auto rescue, and overload protection included.",
     stat: { val: "25+", label: "Years of Excellence" },
     accent: "#0F3460",
   },
   {
-    badge: "Pan-India 24 / 7 Service Network",
+    badge: "Pan India 24 / 7 Service Network",
     line1: "We Never",
     line2: "Stop Running.",
-    sub: "200+ engineers across 8 major cities. Guaranteed 2-hour breakdown response for every AMC client — always.",
+    sub: "200+ engineers across 8 major cities. Guaranteed 2 hour breakdown response for every AMC client, always.",
     stat: { val: "2 hr", label: "Response Guarantee" },
     accent: "#0F3460",
   },
@@ -156,9 +156,9 @@ export default function Hero() {
             <h1 className="md:text-7xl xl:text-[82px] font-extrabold text-white leading-[1.03] tracking-[-0.03em] mb-5">
               {slide.line1}
               <br />
-               <span className="text-[var(--blue-bright)]">
-    {slide.line2}
-  </span>
+              <span className="text-[var(--blue-bright)]">
+                {slide.line2}
+              </span>
             </h1>
 
             {/* Red rule */}
@@ -237,8 +237,8 @@ export default function Hero() {
                 key={i}
                 onClick={() => manualGo(i)}
                 className={`transition-all duration-400 rounded-full ${i === current
-                    ? "w-8 h-2 bg-blue-500"
-                    : "w-2 h-2 bg-white/25 hover:bg-white/50"
+                  ? "w-8 h-2 bg-blue-500"
+                  : "w-2 h-2 bg-white/25 hover:bg-white/50"
                   }`}
               />
             ))}

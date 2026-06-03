@@ -19,10 +19,12 @@ const testimonials = [
     quote: "Their flat travelling cables and ARD units from Balvir are now our standard specification. Reliable stock availability in Mumbai and prompt response to bulk orders.",
     name: "Suresh Patel", role: "Procurement Head, Otis Elevator OEM Partner", init: "S",
   },
-  {
-    quote: "Balvir's multi-brand portfolio is exactly what we need for EPC projects. One supplier for door sensors, cables, LED lighting and wire ropes — saving us significant sourcing effort.",
-    name: "Karan Singhania", role: "Project Director, Infrastructure EPC Firm", init: "K",
-  },
+ {
+  quote: "Balvir's multi brand portfolio is exactly what we need for EPC projects. One supplier for door sensors, cables, LED lighting and wire ropes, saving us significant sourcing effort.",
+  name: "Karan Singhania",
+  role: "Project Director, Infrastructure EPC Firm",
+  init: "K",
+},
 ];
 
 export default function Testimonials() {

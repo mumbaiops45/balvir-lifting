@@ -83,7 +83,7 @@ export default function About() {
             Leading Supplier Of
             <br />
             <span className="text-blue-gradient">
-              Multi-Brand Industrial Products
+              Multi Brand Industrial Products
             </span>
           </h2>
 
@@ -113,7 +113,7 @@ export default function About() {
             {[
               "Established 2014",
               "Formerly Balvir Global Products",
-              "Multi-Brand Products",
+              "Multi Brand Products",
               "Pan India Supply"
             ].map((c) => (
               <span

@@ -7,60 +7,51 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const reasons = [
-  {
-    num:         "01",
-    title:       "Multi-Brand Product Portfolio",
-    short:       "One trusted source for many brands.",
-    desc:        "BALVIR LIFTING is among the leading suppliers of multi-brand electrical, electronics, mechanical and hardware products, applicable across a wide range of industries and applications. A single, dependable source for elevators and escalators accessories, wire ropes, LED lighting, cables and automation.",
-    metric:      "Multi-Brand",
-    metricSub:   "Electrical · Electronics · Mechanical",
-    tag:         "Quality",
-  },
-  {
-    num:         "02",
-    title:       "Global Brand Partnerships",
-    short:       "Sourced from leaders across the world.",
-    desc:        "We have developed many long-lasting relationships with top manufacturing and supplier companies in India and other parts of the world, including CEDES, MEMCO, Fermator, Wittur, KISWIRE, Toshiba and Hitachi — letting us respond to the exact demands of customers seeking the best quality and latest technology.",
-    metric:      "Global",
-    metricSub:   "Trusted Manufacturer Network",
-    tag:         "Engineering",
-  },
-  {
-    num:         "03",
-    title:       "Earn Trust With Business",
-    short:       "A simple principle we live by.",
-    desc:        "We have accumulated strong and healthy market trust by following one simple principle — 'Earn Trust with Business'. We are committed to providing our customers a professional experience in a demanding market, with nation building and customer satisfaction as our ultimate goal.",
-    metric:      "Since 2014",
-    metricSub:   "Built on Trust",
-    tag:         "Reliability",
-  },
-  {
-    num:         "04",
-    title:       "Pan-India Supply & Support",
-    short:       "Stock and support, nationwide.",
-    desc:        "With channel partners holding a wide range of stock across New Delhi, Kolkata, Mumbai and Chennai, we serve elevator and escalator manufacturers, OEMs, users, consultants, contractors and EPCs on a pan-India basis with competitive pricing and timely delivery.",
-    metric:      "Pan India",
-    metricSub:   "Stocked Across Key Metros",
-    tag:         "Service",
-  },
-  {
-    num:         "05",
-    title:       "Reliable & Affordable",
-    short:       "Best quality, latest tech, fair price.",
-    desc:        "In a very competitive industry, we source products that are reliable and affordable. Our focus is on delivering the best quality with the latest technology at prices that make sense — committed to providing products of best quality at best prices to the buyer.",
-    metric:      "Best Value",
-    metricSub:   "Quality at Fair Prices",
-    tag:         "Value",
-  },
-  {
-    num:         "06",
-    title:       "Greener & Safer Products",
-    short:       "Better products for industry and users.",
-    desc:        "Through business, BALVIR's aim is to provide greener and safer products to the industry and its users. We continually expand a portfolio that supports safer, more sustainable industrial, infrastructure and commercial projects across the country.",
-    metric:      "Greener & Safer",
-    metricSub:   "Our Product Philosophy",
-    tag:         "Sustainability",
-  },
+{
+  num: "01",
+  title: "Multi Brand Product Portfolio",
+  short: "One trusted source for many brands.",
+  desc: "BALVIR LIFTING is among the leading suppliers of multi brand electrical, electronics, mechanical and hardware products, applicable across a wide range of industries and applications. A single, dependable source for elevators and escalators accessories, wire ropes, LED lighting, cables and automation.",
+  metric: "Multi Brand",
+  metricSub: "Electrical · Electronics · Mechanical",
+  tag: "Quality",
+},
+{
+  num: "02",
+  title: "Global Brand Partnerships",
+  short: "Sourced from leaders across the world.",
+  desc: "We have developed many long lasting relationships with top manufacturing and supplier companies in India and other parts of the world, including CEDES, MEMCO, Fermator, Wittur, KISWIRE, Toshiba and Hitachi, letting us respond to the exact demands of customers seeking the best quality and latest technology.",
+  metric: "Global",
+  metricSub: "Trusted Manufacturer Network",
+  tag: "Engineering",
+},
+{
+  num: "03",
+  title: "Earn Trust With Business",
+  short: "A simple principle we live by.",
+  desc: "We have accumulated strong and healthy market trust by following one simple principle, 'Earn Trust with Business'. We are committed to providing our customers a professional experience in a demanding market, with nation building and customer satisfaction as our ultimate goal.",
+  metric: "Since 2014",
+  metricSub: "Built on Trust",
+  tag: "Reliability",
+},
+{
+  num: "04",
+  title: "Pan India Supply & Support",
+  short: "Stock and support, nationwide.",
+  desc: "With channel partners holding a wide range of stock across New Delhi, Kolkata, Mumbai and Chennai, we serve elevator and escalator manufacturers, OEMs, users, consultants, contractors and EPCs on a pan India basis with competitive pricing and timely delivery.",
+  metric: "Pan India",
+  metricSub: "Stocked Across Key Metros",
+  tag: "Service",
+},
+{
+  num: "05",
+  title: "Reliable & Affordable",
+  short: "Best quality, latest tech, fair price.",
+  desc: "In a very competitive industry, we source products that are reliable and affordable. Our focus is on delivering the best quality with the latest technology at prices that make sense, committed to providing products of best quality at best prices to the buyer.",
+  metric: "Best Value",
+  metricSub: "Quality at Fair Prices",
+  tag: "Value",
+},
 ];
 
 const tagColors: Record<string, string> = {
@@ -132,10 +123,10 @@ export default function WhyUs() {
               {/* We don't just supply products — we earn trust through every transaction. Reliable
               multi-brand sourcing, strong global partnerships, and quality you can count on, at
               prices that make sense for your project. */}
-              We do not just supply products — we earn trust through every transaction. Reliable multi-brand sourcing, strong global partnerships, and quality you can count on, at prices that make sense for your project.
+            We do not just supply products, we earn trust through every transaction. Reliable multi brand sourcing, strong global partnerships, and quality you can count on, at prices that make sense for your project.
             </p>
             <div className="flex flex-wrap gap-3">
-              {["Since 2014", "Multi-Brand Supplier", "Pan India Network", "Greener & Safer"].map(s => (
+              {["Since 2014", "Multi Brand Supplier", "Pan India Network", "Greener & Safer"].map(s => (
                 <span key={s}
                   className="text-xs font-semibold text-gray-500 border border-gray-200 px-4 py-2 bg-gray-50">
                   {s}
@@ -155,12 +146,12 @@ export default function WhyUs() {
               >
                 {/* ── Row header ── */}
                 <div
-                  className="grid grid-cols-[80px_1fr_auto_44px] lg:grid-cols-[100px_1fr_220px_44px] items-center gap-4 py-6 lg:py-7 cursor-pointer"
+                  className="grid grid-cols-[1fr_auto_44px] md:grid-cols-[80px_1fr_auto_44px] lg:grid-cols-[100px_1fr_220px_44px] items-center gap-4 py-6 lg:py-7 cursor-pointer"
                   onClick={() => setActive(isOpen ? -1 : i)}
                 >
 
                   {/* Number */}
-                  <div className={`text-4xl lg:text-5xl font-extrabold leading-none transition-colors duration-300 ${
+                  <div className={`hidden md:block text-4xl lg:text-5xl font-extrabold leading-none transition-colors duration-300 ${
                     isOpen ? "text-blue-600" : "text-gray-100 group-hover:text-gray-200"
                   }`}>
                     {r.num}

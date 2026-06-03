@@ -46,11 +46,11 @@ const verticals = [
 ];
 
 export default function Segments() {
-  const sectionRef   = useRef<HTMLElement>(null);
-  const headRef      = useRef<HTMLDivElement>(null);
-  const segGridRef   = useRef<HTMLDivElement>(null);
-  const vertRef      = useRef<HTMLDivElement>(null);
-  const parallaxRef  = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
+  const segGridRef = useRef<HTMLDivElement>(null);
+  const vertRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -68,20 +68,26 @@ export default function Segments() {
 
       gsap.fromTo(headRef.current,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
-          scrollTrigger: { trigger: headRef.current, start: "top 85%" } }
+        {
+          y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: headRef.current, start: "top 85%" }
+        }
       );
       gsap.fromTo(segGridRef.current?.children ?? [],
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out",
+        {
+          y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out",
           clearProps: "transform,opacity",
-          scrollTrigger: { trigger: segGridRef.current, start: "top 80%" } }
+          scrollTrigger: { trigger: segGridRef.current, start: "top 80%" }
+        }
       );
       gsap.fromTo(vertRef.current?.children ?? [],
         { x: 30, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out",
+        {
+          x: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: "power3.out",
           clearProps: "transform,opacity",
-          scrollTrigger: { trigger: vertRef.current, start: "top 80%" } }
+          scrollTrigger: { trigger: vertRef.current, start: "top 80%" }
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
@@ -115,17 +121,25 @@ export default function Segments() {
         </div>
 
         {/* Segments grid */}
-        <div ref={segGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div ref={segGridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 mb-16">
           {segments.map(s => (
             <div
               key={s.num}
-              className="group border border-gray-100 bg-white hover:border-blue-200 hover:shadow-[0_8px_32px_rgba(26,79,196,0.10)] p-7 transition-all duration-300 relative overflow-hidden"
+              className="group relative border border-gray-100 bg-white hover:border-blue-200 hover:shadow-[0_8px_32px_rgba(26,79,196,0.10)] p-7 transition-all duration-300 relative overflow-hidden"
             >
-              <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-              <div className="text-3xl mb-4 select-none">{s.icon}</div>
-              <div className="text-4xl font-extrabold text-blue-100 group-hover:text-blue-200 transition-colors leading-none mb-3 select-none">{s.num}</div>
-              <h3 className="text-gray-900 font-bold text-base mb-3 group-hover:text-blue-600 transition-colors duration-300 leading-snug">{s.title}</h3>
-              <p className="text-gray-500 text-sm leading-relaxed">{s.desc}</p>
+              <div className="absolute left-0 top-0 h-full bg-[var(--blue)] w-0 group-hover:w-full transition-all duration-500 origin-left" />
+           <div className="absolute left-0 bottom-0 h-0 w-1 bg-gradient-to-t from-[var(--blue-bright)] via-blue-500 to-blue-400 group-hover:h-full transition-all duration-700 ease-out" />
+              <div className="relative z-10">
+
+                {/* <div className="text-3xl mb-4 select-none group-hover:text-white">{s.icon}</div>
+                <div className="text-4xl font-extrabold text-blue-100  transition-colors leading-none mb-3 select-none group-hover:text-white">{s.num}</div> */}
+                <h3 className="text-gray-900 font-bold text-base mb-3 group-hover:text-white transition-colors duration-300 leading-snug">
+
+                  {s.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed group-hover:text-white/60">{s.desc}</p>
+              </div >
+
             </div>
           ))}
         </div>
@@ -135,7 +149,7 @@ export default function Segments() {
           <p className="text-gray-400 text-[11px] font-bold uppercase tracking-[0.3em] mb-7">
             Business Verticals We Serve
           </p>
-          <div ref={vertRef} className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div ref={vertRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {verticals.map((v, i) => (
               <div
                 key={i}

@@ -38,10 +38,10 @@ const categories = [
     title: "Steel Wire Ropes",
     count: "3 Categories",
     items: [
-      "Elevator Ropes — IS:2365",
+     "Elevator Ropes, IS:2365",
       "Offshore & Shipping Ropes",
       "Construction & Cranes",
-      "KISWIRE · Usha Martin · Bedmutha",
+  "KISWIRE, Usha Martin, Bedmutha",
     ],
   },
   {
@@ -55,7 +55,7 @@ const categories = [
     count: "4 Products",
     items: [
       "Round LED Panels (SMD / COB)",
-      "5 W – 7 W Aluminium Housing",
+   "5 W to 7 W Aluminium Housing",
       "Warm White & White Variants",
       "Elevator Air Conditioning",
     ],
@@ -84,7 +84,7 @@ const categories = [
       </svg>
     ),
     title: "Industrial Automation & Analytical",
-    count: "Multi-Brand",
+   count: "Multi Brand",
     items: [
       "Industrial Automation Products",
       "Analytical Instruments",
@@ -145,8 +145,8 @@ export default function Products() {
             <div className="blue-line w-24 mt-6" />
           </div>
           <p className="text-gray-500 max-w-sm text-sm leading-relaxed">
-            Five core product segments — elevator accessories, steel wire ropes, LED lighting,
-            cables and industrial automation — from trusted global manufacturers.
+            Five core product segments, elevator accessories, steel wire ropes, LED lighting,
+cables and industrial automation, from trusted global manufacturers.
           </p>
         </div>
 

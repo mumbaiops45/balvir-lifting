@@ -181,14 +181,14 @@ export default function Projects() {
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        {/* <div className="mt-10 flex justify-center">
           <button className="btn-outline-dark text-sm">
             Explore Our Range
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </button>
-        </div>
+        </div> */}
       </div>
     </section>
   );
