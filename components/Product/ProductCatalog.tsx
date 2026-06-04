@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -13,9 +15,9 @@ const categories = [
     shortLabel: "Elevator Accessories",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="2" width="18" height="20" rx="2"/>
-        <path d="M9 12l3-3 3 3"/><path d="M9 16l3 3 3-3"/>
-        <line x1="12" y1="9" x2="12" y2="15"/>
+        <rect x="3" y="2" width="18" height="20" rx="2" />
+        <path d="M9 12l3-3 3 3" /><path d="M9 16l3 3 3-3" />
+        <line x1="12" y1="9" x2="12" y2="15" />
       </svg>
     ),
     count: 7,
@@ -24,7 +26,7 @@ const categories = [
         title: "Infra Red Door Sensors (Light Curtains)",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/>
+            <circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
           </svg>
         ),
         brands: ["CEDES — Switzerland", "MEMCO — UK", "SFT / WECO / TVS — China"],
@@ -43,8 +45,8 @@ const categories = [
         title: "Auto Door & Mechanism",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="1"/><line x1="12" y1="3" x2="12" y2="21"/>
-            <path d="M7 12l2 2 2-2"/><path d="M15 12l2 2 2-2"/>
+            <rect x="3" y="3" width="18" height="18" rx="1" /><line x1="12" y1="3" x2="12" y2="21" />
+            <path d="M7 12l2 2 2-2" /><path d="M15 12l2 2 2-2" />
           </svg>
         ),
         brands: ["FERMATOR", "WITTUR", "SHIVAM"],
@@ -59,7 +61,7 @@ const categories = [
         title: "Wireless / Wired CCTV for Elevators",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2"/>
+            <path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" />
           </svg>
         ),
         brands: ["Specialised Elevator-Grade"],
@@ -77,8 +79,8 @@ const categories = [
         title: "Voice Announcement System",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
           </svg>
         ),
         brands: ["Multi Brand"],
@@ -93,7 +95,7 @@ const categories = [
         title: "Automatic Rescue Device (ARD) / UPS",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
           </svg>
         ),
         brands: ["ULTRONIX", "Excella", "AK Automation", "Godrej"],
@@ -109,8 +111,8 @@ const categories = [
         title: "Elevator Drives (Variable Frequency Drives)",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="2"/><circle cx="12" cy="12" r="4"/>
-            <path d="M12 8v1M12 15v1M8 12h1M15 12h1"/>
+            <rect x="2" y="2" width="20" height="20" rx="2" /><circle cx="12" cy="12" r="4" />
+            <path d="M12 8v1M12 15v1M8 12h1M15 12h1" />
           </svg>
         ),
         brands: ["TOSHIBA", "HITACHI", "Fuji", "Yasakawa"],
@@ -125,7 +127,7 @@ const categories = [
         title: "Flat Travelling Cables",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M3 6h18M3 10h18M3 14h18M3 18h18"/>
+            <path d="M3 6h18M3 10h18M3 14h18M3 18h18" />
           </svg>
         ),
         brands: ["MACROTHERM", "DEEPCAB", "Datwayler", "G&G (on order)"],
@@ -147,8 +149,8 @@ const categories = [
     shortLabel: "Wire Ropes (Elevator)",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
-        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+        <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+        <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
       </svg>
     ),
     count: 1,
@@ -157,8 +159,8 @@ const categories = [
         title: "Elevator Steel Wire Ropes",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
+            <circle cx="12" cy="12" r="10" /><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+            <line x1="2" y1="12" x2="22" y2="12" />
           </svg>
         ),
         brands: ["KISSWIRE — Korean", "Usha Martin", "BAHART Wire Ropes", "BEDMUTHA"],
@@ -180,8 +182,8 @@ const categories = [
     shortLabel: "Wire Ropes (Offshore)",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="5" r="3"/><line x1="12" y1="8" x2="12" y2="21"/>
-        <path d="M5 21c0-3 3.5-6 7-6s7 3 7 6"/>
+        <circle cx="12" cy="5" r="3" /><line x1="12" y1="8" x2="12" y2="21" />
+        <path d="M5 21c0-3 3.5-6 7-6s7 3 7 6" />
       </svg>
     ),
     count: 3,
@@ -190,8 +192,8 @@ const categories = [
         title: "KISWIRE Steel Wire Ropes (South Korea, Est. 1945)",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
           </svg>
         ),
         brands: ["KISWIRE — World's largest high carbon steel wire producer"],
@@ -209,7 +211,7 @@ const categories = [
         title: "KISWIRE Production Range & Capacity",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+            <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
           </svg>
         ),
         brands: ["Malaysia", "Indonesia", "Vietnam plants"],
@@ -227,7 +229,7 @@ const categories = [
         title: "Quality Certifications & OEM Clients",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="8" r="4"/><path d="M9 15l-3 7 6-3 6 3-3-7"/>
+            <circle cx="12" cy="8" r="4" /><path d="M9 15l-3 7 6-3 6 3-3-7" />
           </svg>
         ),
         brands: ["API", "DNV", "ABS", "BV", "LRS"],
@@ -250,8 +252,8 @@ const categories = [
     shortLabel: "LED & Lighting",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/>
-        <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/>
+        <line x1="9" y1="18" x2="15" y2="18" /><line x1="10" y1="22" x2="14" y2="22" />
+        <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14" />
       </svg>
     ),
     count: 2,
@@ -260,9 +262,9 @@ const categories = [
         title: "LED Lighting for Elevators",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
           </svg>
         ),
         brands: ["BALVIR Brand", "Others on demand"],
@@ -279,7 +281,7 @@ const categories = [
         title: "Elevator Air Conditioning System (AC)",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2v20M2 12h20"/><path d="M5 5l14 14M19 5L5 19"/>
+            <path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5L5 19" />
           </svg>
         ),
         brands: ["Korean Make (Brand from Korea)"],
@@ -301,8 +303,8 @@ const categories = [
     shortLabel: "Other Accessories",
     icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/>
-        <path d="M14.83 9.17a4 4 0 0 1 0 5.66M9.17 9.17a4 4 0 0 0 0 5.66"/>
+        <circle cx="12" cy="12" r="3" /><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14" />
+        <path d="M14.83 9.17a4 4 0 0 1 0 5.66M9.17 9.17a4 4 0 0 0 0 5.66" />
       </svg>
     ),
     count: 13,
@@ -311,7 +313,7 @@ const categories = [
         title: "Hardware & Electrical Accessories",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
           </svg>
         ),
         brands: ["Multi Brand", "P&F German Make (Floor Sensors)"],
@@ -343,6 +345,7 @@ export default function ProductCatalog() {
   const contentRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState("elevator");
+  const [isActive, setisActive] = useState(true)
   const [animating, setAnimating] = useState(false);
 
   useEffect(() => {
@@ -540,91 +543,149 @@ export default function ProductCatalog() {
           </div>
         </div>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: 32 }}>
+        <div className="flex flex-col" style={{ gap: 32 }}>
 
           {/* Sidebar tabs */}
-          <div ref={tabsRef} style={{ width: "100%", maxWidth: 280, flexShrink: 0 }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+          <div ref={tabsRef} style={{ width: "100%" }}>
+            <div className="flex flex-col md:flex-row flex-wrap  " style={{ gap: 10 }}>
               {categories.map((c) => {
                 const isActive = active === c.id;
                 return (
-                  <button
-                    key={c.id}
-                    onClick={() => handleTabChange(c.id)}
-                    style={{
-                      display: "flex", alignItems: "center", gap: 12,
-                      padding: "14px 18px", textAlign: "left", cursor: "pointer",
-                      border: isActive
-                        ? "1px solid rgba(26,79,196,0.5)"
-                        : "1px solid rgba(255,255,255,0.06)",
-                      borderRadius: 10, transition: "all 0.25s",
-                      background: isActive
-                        ? "rgba(26,79,196,0.1)"
-                        : "rgba(255,255,255,0.02)",
-                      fontFamily: "inherit",
-                    }}
-                  >
-                    <span style={{
-                      width: 38, height: 38, borderRadius: 8, flexShrink: 0,
-                      display: "flex", alignItems: "center", justifyContent: "center",
-                      background: isActive ? "rgba(26,79,196,0.2)" : "rgba(255,255,255,0.05)",
-                      color: isActive ? "#93C5FD" : "#475569",
-                      transition: "all 0.25s",
-                    }}>
-                      {c.icon}
-                    </span>
-                    <div style={{ minWidth: 0 }}>
-                      <p style={{
-                        fontSize: 13, fontWeight: 500, margin: 0,
-                        color: isActive ? "#e2e8f0" : "#64748b",
-                        lineHeight: 1.4, transition: "color 0.25s",
+                  <>
+                    <button
+                      key={c.id}
+                      onClick={() => handleTabChange(c.id)}
+                      className="flex-1"
+                      style={{
+                        display: "flex", alignItems: "center", gap: 12,
+                        padding: "14px 18px", textAlign: "left", cursor: "pointer",
+                        border: isActive
+                          ? "1px solid rgba(26,79,196,0.5)"
+                          : "1px solid rgba(255,255,255,0.06)",
+                        borderRadius: 5, transition: "all 0.25s",
+                        background: isActive
+                          ? "rgba(26,79,196,0.1)"
+                          : "rgba(255,255,255,0.02)",
+                        fontFamily: "inherit",
+                      }}
+                    >
+                      <span style={{
+                        width: 38, height: 38, borderRadius: 8, flexShrink: 0,
+                        display: "flex", alignItems: "center", justifyContent: "center",
+                        background: isActive ? "rgba(26,79,196,0.2)" : "rgba(255,255,255,0.05)",
+                        color: isActive ? "#93C5FD" : "#475569",
+                        transition: "all 0.25s",
                       }}>
-                        {c.shortLabel}
-                      </p>
-                      <p style={{
-                        fontSize: 11, margin: "2px 0 0",
-                        color: isActive ? "#1A4FC4" : "#334155",
-                        transition: "color 0.25s",
-                      }}>
-                        {c.count} {c.count === 1 ? "product" : "products"}
-                      </p>
-                    </div>
-                    {isActive && (
+                        {c.icon}
+                      </span>
+                      <div style={{ minWidth: 0 }}>
+                        <p style={{
+                          fontSize: 13, fontWeight: 500, margin: 0,
+                          color: isActive ? "#e2e8f0" : "#64748b",
+                          lineHeight: 1.4, transition: "color 0.25s",
+                        }}>
+                          {c.shortLabel}
+                        </p>
+                        <p style={{
+                          fontSize: 11, margin: "2px 0 0",
+                          color: isActive ? "#1A4FC4" : "#334155",
+                          transition: "color 0.25s",
+                        }}>
+                          {c.count} {c.count === 1 ? "product" : "products"}
+                        </p>
+                      </div>
+                      <div  className="ml-auto shrink-0 md:hidden">
+                        {isActive ? (
+                          <FiChevronUp size={18} color="#1A4FC4" />
+                        ) : (
+                          <FiChevronDown size={18} color="#1A4FC4" />
+                        )}
+                      </div>
+                    </button>
+                    {/* Content panel */}
+                    {isActive && <div className="block md:hidden" ref={contentRef} style={{ flex: 1, minWidth: 0 }}>
+                      {/* Panel header */}
                       <div style={{
-                        marginLeft: "auto", width: 6, height: 6,
-                        borderRadius: "50%", background: "#1A4FC4", flexShrink: 0,
-                      }} />
-                    )}
-                  </button>
+                        display: "flex", alignItems: "center", gap: 14,
+                        padding: "20px 28px",
+                        border: "1px solid rgba(255,255,255,0.06)",
+                        borderBottom: "1px solid rgba(26,79,196,0.2)",
+                        borderRadius: "12px 12px 0 0",
+                        background: "rgba(26,79,196,0.05)",
+                      }}>
+                        <span style={{
+                          width: 44, height: 44, borderRadius: 10,
+                          display: "flex", alignItems: "center", justifyContent: "center",
+                          background: "rgba(26,79,196,0.15)", color: "#93C5FD",
+                        }}>
+                          {current.icon}
+                        </span>
+                        <div>
+                          <h3 style={{ fontSize: 17, fontWeight: 600, color: "#f1f5f9", margin: 0, lineHeight: 1.3 }}>
+                            {current.label}
+                          </h3>
+                          <p style={{ fontSize: 12, color: "#475569", margin: "3px 0 0" }}>
+                            {current.count} {current.count === 1 ? "product" : "products"} in this category
+                          </p>
+                        </div>
+                        <div style={{
+                          marginLeft: "auto",
+                          fontSize: 11, fontWeight: 600, letterSpacing: "0.1em",
+                          color: "#60A5FA",
+                          background: "rgba(26,79,196,0.1)",
+                          border: "1px solid rgba(26,79,196,0.2)",
+                          padding: "4px 12px", borderRadius: 20,
+                          textTransform: "uppercase",
+                        }}>
+                          FY 2026–27
+                        </div>
+                      </div>
+
+                      {/* Cards */}
+                      <div style={{
+                        padding: "24px",
+                        border: "1px solid rgba(255,255,255,0.06)",
+                        borderTop: "none",
+                        borderRadius: "0 0 12px 12px",
+                        background: "rgba(255,255,255,0.01)",
+                        display: "flex", flexDirection: "column", gap: 16,
+                      }}>
+                        {current.products.map((p, i) => (
+                          <ProductCard key={i} product={p} index={i} />
+                        ))}
+                      </div>
+                      {/* Stats block */}
+                      <div style={{
+                        marginTop: 24, padding: 20,
+                        border: "1px solid rgba(255,255,255,0.06)",
+                        borderRadius: 12, background: "rgba(255,255,255,0.02)",
+                      }}>
+                        <p style={{ fontSize: 11, color: "#475569", marginBottom: 16, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                          Why Balvir Lifting
+                        </p>
+                        {[
+                          { val: "2014", label: "Established" },
+                          { val: "5+", label: "Product segments" },
+                          { val: "Global", label: "Sourcing network" },
+                          { val: "Pan India", label: "Service coverage" },
+                        ].map((s) => (
+                          <div key={s.val} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                            <span style={{ fontSize: 12, color: "#64748b" }}>{s.label}</span>
+                            <span style={{ fontSize: 13, fontWeight: 600, color: "#93C5FD" }}>{s.val}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>}
+
+                  </>
+
                 );
               })}
-            </div>
-
-            {/* Stats block */}
-            <div style={{
-              marginTop: 24, padding: 20,
-              border: "1px solid rgba(255,255,255,0.06)",
-              borderRadius: 12, background: "rgba(255,255,255,0.02)",
-            }}>
-              <p style={{ fontSize: 11, color: "#475569", marginBottom: 16, letterSpacing: "0.1em", textTransform: "uppercase" }}>
-                Why Balvir Lifting
-              </p>
-              {[
-                { val: "2014", label: "Established" },
-                { val: "5+", label: "Product segments" },
-                { val: "Global", label: "Sourcing network" },
-                { val: "Pan India", label: "Service coverage" },
-              ].map((s) => (
-                <div key={s.val} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-                  <span style={{ fontSize: 12, color: "#64748b" }}>{s.label}</span>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: "#93C5FD" }}>{s.val}</span>
-                </div>
-              ))}
             </div>
           </div>
 
           {/* Content panel */}
-          <div ref={contentRef} style={{ flex: 1, minWidth: 0 }}>
+          <div className="hidden md:block" ref={contentRef} style={{ flex: 1, minWidth: 0 }}>
             {/* Panel header */}
             <div style={{
               display: "flex", alignItems: "center", gap: 14,
@@ -673,6 +734,27 @@ export default function ProductCatalog() {
             }}>
               {current.products.map((p, i) => (
                 <ProductCard key={i} product={p} index={i} />
+              ))}
+            </div>
+            {/* Stats block */}
+            <div style={{
+              marginTop: 24, padding: 20,
+              border: "1px solid rgba(255,255,255,0.06)",
+              borderRadius: 12, background: "rgba(255,255,255,0.02)",
+            }}>
+              <p style={{ fontSize: 11, color: "#475569", marginBottom: 16, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+                Why Balvir Lifting
+              </p>
+              {[
+                { val: "2014", label: "Established" },
+                { val: "5+", label: "Product segments" },
+                { val: "Global", label: "Sourcing network" },
+                { val: "Pan India", label: "Service coverage" },
+              ].map((s) => (
+                <div key={s.val} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
+                  <span style={{ fontSize: 12, color: "#64748b" }}>{s.label}</span>
+                  <span style={{ fontSize: 13, fontWeight: 600, color: "#93C5FD" }}>{s.val}</span>
+                </div>
               ))}
             </div>
           </div>
