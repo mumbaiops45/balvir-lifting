@@ -1,5 +1,4 @@
-﻿
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -89,7 +88,7 @@ export default function Hero() {
             <div className="w-16 h-[3px] bg-blue-600 mb-7" />
 
             <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-[720px] mb-10">
-              Mumbai's trusted multi-brand supplier of elevator accessories,
+              Mumbai&apos;s trusted multi-brand supplier of elevator accessories,
               steel wire ropes, LED lighting, cables and automation products.
               Genuine brands, fair pricing, reliable supply across Maharashtra
               and India.
@@ -174,4 +173,3 @@ export default function Hero() {
     </section>
   );
 }
-
