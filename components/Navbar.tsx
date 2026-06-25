@@ -11,6 +11,9 @@ const links = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about" },
   { label: "Our Products", href: "/products" },
+  { label: "Brands & Partners,", href: "/brands-partners" },
+  { label: "Why Choose Us", href: "/why-choose-us" },
+  { label: "FAQs", href: "/faqs" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -40,11 +43,10 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-        scrolled
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
           ? "bg-[var(--blue-bright)] backdrop-blur-xl border-b border-blue-700/30 py-3 shadow-sm"
           : "bg-transparent py-3"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         {/* Logo */}
@@ -65,15 +67,13 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className={`text-[13px] font-medium tracking-wide transition-colors relative group ${
-                  scrolled ? "text-gray-100 hover:text-white" : "text-white/75 hover:text-white"
-                }`}
+                className={`text-[13px] font-medium tracking-wide transition-colors relative group ${scrolled ? "text-gray-100 hover:text-white" : "text-white/75 hover:text-white"
+                  }`}
               >
                 {l.label}
                 <span
-                  className={`absolute -bottom-1 left-0 h-px bg-gray-100 transition-all duration-300 ${
-                    isActive(l.href) ? "w-full" : "w-0 group-hover:w-full"
-                  }`}
+                  className={`absolute -bottom-1 left-0 h-px bg-gray-100 transition-all duration-300 ${isActive(l.href) ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
                 />
               </Link>
             </li>
@@ -84,9 +84,8 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-3">
           <a
             href="tel:+919819002726"
-            className={`text-[13px] font-semibold flex items-center gap-2 transition-colors ${
-              scrolled ? "text-gray-100 hover:text-white" : "text-white/70 hover:text-white"
-            }`}
+            className={`text-[13px] font-semibold flex items-center gap-2 transition-colors ${scrolled ? "text-gray-100 hover:text-white" : "text-white/70 hover:text-white"
+              }`}
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -120,9 +119,8 @@ export default function Navbar() {
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm font-medium py-2.5 border-b border-gray-100 transition-colors ${
-                isActive(l.href) ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
-              }`}
+              className={`text-sm font-medium py-2.5 border-b border-gray-100 transition-colors ${isActive(l.href) ? "text-blue-600" : "text-gray-700 hover:text-blue-600"
+                }`}
             >
               {l.label}
             </Link>

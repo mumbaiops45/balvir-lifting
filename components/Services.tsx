@@ -10,38 +10,32 @@ const services = [
   {
     num: "01",
     title: "Elevator & Escalator Accessories",
-    desc: "Multi brand elevator and escalator components including infra red door sensors, light curtains, criss cross beams, 3D landing sensors, automatic rescue devices, drives and voice announcement systems.",
-    tags: ["CEDES", "MEMCO", "Door Sensors"],
+    desc: "Door sensors, auto doors, ARD/UPS, VFD drives, travelling cables, CCTV and voice announcement systems.",
+    tags: ["Door Sensors", "Auto Doors", "ARD/UPS", "VFD Drives", "Travelling Cables", "CCTV & Voice Systems"],
   },
   {
     num: "02",
     title: "Steel Wire Ropes",
-    desc: "Steel wire ropes for elevators, offshore, shipping and construction applications, sourced from the world's leading high carbon steel wire producers and conforming to international standards.",
-    tags: ["KISWIRE", "Usha Martin", "Bedmutha"],
+    desc: "Elevator, offshore, shipping and construction ropes conforming to IS:2365 and global standards.",
+    tags: ["Elevator", "Offshore", "Shipping", "Construction", "IS:2365", "Global Standards"],
   },
   {
     num: "03",
     title: "LED Lighting & Elevator AC",
-    desc: "Round LED panels in SMD and COB types with aluminium housing across multiple wattages, plus Korean make elevator air conditioning, lightweight, zero water discharge and programmable.",
-    tags: ["Panel / SMD / COB", "5 to 7 Watt", "Elevator AC"],
+    desc: "Round LED panels (SMD/COB), aluminium housing, plus programmable elevator air conditioning.",
+    tags: ["Round LED Panels", "SMD / COB", "Aluminium Housing", "Elevator AC", "Programmable Systems"],
   },
   {
     num: "04",
     title: "Cables & Wires",
-    desc: "Flat travelling and shielded cables suitable for any type and speed of elevator, including CCTV and multimedia display systems, alongside a wide range of industrial cables and wires.",
-    tags: ["Flat Travelling Cables", "MACROTHERM", "DEEPCAB"],
+    desc: "Flat travelling cables, shielded multi-core, CCTV and industrial cabling.",
+    tags: ["Flat Travelling Cables", "Shielded Multi-Core", "CCTV Cabling", "Industrial Wires"],
   },
   {
     num: "05",
-    title: "Automation & Analytical Products",
-    desc: "Industrial automation and analytical products designed to improve productivity, efficiency and operational reliability across modern industrial and infrastructure environments.",
-    tags: ["Automation", "Analytical", "Multi Brand"],
-  },
-  {
-    num: "06",
-    title: "Other Accessories & Hardware",
-    desc: "Complete range of hardware and electrical accessories, fans, junction boxes, motion sensors, LOP / COP panels, limit switches, floor detection sensors, DOB / VA cards and emergency communication systems.",
-    tags: ["Multi Brand", "P&F German Make", "13 Plus Items"],
+    title: "Industrial Automation & Analytical",
+    desc: "Automation products, control and monitoring systems, analytical instruments.",
+    tags: ["Automation Products", "Control Systems", "Monitoring Systems", "Analytical Instruments"],
   },
 ];
 
@@ -69,40 +63,40 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden ">
+    <section id="services" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 
       <div className="max-w-7xl mx-auto px-6">
-       <div
-  ref={headRef}
-  className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8"
->
-  <div>
-    <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
-      What We Offer
-    </p>
+        <div
+          ref={headRef}
+          className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8"
+        >
+          <div>
+            <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+              Our Products
+            </p>
 
-    <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-      Industrial Products
-      <br />
-      <span className="text-blue-gradient">
-        & Business Solutions
-      </span>
-    </h2>
-  </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
+              Everything Your Elevator
+              <br />
+              <span className="text-blue-gradient">
+                &amp; Industrial Projects Need
+              </span>
+            </h2>
+          </div>
 
-  <p className="text-gray-400 max-w-sm text-sm leading-relaxed">
-    Delivering elevators &amp; escalators accessories, steel wire ropes, LED
-    lighting, cables and automation products through trusted partnerships with
-    leading manufacturers and suppliers.
-  </p>
-</div>
+          <p className="text-gray-400 max-w-sm text-sm leading-relaxed">
+            Five core segments, sourced from trusted global and Indian brands, supplied under one roof.
+          </p>
+        </div>
+
         <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
           {services.map(s => (
             <div key={s.num}
               className="group bg-white hover:bg-blue-50 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
-              {/* Hover left red border */}
+              
+              {/* Hover left border */}
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-blue-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
               <div className="text-5xl font-extrabold text-gray-100 group-hover:text-blue-100 transition-colors duration-300 leading-none mb-4 select-none">
@@ -120,15 +114,34 @@ export default function Services() {
                   </span>
                 ))}
               </div>
-
-              {/* Arrow */}
-              {/* <div className="absolute right-6 bottom-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <svg className="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div> */}
             </div>
           ))}
+
+          {/* 6th Grid Item: CTA (Without Number) */}
+          <div className="group bg-blue-600 hover:bg-blue-700 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer flex flex-col justify-end min-h-[250px]">
+            <div className="absolute right-0 top-0 p-8 opacity-10 text-white select-none pointer-events-none">
+              <svg className="w-32 h-32 transform translate-x-10 -translate-y-10" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+              </svg>
+            </div>
+            
+            <div className="mb-auto pt-4">
+              <h3 className="text-white font-bold text-2xl mb-2 tracking-tight">
+                View Full Catalogue
+              </h3>
+              <p className="text-blue-100 text-sm leading-relaxed">
+                Explore our comprehensive documentation and full technical specifications.
+              </p>
+            </div>
+
+            <div className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300 mt-6">
+              <span>Browse Now</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </div>
+          </div>
+          
         </div>
       </div>
     </section>

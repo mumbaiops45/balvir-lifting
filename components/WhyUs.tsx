@@ -7,51 +7,51 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const reasons = [
-{
-  num: "01",
-  title: "Multi Brand Product Portfolio",
-  short: "One trusted source for many brands.",
-  desc: "BALVIR LIFTING is among the leading suppliers of multi brand electrical, electronics, mechanical and hardware products, applicable across a wide range of industries and applications. A single, dependable source for elevators and escalators accessories, wire ropes, LED lighting, cables and automation.",
-  metric: "Multi Brand",
-  metricSub: "Electrical · Electronics · Mechanical",
-  tag: "Quality",
-},
-{
-  num: "02",
-  title: "Global Brand Partnerships",
-  short: "Sourced from leaders across the world.",
-  desc: "We have developed many long lasting relationships with top manufacturing and supplier companies in India and other parts of the world, including CEDES, MEMCO, Fermator, Wittur, KISWIRE, Toshiba and Hitachi, letting us respond to the exact demands of customers seeking the best quality and latest technology.",
-  metric: "Global",
-  metricSub: "Trusted Manufacturer Network",
-  tag: "Engineering",
-},
-{
-  num: "03",
-  title: "Earn Trust With Business",
-  short: "A simple principle we live by.",
-  desc: "We have accumulated strong and healthy market trust by following one simple principle, 'Earn Trust with Business'. We are committed to providing our customers a professional experience in a demanding market, with nation building and customer satisfaction as our ultimate goal.",
-  metric: "Since 2014",
-  metricSub: "Built on Trust",
-  tag: "Reliability",
-},
-{
-  num: "04",
-  title: "Pan India Supply & Support",
-  short: "Stock and support, nationwide.",
-  desc: "With channel partners holding a wide range of stock across New Delhi, Kolkata, Mumbai and Chennai, we serve elevator and escalator manufacturers, OEMs, users, consultants, contractors and EPCs on a pan India basis with competitive pricing and timely delivery.",
-  metric: "Pan India",
-  metricSub: "Stocked Across Key Metros",
-  tag: "Service",
-},
-{
-  num: "05",
-  title: "Reliable & Affordable",
-  short: "Best quality, latest tech, fair price.",
-  desc: "In a very competitive industry, we source products that are reliable and affordable. Our focus is on delivering the best quality with the latest technology at prices that make sense, committed to providing products of best quality at best prices to the buyer.",
-  metric: "Best Value",
-  metricSub: "Quality at Fair Prices",
-  tag: "Value",
-},
+  {
+    num: "01",
+    title: "One Trusted Source for Many Brands",
+    short: "Comprehensive Product Portfolio",
+    desc: "BALVIR LIFTING is among the leading suppliers of electrical, electronics, mechanical, and hardware components applicable across a wide range of vertical transportation systems. Eliminate dealing with multiple vendor loops by routing your dynamic components requirements through a single streamlined procurement cycle.",
+    metric: "Multi-Brand",
+    metricSub: "Electrical · Electronics · Mechanical",
+    tag: "Quality",
+  },
+  {
+    num: "02",
+    title: "Global and Indian Manufacturer Partnerships",
+    short: "Sourced from Industry Leaders",
+    desc: "We have built long-standing relationships with tier-one manufacturing organizations globally and domestically—including specialized brands like CEDES, MEMCO, Fermator, Wittur, KISWIRE, Toshiba, and Hitachi. This direct network gives our clients competitive priority access to premium components and upcoming technological revisions.",
+    metric: "Global Network",
+    metricSub: "Trusted OEM Alliances",
+    tag: "Engineering",
+  },
+  {
+    num: "03",
+    title: "Genuine, Standards-Compliant Products",
+    short: "Uncompromised Quality Controls",
+    desc: "Every component delivered under our system undergoes structural validation to ensure absolute field safety, high operational longevity, and seamless integration with existing setups. We adhere strictly to industrial elevator and escalator codes, building durable client equity by focusing on reliability over margin.",
+    metric: "Since 2014",
+    metricSub: "Built on Core Reliability",
+    tag: "Reliability",
+  },
+  {
+    num: "04",
+    title: "Stock and Support Across Mumbai and Key Metros",
+    short: "Localized Hubs & Logistics Support",
+    desc: "With a major operational warehouse node in Mumbai supported by strategic stock units in key commercial metros across India, we minimize fulfillment lead times. Our distributed logistics infrastructure ensures that urgent maintenance demands, project expansions, and custom components reach your site without friction.",
+    metric: "Pan India+",
+    metricSub: "Anchored in Mumbai Hubs",
+    tag: "Service",
+  },
+  {
+    num: "05",
+    title: "Competitive Pricing with Timely Delivery",
+    short: "Value-Driven Sourcing Solutions",
+    desc: "Operating within high-velocity real estate and engineering infrastructure sectors, our optimized operational cost matrix maps high-grade market technology directly to your budgets. We maintain clear execution timelines, guaranteeing that competitive price metrics do not impact your baseline installation schedule.",
+    metric: "Best Value",
+    metricSub: "Optimized Costs & Dispatch",
+    tag: "Value",
+  },
 ];
 
 const tagColors: Record<string, string> = {
@@ -60,7 +60,6 @@ const tagColors: Record<string, string> = {
   Reliability:   "bg-amber-50 text-amber-600 border-amber-200",
   Service:       "bg-green-50 text-green-600 border-green-200",
   Value:         "bg-pink-50 text-pink-600 border-pink-200",
-  Sustainability:"bg-teal-50 text-teal-600 border-teal-200",
 };
 
 export default function WhyUs() {
@@ -119,20 +118,10 @@ export default function WhyUs() {
             </h2>
           </div>
           <div className="flex flex-col gap-4">
-            <p className="text-gray-400 text-base leading-relaxed">
-              {/* We don't just supply products — we earn trust through every transaction. Reliable
-              multi-brand sourcing, strong global partnerships, and quality you can count on, at
-              prices that make sense for your project. */}
-            We do not just supply products, we earn trust through every transaction. Reliable multi brand sourcing, strong global partnerships, and quality you can count on, at prices that make sense for your project.
+            <p className="text-gray-500 text-base leading-relaxed">
+              We do not just supply products, we earn trust with every order. Dependable multi-brand sourcing, strong manufacturer partnerships, and quality you can rely on, all at prices that make sense for your project.
             </p>
-            <div className="flex flex-wrap gap-3">
-              {["Since 2014", "Multi Brand Supplier", "Pan India Network", "Greener & Safer"].map(s => (
-                <span key={s}
-                  className="text-xs font-semibold text-gray-500 border border-gray-200 px-4 py-2 bg-gray-50">
-                  {s}
-                </span>
-              ))}
-            </div>
+       
           </div>
         </div>
 
@@ -146,7 +135,7 @@ export default function WhyUs() {
               >
                 {/* ── Row header ── */}
                 <div
-                  className="grid grid-cols-[1fr_auto_44px] md:grid-cols-[80px_1fr_auto_44px] lg:grid-cols-[100px_1fr_220px_44px] items-center gap-4 py-6 lg:py-7 cursor-pointer"
+                  className="grid grid-cols-[1fr_auto_44px] md:grid-cols-[80px_1fr_auto_44px] lg:grid-cols-[100px_1fr_240px_44px] items-center gap-4 py-6 lg:py-7 cursor-pointer"
                   onClick={() => setActive(isOpen ? -1 : i)}
                 >
 
@@ -205,7 +194,7 @@ export default function WhyUs() {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="grid lg:grid-cols-[100px_1fr_220px_44px] gap-4 pb-8">
-                    {/* Red left bar */}
+                    {/* Blue left bar */}
                     <div className="hidden lg:flex justify-center">
                       <div className="w-px bg-blue-200 mt-1" />
                     </div>
@@ -226,13 +215,7 @@ export default function WhyUs() {
                     </div>
 
                     {/* Desktop: stat card in expanded state */}
-                    <div className="hidden lg:block">
-                      <div className="border border-blue-100 bg-blue-50/50 p-5 h-full flex flex-col justify-center">
-                        <div className="text-3xl font-extrabold text-blue-600 mb-1">{r.metric}</div>
-                        <div className="text-xs text-gray-400 tracking-wide leading-tight">{r.metricSub}</div>
-                        <div className="h-px bg-blue-200 mt-4" />
-                      </div>
-                    </div>
+                   
                   </div>
                 </div>
               </div>

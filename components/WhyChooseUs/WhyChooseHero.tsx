@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -7,7 +7,7 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function AboutHero() {
+export default function WhyChooseUsHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -52,11 +52,11 @@ export default function AboutHero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/About/About.jpg"
-          alt="Balvir Lifting Facilities"
+          src="/WhyUs/WhyUsHero.jpg" // Update this asset path as needed
+          alt="Balvir Lifting Quality Assurance"
           fill
           priority
-          className="object-cover opacity-20"
+          className="object-cover opacity-15"
         />
       </div>
 
@@ -66,27 +66,27 @@ export default function AboutHero() {
 
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-16 pt-32 w-full">
-        <div ref={contentRef} className="max-w-3xl">
+        <div ref={contentRef} className="max-w-4xl">
           <p className="inline-block text-blue-400 text-[11px] font-bold uppercase tracking-[0.35em] mb-4 px-4 py-2 rounded-xl bg-blue-200/20 backdrop-blur-2xl">
-            Formerly Balvir Global Products
+            The Balvir Advantage
           </p>
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
-            Built on Trust,<br />
-            <span className="text-blue-gradient">Since 2014</span>
+            Why Buyers Across<br />
+            <span className="text-blue-gradient">Mumbai Trust Us</span>
           </h1>
 
-          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-xl">
-            Founded in Navi Mumbai, Balvir Lifting earns trust with every order as a premier multi-brand supplier of genuine engineering and hardware components across India.
+          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
+            From heavy industrial yards to precision engineering facilities, procurement teams rely on Balvir Lifting. We eliminate supply chain friction through uncompromised component authenticity, transparent lead times, and an exhaustive inventory network that keeps your operations moving forward.
           </p>
 
-          {/* Stat chips */}
+          {/* Core Trust Pillars */}
           <div className="flex flex-wrap gap-3 mt-8">
             {[
-              { v: "2014", l: "Kharghar, Navi Mumbai" },
-              { v: "Multi-Brand", l: "Electrical, Electronics & Mechanical" },
-              { v: "Pan India", l: "Mumbai, Maharashtra & Beyond" },
-              { v: "Earn Trust", l: "Our Core Business Philosophy" },
+              { v: "0% Counterfeit Risk", l: "100% Traceable OEM Paperwork" },
+              { v: "On-Time Dispatch", l: "Optimized Logistics Across MH" },
+              { v: "High Fulfillment", l: "Massive Ready-to-Ship Inventory" },
+              { v: "Expert Assistance", l: "Technical Matching & Support" },
             ].map(s => (
               <div key={s.v} className="border border-white/10 px-5 py-2.5 backdrop-blur-sm bg-white/[0.02]">
                 <div className="text-white font-bold text-sm">{s.v}</div>
@@ -97,7 +97,7 @@ export default function AboutHero() {
         </div>
       </div>
 
-      {/* Bottom fade to white */}
+      {/* Bottom fade to white (Matches your layout transition) */}
       <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white to-transparent" />
     </section>
   );

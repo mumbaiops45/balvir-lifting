@@ -10,29 +10,25 @@ const milestones = [
   {
     year: "2014",
     event:
-      "BALVIR LIFTING (formerly Balvir Global Products) was established and registered, with its office located in Navi Mumbai, Kharghar."
+      "Balvir Lifting, formerly Balvir Global Products, was established and operates from Kharghar, Navi Mumbai."
   },
   {
     year: "Principle",
     event:
-      "Built on a simple principle we follow, 'Earn Trust with Business', with the aim of providing greener and safer products to industry and users."
+      "We have built strong, lasting trust in the market by following one simple principle: Earn Trust with Business."
   },
   {
-    year: "Growth",
+    year: "Products",
     event:
-      "Developed many long lasting relationships with top manufacturing and supplier companies across India and other parts of the world."
+      "We supply a wide range of multi-brand electrical, electronics, mechanical and hardware products, sourced from leading manufacturers in India and around the world."
   },
   {
-    year: "Today",
+    year: "Goal",
     event:
-      "Among the leading suppliers of multi brand electrical, electronics, mechanical and hardware products for diverse industries and applications."
-  },
-  {
-    year: "Vision",
-    event:
-      "To be referred as the most favourable trading company in multi brand electrical, electronics, mechanical and automation products."
+      "Our goal is straightforward: greener, safer products delivered at the right quality and the right price, every single time."
   }
 ];
+
 export default function About() {
   const sectionRef = useRef<HTMLElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
@@ -67,7 +63,7 @@ export default function About() {
   }, []);
 
   return (
-    <section id="about" ref={sectionRef} className="section-pad bg-white relative overflow-hidden ">
+    <section id="about" ref={sectionRef} className="section-pad bg-white relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-blue-600/20 to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-100" />
 
@@ -80,41 +76,29 @@ export default function About() {
           </p>
 
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
-            Leading Supplier Of
+            A Leading Multi-Brand
             <br />
             <span className="text-blue-gradient">
-              Multi Brand Industrial Products
+              Industrial Products Supplier
             </span>
           </h2>
 
           <div className="blue-line w-24 mb-7" />
 
           <p className="text-gray-500 leading-relaxed mb-5">
-            BALVIR LIFTING (formerly Balvir Global Products) was established and
-            registered in 2014, with its office located in Navi Mumbai, Kharghar.
-            {/* We have accumulated strong and healthy market trust through a simple
-    principle we follow, 'Earn Trust with Business', with the aim of
-    providing greener and safer products to the industry and its users. */}
-            We have accumulated strong and healthy market trust through a simple principle we follow, Earn Trust with Business, with the aim of providing greener and safer products to the industry and its users.
+            Balvir Lifting, formerly Balvir Global Products, was established in 2014 and operates from Kharghar, Navi Mumbai. We have built strong, lasting trust in the market by following one simple principle: Earn Trust with Business.
           </p>
 
           <p className="text-gray-500 leading-relaxed mb-10">
-            {/* Among the leading suppliers of multi brand electrical, electronics,
-            mechanical and hardware products, we source items that are reliable
-            and affordable, backed by long lasting relationships with top
-            manufacturers and suppliers in India and around the world. */}
-            Among the leading suppliers of multi brand electrical, electronics, mechanical and hardware products, we source items that are reliable and affordable, backed by long lasting relationships with top manufacturers and suppliers in India and around the world.
-             This lets
-            us respond to the exact demands of customers seeking the best quality
-            and latest technology at affordable prices.
+            We supply a wide range of multi-brand electrical, electronics, mechanical and hardware products, sourced from leading manufacturers in India and around the world. Our goal is straightforward: greener, safer products delivered at the right quality and the right price, every single time.
           </p>
 
           <div className="flex flex-wrap gap-3">
             {[
               "Established 2014",
               "Formerly Balvir Global Products",
-              "Multi Brand Products",
-              "Pan India Supply"
+              "Multi-Brand Products",
+              "Pan-India Supply"
             ].map((c) => (
               <span
                 key={c}

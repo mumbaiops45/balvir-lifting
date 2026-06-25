@@ -1,7 +1,5 @@
-import AboutHero      from "@/components/About/AboutHero";
-import CompanyStory   from "@/components/About/CompanyStory";
-import VisionMission  from "@/components/About/VisionMission";
-import Segments       from "@/components/About/Segments";
+import WhyChooseUsHero from "@/components/WhyChooseUs/WhyChooseHero";
+import WhyChooseUs from "@/components/WhyChooseUs/WhyChooseUs";
 import CTA            from "@/components/CTA";
 
 export const metadata = {
@@ -13,10 +11,8 @@ export const metadata = {
 export default function AboutPage() {
   return (
     <main>
-      <AboutHero />
-      <CompanyStory />
-      <VisionMission />
-      {/* <Segments /> */}
+      <WhyChooseUsHero />
+    <WhyChooseUs />
       <CTA />
     </main>
   );

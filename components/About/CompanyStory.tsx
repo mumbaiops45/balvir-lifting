@@ -7,31 +7,26 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const milestones = [
- {
-  year: "2014",
-  label: "Founded",
-  desc: "Established and registered as Balvir Global Products in Navi Mumbai, Kharghar, with a mission to supply high quality, multi brand industrial products.",
-},
-{
-  year: "Principle",
-  label: "Earn Trust with Business",
-  desc: "Built a strong and healthy market trust by following a single guiding principle, 'Earn Trust with Business', committed to delivering professional experiences in a demanding market.",
-},
-{
-  year: "Growth",
-  label: "Global Partnerships",
-  desc: "Developed many long lasting relationships with top manufacturing and supplier companies in India and around the world, including CEDES, MEMCO, Fermator, KISWIRE, Toshiba and Hitachi.",
-},
-{
-  year: "Today",
-  label: "Balvir Lifting",
-  desc: "Renamed Balvir Lifting, now a leading supplier of multi brand Electrical, Electronics, Mechanical and Hardware products applicable to various industries and applications across India.",
-},
-{
-  year: "Vision",
-  label: "Nation Building",
-  desc: "Committed to becoming the most favourable trading company in multi brand Electrical, Electronics, Mechanical and Automation products, with customer satisfaction and nation building as our ultimate goal.",
-},
+  {
+    year: "2014",
+    label: "The Beginning",
+    desc: "Balvir Lifting (formerly Balvir Global Products) was established and registered in Kharghar, Navi Mumbai.",
+  },
+  {
+    year: "Our Principle",
+    label: "Earn Trust with Business",
+    desc: "Built on a simple idea with an active focus on delivering greener, safer products for our fast-evolving industries and their end users.",
+  },
+  {
+    year: "Growth",
+    label: "Global Manufacturer Networks",
+    desc: "Developed deep, long-lasting relationships with market-leading manufacturers and suppliers across India and overseas.",
+  },
+  {
+    year: "Today",
+    label: "Multi-Brand Leader",
+    desc: "A trusted multi-brand partner supplying components for elevators, wire ropes, industrial lighting, cables, and automation across diverse fields.",
+  },
 ];
 
 export default function CompanyStory() {
@@ -74,7 +69,7 @@ export default function CompanyStory() {
           {/* Left — copy */}
           <div ref={leftRef}>
             <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
-              Our Story
+              Our Journey
             </p>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-7">
               A Company Built on<br />
@@ -82,19 +77,15 @@ export default function CompanyStory() {
             </h2>
             <div className="blue-line w-20 mb-8" />
             <p className="text-gray-500 text-base leading-relaxed mb-5">
-              <strong className="text-gray-800">BALVIR LIFTING</strong> (formerly Balvir Global Products) was
-              established and registered in 2014, with its office located in Navi Mumbai, Kharghar.
+              <strong className="text-gray-800">BALVIR LIFTING</strong> (formerly Balvir Global Products) was 
+              established and registered in 2014, with its principal office operational out of Kharghar, Navi Mumbai.
             </p>
             <p className="text-gray-500 text-sm leading-relaxed mb-5">
-              Through business, BALVIR&apos;s aim is to provide <strong className="text-gray-700">GREENER &amp; SAFER</strong> products
-              to the industry and its users. We are among the leading suppliers of multi-brand Electrical,
-              Electronics, Mechanical &amp; Hardware products, applicable to various industries and applications.
+              From day one, our corporate philosophy has centered heavily on providing <strong className="text-gray-700">GREENER &amp; SAFER</strong> solutions 
+              to the industries we serve. This long-standing focus guides how we scale reliable technology throughout Indian industrial landscapes.
             </p>
             <p className="text-gray-500 text-sm leading-relaxed mb-10">
-              In a very competitive industry, we source products that are reliable and affordable. We have
-              developed many long-lasting relationships with top manufacturing and supplier companies in India
-              and around the world, allowing us to focus our attention on responding to the exact demands of
-              customers seeking the best quality with latest technology at affordable prices.
+              By fostering valuable strategic alliances with leading manufacturing and supplier enterprises domestically and globally, we keep our supply ecosystem dynamic, highly stable, and commercialized at exact target-market parameters.
             </p>
 
             {/* Core principle card */}

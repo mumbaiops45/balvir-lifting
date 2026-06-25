@@ -7,7 +7,7 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function ContactHero() {
+export default function ProductInquiryHero() {
   const sectionRef = useRef<HTMLElement>(null);
   const bgRef      = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -48,38 +48,36 @@ export default function ContactHero() {
         ref={bgRef}
         className="absolute inset-0 bg-gradient-to-br from-dark-950 via-[#0e0608] to-dark-900"
       />
-        {/* Background Image */}
-                  <div className="absolute inset-0">
-                    <Image
-                      src="/Contact/pexels-markus-winkler-1430818-4160128.jpg"
-                      alt="About Hero"
-                      fill
-                      priority
-                      className="object-cover object-right-top opacity-20"
-                    />
-                  </div>
-
-    
+      
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/Contact/pixels-markus-winkler-1430818-4160128.jpg"
+          alt="Product Procurement Assistance"
+          fill
+          priority
+          className="object-cover object-right-top opacity-20"
+        />
+      </div>
 
       {/* Glow accents */}
       <div className="absolute bottom-0 right-1/3 w-[32rem] h-[32rem] rounded-full bg-blue-600/12 blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 left-1/4 w-48 h-48 rounded-full bg-blue-500/8 blur-2xl pointer-events-none" />
 
-
-
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-36 w-full">
-        <div ref={contentRef} className="max-w-2xl">
+        <div ref={contentRef} className="max-w-3xl">
           <p className="text-blue-400 text-[11px] font-bold uppercase tracking-[0.35em] mb-5 px-4 py-2 rounded-xl bg-blue-200/20 backdrop-blur-2xl inline-block">
-            Get in Touch
+            Product Sourcing
           </p>
+          
           <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.95] tracking-tight mb-7">
-            Let&apos;s Discuss<br />
-            <span className="text-blue-gradient">Your Requirements</span>
+            Let&apos;s Find the<br />
+            <span className="text-blue-gradient">Right Products for You</span>
           </h1>
-          <p className="text-white/45 text-base md:text-lg leading-relaxed">
-            Reach out to our sales team for product enquiries, pricing, bulk orders or
-            any technical support. We serve Pan India and respond promptly.
+          
+          <p className="text-white/45 text-base md:text-lg leading-relaxed max-w-2xl">
+            Have a requirement or a question? Reach out and our Navi Mumbai team will respond quickly to provide customized configurations, pricing, or verification details.
           </p>
 
           {/* Contact chips */}

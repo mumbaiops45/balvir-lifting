@@ -179,19 +179,7 @@ export default function WireRopesSection() {
               </div>
             </div>
 
-            {/* Performance callout */}
-            <div className="mt-5 bg-blue-600 p-6 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 rounded-full bg-white/5 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-              <p className="text-blue-100 text-[10px] font-bold uppercase tracking-widest mb-2">
-                Balvir Lifting — KISWIRE Partner
-              </p>
-              <p className="text-white font-bold text-lg mb-2">Unmatched Performance</p>
-              <p className="text-white/75 text-sm leading-relaxed">
-                Our customers are experiencing unmatched performance of KISWIRE Steel Wire Ropes
-                resulting in overall increase in Operational Efficiency and Plant output. Stocked
-                across New Delhi, Kolkata, Mumbai and Chennai for Pan India delivery.
-              </p>
-            </div>
+          
           </div>
 
         </div>
