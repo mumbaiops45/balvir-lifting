@@ -73,12 +73,10 @@ export default function ProductsHero() {
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-36 w-full">
         <div ref={contentRef} className="max-w-3xl">
-          <p className="text-blue-400 text-[11px] font-bold uppercase tracking-[0.35em] mb-5 px-4 py-2 rounded-xl bg-blue-200/20 backdrop-blur-2xl inline-block">
-            Industrial Sourcing Catalog
-          </p>
+       
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-7">
             Our Complete<br />
-            <span className="text-blue-gradient">Product Range</span>
+            <span className="text-[var(--primary-light)]">Product Range</span>
           </h1>
           <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
             Multi-brand electrical, electronics, mechanical and hardware products for elevators, wire ropes, infrastructure and industrial applications. Browse by category below.

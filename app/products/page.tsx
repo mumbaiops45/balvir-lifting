@@ -4,9 +4,10 @@ import WireRopesSection from "@/components/Product/WireRopesSection";
 import CTA             from "@/components/CTA";
 
 export const metadata = {
-  title: "Our Products | Balvir Lifting",
+  title:
+    "Products | Elevator Accessories, Wire Ropes, LED Lighting & Cables",
   description:
-    "Browse Balvir Lifting's complete product catalogue — elevator accessories, CEDES sensors, Fermator doors, ARD/UPS, KISWIRE wire ropes, LED lighting, flat travelling cables and industrial automation.",
+    "Explore Balvir Lifting's full range of elevator accessories, IS:2365 wire ropes, LED lighting, cables and automation products from trusted global brands.",
 };
 
 export default function ProductsPage() {

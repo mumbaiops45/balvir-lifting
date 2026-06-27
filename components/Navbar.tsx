@@ -44,7 +44,7 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-[var(--blue-bright)] backdrop-blur-xl border-b border-blue-700/30 py-3 shadow-sm"
+          ? "bg-[var(--primary)] backdrop-blur-xl border-b border-blue-700/30 py-3 shadow-sm"
           : "bg-transparent py-3"
         }`}
     >

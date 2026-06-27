@@ -5,9 +5,9 @@ import Segments       from "@/components/About/Segments";
 import CTA            from "@/components/CTA";
 
 export const metadata = {
-  title: "About Us | Balvir Lifting",
+  title: "About Balvir Lifting | Trusted Industrial Products Supplier Since 2014",
   description:
-    "Learn about Balvir Lifting — established 2014 in Navi Mumbai. A leading multi-brand supplier of elevator accessories, wire ropes, LED lighting and industrial automation products.",
+    "Navi Mumbai based supplier of multi brand elevator and industrial products, built on the principle, Earn Trust with Business.",
 };
 
 export default function AboutPage() {

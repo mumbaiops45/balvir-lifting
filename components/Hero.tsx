@@ -80,7 +80,7 @@ export default function Hero() {
             <h1 className="md:text-7xl xl:text-[82px] font-extrabold text-white leading-[1.03] tracking-[-0.03em] mb-5">
               Elevating Spaces.
               <br />
-              <span className="text-[var(--blue-bright)]">
+              <span className="text-[var(--primary-light)]">
                 Earning Trust.
               </span>
             </h1>

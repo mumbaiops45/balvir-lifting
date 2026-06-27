@@ -22,7 +22,7 @@ export default function Home() {
       <Stats />
       <WhyUs />
       {/* <Projects /> */}
-      <Gallery />
+      {/* <Gallery /> */}
       <Testimonials />
       <CTA />
       <Contact />

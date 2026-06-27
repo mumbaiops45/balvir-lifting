@@ -39,7 +39,7 @@ export default function EnquiryModal() {
     timeline: "", message: "",
   });
 
-  /* ── Open / close animation ───────────────── */
+  /* ── Open / close animation ── */
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -57,7 +57,7 @@ export default function EnquiryModal() {
     }
   }, [open]);
 
-  /* ── Step transition ──────────────────────── */
+  /* ── Step transition ── */
   const animateStep = (dir: "next" | "prev") => {
     const el = bodyRef.current;
     if (!el) return;
@@ -69,7 +69,7 @@ export default function EnquiryModal() {
   const goNext = () => { setStep(s => s + 1); setTimeout(() => animateStep("next"), 10); };
   const goPrev = () => { setStep(s => s - 1); setTimeout(() => animateStep("prev"), 10); };
 
-  /* ── Escape ───────────────────────────────── */
+  /* ── Escape ── */
   useEffect(() => {
     const h = (e: KeyboardEvent) => { if (e.key === "Escape" && open) toggle(); };
     window.addEventListener("keydown", h);
@@ -102,46 +102,64 @@ export default function EnquiryModal() {
         body: fd,
       });
       const data = await res.json();
-      if (data.success === "true" || data.success === true) {
-        setSent(true);
-      }
-    } catch {
-      // silent — user can retry
-    } finally {
-      setLoading(false);
-    }
+      if (data.success === "true" || data.success === true) setSent(true);
+    } catch { /* silent */ } finally { setLoading(false); }
   };
 
-  const inp = "w-full bg-gray-50 border border-gray-200 focus:border-blue-500 focus:bg-white text-gray-900 placeholder-gray-300 px-3.5 py-2.5 text-sm outline-none transition-all rounded-lg";
+  /* ── Shared field styles ── */
+  const inp = [
+    "w-full bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-300",
+    "px-3.5 py-2.5 text-sm outline-none transition-all rounded-lg",
+    "focus:border-[var(--primary)] focus:bg-white",
+  ].join(" ");
+
   const lbl = "text-gray-400 text-[10px] font-bold uppercase tracking-widest block mb-1";
 
   const step0OK = !!(form.name && form.phone && form.email);
   const step1OK = !!(form.service && form.city);
 
+  /* ── Reusable pill toggle style ── */
+  const pill = (active: boolean) =>
+    `px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
+      active
+        ? "text-white border-[var(--primary)]"
+        : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
+    }`;
+
   return (
     <>
       {/* Overlay */}
-      <div ref={overlayRef} onClick={toggle}
+      <div
+        ref={overlayRef}
+        onClick={toggle}
         className="fixed inset-0 z-[70] bg-black/55 backdrop-blur-sm"
-        style={{ opacity: 0, pointerEvents: open ? "auto" : "none" }} />
+        style={{ opacity: 0, pointerEvents: open ? "auto" : "none" }}
+      />
 
-      {/* Card — fixed size, no internal scroll */}
-      <div ref={cardRef}
+      {/* Card */}
+      <div
+        ref={cardRef}
         className="fixed z-[80] inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
         style={{ opacity: 0, maxHeight: "calc(100dvh - 40px)", pointerEvents: open ? "auto" : "none" }}
       >
 
-        {/* ── LEFT panel ──────────────────────── */}
-        <div className="hidden md:flex w-[260px] shrink-0 flex-col justify-between p-7 relative"
-         style={{
-  background:
-    "linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 45%, var(--blue-bright) 100%)",
-}}>
-          {/* texture */}
-          <div className="absolute inset-0 opacity-10" style={{
-            backgroundImage: "linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px)",
-            backgroundSize: "28px 28px"
-          }} />
+        {/* ── LEFT panel ── */}
+        <div
+          className="hidden md:flex w-[260px] shrink-0 flex-col justify-between p-7 relative"
+          style={{
+            background:
+              "linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%)",
+          }}
+        >
+          {/* grid texture */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px)",
+              backgroundSize: "28px 28px",
+            }}
+          />
 
           <div className="relative flex flex-col gap-6">
             <LogoSVG height={36} variant="dark" />
@@ -177,7 +195,7 @@ export default function EnquiryModal() {
           </div>
         </div>
 
-        {/* ── RIGHT panel ─────────────────────── */}
+        {/* ── RIGHT panel ── */}
         <div className="flex-1 bg-white flex flex-col">
 
           {/* Header — step indicators */}
@@ -185,45 +203,80 @@ export default function EnquiryModal() {
             <div className="flex items-center gap-2">
               {STEPS.map((s, i) => (
                 <div key={s} className="flex items-center gap-1.5">
-                  <div className={`w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300 ${
-                    i < step  ? "bg-green-500 text-white" :
-                    i === step ? "bg-blue-600 text-white"  :
-                    "bg-gray-100 text-gray-400"
-                  }`}>
+                  {/* step circle */}
+                  <div
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300"
+                    style={{
+                      backgroundColor:
+                        i < step  ? "#22c55e"              /* green-500 — completion only */
+                        : i === step ? "var(--primary)"
+                        : "#F3F4F6",
+                      color:
+                        i < step || i === step ? "#fff" : "#9CA3AF",
+                    }}
+                  >
                     {i < step ? "✓" : i + 1}
                   </div>
-                  <span className={`text-[11px] font-semibold hidden sm:block ${i === step ? "text-gray-800" : "text-gray-300"}`}>{s}</span>
+                  <span
+                    className={`text-[11px] font-semibold hidden sm:block ${
+                      i === step ? "text-gray-800" : "text-gray-300"
+                    }`}
+                  >
+                    {s}
+                  </span>
                   {i < STEPS.length - 1 && (
-                    <div className={`w-5 h-px mx-0.5 ${i < step ? "bg-green-400" : "bg-gray-200"}`} />
+                    <div
+                      className="w-5 h-px mx-0.5 transition-colors duration-300"
+                      style={{ backgroundColor: i < step ? "#22c55e" : "#E5E7EB" }}
+                    />
                   )}
                 </div>
               ))}
             </div>
-            <button onClick={toggle}
-              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 hover:border-blue-500 hover:text-blue-500 transition-all">
+
+            {/* Close button */}
+            <button
+              onClick={toggle}
+              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all hover:border-[var(--primary)] hover:text-[var(--primary)]"
+            >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
 
-          {/* Body — NO scroll, all content fits */}
+          {/* Body */}
           <div ref={bodyRef} className="flex-1 px-6 py-5 overflow-hidden">
 
             {sent ? (
-              /* Success */
+              /* ── Success ── */
               <div className="h-full flex flex-col items-center justify-center gap-4 text-center">
-                <div className="w-16 h-16 bg-green-50 border-2 border-green-400 rounded-full flex items-center justify-center">
-                  <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center border-2"
+                  style={{
+                    backgroundColor: "color-mix(in srgb, var(--primary) 8%, white)",
+                    borderColor: "var(--primary)",
+                  }}
+                >
+                  <svg
+                    className="w-8 h-8"
+                    style={{ color: "var(--primary)" }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
+
                 <div>
                   <h3 className="text-gray-900 text-xl font-extrabold mb-1">Enquiry Submitted!</h3>
                   <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
-                    Our team will contact you within <strong className="text-gray-700">2 business hours.</strong>
+                    Our team will contact you within{" "}
+                    <strong className="text-gray-700">2 business hours.</strong>
                   </p>
                 </div>
+
                 <div className="bg-gray-50 rounded-xl border border-gray-100 p-4 w-full max-w-sm text-left">
                   <div className="grid grid-cols-2 gap-x-4 gap-y-2">
                     {[
@@ -239,17 +292,27 @@ export default function EnquiryModal() {
                     ))}
                   </div>
                 </div>
+
                 <div className="flex gap-3">
-                  <button onClick={() => { setSent(false); setStep(0); setForm({ name:"",phone:"",email:"",company:"",service:"",floors:"",city:"",buildingType:"",timeline:"",message:"" }); }}
-                    className="text-sm border border-gray-200 text-gray-600 px-5 py-2.5 rounded-lg hover:bg-gray-50 transition-colors">
+                  <button
+                    onClick={() => {
+                      setSent(false);
+                      setStep(0);
+                      setForm({ name:"",phone:"",email:"",company:"",service:"",floors:"",city:"",buildingType:"",timeline:"",message:"" });
+                    }}
+                    className="text-sm border border-gray-200 text-gray-600 px-5 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
+                  >
                     New Enquiry
                   </button>
-                  <button onClick={toggle}
-                    className="text-sm bg-blue-600 text-white px-5 py-2.5 rounded-lg hover:bg-blue-500 font-semibold transition-colors">
+                  <button
+                    onClick={toggle}
+                    className="btn-red text-sm px-5 py-2.5 rounded-lg font-semibold"
+                  >
                     Close
                   </button>
                 </div>
               </div>
+
             ) : (
               <>
                 {/* ── Step 0: Details ── */}
@@ -262,37 +325,51 @@ export default function EnquiryModal() {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className={lbl}>Full Name *</label>
-                        <input type="text" required value={form.name}
+                        <label className={lbl}>
+                          Full Name <span style={{ color: "var(--primary)" }}>*</span>
+                        </label>
+                        <input
+                          type="text" required value={form.name}
                           onChange={e => f("name", e.target.value)}
-                          placeholder="Rajiv Mehta" className={inp} />
+                          placeholder="Rajiv Mehta" className={inp}
+                        />
                       </div>
                       <div>
                         <label className={lbl}>Company</label>
-                        <input type="text" value={form.company}
+                        <input
+                          type="text" value={form.company}
                           onChange={e => f("company", e.target.value)}
-                          placeholder="Company name" className={inp} />
+                          placeholder="Company name" className={inp}
+                        />
                       </div>
                     </div>
 
                     <div>
-                      <label className={lbl}>Phone Number *</label>
+                      <label className={lbl}>
+                        Phone Number <span style={{ color: "var(--primary)" }}>*</span>
+                      </label>
                       <div className="flex gap-2">
                         <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 px-3 rounded-lg shrink-0">
                           <span className="text-base">🇮🇳</span>
                           <span className="text-gray-500 text-sm font-medium">+91</span>
                         </div>
-                        <input type="tel" required value={form.phone}
+                        <input
+                          type="tel" required value={form.phone}
                           onChange={e => f("phone", e.target.value)}
-                          placeholder="98190 02726" className={inp} />
+                          placeholder="98190 02726" className={inp}
+                        />
                       </div>
                     </div>
 
                     <div>
-                      <label className={lbl}>Email Address *</label>
-                      <input type="email" required value={form.email}
+                      <label className={lbl}>
+                        Email Address <span style={{ color: "var(--primary)" }}>*</span>
+                      </label>
+                      <input
+                        type="email" required value={form.email}
                         onChange={e => f("email", e.target.value)}
-                        placeholder="rajiv@company.com" className={inp} />
+                        placeholder="rajiv@company.com" className={inp}
+                      />
                     </div>
                   </div>
                 )}
@@ -307,53 +384,77 @@ export default function EnquiryModal() {
 
                     {/* Service cards */}
                     <div>
-                      <label className={lbl}>Service Required *</label>
+                      <label className={lbl}>
+                        Service Required <span style={{ color: "var(--primary)" }}>*</span>
+                      </label>
                       <div className="grid grid-cols-3 gap-2">
-                        {services.map(s => (
-                          <button key={s.id} type="button" onClick={() => f("service", s.id)}
-                            className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border-2 text-center transition-all ${
-                              form.service === s.id
-                                ? "border-blue-600 bg-blue-50"
-                                : "border-gray-200 bg-white hover:border-gray-300"
-                            }`}>
-                            <span className="text-xl leading-none">{s.icon}</span>
-                            <span className={`text-[10px] font-semibold leading-tight ${form.service === s.id ? "text-blue-600" : "text-gray-500"}`}>
-                              {s.label}
-                            </span>
-                          </button>
-                        ))}
+                        {services.map(s => {
+                          const active = form.service === s.id;
+                          return (
+                            <button
+                              key={s.id}
+                              type="button"
+                              onClick={() => f("service", s.id)}
+                              className="flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border-2 text-center transition-all"
+                              style={{
+                                borderColor: active ? "var(--primary)" : "#E5E7EB",
+                                backgroundColor: active
+                                  ? "color-mix(in srgb, var(--primary) 8%, white)"
+                                  : "white",
+                              }}
+                            >
+                              <span className="text-xl leading-none">{s.icon}</span>
+                              <span
+                                className="text-[10px] font-semibold leading-tight"
+                                style={{ color: active ? "var(--primary)" : "#6B7280" }}
+                              >
+                                {s.label}
+                              </span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
                         <label className={lbl}>Floors</label>
-                        <input type="text" value={form.floors}
+                        <input
+                          type="text" value={form.floors}
                           onChange={e => f("floors", e.target.value)}
-                          placeholder="e.g. G + 10" className={inp} />
+                          placeholder="e.g. G + 10" className={inp}
+                        />
                       </div>
                       <div>
-                        <label className={lbl}>City *</label>
-                        <input type="text" required value={form.city}
+                        <label className={lbl}>
+                          City <span style={{ color: "var(--primary)" }}>*</span>
+                        </label>
+                        <input
+                          type="text" required value={form.city}
                           onChange={e => f("city", e.target.value)}
-                          placeholder="Mumbai" className={inp} />
+                          placeholder="Mumbai" className={inp}
+                        />
                       </div>
                     </div>
 
-                    {/* Building type */}
+                    {/* Building type pills */}
                     <div>
                       <label className={lbl}>Building Type</label>
                       <div className="flex flex-wrap gap-1.5">
-                        {["Residential","Commercial","Hospital","Hotel","Industrial","Mall"].map(t => (
-                          <button key={t} type="button" onClick={() => f("buildingType", t)}
-                            className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
-                              form.buildingType === t
-                                ? "bg-blue-600 text-white border-blue-600"
-                                : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
-                            }`}>
-                            {t}
-                          </button>
-                        ))}
+                        {["Residential","Commercial","Hospital","Hotel","Industrial","Mall"].map(t => {
+                          const active = form.buildingType === t;
+                          return (
+                            <button
+                              key={t}
+                              type="button"
+                              onClick={() => f("buildingType", t)}
+                              className={pill(active)}
+                              style={active ? { backgroundColor: "var(--primary)" } : {}}
+                            >
+                              {t}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
@@ -367,31 +468,39 @@ export default function EnquiryModal() {
                       <p className="text-gray-400 text-xs mt-0.5">Add a message (optional) and review your details.</p>
                     </div>
 
+                    {/* Timeline pills */}
                     <div>
                       <label className={lbl}>Expected Timeline</label>
                       <div className="flex flex-wrap gap-1.5">
-                        {["Immediately","1–3 Months","3–6 Months","Planning Stage"].map(t => (
-                          <button key={t} type="button" onClick={() => f("timeline", t)}
-                            className={`px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
-                              form.timeline === t
-                                ? "bg-blue-600 text-white border-blue-600"
-                                : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
-                            }`}>
-                            {t}
-                          </button>
-                        ))}
+                        {["Immediately","1–3 Months","3–6 Months","Planning Stage"].map(t => {
+                          const active = form.timeline === t;
+                          return (
+                            <button
+                              key={t}
+                              type="button"
+                              onClick={() => f("timeline", t)}
+                              className={pill(active)}
+                              style={active ? { backgroundColor: "var(--primary)" } : {}}
+                            >
+                              {t}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
 
                     <div>
                       <label className={lbl}>Message (optional)</label>
-                      <textarea rows={2} value={form.message}
+                      <textarea
+                        rows={2}
+                        value={form.message}
                         onChange={e => f("message", e.target.value)}
                         placeholder="Special requirements, access constraints, questions..."
-                        className={inp + " resize-none"} />
+                        className={`${inp} resize-none`}
+                      />
                     </div>
 
-                    {/* Compact summary */}
+                    {/* Summary */}
                     <div className="bg-gray-50 rounded-xl border border-gray-100 p-4">
                       <p className="text-gray-400 text-[10px] uppercase tracking-widest mb-3 font-bold">Enquiry Summary</p>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2">
@@ -416,44 +525,54 @@ export default function EnquiryModal() {
             )}
           </div>
 
-          {/* Footer nav */}
+          {/* ── Footer nav ── */}
           {!sent && (
             <div className="shrink-0 px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-white">
               {step > 0 ? (
-                <button onClick={goPrev}
-                  className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors font-medium">
+                <button
+                  onClick={goPrev}
+                  className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors font-medium"
+                >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
                   Back
                 </button>
               ) : (
-                <a href="tel:+919819002726"
-                  className="flex items-center gap-1.5 text-xs text-gray-400 hover:text-blue-600 transition-colors">
+                <a
+                  href="tel:+919819002726"
+                  className="flex items-center gap-1.5 text-xs text-gray-400 transition-colors hover:text-[var(--primary)]"
+                >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
                   +91 98190 02726
                 </a>
               )}
 
               {step < 2 ? (
-                <button onClick={goNext}
+                <button
+                  onClick={goNext}
                   disabled={step === 0 ? !step0OK : !step1OK}
-                  className="btn-red text-sm py-2.5 px-7 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0 group">
+                  className="btn-red text-sm py-2.5 px-7 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0 group"
+                >
                   Continue
                   <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </button>
               ) : (
-                <button onClick={handleSubmit} disabled={loading}
-                  className="btn-red text-sm py-2.5 px-7 group disabled:opacity-60 disabled:cursor-not-allowed">
+                <button
+                  onClick={handleSubmit}
+                  disabled={loading}
+                  className="btn-red text-sm py-2.5 px-7 group disabled:opacity-60 disabled:cursor-not-allowed"
+                >
                   {loading ? (
                     <>
                       <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"/>
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
                       </svg>
                       Sending…
                     </>

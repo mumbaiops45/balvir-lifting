@@ -52,7 +52,7 @@ export default function FAQHero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/FAQ/FAQHero.jpg" // Update this asset path as needed
+          src="/Faq/faq.jpg" // Update this asset path as needed
           alt="Balvir Lifting Help and Support Desk"
           fill
           priority
@@ -67,13 +67,10 @@ export default function FAQHero() {
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-16 pt-32 w-full">
         <div ref={contentRef} className="max-w-4xl">
-          <p className="inline-block text-blue-400 text-[11px] font-bold uppercase tracking-[0.35em] mb-4 px-4 py-2 rounded-xl bg-blue-200/20 backdrop-blur-2xl">
-            Help &amp; Support
-          </p>
-          
+   
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
             Clear Answers for<br />
-            <span className="text-blue-gradient">Your Procurement</span>
+            <span className="text-[var(--primary-light)]">Your Procurement</span>
           </h1>
 
           <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">

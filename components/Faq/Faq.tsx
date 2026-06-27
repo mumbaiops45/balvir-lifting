@@ -86,13 +86,7 @@ export default function FAQ() {
   return (
     <section
       ref={sectionRef}
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        background: "#f8fafc",
-        padding: "110px 0 120px",
-        fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
-      }}
+      className="relative overflow-hidden pt-[110px] pb-[120px] bg-slate-50"
     >
       <style>{`
         .faq-answer {
@@ -111,209 +105,75 @@ export default function FAQ() {
       `}</style>
 
       {/* Soft background grid */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          pointerEvents: "none",
-          backgroundImage:
-            "linear-gradient(rgba(26,79,196,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(26,79,196,0.03) 1px, transparent 1px)",
-          backgroundSize: "64px 64px",
-          maskImage:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%)",
-          WebkitMaskImage:
-            "radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%)",
-        }}
-      />
+      <div className="absolute inset-0 pointer-events-none bg-[length:64px_64px] bg-[image:linear-gradient(color-mix(in_srgb,var(--primary)_3%,transparent)_1px,transparent_1px),linear-gradient(90deg,color-mix(in_srgb,var(--primary)_3%,transparent)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_30%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_80%_60%_at_50%_0%,#000_30%,transparent_100%)]" />
 
       {/* Ambient orb */}
-      <div
-        style={{
-          position: "absolute",
-          top: "-6%",
-          right: "6%",
-          width: 480,
-          height: 480,
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(26,79,196,0.08) 0%, transparent 70%)",
-          pointerEvents: "none",
-        }}
-      />
+      <div className="absolute top-[-6%] right-[6%] w-[480px] h-[480px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_8%,transparent)_0%,transparent_70%)]" />
 
-      <div
-        style={{
-          maxWidth: 860,
-          margin: "0 auto",
-          padding: "0 32px",
-          position: "relative",
-        }}
-      >
+      <div className="max-w-[860px] mx-auto px-8 relative">
         {/* Header */}
-        <div className="faq-head" style={{ textAlign: "center", marginBottom: 56 }}>
-          <div
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 10,
-              marginBottom: 20,
-              padding: "7px 16px",
-              borderRadius: 100,
-              border: "1px solid rgba(26,79,196,0.2)",
-              background: "rgba(26,79,196,0.06)",
-            }}
-          >
-            <span
-              style={{
-                width: 6,
-                height: 6,
-                borderRadius: "50%",
-                background: "#1A4FC4",
-                boxShadow: "0 0 8px rgba(26,79,196,0.6)",
-              }}
-            />
-            <span
-              style={{
-                fontSize: 11,
-                fontWeight: 600,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: "#1A4FC4",
-              }}
-            >
+        <div className="faq-head text-center mb-14">
+          <div className="inline-flex items-center gap-2.5 mb-5 px-4 py-[7px] rounded-full border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] bg-[color-mix(in_srgb,var(--primary)_6%,transparent)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary)] shadow-[0_0_8px_color-mix(in_srgb,var(--primary)_60%,transparent)]" />
+            <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[var(--primary)]">
               FAQs
             </span>
           </div>
 
-          <h2
-            style={{
-              fontSize: "clamp(32px, 4.5vw, 50px)",
-              fontWeight: 700,
-              lineHeight: 1.1,
-              letterSpacing: "-0.025em",
-              margin: "0 0 18px",
-              color: "#0f172a",
-            }}
-          >
+          <h2 className="text-[clamp(32px,4.5vw,50px)] font-bold leading-[1.1] tracking-[-0.025em] m-0 mb-[18px] text-gray-900">
             Frequently asked{" "}
-            <span
-              style={{
-                background: "linear-gradient(135deg, #1A4FC4 0%, #60A5FA 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
-            >
+            <span className="bg-[image:linear-gradient(135deg,var(--primary)_0%,var(--primary-light)_100%)] bg-clip-text text-transparent">
               questions
             </span>
           </h2>
 
-          <p
-            style={{
-              color: "#64748b",
-              fontSize: 15,
-              lineHeight: 1.7,
-              margin: 0,
-              maxWidth: 520,
-              marginLeft: "auto",
-              marginRight: "auto",
-            }}
-          >
+          <p className="text-gray-500 text-[15px] leading-[1.7] m-0 max-w-[520px] mx-auto">
             Everything you need to know about our products, brands and how we
             work. Can&apos;t find an answer? Reach out to our team.
           </p>
         </div>
 
         {/* List */}
-        <div
-          className="faq-list"
-          style={{ display: "flex", flexDirection: "column", gap: 12 }}
-        >
+        <div className="faq-list flex flex-col gap-3">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
               <div
                 key={i}
-                className="faq-item"
-                style={{
-                  borderRadius: 14,
-                  border: `1px solid ${
-                    isOpen ? "rgba(26,79,196,0.3)" : "rgba(15,23,42,0.08)"
-                  }`,
-                  background: isOpen ? "rgba(26,79,196,0.035)" : "#fff",
-                  boxShadow: isOpen
-                    ? "0 12px 30px -16px rgba(26,79,196,0.35)"
-                    : "0 1px 2px rgba(15,23,42,0.04)",
-                  overflow: "hidden",
-                  transition:
-                    "border-color 0.3s, background 0.3s, box-shadow 0.3s",
-                }}
+                className={`faq-item rounded-[14px] overflow-hidden border transition-[border-color,background,box-shadow] duration-300 ${
+                  isOpen
+                    ? "border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] bg-[color-mix(in_srgb,var(--primary)_3.5%,transparent)] shadow-[0_12px_30px_-16px_color-mix(in_srgb,var(--primary)_35%,transparent)]"
+                    : "border-gray-200 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+                }`}
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : i)}
-                  style={{
-                    width: "100%",
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 16,
-                    padding: "22px 24px",
-                    background: "transparent",
-                    border: "none",
-                    cursor: "pointer",
-                    textAlign: "left",
-                  }}
+                  className="w-full flex items-center gap-4 px-6 py-[22px] bg-transparent border-none cursor-pointer text-left"
                 >
                   <span
-                    style={{
-                      flexShrink: 0,
-                      width: 28,
-                      height: 28,
-                      borderRadius: 8,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      fontSize: 13,
-                      fontWeight: 700,
-                      background: isOpen
-                        ? "linear-gradient(135deg, #1A4FC4, #0F3460)"
-                        : "rgba(26,79,196,0.08)",
-                      color: isOpen ? "#fff" : "#1A4FC4",
-                      transition: "all 0.3s",
-                    }}
+                    className={`shrink-0 w-7 h-7 rounded-lg flex items-center justify-center text-[13px] font-bold transition-all duration-300 ${
+                      isOpen
+                        ? "bg-[image:linear-gradient(135deg,var(--primary),var(--primary-dark))] text-white"
+                        : "bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] text-[var(--primary)]"
+                    }`}
                   >
                     Q
                   </span>
 
                   <span
-                    style={{
-                      flex: 1,
-                      fontSize: 16,
-                      fontWeight: 600,
-                      color: isOpen ? "#1A4FC4" : "#0f172a",
-                      lineHeight: 1.4,
-                      transition: "color 0.3s",
-                    }}
+                    className={`flex-1 text-base font-semibold leading-[1.4] transition-colors duration-300 ${
+                      isOpen ? "text-[var(--primary)]" : "text-gray-900"
+                    }`}
                   >
                     {f.q}
                   </span>
 
                   <span
-                    style={{
-                      flexShrink: 0,
-                      width: 30,
-                      height: 30,
-                      borderRadius: "50%",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      border: `1px solid ${
-                        isOpen ? "transparent" : "rgba(26,79,196,0.25)"
-                      }`,
-                      background: isOpen
-                        ? "linear-gradient(135deg, #1A4FC4, #60A5FA)"
-                        : "transparent",
-                      transition: "all 0.3s",
-                    }}
+                    className={`shrink-0 w-[30px] h-[30px] rounded-full flex items-center justify-center transition-all duration-300 ${
+                      isOpen
+                        ? "border border-transparent bg-[image:linear-gradient(135deg,var(--primary),var(--primary-light))]"
+                        : "border border-[color:color-mix(in_srgb,var(--primary)_25%,transparent)] bg-transparent"
+                    }`}
                   >
                     <svg
                       className={`faq-chevron${isOpen ? " open" : ""}`}
@@ -321,7 +181,7 @@ export default function FAQ() {
                       height="14"
                       viewBox="0 0 24 24"
                       fill="none"
-                      stroke={isOpen ? "#fff" : "#1A4FC4"}
+                      stroke={isOpen ? "#fff" : "var(--primary)"}
                       strokeWidth="2.5"
                       strokeLinecap="round"
                     >
@@ -333,15 +193,7 @@ export default function FAQ() {
                 {/* Answer (CSS grid expand) */}
                 <div className={`faq-answer${isOpen ? " open" : ""}`}>
                   <div>
-                    <p
-                      style={{
-                        fontSize: 14.5,
-                        color: "#475569",
-                        lineHeight: 1.75,
-                        margin: 0,
-                        padding: "0 24px 24px 68px",
-                      }}
-                    >
+                    <p className="text-[14.5px] text-gray-600 leading-[1.75] m-0 pl-[68px] pr-6 pb-6">
                       {f.a}
                     </p>
                   </div>

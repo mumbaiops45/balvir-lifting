@@ -103,7 +103,10 @@ export default function BrandsGrid() {
         headRef.current,
         { y: 48, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          ease: "power3.out",
           scrollTrigger: { trigger: headRef.current, start: "top 88%" },
         }
       );
@@ -112,7 +115,11 @@ export default function BrandsGrid() {
         ".brand-group-card",
         { y: 32, opacity: 0 },
         {
-          y: 0, opacity: 1, stagger: 0.07, duration: 0.5, ease: "power2.out",
+          y: 0,
+          opacity: 1,
+          stagger: 0.07,
+          duration: 0.5,
+          ease: "power2.out",
           scrollTrigger: { trigger: gridRef.current, start: "top 88%" },
         }
       );
@@ -121,7 +128,10 @@ export default function BrandsGrid() {
         footerRef.current,
         { y: 24, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.7, ease: "power2.out",
+          y: 0,
+          opacity: 1,
+          duration: 0.7,
+          ease: "power2.out",
           scrollTrigger: { trigger: footerRef.current, start: "top 92%" },
         }
       );
@@ -131,82 +141,38 @@ export default function BrandsGrid() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        background: "#07192E",
-        padding: "100px 0 112px",
-        fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
-      }}
-    >
-      {/* Subtle background grid */}
-      <div
-        style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+    <section ref={sectionRef} className="py-24 md:py-28 bg-white relative overflow-hidden">
+      
+      {/* Light background structural mesh layout */}
+      <div className="absolute inset-0 grid-tex-light opacity-30 pointer-events-none" />
 
-      {/* Ambient glow */}
-      <div style={{
-        position: "absolute", top: "-10%", right: "10%",
-        width: 560, height: 560, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(26,79,196,0.09) 0%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute", bottom: "0%", left: "-5%",
-        width: 400, height: 400, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(15,52,96,0.2) 0%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
+      {/* Primary variant structural glow vectors */}
+      <div className="absolute -top-[10%] right-[10%] w-[35rem] h-[35rem] rounded-full bg-[var(--primary-light)]/[0.04] blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-[-5%] w-[25rem] h-[25rem] rounded-full bg-[var(--primary-dark)]/[0.02] blur-3xl pointer-events-none" />
 
-      {/* Top rule */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(26,79,196,0.45), transparent)",
-        pointerEvents: "none",
-      }} />
+      {/* Top accent visual break divider */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--primary-light)]/30 to-transparent pointer-events-none" />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative" }}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
 
-        {/* Header */}
-        <div ref={headRef} style={{ marginBottom: 60 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
-            <div style={{ width: 32, height: 1, background: "linear-gradient(90deg, #1A4FC4, #0F3460)" }} />
-            <span style={{
-              fontSize: 11, fontWeight: 600, letterSpacing: "0.25em",
-              textTransform: "uppercase", color: "#93C5FD",
-            }}>
-              Brand Partners & Principals
+        {/* Header content mapping */}
+        <div ref={headRef} className="mb-16">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-px bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)]" />
+            <span className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.25em]">
+              Brand Partners &amp; Principals
             </span>
           </div>
 
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
-            <h2 style={{
-              fontSize: "clamp(32px, 4.5vw, 52px)", fontWeight: 700,
-              lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0,
-              color: "#f1f5f9",
-            }}>
-              Trusted Brands,
-              <br />
-              <span style={{
-                background: "linear-gradient(135deg, #1A4FC4 0%, #60A5FA 100%)",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}>
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight margin-0">
+              Trusted Brands,<br />
+              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">
                 Global Quality
               </span>
             </h2>
 
-            <p style={{
-              color: "#475569", fontSize: 14, lineHeight: 1.75,
-              maxWidth: 380, margin: 0,
-            }}>
+            <p className="text-gray-500 text-sm max-w-md leading-relaxed margin-0">
               Through long-standing relationships with these manufacturers, we deliver
               the latest technology and the best quality to customers across Mumbai,
               Maharashtra and India.
@@ -214,47 +180,26 @@ export default function BrandsGrid() {
           </div>
         </div>
 
-        {/* Brand groups grid */}
+        {/* Brand groups grid configuration block */}
         <div
           ref={gridRef}
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-            gap: 16,
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
         >
           {brandGroups.map((group) => (
             <BrandGroupCard key={group.id} group={group} />
           ))}
         </div>
 
-        {/* Footer supporting line */}
+        {/* Footer info tracking line split */}
         <div
           ref={footerRef}
-          style={{
-            marginTop: 56,
-            display: "flex",
-            alignItems: "center",
-            gap: 20,
-          }}
+          className="mt-14 flex items-center gap-5"
         >
-          <div style={{
-            flex: 1,
-            height: 1,
-            background: "linear-gradient(90deg, rgba(26,79,196,0.3), transparent)",
-          }} />
-          <p style={{
-            fontSize: 13, color: "#334155", margin: 0,
-            letterSpacing: "0.04em", textAlign: "center",
-            whiteSpace: "nowrap",
-          }}>
-            Serving Mumbai · Maharashtra · Pan India &nbsp;·&nbsp; Since 2014
+          <div className="flex-1 h-px bg-gradient-to-r from-[var(--primary-light)]/20 to-transparent" />
+          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest text-center whitespace-nowrap">
+            Serving Mumbai &middot; Maharashtra &middot; Pan India &nbsp;&middot;&nbsp; Since 2014
           </p>
-          <div style={{
-            flex: 1,
-            height: 1,
-            background: "linear-gradient(90deg, transparent, rgba(26,79,196,0.3))",
-          }} />
+          <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--primary-light)]/20 to-transparent" />
         </div>
 
       </div>
@@ -278,8 +223,8 @@ function BrandGroupCard({
   const handleEnter = () => {
     gsap.to(accentRef.current, { scaleY: 1, duration: 0.28, ease: "power2.out" });
     gsap.to(cardRef.current, {
-      borderColor: "rgba(26,79,196,0.35)",
-      background: "rgba(26,79,196,0.05)",
+      borderColor: "var(--primary-light)",
+      boxShadow: "0 12px 30px rgba(0,0,0,0.06)",
       duration: 0.22,
     });
   };
@@ -287,81 +232,44 @@ function BrandGroupCard({
   const handleLeave = () => {
     gsap.to(accentRef.current, { scaleY: 0, duration: 0.22, ease: "power2.in" });
     gsap.to(cardRef.current, {
-      borderColor: "rgba(255,255,255,0.06)",
-      background: "rgba(255,255,255,0.02)",
+      borderColor: "#e5e7eb", // default border-gray-200
+      boxShadow: "0 0px 0px rgba(0,0,0,0)",
       duration: 0.22,
     });
   };
 
   return (
     <div
-      className="brand-group-card"
+      className="brand-group-card relative overflow-hidden border border-gray-200 rounded-sm p-6 bg-white hover:bg-[var(--primary-light)]/[0.06] transition-colors duration-200 cursor-default"
       ref={cardRef}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        border: "1px solid rgba(255,255,255,0.06)",
-        borderRadius: 12,
-        padding: "22px 22px 20px",
-        background: "rgba(255,255,255,0.02)",
-        cursor: "default",
-        transition: "background 0.22s",
-      }}
     >
-      {/* Left accent bar */}
+      {/* Left interactive structural accent bar */}
       <div
         ref={accentRef}
-        style={{
-          position: "absolute", left: 0, top: 0, bottom: 0, width: 3,
-          background: "linear-gradient(180deg, #1A4FC4, #0F3460)",
-          transform: "scaleY(0)", transformOrigin: "bottom",
-          borderRadius: "0 0 0 0",
-        }}
+        className="absolute left-0 top-0 bottom-0 w-[3px] bg-gradient-to-b from-[var(--primary)] to-[var(--primary-light)] scale-y-0 origin-bottom rounded-none"
       />
 
-      {/* Category label row */}
-      <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
-        <span style={{
-          width: 30, height: 30, borderRadius: 7, flexShrink: 0,
-          display: "flex", alignItems: "center", justifyContent: "center",
-          background: "rgba(26,79,196,0.12)",
-          color: "#93C5FD",
-        }}>
+      {/* Category header display */}
+      <div className="flex items-center gap-3.5 mb-4">
+        <span className="w-8 h-8 rounded-xs flex shrink-0 items-center justify-center bg-[var(--primary-light)]/[0.06] text-[var(--primary)]">
           {group.icon}
         </span>
-        <p style={{
-          fontSize: 11, fontWeight: 600, margin: 0,
-          color: "#475569", textTransform: "uppercase", letterSpacing: "0.12em",
-          lineHeight: 1.3,
-        }}>
+        <p className="text-xs font-bold text-gray-800 uppercase tracking-wide leading-tight">
           {group.label}
         </p>
       </div>
 
-      {/* Divider */}
-      <div style={{
-        height: 1,
-        background: "rgba(255,255,255,0.05)",
-        marginBottom: 16,
-      }} />
+      {/* Section split rule line layout */}
+      <div className="h-px bg-gray-100 mb-5" />
 
-      {/* Brand chips */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+      {/* Highlighted text brands container pills split */}
+      <div className="flex flex-wrap gap-2">
         {group.brands.map((brand) => (
           <span
             key={brand}
-            style={{
-              fontSize: 12, fontWeight: 600,
-              color: "#e2e8f0",
-              background: "rgba(15,52,96,0.5)",
-              border: "1px solid rgba(26,79,196,0.18)",
-              padding: "5px 12px",
-              borderRadius: 6,
-              letterSpacing: "0.03em",
-              lineHeight: 1,
-            }}
+            className="text-[11px] font-bold text-gray-700 bg-gray-50 border border-gray-100 hover:border-[var(--primary-light)]/30 hover:text-[var(--primary)] px-3 py-1.5 rounded-xs tracking-wide transition-all duration-200"
           >
             {brand}
           </span>

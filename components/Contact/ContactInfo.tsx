@@ -93,17 +93,17 @@ export default function ContactInfo() {
 
           {/* Left — heading + inquiry description */}
           <div ref={leftRef}>
-            <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
+            <p className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
               Contact Information
             </p>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-6">
               We&apos;re Here<br />
-              <span className="text-blue-gradient">to Help You</span>
+              <span className="bg-[image:linear-gradient(135deg,var(--primary),var(--primary-light))] bg-clip-text text-transparent">to Help You</span>
             </h2>
             
             {/* Enquiry Form Intro Box */}
-            <div className="border border-gray-100 bg-gray-50/70 p-6 mb-8 relative overflow-hidden group hover:border-blue-200 transition-colors duration-300">
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-blue-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-bottom" />
+            <div className="border border-gray-100 bg-gray-50/70 p-6 mb-8 relative overflow-hidden group hover:border-[color:color-mix(in_srgb,var(--primary)_25%,transparent)] transition-colors duration-300">
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[var(--primary)] scale-y-0 group-hover:scale-y-100 transition-transform duration-400 origin-bottom" />
               <p className="text-gray-700 text-sm leading-relaxed font-medium">
                 Tell us what you need and our sales team will respond with pricing, availability and technical details within 24 business hours.
               </p>
@@ -117,7 +117,7 @@ export default function ContactInfo() {
               <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                 {regions.map((city, i) => (
                   <span key={city} className="flex items-center text-sm font-semibold text-gray-700">
-                    <span className={i === 0 || city === "Pan-India" ? "text-blue-600" : "text-gray-800"}>
+                    <span className={i === 0 || city === "Pan-India" ? "text-[var(--primary)]" : "text-gray-800"}>
                       {city}
                     </span>
                     {i < regions.length - 1 && (
@@ -132,10 +132,10 @@ export default function ContactInfo() {
           {/* Right — updated details cards */}
           <div ref={rightRef} className="grid sm:grid-cols-2 gap-4">
             {contactDetails.map((d, i) => (
-              <div key={i} className="border border-gray-100 bg-white p-6 hover:border-blue-200 hover:shadow-[0_8px_24px_rgba(26,79,196,0.08)] transition-all duration-300 group relative overflow-hidden">
-                <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+              <div key={i} className="border border-gray-100 bg-white p-6 hover:border-[color:color-mix(in_srgb,var(--primary)_25%,transparent)] hover:shadow-[0_8px_24px_color-mix(in_srgb,var(--primary)_8%,transparent)] transition-all duration-300 group relative overflow-hidden">
+                <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-9 h-9 border border-gray-100 bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+                  <div className="w-9 h-9 border border-gray-100 bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] flex items-center justify-center text-[var(--primary)] shrink-0">
                     {d.icon}
                   </div>
                   <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400">{d.label}</p>

@@ -3,11 +3,11 @@ import BrandsGrid from "@/components/brands-partners/BrandsGrid";
 import CTA            from "@/components/CTA";
 
 export const metadata = {
-  title: "About Us | Balvir Lifting",
+  title:
+    "Brands & Partners | KISWIRE, CEDES, Fermator, Usha Martin & More",
   description:
-    "Learn about Balvir Lifting — established 2014 in Navi Mumbai. A leading multi-brand supplier of elevator accessories, wire ropes, LED lighting and industrial automation products.",
+    "Balvir Lifting supplies genuine products from leading global brands including KISWIRE, CEDES, MEMCO, Fermator, Wittur and Usha Martin.",
 };
-
 export default function AboutPage() {
   return (
     <main>

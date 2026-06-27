@@ -63,7 +63,7 @@ export default function Services() {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
+    <section id="services" ref={sectionRef} className="py-20 bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 
@@ -73,14 +73,14 @@ export default function Services() {
           className="mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8"
         >
           <div>
-            <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">
+            <p className="text-[var(--primary)] text-xs font-bold uppercase tracking-[0.25em] mb-4">
               Our Products
             </p>
 
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
               Everything Your Elevator
               <br />
-              <span className="text-blue-gradient">
+              <span className="bg-gradient-to-r from-[var(--primary-light)] to-[var(--primary)] bg-clip-text text-transparent">
                 &amp; Industrial Projects Need
               </span>
             </h2>
@@ -94,22 +94,23 @@ export default function Services() {
         <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
           {services.map(s => (
             <div key={s.num}
-              className="group bg-white hover:bg-blue-50 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
+              className="group bg-white hover:bg-red-50/60 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
               
               {/* Hover left border */}
-              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-blue-600 scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
+              <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[var(--primary)] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
-              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-blue-100 transition-colors duration-300 leading-none mb-4 select-none">
+              {/* Number overlay with very subtle group hover text color */}
+              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-red-100/40 transition-colors duration-300 leading-none mb-4 select-none">
                 {s.num}
               </div>
-              <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-blue-600 transition-colors duration-300">
+              <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-[var(--primary)] transition-colors duration-300">
                 {s.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-6">{s.desc}</p>
               <div className="flex flex-wrap gap-2">
                 {s.tags.map(t => (
                   <span key={t}
-                    className="text-[11px] text-gray-400 border border-gray-200 px-3 py-1 group-hover:border-blue-300 group-hover:text-blue-500 transition-all duration-300">
+                    className="text-[11px] text-gray-400 border border-gray-100 bg-gray-50/50 px-3 py-1 group-hover:border-red-200 group-hover:text-[var(--primary)] transition-all duration-300 rounded-sm">
                     {t}
                   </span>
                 ))}
@@ -117,8 +118,8 @@ export default function Services() {
             </div>
           ))}
 
-          {/* 6th Grid Item: CTA (Without Number) */}
-          <div className="group bg-blue-600 hover:bg-blue-700 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer flex flex-col justify-end min-h-[250px]">
+          {/* 6th Grid Item: CTA */}
+          <div className="group bg-[var(--primary)] hover:bg-[var(--primary-dark)] p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer flex flex-col justify-end min-h-[250px]">
             <div className="absolute right-0 top-0 p-8 opacity-10 text-white select-none pointer-events-none">
               <svg className="w-32 h-32 transform translate-x-10 -translate-y-10" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
@@ -129,7 +130,7 @@ export default function Services() {
               <h3 className="text-white font-bold text-2xl mb-2 tracking-tight">
                 View Full Catalogue
               </h3>
-              <p className="text-blue-100 text-sm leading-relaxed">
+              <p className="text-red-100/80 text-sm leading-relaxed">
                 Explore our comprehensive documentation and full technical specifications.
               </p>
             </div>

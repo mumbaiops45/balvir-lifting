@@ -112,13 +112,7 @@ export default function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        background: "#07192E",
-        padding: "120px 0 130px",
-        fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
-      }}
+      className="relative overflow-hidden pt-[120px] pb-[130px] bg-[color-mix(in_srgb,var(--primary-dark)_20%,black)]"
     >
       <style>{`
         .wcu-bento {
@@ -147,66 +141,34 @@ export default function WhyChooseUs() {
       `}</style>
 
       {/* Background grid */}
-      <div style={{
-        position: "absolute", inset: 0, pointerEvents: "none",
-        backgroundImage:
-          "linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px)",
-        backgroundSize: "64px 64px",
-        maskImage: "radial-gradient(ellipse 90% 70% at 50% 0%, #000 40%, transparent 100%)",
-        WebkitMaskImage: "radial-gradient(ellipse 90% 70% at 50% 0%, #000 40%, transparent 100%)",
-      }} />
+      <div className="absolute inset-0 pointer-events-none bg-[length:64px_64px] bg-[image:linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_90%_70%_at_50%_0%,#000_40%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_90%_70%_at_50%_0%,#000_40%,transparent_100%)]" />
 
       {/* Ambient orbs */}
-      <div style={{
-        position: "absolute", top: "-8%", right: "8%",
-        width: 560, height: 560, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(26,79,196,0.12) 0%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
-      <div style={{
-        position: "absolute", bottom: "0%", left: "-4%",
-        width: 460, height: 460, borderRadius: "50%",
-        background: "radial-gradient(circle, rgba(15,52,96,0.25) 0%, transparent 70%)",
-        pointerEvents: "none",
-      }} />
+      <div className="absolute top-[-8%] right-[8%] w-[560px] h-[560px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_12%,transparent)_0%,transparent_70%)]" />
+      <div className="absolute bottom-0 left-[-4%] w-[460px] h-[460px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary-dark)_25%,transparent)_0%,transparent_70%)]" />
 
       {/* Top rule */}
-      <div style={{
-        position: "absolute", top: 0, left: 0, right: 0, height: 1,
-        background: "linear-gradient(90deg, transparent, rgba(26,79,196,0.5), transparent)",
-        pointerEvents: "none",
-      }} />
+      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-[image:linear-gradient(90deg,transparent,color-mix(in_srgb,var(--primary)_50%,transparent),transparent)]" />
 
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 32px", position: "relative" }}>
+      <div className="max-w-[1240px] mx-auto px-8 relative">
 
         {/* Header */}
-        <div className="wcu-head" style={{ textAlign: "center", maxWidth: 720, margin: "0 auto 64px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: 10, marginBottom: 22,
-            padding: "7px 16px", borderRadius: 100,
-            border: "1px solid rgba(26,79,196,0.3)", background: "rgba(26,79,196,0.08)" }}>
-            <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#60A5FA",
-              boxShadow: "0 0 10px #60A5FA" }} />
-            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.22em",
-              textTransform: "uppercase", color: "#93C5FD" }}>
+        <div className="wcu-head text-center max-w-[720px] mx-auto mb-16">
+          <div className="inline-flex items-center gap-2.5 mb-[22px] px-4 py-[7px] rounded-full border border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] bg-[color-mix(in_srgb,var(--primary)_8%,transparent)]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary-light)] shadow-[0_0_10px_var(--primary-light)]" />
+            <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[var(--primary-light)]">
               Why Balvir Lifting
             </span>
           </div>
 
-          <h2 style={{
-            fontSize: "clamp(34px, 5vw, 56px)", fontWeight: 700,
-            lineHeight: 1.08, letterSpacing: "-0.025em", margin: "0 0 20px",
-            color: "#f1f5f9",
-          }}>
+          <h2 className="text-[clamp(34px,5vw,56px)] font-bold leading-[1.08] tracking-[-0.025em] m-0 mb-5 text-white">
             Five reasons customers{" "}
-            <span style={{
-              background: "linear-gradient(135deg, #1A4FC4 0%, #60A5FA 60%, #93C5FD 100%)",
-              WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-            }}>
+            <span className="bg-[image:linear-gradient(135deg,var(--primary)_0%,var(--primary-light)_60%,var(--primary-light)_100%)] bg-clip-text text-transparent">
               choose us
             </span>
           </h2>
 
-          <p style={{ color: "#64748b", fontSize: 15, lineHeight: 1.7, margin: 0 }}>
+          <p className="text-white/50 text-[15px] leading-[1.7] m-0">
             From a single Navi Mumbai office, we serve elevator contractors, OEMs and
             project teams across India — reliably, since 2014.
           </p>
@@ -220,25 +182,16 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Stats strip */}
-        <div className="wcu-stats" style={{
-          marginTop: 22,
-          border: "1px solid rgba(255,255,255,0.07)",
-          borderRadius: 16, overflow: "hidden",
-          background: "rgba(255,255,255,0.015)",
-        }}>
+        <div className="wcu-stats mt-[22px] border border-white/[0.07] rounded-2xl overflow-hidden bg-white/[0.015]">
           {stats.map((s, i, arr) => (
-            <div key={s.val} className="wcu-stat" style={{
-              padding: "30px 24px", textAlign: "center",
-              borderRight: i < arr.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
-            }}>
-              <p style={{
-                fontSize: "clamp(24px, 3vw, 32px)", fontWeight: 700, margin: "0 0 6px",
-                background: "linear-gradient(135deg, #60A5FA, #1A4FC4)",
-                WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-              }}>
+            <div
+              key={s.val}
+              className={`wcu-stat px-6 py-[30px] text-center ${i < arr.length - 1 ? "border-r border-white/[0.06]" : ""}`}
+            >
+              <p className="text-[clamp(24px,3vw,32px)] font-bold m-0 mb-1.5 bg-[image:linear-gradient(135deg,var(--primary-light),var(--primary))] bg-clip-text text-transparent">
                 {s.val}
               </p>
-              <p style={{ fontSize: 12.5, color: "#475569", margin: 0, letterSpacing: "0.04em" }}>
+              <p className="text-[12.5px] text-white/40 m-0 tracking-[0.04em]">
                 {s.label}
               </p>
             </div>
@@ -268,10 +221,10 @@ function ReasonCard({
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     if (glowRef.current) {
-      glowRef.current.style.background = `radial-gradient(420px circle at ${x}px ${y}px, rgba(26,79,196,0.14), transparent 60%)`;
+      glowRef.current.style.background = `radial-gradient(420px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary) 14%, transparent), transparent 60%)`;
     }
     if (ringRef.current) {
-      ringRef.current.style.background = `radial-gradient(280px circle at ${x}px ${y}px, rgba(96,165,250,0.5), transparent 65%)`;
+      ringRef.current.style.background = `radial-gradient(280px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary-light) 50%, transparent), transparent 65%)`;
     }
   };
 
@@ -285,72 +238,42 @@ function ReasonCard({
   return (
     <div
       ref={cardRef}
-      className={`wcu-card wcu-${reason.span}`}
+      className={`wcu-card wcu-${reason.span} relative rounded-[18px] border border-white/[0.07] bg-white/[0.022] overflow-hidden flex flex-col cursor-default ${isFeature ? "px-10 py-[38px]" : "p-[30px]"} ${isTall ? "justify-between" : "justify-start"}`}
       onMouseMove={handleMove}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      style={{
-        position: "relative",
-        borderRadius: 18,
-        border: "1px solid rgba(255,255,255,0.07)",
-        background: "rgba(255,255,255,0.022)",
-        padding: isFeature ? "38px 40px" : "30px 30px",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: isTall ? "space-between" : "flex-start",
-        cursor: "default",
-      }}
     >
       {/* Animated gradient ring (border-light) */}
-      <div ref={ringRef} style={{
-        position: "absolute", inset: 0, borderRadius: 18, padding: 1,
-        opacity: 0, pointerEvents: "none",
-        WebkitMask: "linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0)",
-        WebkitMaskComposite: "xor", maskComposite: "exclude",
-      }} />
+      <div
+        ref={ringRef}
+        className="absolute inset-0 rounded-[18px] p-px opacity-0 pointer-events-none [-webkit-mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [-webkit-mask-composite:xor] [mask-composite:exclude]"
+      />
 
       {/* Cursor spotlight glow */}
-      <div ref={glowRef} style={{
-        position: "absolute", inset: 0, opacity: 0, pointerEvents: "none",
-      }} />
+      <div ref={glowRef} className="absolute inset-0 opacity-0 pointer-events-none" />
 
       {/* Engraved number */}
-      <span style={{
-        position: "absolute", right: isFeature ? 28 : 20, top: isFeature ? 18 : 14,
-        fontSize: isFeature ? 110 : 76, fontWeight: 800, lineHeight: 1,
-        letterSpacing: "-0.05em", userSelect: "none", pointerEvents: "none",
-        background: "linear-gradient(180deg, rgba(96,165,250,0.16), rgba(26,79,196,0.02))",
-        WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-      }}>
+      <span
+        className={`absolute font-extrabold leading-none tracking-[-0.05em] select-none pointer-events-none bg-[image:linear-gradient(180deg,color-mix(in_srgb,var(--primary-light)_16%,transparent),color-mix(in_srgb,var(--primary)_2%,transparent))] bg-clip-text text-transparent ${isFeature ? "right-7 top-[18px] text-[110px]" : "right-5 top-[14px] text-[76px]"}`}
+      >
         {reason.number}
       </span>
 
       {/* Icon */}
-      <div style={{
-        position: "relative", zIndex: 1,
-        width: 50, height: 50, borderRadius: 13, marginBottom: 18,
-        display: "flex", alignItems: "center", justifyContent: "center",
-        background: "linear-gradient(135deg, rgba(26,79,196,0.2), rgba(15,52,96,0.25))",
-        border: "1px solid rgba(26,79,196,0.3)",
-        color: "#93C5FD", flexShrink: 0,
-      }}>
+      <div className="relative z-[1] w-[50px] h-[50px] rounded-[13px] mb-[18px] flex items-center justify-center shrink-0 bg-[image:linear-gradient(135deg,color-mix(in_srgb,var(--primary)_20%,transparent),color-mix(in_srgb,var(--primary-dark)_25%,transparent))] border border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] text-[var(--primary-light)]">
         {reason.icon}
       </div>
 
       {/* Text */}
-      <div style={{ position: "relative", zIndex: 1 }}>
-        <h3 style={{
-          fontSize: isFeature ? 22 : 18, fontWeight: 600, color: "#f1f5f9",
-          margin: "0 0 10px", lineHeight: 1.28, letterSpacing: "-0.01em",
-          maxWidth: isFeature ? 360 : "none",
-        }}>
+      <div className="relative z-[1]">
+        <h3
+          className={`font-semibold text-white m-0 mb-2.5 leading-[1.28] tracking-[-0.01em] ${isFeature ? "text-[22px] max-w-[360px]" : "text-[18px]"}`}
+        >
           {reason.title}
         </h3>
-        <p style={{
-          fontSize: isFeature ? 15 : 13.5, color: "#64748b", margin: 0,
-          lineHeight: 1.7, maxWidth: isFeature ? 460 : "none",
-        }}>
+        <p
+          className={`text-white/50 m-0 leading-[1.7] ${isFeature ? "text-[15px] max-w-[460px]" : "text-[13.5px]"}`}
+        >
           {reason.body}
         </p>
       </div>

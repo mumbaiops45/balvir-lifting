@@ -75,28 +75,28 @@ export default function WireRopesSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute inset-0 grid-tex-light opacity-50 pointer-events-none" />
 
-      {/* Decorative glow */}
+      {/* Decorative localized glow using the primary light token opacity */}
       <div
         ref={parallaxRef}
-        className="absolute -right-20 top-0 bottom-0 w-[30vw] bg-gradient-to-b from-blue-50/70 to-transparent pointer-events-none"
+        className="absolute -right-20 top-0 bottom-0 w-[30vw] bg-gradient-to-b from-[var(--primary-light)]/[0.04] to-transparent pointer-events-none"
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative">
 
         {/* Header */}
         <div ref={headRef} className="mb-14">
-          <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
+          <p className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
             Wire Ropes — Shipping / Offshore / Construction
           </p>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
               KISWIRE Partnership —<br />
-              <span className="text-blue-gradient">World&apos;s Largest Producer</span>
+              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">World&apos;s Largest Producer</span>
             </h2>
             <p className="text-gray-500 text-sm max-w-sm leading-relaxed">
               We are proud distributors of KISWIRE (South Korea) — the world&apos;s largest high
@@ -114,23 +114,23 @@ export default function WireRopesSection() {
             <div ref={statsRef} className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-10">
               {kiswireStats.map((s, i) => (
                 <div key={i}
-                  className="group border border-gray-200 bg-white p-5 hover:border-blue-300 hover:shadow-[0_6px_24px_rgba(26,79,196,0.08)] transition-all duration-300 relative overflow-hidden">
-                  <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-                  <div className="text-2xl font-extrabold text-blue-600 mb-1">{s.value}</div>
+                  className="group border border-gray-200 bg-white p-5 hover:border-[var(--primary-light)]/30 hover:shadow-[0_14px_44px_rgba(var(--primary-rgb),0.06)] transition-all duration-300 relative overflow-hidden rounded-sm">
+                  <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+                  <div className="text-2xl font-extrabold text-[var(--primary)] mb-1">{s.value}</div>
                   <div className="text-gray-500 text-[11px] tracking-wide">{s.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Quality Standards */}
-            <div className="border border-gray-200 bg-white p-6 mb-6">
+            <div className="border border-gray-200 bg-white p-6 mb-6 rounded-sm">
               <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-4">
                 Quality Standards &amp; Certifications
               </p>
               <div className="flex flex-wrap gap-2 mb-5">
                 {standards.map(s => (
                   <span key={s}
-                    className="text-xs text-gray-500 border border-gray-200 px-4 py-2 hover:border-blue-300 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200 cursor-default font-medium">
+                    className="text-xs text-gray-500 border border-gray-200 px-4 py-2 hover:border-[var(--primary-light)]/40 hover:text-[var(--primary)] hover:bg-[var(--primary-light)]/[0.04] transition-all duration-200 cursor-default font-medium rounded-xs">
                     {s}
                   </span>
                 ))}
@@ -142,7 +142,7 @@ export default function WireRopesSection() {
             </div>
 
             {/* Manufacturing locations */}
-            <div className="flex items-start gap-4 border-l-2 border-blue-600 pl-5">
+            <div className="flex items-start gap-4 border-l-2 border-[var(--primary)] pl-5">
               <div>
                 <p className="text-gray-800 text-sm font-semibold mb-1">Manufacturing Facilities</p>
                 <p className="text-gray-500 text-xs leading-relaxed">
@@ -159,27 +159,25 @@ export default function WireRopesSection() {
 
           {/* Right — OEM list */}
           <div ref={rightRef}>
-            <div className="border border-gray-200 bg-gradient-to-b from-[var(--blue)] to-blue-500 p-7">
-              <p className="text-gray-400 text-[10px] font-bold uppercase tracking-widest mb-6">
+            <div className="border border-gray-200 bg-gradient-to-b from-[var(--primary)] to-[var(--primary-dark)] p-7 rounded-sm shadow-md">
+              <p className="text-white/40 text-[10px] font-bold uppercase tracking-widest mb-6">
                 KISWIRE — OEM Wire Rope Supplier To
               </p>
               <div className="grid gap-0">
                 {craneOEMs.map((oem, i) => (
                   <div key={i}
-                    className="flex items-center gap-3 py-2.5  group/item">
-                    <div className="w-1.5 h-1.5 rounded-full bg-white  shrink-0" />
+                    className="flex items-center gap-3 py-2.5 group/item border-b border-white/5 last:border-0">
+                    <div className="w-1.5 h-1.5 rounded-full bg-white/70 group-hover/item:bg-[var(--primary-light)] transition-colors shrink-0" />
                     <span className="text-white/80 text-sm group-hover/item:text-white transition-colors">
                       {oem}
                     </span>
                   </div>
                 ))}
-                <p className="justify-self-end text-gray-300 text-xs mt-4 italic">
+                <p className="justify-self-end text-white/40 text-xs mt-5 italic">
                   And many other reputed customers world-wide.
                 </p>
               </div>
             </div>
-
-          
           </div>
 
         </div>

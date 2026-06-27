@@ -17,7 +17,7 @@ const cards = [
     label: "Our Vision",
     title: "Preferred Partner in India",
     body: "To be recognised as the most preferred trading company for multi-brand electrical, electronics, mechanical and automation products in India.",
-    accent: "bg-teal-50 text-teal-600 border-teal-200",
+    accent: "bg-[var(--primary-light)]/[0.06] text-[var(--primary)] border-[var(--primary-light)]/20",
   },
   {
     icon: (
@@ -29,7 +29,7 @@ const cards = [
     label: "Our Goal",
     title: "Satisfaction & Progress",
     body: "Customer satisfaction and nation building. We are committed to giving every customer a professional, dependable experience in a demanding market, and to supplying the best quality at the best price.",
-    accent: "bg-blue-50 text-blue-600 border-blue-200",
+    accent: "bg-[var(--primary-light)]/[0.06] text-[var(--primary)] border-[var(--primary-light)]/20",
   },
 ];
 
@@ -56,21 +56,21 @@ export default function VisionMission() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 
-      {/* Subtle glow */}
-      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[40rem] h-48 rounded-full bg-blue-100/50 blur-3xl pointer-events-none" />
+      {/* Dynamic ambient background glow using the theme properties */}
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[40rem] h-48 rounded-full bg-[var(--primary-light)]/10 blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div ref={headRef} className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
+          <p className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
             What We Stand For
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
             Vision, Goals &amp;<br />
-            <span className="text-blue-gradient">Core Purpose</span>
+            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">Core Purpose</span>
           </h2>
         </div>
 
@@ -78,17 +78,17 @@ export default function VisionMission() {
           {cards.map((c, i) => (
             <div
               key={i}
-              className="group bg-white border border-gray-100 shadow-sm hover:shadow-[0_14px_44px_rgba(26,79,196,0.10)] hover:border-blue-200 p-8 transition-all duration-300 relative overflow-hidden"
+              className="group bg-white border border-gray-100 shadow-sm hover:shadow-[0_14px_44px_rgba(var(--primary-rgb),0.08)] hover:border-[var(--primary-light)]/30 p-8 transition-all duration-300 relative overflow-hidden rounded-sm"
             >
-              {/* Top accent bar animation */}
-              <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-blue-600 to-blue-400 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+              {/* Dynamic top accent line using theme parameters */}
+              <div className="absolute left-0 right-0 top-0 h-0.5 bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
 
-              <div className={`inline-flex items-center justify-center w-14 h-14 border ${c.accent} mb-6`}>
+              <div className={`inline-flex items-center justify-center w-14 h-14 border ${c.accent} mb-6 rounded-xs`}>
                 {c.icon}
               </div>
 
               <p className="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-2">{c.label}</p>
-              <h3 className="text-gray-900 font-extrabold text-xl mb-4 group-hover:text-blue-600 transition-colors duration-300 leading-snug">
+              <h3 className="text-gray-900 font-extrabold text-xl mb-4 group-hover:text-[var(--primary)] transition-colors duration-300 leading-snug">
                 {c.title}
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed">{c.body}</p>
@@ -96,15 +96,15 @@ export default function VisionMission() {
           ))}
         </div>
 
-        {/* Bottom trust bar */}
-        <div className="mt-16 max-w-5xl mx-auto border border-gray-200 bg-white p-7 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        {/* Trust block banner configuration */}
+        <div className="mt-16 max-w-5xl mx-auto border border-gray-200 bg-white p-7 flex flex-col md:flex-row md:items-center justify-between gap-6 rounded-sm">
           <div>
             <p className="text-gray-900 font-bold text-lg mb-1">We are committed to giving every customer a professional, dependable experience.</p>
             <p className="text-gray-500 text-sm">Supplying high-quality components at prices that make strategic commercial sense across India.</p>
           </div>
           <div className="flex flex-wrap gap-3 shrink-0">
             {["Since 2014", "Multi-Brand", "Pan India", "Greener & Safer"].map(t => (
-              <span key={t} className="text-xs font-semibold text-gray-500 border border-gray-200 px-4 py-2 bg-gray-50">
+              <span key={t} className="text-xs font-semibold text-gray-600 border border-gray-200 px-4 py-2 bg-gray-50 rounded-xs hover:border-[var(--primary-light)]/30 transition-colors cursor-default">
                 {t}
               </span>
             ))}

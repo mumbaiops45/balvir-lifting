@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --blue:        #0F3460;
-  --blue-bright: #1A4FC4;
-  --blue-dark:   #07192E;
+  --primary: #b13124;
+  --primary-light: #da2929;
+  --primary-dark: #8d241b;
 
   --bg:         #FFFFFF;
   --surface:    #F7F7F7;
@@ -40,9 +40,22 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped       { overflow: hidden; }
 
 /* ── Scrollbar ──────────────────────────────── */
-::-webkit-scrollbar       { width: 4px; }
-::-webkit-scrollbar-track { background: #F0F0F0; }
-::-webkit-scrollbar-thumb { background: #0F3460; border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0F0F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--primary-light);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
 
 /* ── Utilities ──────────────────────────────── */
 .text-blue-gradient {
@@ -104,9 +117,15 @@ html.lenis, html.lenis body { height: auto; }
 
 /* kept so any component still using .btn-red renders correctly */
 .btn-red {
-  @apply inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-7 py-3.5
-         transition-all duration-300 hover:bg-blue-500
-         hover:shadow-[0_8px_30px_rgba(26,79,196,0.4)] hover:-translate-y-0.5 tracking-wide;
+  @apply inline-flex items-center gap-2 text-white font-semibold px-7 py-3.5
+         transition-all duration-300 hover:-translate-y-0.5 tracking-wide;
+
+  background-color: var(--primary);
+}
+
+.btn-red:hover {
+  background-color: var(--primary-light);
+  box-shadow: 0 8px 30px rgba(209, 77, 64, 0.4);
 }
 
 .btn-outline-dark {

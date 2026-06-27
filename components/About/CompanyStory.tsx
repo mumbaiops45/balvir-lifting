@@ -62,20 +62,20 @@ export default function CompanyStory() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="section-pad bg-white overflow-hidden">
+    <section ref={sectionRef} className="py-20 md:py-28 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-start">
 
           {/* Left — copy */}
           <div ref={leftRef}>
-            <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
+            <p className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
               Our Journey
             </p>
             <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight mb-7">
               A Company Built on<br />
-              <span className="text-blue-gradient">Trust & Quality</span>
+              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-light)] bg-clip-text text-transparent">Trust &amp; Quality</span>
             </h2>
-            <div className="blue-line w-20 mb-8" />
+            <div className="h-0.5 w-20 mb-8 bg-[var(--primary)]" />
             <p className="text-gray-500 text-base leading-relaxed mb-5">
               <strong className="text-gray-800">BALVIR LIFTING</strong> (formerly Balvir Global Products) was 
               established and registered in 2014, with its principal office operational out of Kharghar, Navi Mumbai.
@@ -89,8 +89,8 @@ export default function CompanyStory() {
             </p>
 
             {/* Core principle card */}
-            <div className="border-l-4 border-blue-600 bg-blue-50 px-7 py-6">
-              <p className="text-blue-600 text-[10px] font-bold uppercase tracking-widest mb-2">Our Principle</p>
+            <div className="border-l-4 border-[var(--primary)] bg-[var(--primary-light)]/[0.06] px-7 py-6 rounded-r-sm">
+              <p className="text-[var(--primary)] text-[10px] font-bold uppercase tracking-widest mb-2">Our Principle</p>
               <p className="text-gray-900 font-extrabold text-2xl leading-snug">
                 &ldquo;Earn Trust<br />with Business&rdquo;
               </p>
@@ -99,19 +99,19 @@ export default function CompanyStory() {
 
           {/* Right — timeline */}
           <div ref={rightRef} className="relative">
-            {/* Vertical line */}
+            {/* Vertical line matching style tokens */}
             <div
               ref={lineRef}
-              className="absolute left-[15px] top-3 bottom-3 w-px bg-gradient-to-b from-blue-600 via-blue-300 to-transparent"
+              className="absolute left-[15px] top-3 bottom-3 w-px bg-gradient-to-b from-[var(--primary)] via-[var(--primary-light)]/50 to-transparent"
             />
 
             <div className="space-y-10 pl-10">
               {milestones.map((m, i) => (
                 <div key={i} className="milestone-item relative">
-                  {/* Dot */}
-                  <div className="absolute -left-[calc(2.5rem-4px)] top-1 w-3 h-3 rounded-full bg-blue-600 shadow-[0_0_10px_rgba(15,52,96,0.5)]" />
+                  {/* Timeline Node */}
+                  <div className="absolute -left-[calc(2.5rem-4px)] top-1.5 w-3 h-3 rounded-full bg-[var(--primary)] shadow-[0_0_10px_rgba(var(--primary-rgb),0.3)]" />
 
-                  <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.25em] mb-1">{m.year}</p>
+                  <p className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.25em] mb-1">{m.year}</p>
                   <h3 className="text-gray-900 font-bold text-base mb-2">{m.label}</h3>
                   <p className="text-gray-500 text-sm leading-relaxed">{m.desc}</p>
                 </div>

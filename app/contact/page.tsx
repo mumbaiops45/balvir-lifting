@@ -3,9 +3,10 @@ import ContactInfo  from "@/components/Contact/ContactInfo";
 import ContactForm  from "@/components/Contact/ContactForm";
 
 export const metadata = {
-  title: "Contact Us | Balvir Lifting",
+  title:
+    "Contact Balvir Lifting | Elevator Products Supplier, Navi Mumbai",
   description:
-    "Get in touch with Balvir Lifting — Kishore Agrawal, Head of Sales & Operations. Shop No.18, Kharghar, Navi Mumbai. Phone: +91-9819002726. Email: kishore@balvir.in",
+    "Get a quote within 24 hours. Call +91 98190 02726 or visit our Kharghar, Navi Mumbai office.",
 };
 
 export default function ContactPage() {

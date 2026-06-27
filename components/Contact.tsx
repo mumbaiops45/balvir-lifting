@@ -40,27 +40,32 @@ export default function Contact() {
     return () => ctx.revert();
   }, []);
 
-  const inputClass = "w-full bg-white border border-gray-200 focus:border-blue-500 text-gray-900 placeholder-gray-300 px-4 py-3 text-sm outline-none transition-colors duration-200 rounded-none shadow-sm";
+  // Updated focusing indicator to rely directly on primary variables
+  const inputClass = "w-full bg-white border border-gray-200 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] text-gray-900 placeholder-gray-300 px-4 py-3 text-sm outline-none transition-all duration-200 rounded-none shadow-xs";
 
   return (
-    <section id="contact" ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
+    <section id="contact" ref={sectionRef} className="py-24 bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
 
       <div className="max-w-7xl mx-auto px-6">
         <div className="mb-14">
-          <p className="text-blue-600 text-xs font-bold uppercase tracking-[0.25em] mb-4">Get In Touch</p>
+          <p className="text-[var(--primary)] text-xs font-bold uppercase tracking-[0.25em] mb-4">Get In Touch</p>
           <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight tracking-tight">
-            Let&apos;s Find The Right<br /><span className="text-blue-gradient">Products For You</span>
+            Let&apos;s Find The Right<br />
+            <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-dark,gray-900)] bg-clip-text text-transparent">
+              Products For You
+            </span>
           </h2>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-12">
-          {/* Info — 2/5 */}
+          {/* Info Area */}
           <div ref={leftRef} className="lg:col-span-2 flex flex-col gap-8">
             <div className="flex flex-col gap-6">
               {info.map(i => (
                 <div key={i.label} className="flex gap-4 items-start">
-                  <div className="w-11 h-11 border border-blue-200 bg-blue-50 flex items-center justify-center text-blue-500 shrink-0">
+                  {/* Styled block matching the primary-light variables from previous CTA */}
+                  <div className="w-11 h-11 border border-[var(--primary-light)]/20 bg-[var(--primary-light)]/[0.04] flex items-center justify-center text-[var(--primary)] shrink-0">
                     {i.icon}
                   </div>
                   <div>
@@ -82,21 +87,24 @@ export default function Contact() {
             </div>
           </div>
 
-          {/* Form — 3/5 */}
+          {/* Form Area */}
           <div ref={rightRef} className="lg:col-span-3">
             <div className="bg-white border border-gray-200 shadow-sm p-8">
-              <div className="h-0.5 bg-gradient-to-r from-blue-700 to-blue-400 -mx-8 -mt-8 mb-8" />
+              {/* Top border line built using custom gradient distributions matching the CTA */}
+              <div className="h-0.5 bg-gradient-to-r from-[var(--primary-light)] via-[var(--primary-light)] to-[var(--primary)] -mx-8 -mt-8 mb-8" />
 
               {sent ? (
                 <div className="flex flex-col items-center justify-center py-16 gap-4 text-center">
-                  <div className="w-16 h-16 border border-blue-200 bg-blue-50 flex items-center justify-center">
-                    <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-16 h-16 border border-[var(--primary-light)]/20 bg-[var(--primary-light)]/[0.04] flex items-center justify-center">
+                    <svg className="w-7 h-7 text-[var(--primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
                   <h3 className="text-gray-900 font-bold text-xl">Enquiry Received</h3>
                   <p className="text-gray-400 text-sm max-w-xs">Our team will contact you within one business day.</p>
-                  <button onClick={() => setSent(false)} className="text-blue-500 text-xs underline underline-offset-4 mt-2">Send another message</button>
+                  <button onClick={() => setSent(false)} className="text-[var(--primary)] text-xs underline underline-offset-4 mt-2 hover:opacity-80">
+                    Send another message
+                  </button>
                 </div>
               ) : (
                 <form onSubmit={e => { e.preventDefault(); setSent(true); }} className="flex flex-col gap-4">
@@ -123,19 +131,26 @@ export default function Contact() {
                     </div>
                     <div>
                       <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Product Category</label>
-                      <select value={form.service}
-                        onChange={e => setForm({ ...form, service: e.target.value })}
-                        className={inputClass + " appearance-none"}>
-                        <option value="">Select product</option>
-                        <option>Elevators &amp; Escalators Accessories</option>
-                        <option>Steel Wire Ropes</option>
-                        <option>LED Lighting &amp; Accessories</option>
-                        <option>Cables &amp; Wires</option>
-                        <option>Door Sensors / Light Curtains</option>
-                        <option>Drives / ARD / UPS</option>
-                        <option>Industrial Automation</option>
-                        <option>Other / General Enquiry</option>
-                      </select>
+                      <div className="relative">
+                        <select value={form.service}
+                          onChange={e => setForm({ ...form, service: e.target.value })}
+                          className={`${inputClass} appearance-none pr-10`}>
+                          <option value="">Select product</option>
+                          <option>Elevators &amp; Escalators Accessories</option>
+                          <option>Steel Wire Ropes</option>
+                          <option>LED Lighting &amp; Accessories</option>
+                          <option>Cables &amp; Wires</option>
+                          <option>Door Sensors / Light Curtains</option>
+                          <option>Drives / ARD / UPS</option>
+                          <option>Industrial Automation</option>
+                          <option>Other / General Enquiry</option>
+                        </select>
+                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-4 text-gray-400">
+                          <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                          </svg>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div>
@@ -145,7 +160,9 @@ export default function Contact() {
                       placeholder="Product, brand, quantity, specifications, delivery location..."
                       className={inputClass + " resize-none"} />
                   </div>
-                  <button type="submit" className="btn-red w-full justify-center mt-2 py-4 text-sm tracking-widest">
+                  
+                  {/* Action submit button configured to utilize your primary theme configuration */}
+                  <button type="submit" className="inline-flex items-center gap-2 justify-center bg-gradient-to-r from-[var(--primary-light)] to-[var(--primary)] text-white font-bold w-full mt-2 py-4 text-sm tracking-widest hover:opacity-95 transition-all duration-300 rounded-sm shadow-xs hover:-translate-y-0.5">
                     Submit Enquiry
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

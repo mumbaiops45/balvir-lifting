@@ -40,7 +40,7 @@ export default function ContactForm() {
     name: "", company: "", phone: "", email: "", product: "", message: "",
   });
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading]     = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -58,63 +58,92 @@ export default function ContactForm() {
     return () => ctx.revert();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  };
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("https://formsubmit.co/ajax/mumbaiops45@gmail.com", {
+      const res  = await fetch("https://formsubmit.co/ajax/mumbaiops45@gmail.com", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: new FormData(e.currentTarget),
       });
       const data = await res.json();
-      if (data.success === "true" || data.success === true) {
-        setSubmitted(true);
-      }
-    } catch {
-      // silent — form values still show; user can retry
-    } finally {
-      setLoading(false);
-    }
+      if (data.success === "true" || data.success === true) setSubmitted(true);
+    } catch { /* silent */ } finally { setLoading(false); }
   };
 
-  const inputCls = "w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-500 transition-colors duration-200";
+  /* ── shared field class — matches ContactInfo's light card style ── */
+  const inputCls =
+    "w-full border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 " +
+    "placeholder-gray-400 focus:outline-none focus:border-[var(--primary)] " +
+    "transition-colors duration-200";
+
+  const labelCls =
+    "block text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-2";
 
   return (
-    <section ref={sectionRef} className="section-pad bg-gray-50 relative overflow-hidden">
-      <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
-      <div className="absolute -bottom-20 right-0 w-64 h-64 rounded-full bg-blue-100/40 blur-3xl pointer-events-none" />
+    <section
+      ref={sectionRef}
+      className="section-pad bg-gray-50 relative overflow-hidden"
+    >
+      {/* top rule — same as ContactInfo */}
+      <div className="absolute top-0 inset-x-0 h-px bg-gray-100" />
+
+      {/* subtle red glow bottom-right */}
+      <div
+        className="absolute -bottom-24 right-0 w-80 h-80 rounded-full blur-3xl pointer-events-none opacity-10"
+        style={{ background: "radial-gradient(circle, var(--primary), transparent 70%)" }}
+      />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <div className="grid lg:grid-cols-5 gap-12 items-start">
 
-          {/* Left info panel */}
+          {/* ── Left info panel ── */}
           <div ref={infoRef} className="lg:col-span-2">
-            <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-5">
+            <p
+              className="text-[11px] font-bold uppercase tracking-[0.3em] mb-5"
+              style={{ color: "var(--primary)" }}
+            >
               Send Us a Message
             </p>
+
             <h2 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight mb-7">
               Request a Quote or<br />
-              <span className="text-blue-gradient">Product Enquiry</span>
+              <span
+                className="bg-clip-text text-transparent"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(135deg, var(--primary), var(--primary-light))",
+                }}
+              >
+                Product Enquiry
+              </span>
             </h2>
+
             <p className="text-gray-500 text-sm leading-relaxed mb-10">
-              Fill in the form and our sales team will get back to you within 24 hours with
-              pricing, availability and technical details.
+              Fill in the form and our sales team will get back to you within 24 hours
+              with pricing, availability and technical details.
             </p>
 
             <div className="space-y-5">
               {[
-                { title: "Quick Response", body: "Our team responds to all enquiries within 24 business hours." },
-                { title: "Pan-India Delivery", body: "We maintain stock across key metros for fast delivery." },
+                { title: "Quick Response",      body: "Our team responds to all enquiries within 24 business hours." },
+                { title: "Pan-India Delivery",  body: "We maintain stock across key metros for fast delivery." },
                 { title: "Competitive Pricing", body: "Best quality products at best prices — always." },
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-blue-600 flex items-center justify-center shrink-0 mt-0.5">
-                    <span className="text-white text-xs font-bold">{String(i + 1).padStart(2, "0")}</span>
+                <div key={i} className="flex items-start gap-4 group">
+                  {/* numbered badge — uses --primary like ContactInfo icon bg */}
+                  <div
+                    className="w-8 h-8 flex items-center justify-center shrink-0 mt-0.5"
+                    style={{ backgroundColor: "var(--primary)" }}
+                  >
+                    <span className="text-white text-xs font-bold">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
                   <div>
                     <p className="text-gray-900 font-semibold text-sm mb-1">{item.title}</p>
@@ -125,12 +154,29 @@ export default function ContactForm() {
             </div>
           </div>
 
-          {/* Right form */}
+          {/* ── Right form ── */}
           <div ref={formRef} className="lg:col-span-3">
             {submitted ? (
-              <div className="border border-green-200 bg-green-50 p-10 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-5">
-                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              /* success state */
+              <div className="border border-gray-100 bg-white p-10 text-center relative overflow-hidden">
+                <div
+                  className="absolute top-0 inset-x-0 h-0.5"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, var(--primary), var(--primary-light))",
+                  }}
+                />
+                <div
+                  className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-5"
+                  style={{ backgroundColor: "color-mix(in srgb, var(--primary) 10%, white)" }}
+                >
+                  <svg
+                    className="w-8 h-8"
+                    style={{ color: "var(--primary)" }}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
@@ -140,81 +186,82 @@ export default function ContactForm() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="border border-gray-100 bg-white p-8 space-y-5">
-                {/* formsubmit.co config */}
+              /* form card — mirrors ContactInfo card style */
+              <form
+                onSubmit={handleSubmit}
+                className="border border-gray-100 bg-white p-8 space-y-5 relative overflow-hidden group"
+              >
+                {/* top accent bar — same hover reveal pattern as ContactInfo cards */}
+                <div
+                  className="absolute top-0 inset-x-0 h-0.5 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, var(--primary), var(--primary-light))",
+                  }}
+                />
+
                 <input type="hidden" name="_subject" value="New Product Enquiry — Balvir Lifting" />
                 <input type="hidden" name="_captcha" value="false" />
                 <input type="hidden" name="_template" value="table" />
 
+                {/* Row 1 */}
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                      Your Name <span className="text-blue-500">*</span>
+                    <label className={labelCls}>
+                      Your Name{" "}
+                      <span style={{ color: "var(--primary)" }}>*</span>
                     </label>
                     <input
-                      type="text"
-                      name="name"
-                      required
-                      value={form.name}
-                      onChange={handleChange}
+                      type="text" name="name" required
+                      value={form.name} onChange={handleChange}
                       placeholder="e.g. Ramesh Kumar"
                       className={inputCls}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                      Company Name
-                    </label>
+                    <label className={labelCls}>Company Name</label>
                     <input
-                      type="text"
-                      name="company"
-                      value={form.company}
-                      onChange={handleChange}
+                      type="text" name="company"
+                      value={form.company} onChange={handleChange}
                       placeholder="Your company / firm"
                       className={inputCls}
                     />
                   </div>
                 </div>
 
+                {/* Row 2 */}
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                      Phone Number <span className="text-blue-500">*</span>
+                    <label className={labelCls}>
+                      Phone Number{" "}
+                      <span style={{ color: "var(--primary)" }}>*</span>
                     </label>
                     <input
-                      type="tel"
-                      name="phone"
-                      required
-                      value={form.phone}
-                      onChange={handleChange}
+                      type="tel" name="phone" required
+                      value={form.phone} onChange={handleChange}
                       placeholder="+91 XXXXX XXXXX"
                       className={inputCls}
                     />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                      Email Address
-                    </label>
+                    <label className={labelCls}>Email Address</label>
                     <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
+                      type="email" name="email"
+                      value={form.email} onChange={handleChange}
                       placeholder="your@email.com"
                       className={inputCls}
                     />
                   </div>
                 </div>
 
+                {/* Product select */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                    Product of Interest
-                  </label>
+                  <label className={labelCls}>Product of Interest</label>
                   <select
                     name="product"
-                    value={form.product}
-                    onChange={handleChange}
+                    value={form.product} onChange={handleChange}
                     className={inputCls}
+                    style={{ color: form.product ? "#111827" : "#9CA3AF" }}
                   >
                     <option value="">Select a product category</option>
                     {productOptions.map(opt => (
@@ -223,28 +270,28 @@ export default function ContactForm() {
                   </select>
                 </div>
 
+                {/* Message */}
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-widest mb-2">
-                    Your Message <span className="text-blue-500">*</span>
+                  <label className={labelCls}>
+                    Your Message{" "}
+                    <span style={{ color: "var(--primary)" }}>*</span>
                   </label>
                   <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    value={form.message}
-                    onChange={handleChange}
+                    name="message" required rows={5}
+                    value={form.message} onChange={handleChange}
                     placeholder="Describe your requirement — quantity, specifications, timeline, delivery location..."
                     className={`${inputCls} resize-none`}
                   />
                 </div>
 
+                {/* Submit — btn-red already uses --primary */}
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full btn-red py-4 text-sm font-bold tracking-wide justify-center disabled:opacity-70"
+                  className="btn-red w-full py-4 text-sm font-bold tracking-wide justify-center disabled:opacity-70"
                 >
                   {loading ? (
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center justify-center gap-2">
                       <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
@@ -256,7 +303,11 @@ export default function ContactForm() {
 
                 <p className="text-center text-gray-400 text-xs">
                   Or call us directly at{" "}
-                  <a href="tel:+919819002726" className="text-blue-600 font-semibold hover:underline">
+                  <a
+                    href="tel:+919819002726"
+                    className="font-semibold hover:underline"
+                    style={{ color: "var(--primary)" }}
+                  >
                     +91 98190 02726
                   </a>
                 </p>

@@ -49,13 +49,8 @@ export default function Stats() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      className="relative overflow-hidden py-32"
-
-    >
-
-
+    <section ref={sectionRef} className="relative overflow-hidden py-32">
+      {/* Background Media */}
       <div className="absolute inset-0 w-full h-auto overflow-hidden">
         <Image
           src="/statbg.jpg"
@@ -65,38 +60,64 @@ export default function Stats() {
           priority
         />
       </div>
-      <div className="absolute inset-0 bg-[var(--blue-bright)] opacity-40" />
-      <div className="absolute inset-0 bg-black opacity-40" />
+      
+      {/* Dynamic Overlays using your global variables */}
+      <div 
+        className="absolute inset-0 opacity-20 mix-blend-multiply" 
+        style={{ backgroundColor: 'var(--primary-light)' }} 
+      />
+      <div className="absolute inset-0 bg-black/60" />
 
       <div className="relative max-w-7xl mx-auto px-6">
-      
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 divide-x divide-y divide-white/5">
+        {/* Responsive Grid Layout */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 border-t border-l border-white/10">
           {stats.map((s, i) => (
-            <div key={s.label} className="stat-item px-10 py-8 text-center">
+            <div 
+              key={s.label} 
+              className="stat-item px-6 md:px-10 py-10 text-center border-r border-b border-white/10"
+            >
               <div className="flex items-end justify-center gap-1 mb-2">
                 <span
                   ref={el => { numRefs.current[i] = el; }}
-                  className="text-5xl md:text-6xl font-extrabold text-white leading-none"
+                  className="text-5xl md:text-6xl font-extrabold text-white leading-none tracking-tight"
                 >
                   0
                 </span>
-                <span className="text-4xl font-extrabold text-blue-500 leading-none pb-1">{s.suffix}</span>
+                <span 
+                  className="text-3xl md:text-4xl font-extrabold leading-none pb-1"
+                  style={{ color: 'var(--primary-light)' }}
+                >
+                  {s.suffix}
+                </span>
               </div>
-              <div className="text-white font-semibold text-sm mb-1">{s.label}</div>
-              <div className="text-white/30 text-xs tracking-wider uppercase">{s.sub}</div>
+              <div className="text-white font-semibold text-sm md:text-base mb-1">
+                {s.label}
+              </div>
+              <div className="text-white/40 text-[10px] md:text-xs tracking-wider uppercase font-medium">
+                {s.sub}
+              </div>
             </div>
           ))}
         </div>
 
-        <div className="text-center mt-6">
-        
+        {/* CTA Button using --primary-light with native styles */}
+        <div className="text-center mt-12">
           <Link
             href="/products"
-            className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold px-7 py-3 rounded-full transition-colors duration-200"
+            className="inline-flex items-center gap-2 text-white text-sm font-semibold px-8 py-3.5 rounded-full shadow-lg transition-all duration-200 hover:-translate-y-0.5"
+            style={{ 
+              backgroundColor: 'var(--primary-light)',
+              boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.3)'
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--primary)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = 'var(--primary-light)';
+            }}
           >
             View All Products
-            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>

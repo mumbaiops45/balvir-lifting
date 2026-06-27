@@ -52,7 +52,7 @@ export default function BrandsHero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/Brands/BrandsHero.jpg" // Ensure you add an appropriate background image here
+          src="/BrandPartner/BrandAndPartner.jpg" // Ensure you add an appropriate background image here
           alt="Authorized Brand Partnership"
           fill
           priority
@@ -67,13 +67,11 @@ export default function BrandsHero() {
       {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-16 pt-32 w-full">
         <div ref={contentRef} className="max-w-4xl">
-          <p className="inline-block text-blue-400 text-[11px] font-bold uppercase tracking-[0.35em] mb-4 px-4 py-2 rounded-xl bg-blue-200/20 backdrop-blur-2xl">
-            Authorized Multi-Brand Supplier
-          </p>
+       
           
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
             The Brands We Trust,<br />
-            <span className="text-blue-gradient">The Brands You Know</span>
+            <span className="text-[var(--primary-light)]">The Brands You Know</span>
           </h1>
 
           <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">

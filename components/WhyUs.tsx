@@ -109,19 +109,18 @@ export default function WhyUs() {
         {/* ── Top: heading ──────────────────────────── */}
         <div ref={headRef} className="grid lg:grid-cols-2 gap-12 items-end pt-24 pb-14 border-b border-gray-100">
           <div>
-            <p className="text-blue-600 text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
+            <p className="text-[var(--primary)] text-[11px] font-bold uppercase tracking-[0.3em] mb-4">
               Why Balvir Lifting
             </p>
             <h2 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.02] tracking-tight">
               Trusted to<br />
-              <span className="text-blue-gradient">Deliver.</span>
+              <span className="bg-gradient-to-r from-[var(--primary-light)] to-[var(--primary)] bg-clip-text text-transparent">Deliver.</span>
             </h2>
           </div>
           <div className="flex flex-col gap-4">
             <p className="text-gray-500 text-base leading-relaxed">
               We do not just supply products, we earn trust with every order. Dependable multi-brand sourcing, strong manufacturer partnerships, and quality you can rely on, all at prices that make sense for your project.
             </p>
-       
           </div>
         </div>
 
@@ -141,16 +140,16 @@ export default function WhyUs() {
 
                   {/* Number */}
                   <div className={`hidden md:block text-4xl lg:text-5xl font-extrabold leading-none transition-colors duration-300 ${
-                    isOpen ? "text-blue-600" : "text-gray-100 group-hover:text-gray-200"
+                    isOpen ? "text-[var(--primary)]" : "text-gray-100 group-hover:text-gray-200"
                   }`}>
                     {r.num}
                   </div>
 
                   {/* Title + short */}
                   <div>
-                    <div className={`flex items-center gap-3 mb-1`}>
+                    <div className="flex items-center gap-3 mb-1">
                       <h3 className={`text-xl lg:text-2xl font-extrabold tracking-tight transition-colors duration-300 ${
-                        isOpen ? "text-blue-600" : "text-gray-900 group-hover:text-gray-700"
+                        isOpen ? "text-[var(--primary)]" : "text-gray-900 group-hover:text-gray-700"
                       }`}>
                         {r.title}
                       </h3>
@@ -159,7 +158,7 @@ export default function WhyUs() {
                       </span>
                     </div>
                     <p className={`text-sm transition-colors duration-300 ${
-                      isOpen ? "text-blue-400" : "text-gray-400"
+                      isOpen ? "text-[var(--primary-light)]" : "text-gray-400"
                     }`}>
                       {r.short}
                     </p>
@@ -168,7 +167,7 @@ export default function WhyUs() {
                   {/* Metric */}
                   <div className="hidden lg:block text-right">
                     <div className={`text-2xl font-extrabold transition-colors duration-300 ${
-                      isOpen ? "text-blue-600" : "text-gray-300 group-hover:text-gray-400"
+                      isOpen ? "text-[var(--primary)]" : "text-gray-300 group-hover:text-gray-400"
                     }`}>
                       {r.metric}
                     </div>
@@ -178,7 +177,7 @@ export default function WhyUs() {
                   {/* Toggle icon */}
                   <div className={`w-9 h-9 border flex items-center justify-center transition-all duration-300 shrink-0 ml-auto ${
                     isOpen
-                      ? "border-blue-600 bg-blue-600 text-white rotate-45"
+                      ? "border-[var(--primary)] bg-[var(--primary)] text-white rotate-45"
                       : "border-gray-200 text-gray-400 group-hover:border-gray-400"
                   }`}>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -194,9 +193,9 @@ export default function WhyUs() {
                   onClick={(e) => e.stopPropagation()}
                 >
                   <div className="grid lg:grid-cols-[100px_1fr_220px_44px] gap-4 pb-8">
-                    {/* Blue left bar */}
+                    {/* Primary Left Connecting Line */}
                     <div className="hidden lg:flex justify-center">
-                      <div className="w-px bg-blue-200 mt-1" />
+                      <div className="w-px bg-[var(--primary-light)]/30 mt-1" />
                     </div>
 
                     {/* Description */}
@@ -209,13 +208,13 @@ export default function WhyUs() {
                     </div>
 
                     {/* Mobile metric (shown in body on mobile) */}
-                    <div className="lg:hidden border border-blue-100 bg-blue-50 p-4 self-start">
-                      <div className="text-2xl font-extrabold text-blue-600">{r.metric}</div>
+                    <div className="lg:hidden border border-[var(--primary-light)]/10 bg-[var(--primary-light)]/5 p-4 self-start">
+                      <div className="text-2xl font-extrabold text-[var(--primary)]">{r.metric}</div>
                       <div className="text-[11px] text-gray-400 mt-0.5">{r.metricSub}</div>
                     </div>
 
                     {/* Desktop: stat card in expanded state */}
-                   
+                    <div className="hidden lg:block" />
                   </div>
                 </div>
               </div>

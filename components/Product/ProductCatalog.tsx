@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, Fragment } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
@@ -19,10 +19,158 @@ const categories = [
         <line x1="12" y1="9" x2="12" y2="15" />
       </svg>
     ),
-    count: 10,
+    count: 18,
     products: [
+      // ── TRAVELLING CABLES ──────────────────────────────────────────────
       {
-        title: "Infra-Red Door Sensors & Light Curtains",
+        title: "Flat Travelling Cables",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M3 6h18M3 10h18M3 14h18M3 18h18" />
+          </svg>
+        ),
+        brands: ["MACROTHERM", "DEEPCAB"],
+        details: [
+          "04 Core × 0.75 Sqmm",
+          "06 Core × 0.75 Sqmm",
+          "12 Core × 0.65 Sqmm",
+          "24 Core × 0.75 Sqmm (on make-to-order basis)",
+          "Suitable for any type and speed of elevators",
+        ],
+      },
+
+      // ── WIRE BUNDLES ───────────────────────────────────────────────────
+      {
+        title: "Wire Bundles",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+          </svg>
+        ),
+        brands: ["MACROTHERM", "DEEPCAB"],
+        details: [
+          "Pre-bundled wire sets for elevator cabin and shaft wiring",
+          "Reduces installation time and wiring errors on site",
+          "Available in standard and custom lengths",
+          "Suitable for all major elevator controller brands",
+        ],
+      },
+
+      // ── DISPLAY CABLE BUNDLES ──────────────────────────────────────────
+      {
+        title: "Display Cable Bundles",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="1" y="5" width="15" height="14" rx="2" /><path d="M23 7l-7 5 7 5V7z" />
+          </svg>
+        ),
+        brands: ["MACROTHERM", "DEEPCAB"],
+        details: [
+          "Display cable bundles for multimedia and indicator systems",
+          "Elevator flat travelling cables for CCTV and multimedia display",
+          "Supports both analog and IP-based display systems",
+          "Withstands continuous flexing and elevator movement",
+        ],
+      },
+
+      // ── WIRE ROPES ─────────────────────────────────────────────────────
+      {
+        title: "Steel Wire Ropes — Elevator",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+          </svg>
+        ),
+        brands: ["Usha Martin", "Bansal"],
+        details: [
+          "Conforming to IS:2365 — CFN (Core Fibre Natural), Tensile 1420/sqmm, Lay RHO",
+          "Dia. 13 mm — 8 × 19S construction",
+          "Dia. 10 mm — 8 × 19S construction",
+          "Dia. 8 mm — 8 × 19S construction",
+          "Dia. 6 mm — 6 × 19S construction",
+          "Applicable for elevators of all types and capacities",
+        ],
+      },
+
+      // ── LED LIGHTS ─────────────────────────────────────────────────────
+      {
+        title: "LED Lights — 75 mm Cutout, Round / Square",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+            <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+          </svg>
+        ),
+        brands: ["BALVIR Brand", "Others on demand"],
+        details: [
+          "75 mm cutout — round and square options",
+          "5 W to 7 W — aluminium housing",
+          "3 W to 4 W — 75 / 50 mm cutout",
+          "Warm White and White colour variants",
+          "Panel, SMD and COB type configurations",
+          "Suitable for elevator cabin and general industrial applications",
+        ],
+      },
+
+      // ── CABIN FANS ─────────────────────────────────────────────────────
+      {
+        title: "Cabin Fans — 300 mm",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 12l8-8" />
+            <path d="M12 12c0-4 2-6 4-8" /><path d="M12 12c4 0 6 2 8 4" />
+          </svg>
+        ),
+        brands: ["BALVIR Brand", "Multi Brand"],
+        details: [
+          "Standard 300 mm size cabin fan",
+          "Heavy duty, high-quality motor for continuous operation",
+          "Low noise — suitable for passenger cabins",
+          "Easy direct replacement for all major elevator brands",
+        ],
+      },
+
+      // ── BLOWER FANS ────────────────────────────────────────────────────
+      {
+        title: "Blower Fans — 330 × 45 mm",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2a10 10 0 1 0 10 10" /><path d="M12 12l8-8" />
+            <path d="M12 12c-4 0-6-2-8-4" /><path d="M12 12c0 4-2 6-4 8" />
+          </svg>
+        ),
+        brands: ["BALVIR Brand", "Multi Brand"],
+        details: [
+          "Compact 330 × 45 mm blower fan design",
+          "High airflow in a slim profile — fits tight cabin false ceilings",
+          "Heavy duty motor for continuous operation",
+          "Low noise, suitable for passenger cabins",
+        ],
+      },
+
+      // ── OVERLOAD SENSORS ───────────────────────────────────────────────
+      {
+        title: "Overload Sensors — All Types",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" /><line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+        ),
+        brands: ["Multi Brand"],
+        details: [
+          "All types for all elevator capacities",
+          "Under-cabin load sensor and rope-based variants available",
+          "Prevents elevator operation above rated load",
+          "Compatible with major elevator controller brands",
+        ],
+      },
+
+      // ── DOOR SENSORS / LIGHT CURTAINS ──────────────────────────────────
+      {
+        title: "Infra-Red Door Sensors — 154 Beams",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <circle cx="12" cy="12" r="3" /><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" />
@@ -30,32 +178,121 @@ const categories = [
         ),
         brands: ["CEDES — Switzerland", "MEMCO — UK", "SFT / WECO / TVS — China"],
         details: [
-          "Multi-brand light curtains for elevator door protection",
+          "154-beam light curtain for full elevator door protection",
           "Criss Cross Beams: 94 to 154 beams, full height 2000 mm",
           "Applicable for Static & Dynamic installations",
-          "3D Version Sensor (CEDES IMS 100) for elevator landing area detection",
-          "Time-of-Flight technology — prevents closing door triggering its own reopening",
-          "No need for controller or magnet switch on the door",
+          "Reliable detection to prevent unsafe door closure",
+          "Compatible with major elevator controller brands",
         ],
       },
+
+      // ── FINAL LIMIT SWITCHES ───────────────────────────────────────────
       {
-        title: "Auto Doors & Mechanisms",
+        title: "Final Limit Switches",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="3" y="3" width="18" height="18" rx="1" /><line x1="12" y1="3" x2="12" y2="21" />
-            <path d="M7 12l2 2 2-2" /><path d="M15 12l2 2 2-2" />
+            <path d="M18 20V10M12 20V4M6 20v-6" />
           </svg>
         ),
-        brands: ["FERMATOR", "WITTUR", "SHIVAM"],
+        brands: ["Multi Brand"],
         details: [
-          "Available in MS / SS (Mild Steel / Stainless Steel)",
-          "Small Window and Full Vision panel options",
-          "Suitable for all types of elevator applications",
-          "Robust mechanism for heavy-duty commercial use",
+          "Over-travel protection at top and bottom of shaft",
+          "Suitable for all elevator types and speeds",
+          "Robust construction for long service life",
+          "Direct replacement for all major elevator brands",
         ],
       },
+
+      // ── SAFETY LIMIT SWITCHES ──────────────────────────────────────────
       {
-        title: "Manual Landing Doors",
+        title: "Safety Limit Switches",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          </svg>
+        ),
+        brands: ["Multi Brand"],
+        details: [
+          "Safety limit switches for shaft and pit protection",
+          "Car gate switches and landing door contacts",
+          "Suitable for all elevator types and speeds",
+          "Direct replacement for all major elevator controller brands",
+        ],
+      },
+
+      // ── MAINTENANCE BOX ────────────────────────────────────────────────
+      {
+        title: "Maintenance Box",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+            <line x1="12" y1="12" x2="12" y2="16" /><line x1="10" y1="14" x2="14" y2="14" />
+          </svg>
+        ),
+        brands: ["Multi Brand"],
+        details: [
+          "Maintenance boxes for service and inspection use",
+          "Inspection run up / down controls with enable switch",
+          "IP-rated enclosures suitable for shaft environments",
+          "Available in various sizes and mounting options",
+        ],
+      },
+
+      // ── JUNCTION BOX ───────────────────────────────────────────────────
+      {
+        title: "Junction Box",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+          </svg>
+        ),
+        brands: ["Multi Brand"],
+        details: [
+          "Junction boxes for shaft and pit wiring consolidation",
+          "IP-rated enclosures for wet and dusty environments",
+          "Available in various sizes and mounting options",
+          "Simplifies wiring and reduces installation time",
+        ],
+      },
+
+      // ── CABLE HANGERS ──────────────────────────────────────────────────
+      {
+        title: "Cable Hangers — Big / Small",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        ),
+        brands: ["Multi Brand"],
+        details: [
+          "Big and small cable hangers for flat travelling cable support",
+          "Prevents cable sag and fatigue in long elevator shafts",
+          "Durable steel construction for long service life",
+          "Compatible with all standard flat travelling cable widths",
+        ],
+      },
+
+      // ── DOOR SPRINGS ───────────────────────────────────────────────────
+      {
+        title: "Door Springs",
+        icon: (
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
+            <path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4-1.79 4-4 4" />
+          </svg>
+        ),
+        brands: ["Multi Brand"],
+        details: [
+          "High-tension door springs for reliable return action",
+          "For landing and cabin doors — all major door types",
+          "Consistent spring tension for smooth door operation",
+          "Compatible with all major door mechanism brands",
+        ],
+      },
+
+      // ── MANUAL LANDING DOORS ───────────────────────────────────────────
+      {
+        title: "Manual Landing Doors — Revati Type",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <rect x="2" y="3" width="20" height="18" rx="1" /><line x1="12" y1="3" x2="12" y2="21" />
@@ -67,74 +304,32 @@ const categories = [
           "Revati-type manual landing doors for standard elevator shafts",
           "Suitable for residential and light commercial elevators",
           "Durable construction for long service life",
+          "Available in standard shaft opening sizes",
         ],
       },
+
+      // ── AUTO DOORS ─────────────────────────────────────────────────────
       {
-        title: "Automatic Rescue Device (ARD) / UPS",
+        title: "Auto Doors — Fermator / Fermator Type",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+            <rect x="3" y="3" width="18" height="18" rx="1" /><line x1="12" y1="3" x2="12" y2="21" />
+            <path d="M7 12l2 2 2-2" /><path d="M15 12l2 2 2-2" />
           </svg>
         ),
-        brands: ["ULTRONIX", "Excella", "AK Automation", "Godrej"],
+        brands: ["FERMATOR", "WITTUR", "SHIVAM"],
         details: [
-          "Standalone type or Inverter type",
-          "Applicable for any type and any speed of elevator",
-          "Ensures safe evacuation during power failure",
-          "Automatic operation upon power outage",
-          "Wide range of capacity options available",
+          "Available in MS / SS (Mild Steel / Stainless Steel)",
+          "Small Window and Full Vision panel options",
+          "Fermator and Fermator-type compatible mechanisms",
+          "Suitable for all types of elevator applications",
+          "Robust mechanism for heavy-duty commercial use",
         ],
       },
+
+      // ── DOOR CLOSERS ───────────────────────────────────────────────────
       {
-        title: "VFD Elevator Drives",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="2" /><circle cx="12" cy="12" r="4" />
-            <path d="M12 8v1M12 15v1M8 12h1M15 12h1" />
-          </svg>
-        ),
-        brands: ["TOSHIBA", "HITACHI", "Fuji", "Yaskawa"],
-        details: [
-          "5 HP onwards capacity range",
-          "Reliable, efficient and quiet operation",
-          "Compatible with any type and speed of elevator",
-          "Energy-saving intelligent drive control",
-        ],
-      },
-      {
-        title: "Voice Announcement System",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" /><path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-            <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-          </svg>
-        ),
-        brands: ["Multi Brand"],
-        details: [
-          "MP3 music running system for cabin ambience",
-          "Emergency Messages broadcasting capability",
-          "Chime alerts at every floor",
-          "Floor-by-floor announcement system",
-        ],
-      },
-      {
-        title: "Wireless & Wired CCTV for Elevators",
-        icon: (
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M23 7l-7 5 7 5V7z" /><rect x="1" y="5" width="15" height="14" rx="2" />
-          </svg>
-        ),
-        brands: ["Specialised Elevator-Grade"],
-        details: [
-          "Made specially for elevator application — withstands heavy movements and jerks",
-          "Wireless: real-time video with NO interference up to 150 floors",
-          "Up to 1500 metres range for digital IP-based systems",
-          "Pre-configured plug and play — no software required",
-          "Traditional coax cable installation issues completely eliminated",
-        ],
-      },
-      {
-        title: "Door Closers, Springs & Magnets",
+        title: "Door Closers",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
             <path d="M18 8h1a4 4 0 0 1 0 8h-1" /><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z" />
@@ -144,29 +339,35 @@ const categories = [
         brands: ["Multi Brand"],
         details: [
           "Door closers for landing and cabin doors",
-          "High-tension door springs for reliable return action",
-          "Door magnets for hold-open and safety applications",
+          "Ensures positive door closure after each operation",
+          "Adjustable closing speed and latching action",
           "Compatible with all major door mechanism brands",
         ],
       },
+
+      // ── MAGNETS ────────────────────────────────────────────────────────
       {
-        title: "LOP / COP Panels & Floor Detection",
+        title: "Door Magnets",
         icon: (
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" />
-            <circle cx="9" cy="10" r="1" /><circle cx="12" cy="10" r="1" /><circle cx="15" cy="10" r="1" />
+            <path d="M6 3v7a6 6 0 0 0 6 6 6 6 0 0 0 6-6V3" />
+            <line x1="4" y1="3" x2="8" y2="3" /><line x1="16" y1="3" x2="20" y2="3" />
           </svg>
         ),
-        brands: ["Multi Brand", "P&F — German Make (Floor Sensors)"],
+        brands: ["Multi Brand"],
         details: [
-          "Landing Operating Panels (LOP) and Car Operating Panels (COP)",
-          "Floor Detection Sensors — Infra-red beam based, C-type (P&F German Make)",
-          "DOB / VA Cards for display and control",
+          "Door magnets for hold-open and safety applications",
+          "Used for floor selector and levelling systems",
           "Compatible with all major elevator controller brands",
+          "Reliable magnetic field strength for accurate floor detection",
         ],
       },
     ],
   },
+
+  // ════════════════════════════════════════════════════════════════════════
+  // All categories below are UNCHANGED
+  // ════════════════════════════════════════════════════════════════════════
   {
     id: "wireropes",
     label: "Steel Wire Ropes",
@@ -654,116 +855,98 @@ export default function ProductCatalog() {
     <section
       ref={sectionRef}
       id="catalog"
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        background: "#07192E",
-        padding: "100px 0 120px",
-        fontFamily: "'DM Sans', 'Helvetica Neue', sans-serif",
-      }}
+      className="relative overflow-hidden pt-[100px] pb-[120px] bg-[color-mix(in_srgb,var(--primary-dark)_20%,black)] "
     >
       {/* Background grid */}
-      <div
-        style={{
-          position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage:
-            "linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}
-      />
+      <div className="absolute inset-0 pointer-events-none bg-[length:60px_60px] bg-[image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]" />
 
       {/* Ambient orbs */}
-      <div className="parallax-slow" style={{ position: "absolute", top: "10%", left: "-5%", width: 500, height: 500, borderRadius: "50%", background: "radial-gradient(circle, rgba(26,79,196,0.12) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div className="parallax-fast" style={{ position: "absolute", bottom: "5%", right: "-5%", width: 400, height: 400, borderRadius: "50%", background: "radial-gradient(circle, rgba(26,79,196,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div className="parallax-med" style={{ position: "absolute", top: "40%", right: "20%", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(15,52,96,0.25) 0%, transparent 70%)", pointerEvents: "none" }} />
-      <div className="parallax-slow" style={{ position: "absolute", top: 0, left: 0, right: 0, height: 1, background: "linear-gradient(90deg, transparent, rgba(26,79,196,0.5), transparent)", pointerEvents: "none" }} />
+      <div className="parallax-slow absolute top-[10%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_12%,transparent)_0%,transparent_70%)]" />
+      <div className="parallax-fast absolute bottom-[5%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_10%,transparent)_0%,transparent_70%)]" />
+      <div className="parallax-med absolute top-[40%] right-[20%] w-[300px] h-[300px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary-dark)_25%,transparent)_0%,transparent_70%)]" />
+      <div className="parallax-slow absolute top-0 left-0 right-0 h-px pointer-events-none bg-[image:linear-gradient(90deg,transparent,color-mix(in_srgb,var(--primary)_50%,transparent),transparent)]" />
 
-      <div style={{ maxWidth: 1280, margin: "0 auto", padding: "0 32px", position: "relative" }}>
+      <div className="max-w-[1280px] mx-auto px-8 relative">
 
         {/* Header */}
-        <div ref={headRef} style={{ marginBottom: 56 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20 }}>
-            <div style={{ width: 32, height: 1, background: "linear-gradient(90deg, #1A4FC4, #0F3460)" }} />
-            <span style={{ fontSize: 11, fontWeight: 600, letterSpacing: "0.25em", textTransform: "uppercase", color: "#93C5FD" }}>
+        <div ref={headRef} className="mb-14">
+          <div className="flex items-center gap-2.5 mb-5">
+            <div className="w-8 h-px bg-[image:linear-gradient(90deg,var(--primary),var(--primary-dark))]" />
+            <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[var(--primary-light)]">
               Product Catalogue — FY 2026–27
             </span>
           </div>
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24 }}>
+          <div className="flex flex-wrap justify-between items-end gap-6">
             <div>
-              <h2 style={{ fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 700, lineHeight: 1.1, letterSpacing: "-0.02em", margin: 0, color: "#f1f5f9" }}>
+              <h2 className="text-[clamp(36px,5vw,56px)] font-bold leading-[1.1] tracking-[-0.02em] m-0 text-white">
                 Elevators & Industrial
                 <br />
-                <span style={{ background: "linear-gradient(135deg, #1A4FC4 0%, #0F3460 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
+                <span className="bg-[image:linear-gradient(135deg,var(--primary-light)_0%,var(--primary)_100%)] bg-clip-text text-transparent">
                   Products We Supply
                 </span>
               </h2>
             </div>
-            <p style={{ color: "#64748b", fontSize: 14, lineHeight: 1.7, maxWidth: 360, margin: 0 }}>
+            <p className="text-white/50 text-sm leading-[1.7] max-w-[360px] m-0">
               Reliable, affordable, high-quality products sourced from trusted global
               and Indian manufacturers. Earning trust through business since 2014.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col" style={{ gap: 32 }}>
+        <div className="flex flex-col gap-8">
 
           {/* Tabs */}
-          <div ref={tabsRef} style={{ width: "100%" }}>
-            <div className="flex flex-col md:flex-row flex-wrap" style={{ gap: 10 }}>
+          <div ref={tabsRef} className="w-full">
+            <div className="flex flex-col md:flex-row flex-wrap gap-2.5">
               {categories.map((c) => {
                 const isActive = active === c.id;
                 return (
-                  <>
+                  <Fragment key={c.id}>
                     <button
-                      key={c.id}
                       onClick={() => handleTabChange(c.id)}
-                      className="flex-1"
-                      style={{
-                        display: "flex", alignItems: "center", gap: 12,
-                        padding: "14px 18px", textAlign: "left", cursor: "pointer",
-                        border: isActive ? "1px solid rgba(26,79,196,0.5)" : "1px solid rgba(255,255,255,0.06)",
-                        borderRadius: 5, transition: "all 0.25s",
-                        background: isActive ? "rgba(26,79,196,0.1)" : "rgba(255,255,255,0.02)",
-                        fontFamily: "inherit",
-                      }}
+                      className={`flex-1 flex items-center gap-3 px-[18px] py-3.5 text-left cursor-pointer rounded-[5px] transition-all duration-[250ms]  ${
+                        isActive
+                          ? "border border-[color:color-mix(in_srgb,var(--primary)_50%,transparent)] bg-[color-mix(in_srgb,var(--primary)_10%,transparent)]"
+                          : "border border-white/[0.06] bg-white/[0.02]"
+                      }`}
                     >
-                      <span style={{
-                        width: 38, height: 38, borderRadius: 8, flexShrink: 0,
-                        display: "flex", alignItems: "center", justifyContent: "center",
-                        background: isActive ? "rgba(26,79,196,0.2)" : "rgba(255,255,255,0.05)",
-                        color: isActive ? "#93C5FD" : "#475569",
-                        transition: "all 0.25s",
-                      }}>
+                      <span
+                        className={`w-[38px] h-[38px] rounded-lg shrink-0 flex items-center justify-center transition-all duration-[250ms] ${
+                          isActive
+                            ? "bg-[color-mix(in_srgb,var(--primary)_20%,transparent)] text-[var(--primary-light)]"
+                            : "bg-white/5 text-white/40"
+                        }`}
+                      >
                         {c.icon}
                       </span>
-                      <div style={{ minWidth: 0 }}>
-                        <p style={{ fontSize: 13, fontWeight: 500, margin: 0, color: isActive ? "#e2e8f0" : "#64748b", lineHeight: 1.4, transition: "color 0.25s" }}>
+                      <div className="min-w-0">
+                        <p className={`text-[13px] font-medium m-0 leading-[1.4] transition-colors duration-[250ms] ${isActive ? "text-white/90" : "text-white/50"}`}>
                           {c.shortLabel}
                         </p>
-                        <p style={{ fontSize: 11, margin: "2px 0 0", color: isActive ? "#1A4FC4" : "#334155", transition: "color 0.25s" }}>
+                        <p className={`text-[11px] m-0 mt-0.5 transition-colors duration-[250ms] ${isActive ? "text-[var(--primary)]" : "text-white/30"}`}>
                           {c.count} {c.count === 1 ? "product" : "products"}
                         </p>
                       </div>
                       <div className="ml-auto shrink-0 md:hidden">
-                        {isActive ? <FiChevronUp size={18} color="#1A4FC4" /> : <FiChevronDown size={18} color="#1A4FC4" />}
+                        {isActive ? <FiChevronUp size={18} color="var(--primary-light)" /> : <FiChevronDown size={18} color="var(--primary-light)" />}
                       </div>
                     </button>
 
                     {/* Mobile accordion content */}
                     {isActive && (
-                      <div className="block md:hidden" ref={contentRef} style={{ flex: 1, minWidth: 0 }}>
+                      <div className="block md:hidden flex-1 min-w-0" ref={contentRef}>
                         <ContentPanel current={current} />
                         <StatsBlock />
                       </div>
                     )}
-                  </>
+                  </Fragment>
                 );
               })}
             </div>
           </div>
 
           {/* Desktop content panel */}
-          <div className="hidden md:block" ref={contentRef} style={{ flex: 1, minWidth: 0 }}>
+          <div className="hidden md:block flex-1 min-w-0" ref={contentRef}>
             <ContentPanel current={current} />
             <StatsBlock />
           </div>
@@ -777,28 +960,21 @@ export default function ProductCatalog() {
 function ContentPanel({ current }: { current: typeof categories[0] }) {
   return (
     <>
-      <div style={{
-        display: "flex", alignItems: "center", gap: 14,
-        padding: "20px 28px",
-        border: "1px solid rgba(255,255,255,0.06)",
-        borderBottom: "1px solid rgba(26,79,196,0.2)",
-        borderRadius: "12px 12px 0 0",
-        background: "rgba(26,79,196,0.05)",
-      }}>
-        <span style={{ width: 44, height: 44, borderRadius: 10, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(26,79,196,0.15)", color: "#93C5FD" }}>
+      <div className="flex items-center gap-3.5 px-7 py-5 rounded-t-xl border border-white/[0.06] [border-bottom-color:color-mix(in_srgb,var(--primary)_20%,transparent)] bg-[color-mix(in_srgb,var(--primary)_5%,transparent)]">
+        <span className="w-11 h-11 rounded-[10px] flex items-center justify-center bg-[color-mix(in_srgb,var(--primary)_15%,transparent)] text-[var(--primary-light)]">
           {current.icon}
         </span>
         <div>
-          <h3 style={{ fontSize: 17, fontWeight: 600, color: "#f1f5f9", margin: 0, lineHeight: 1.3 }}>{current.label}</h3>
-          <p style={{ fontSize: 12, color: "#475569", margin: "3px 0 0" }}>
+          <h3 className="text-[17px] font-semibold text-white m-0 leading-[1.3]">{current.label}</h3>
+          <p className="text-xs text-white/40 m-0 mt-[3px]">
             {current.count} {current.count === 1 ? "product" : "products"} in this category
           </p>
         </div>
-        <div style={{ marginLeft: "auto", fontSize: 11, fontWeight: 600, letterSpacing: "0.1em", color: "#60A5FA", background: "rgba(26,79,196,0.1)", border: "1px solid rgba(26,79,196,0.2)", padding: "4px 12px", borderRadius: 20, textTransform: "uppercase" }}>
+        <div className="ml-auto text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--primary-light)] bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] px-3 py-1 rounded-[20px]">
           FY 2026–27
         </div>
       </div>
-      <div style={{ padding: "24px", border: "1px solid rgba(255,255,255,0.06)", borderTop: "none", borderRadius: "0 0 12px 12px", background: "rgba(255,255,255,0.01)", display: "flex", flexDirection: "column", gap: 16 }}>
+      <div className="p-6 border border-white/[0.06] border-t-0 rounded-b-xl bg-white/[0.01] flex flex-col gap-4">
         {current.products.map((p, i) => (
           <ProductCard key={i} product={p} index={i} />
         ))}
@@ -809,8 +985,8 @@ function ContentPanel({ current }: { current: typeof categories[0] }) {
 
 function StatsBlock() {
   return (
-    <div style={{ marginTop: 24, padding: 20, border: "1px solid rgba(255,255,255,0.06)", borderRadius: 12, background: "rgba(255,255,255,0.02)" }}>
-      <p style={{ fontSize: 11, color: "#475569", marginBottom: 16, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+    <div className="mt-6 p-5 border border-white/[0.06] rounded-xl bg-white/[0.02]">
+      <p className="text-[11px] text-white/40 mb-4 tracking-[0.1em] uppercase">
         Why Balvir Lifting
       </p>
       {[
@@ -819,9 +995,9 @@ function StatsBlock() {
         { val: "Global", label: "Sourcing network" },
         { val: "Pan India", label: "Service coverage" },
       ].map((s) => (
-        <div key={s.val} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "8px 0", borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
-          <span style={{ fontSize: 12, color: "#64748b" }}>{s.label}</span>
-          <span style={{ fontSize: 13, fontWeight: 600, color: "#93C5FD" }}>{s.val}</span>
+        <div key={s.val} className="flex justify-between items-center py-2 border-b border-white/[0.04]">
+          <span className="text-xs text-white/50">{s.label}</span>
+          <span className="text-[13px] font-semibold text-[var(--primary-light)]">{s.val}</span>
         </div>
       ))}
     </div>
@@ -842,7 +1018,7 @@ function ProductCard({
   const handleEnter = () => {
     setHovered(true);
     gsap.to(accentRef.current, { scaleY: 1, duration: 0.3, ease: "power2.out" });
-    gsap.to(cardRef.current, { borderColor: "rgba(26,79,196,0.3)", duration: 0.25 });
+    gsap.to(cardRef.current, { borderColor: "color-mix(in srgb, var(--primary) 30%, transparent)", duration: 0.25 });
   };
 
   const handleLeave = () => {
@@ -853,40 +1029,34 @@ function ProductCard({
 
   return (
     <div
-      className="prod-card"
+      className={`prod-card relative overflow-hidden border border-white/[0.06] rounded-[10px] px-6 py-[22px] transition-[background] duration-[250ms] cursor-default ${
+        hovered ? "bg-[color-mix(in_srgb,var(--primary)_4%,transparent)]" : "bg-white/[0.02]"
+      }`}
       ref={cardRef}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
-      style={{
-        position: "relative", overflow: "hidden",
-        border: "1px solid rgba(255,255,255,0.06)",
-        borderRadius: 10, padding: "22px 24px",
-        transition: "background 0.25s",
-        cursor: "default",
-        background: hovered ? "rgba(26,79,196,0.04)" : "rgba(255,255,255,0.02)",
-      }}
     >
-      <div ref={accentRef} style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: 3, background: "linear-gradient(180deg, #1A4FC4, #0F3460)", transform: "scaleY(0)", transformOrigin: "bottom" }} />
-      <div style={{ display: "flex", alignItems: "flex-start", gap: 14, marginBottom: 16 }}>
-        <div style={{ width: 40, height: 40, borderRadius: 8, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", background: "rgba(26,79,196,0.1)", color: "#93C5FD" }}>
+      <div ref={accentRef} className="absolute left-0 top-0 bottom-0 w-[3px] origin-bottom scale-y-0 bg-[image:linear-gradient(180deg,var(--primary),var(--primary-dark))]" />
+      <div className="flex items-start gap-3.5 mb-4">
+        <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] text-[var(--primary-light)]">
           {product.icon}
         </div>
-        <h4 style={{ fontSize: 15, fontWeight: 600, color: "#e2e8f0", margin: 0, lineHeight: 1.4, paddingTop: 2 }}>
+        <h4 className="text-[15px] font-semibold text-white/90 m-0 leading-[1.4] pt-0.5">
           {product.title}
         </h4>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 16 }}>
+      <div className="flex flex-wrap gap-1.5 mb-4">
         {product.brands.map((b) => (
-          <span key={b} style={{ fontSize: 11, fontWeight: 600, color: "#60A5FA", background: "rgba(26,79,196,0.08)", border: "1px solid rgba(26,79,196,0.2)", padding: "3px 10px", borderRadius: 20, letterSpacing: "0.03em" }}>
+          <span key={b} className="text-[11px] font-semibold text-[var(--primary-light)] bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] px-2.5 py-[3px] rounded-[20px] tracking-[0.03em]">
             {b}
           </span>
         ))}
       </div>
-      <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 6 }}>
+      <ul className="list-none p-0 m-0 flex flex-col gap-1.5">
         {product.details.map((d, j) => (
-          <li key={j} style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-            <span style={{ width: 5, height: 5, borderRadius: "50%", flexShrink: 0, background: "#1A4FC4", marginTop: 7 }} />
-            <span style={{ fontSize: 13, color: "#64748b", lineHeight: 1.6 }}>{d}</span>
+          <li key={j} className="flex items-start gap-2.5">
+            <span className="w-[5px] h-[5px] rounded-full shrink-0 bg-[var(--primary)] mt-[7px]" />
+            <span className="text-[13px] text-white/50 leading-[1.6]">{d}</span>
           </li>
         ))}
       </ul>
