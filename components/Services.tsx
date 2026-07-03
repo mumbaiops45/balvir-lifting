@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import Link from "next/link";
 gsap.registerPlugin(ScrollTrigger);
 
 const services = [
@@ -41,29 +41,33 @@ const services = [
 
 export default function Services() {
   const sectionRef = useRef<HTMLElement>(null);
-  const headRef    = useRef<HTMLDivElement>(null);
-  const gridRef    = useRef<HTMLDivElement>(null);
+  const headRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(headRef.current,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
-          scrollTrigger: { trigger: headRef.current, start: "top 85%" } }
+        {
+          y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: headRef.current, start: "top 85%" }
+        }
       );
       gsap.fromTo(gridRef.current?.children ?? [],
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
+        {
+          y: 0, opacity: 1, duration: 0.7, ease: "power3.out",
           stagger: { amount: 0.5 },
           clearProps: "transform,opacity",
-          scrollTrigger: { trigger: gridRef.current, start: "top 80%" } }
+          scrollTrigger: { trigger: gridRef.current, start: "top 80%" }
+        }
       );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="py-20 bg-gray-50 relative overflow-hidden">
+    <section id="products" ref={sectionRef} className="py-20 bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gray-200" />
 
@@ -94,13 +98,13 @@ export default function Services() {
         <div ref={gridRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-200">
           {services.map(s => (
             <div key={s.num}
-              className="group bg-white hover:bg-red-50/60 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
-              
+              className="group bg-white hover:bg-blue-100/40 p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer">
+
               {/* Hover left border */}
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[var(--primary)] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
               {/* Number overlay with very subtle group hover text color */}
-              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-red-100/40 transition-colors duration-300 leading-none mb-4 select-none">
+              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-blue-300/90 transition-colors duration-300 leading-none mb-4 select-none">
                 {s.num}
               </div>
               <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-[var(--primary)] transition-colors duration-300">
@@ -119,30 +123,46 @@ export default function Services() {
           ))}
 
           {/* 6th Grid Item: CTA */}
-          <div className="group bg-[var(--primary)] hover:bg-[var(--primary-dark)] p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer flex flex-col justify-end min-h-[250px]">
-            <div className="absolute right-0 top-0 p-8 opacity-10 text-white select-none pointer-events-none">
-              <svg className="w-32 h-32 transform translate-x-10 -translate-y-10" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
-              </svg>
-            </div>
-            
-            <div className="mb-auto pt-4">
-              <h3 className="text-white font-bold text-2xl mb-2 tracking-tight">
-                View Full Catalogue
-              </h3>
-              <p className="text-red-100/80 text-sm leading-relaxed">
-                Explore our comprehensive documentation and full technical specifications.
-              </p>
-            </div>
+          <Link href="/products" className="h-full">
+            <div className="group h-full bg-[var(--primary)] hover:bg-[var(--primary-dark)] p-8 transition-colors duration-300 relative overflow-hidden cursor-pointer flex flex-col justify-end min-h-[250px]">
+              <div className="absolute right-0 top-0 p-8 opacity-10 text-white select-none pointer-events-none">
+                <svg
+                  className="w-32 h-32 transform translate-x-10 -translate-y-10"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                </svg>
+              </div>
 
-            <div className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300 mt-6">
-              <span>Browse Now</span>
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2.5} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
+              <div className="mb-auto pt-4">
+                <h3 className="text-white font-bold text-2xl mb-2 tracking-tight">
+                  View Full Catalogue
+                </h3>
+                <p className="text-red-100/80 text-sm leading-relaxed">
+                  Explore our comprehensive documentation and full technical specifications.
+                </p>
+              </div>
+
+              <div className="inline-flex items-center gap-2 text-white font-semibold text-sm group-hover:translate-x-1 transition-transform duration-300 mt-6">
+                <span>Browse Now</span>
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2.5}
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </div>
             </div>
-          </div>
-          
+          </Link>
+
         </div>
       </div>
     </section>

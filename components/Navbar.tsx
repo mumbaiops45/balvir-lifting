@@ -44,20 +44,20 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled
-          ? "bg-[var(--primary)] backdrop-blur-xl border-b border-blue-700/30 py-3 shadow-sm"
-          : "bg-transparent py-3"
+        ? "bg-[var(--primary-light)] backdrop-blur-xl border-b border-blue-700/30 py-3 shadow-sm"
+        : "bg-transparent py-3"
         }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto pl-12 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/">
+        <Link href="/" className="flex items-center">
           <Image
-            src="/logo.PNG"
+            src="/Balvir-lifting-png (1).png"
             alt="Balvir Lifting Logo"
-            width={180}
-            height={40}
+            width={260}
+            height={80}
             priority
-            className="h-[10vh] object-cover"
+            className="h-14 w-auto"
           />
         </Link>
 

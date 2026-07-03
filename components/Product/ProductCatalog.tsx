@@ -855,7 +855,7 @@ export default function ProductCatalog() {
     <section
       ref={sectionRef}
       id="catalog"
-      className="relative overflow-hidden pt-[100px] pb-[120px] bg-[color-mix(in_srgb,var(--primary-dark)_20%,black)] "
+      className="relative overflow-hidden pt-[100px] pb-[120px] bg-[color-mix(in_srgb,var(--primary-light)_25%,black)] "
     >
       {/* Background grid */}
       <div className="absolute inset-0 pointer-events-none bg-[length:60px_60px] bg-[image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]" />

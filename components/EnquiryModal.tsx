@@ -139,13 +139,13 @@ export default function EnquiryModal() {
       {/* Card */}
       <div
         ref={cardRef}
-        className="fixed z-[80] inset-x-4 top-1/2 -translate-y-1/2 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
-        style={{ opacity: 0, maxHeight: "calc(100dvh - 40px)", pointerEvents: open ? "auto" : "none" }}
+        className="fixed z-[80] inset-x-3 top-1/2 -translate-y-1/2 sm:inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
+        style={{ opacity: 0, maxHeight: "calc(100dvh - 24px)", pointerEvents: open ? "auto" : "none" }}
       >
 
-        {/* ── LEFT panel ── */}
+        {/* ── LEFT panel (hidden on mobile, compact strip on tablet) ── */}
         <div
-          className="hidden md:flex w-[260px] shrink-0 flex-col justify-between p-7 relative"
+          className="hidden md:flex w-full md:w-[260px] shrink-0 flex-col justify-between p-7 relative"
           style={{
             background:
               "linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%)",
@@ -196,16 +196,16 @@ export default function EnquiryModal() {
         </div>
 
         {/* ── RIGHT panel ── */}
-        <div className="flex-1 bg-white flex flex-col">
+        <div className="flex-1 bg-white flex flex-col min-h-0">
 
           {/* Header — step indicators */}
-          <div className="px-6 pt-5 pb-4 border-b border-gray-100 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-2">
+          <div className="px-4 sm:px-6 pt-4 sm:pt-5 pb-3 sm:pb-4 border-b border-gray-100 flex items-center justify-between shrink-0">
+            <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto">
               {STEPS.map((s, i) => (
-                <div key={s} className="flex items-center gap-1.5">
+                <div key={s} className="flex items-center gap-1 sm:gap-1.5 shrink-0">
                   {/* step circle */}
                   <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300"
+                    className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300 shrink-0"
                     style={{
                       backgroundColor:
                         i < step  ? "#22c55e"              /* green-500 — completion only */
@@ -218,7 +218,7 @@ export default function EnquiryModal() {
                     {i < step ? "✓" : i + 1}
                   </div>
                   <span
-                    className={`text-[11px] font-semibold hidden sm:block ${
+                    className={`text-[11px] font-semibold hidden sm:block whitespace-nowrap ${
                       i === step ? "text-gray-800" : "text-gray-300"
                     }`}
                   >
@@ -226,7 +226,7 @@ export default function EnquiryModal() {
                   </span>
                   {i < STEPS.length - 1 && (
                     <div
-                      className="w-5 h-px mx-0.5 transition-colors duration-300"
+                      className="w-3 sm:w-5 h-px mx-0.5 transition-colors duration-300 shrink-0"
                       style={{ backgroundColor: i < step ? "#22c55e" : "#E5E7EB" }}
                     />
                   )}
@@ -237,7 +237,8 @@ export default function EnquiryModal() {
             {/* Close button */}
             <button
               onClick={toggle}
-              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all hover:border-[var(--primary)] hover:text-[var(--primary)]"
+              aria-label="Close"
+              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all hover:border-[var(--primary)] hover:text-[var(--primary)] shrink-0 ml-2"
             >
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -246,13 +247,13 @@ export default function EnquiryModal() {
           </div>
 
           {/* Body */}
-          <div ref={bodyRef} className="flex-1 px-6 py-5 overflow-hidden">
+          <div ref={bodyRef} className="flex-1 px-4 sm:px-6 py-4 sm:py-5 overflow-y-auto min-h-0">
 
             {sent ? (
               /* ── Success ── */
-              <div className="h-full flex flex-col items-center justify-center gap-4 text-center">
+              <div className="min-h-full flex flex-col items-center justify-center gap-4 text-center py-4">
                 <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center border-2"
+                  className="w-16 h-16 rounded-full flex items-center justify-center border-2 shrink-0"
                   style={{
                     backgroundColor: "color-mix(in srgb, var(--primary) 8%, white)",
                     borderColor: "var(--primary)",
@@ -270,8 +271,8 @@ export default function EnquiryModal() {
                 </div>
 
                 <div>
-                  <h3 className="text-gray-900 text-xl font-extrabold mb-1">Enquiry Submitted!</h3>
-                  <p className="text-gray-400 text-sm max-w-xs leading-relaxed">
+                  <h3 className="text-gray-900 text-lg sm:text-xl font-extrabold mb-1">Enquiry Submitted!</h3>
+                  <p className="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">
                     Our team will contact you within{" "}
                     <strong className="text-gray-700">2 business hours.</strong>
                   </p>
@@ -285,15 +286,15 @@ export default function EnquiryModal() {
                       { l: "Service", v: services.find(s => s.id === form.service)?.label ?? "—" },
                       { l: "City",    v: form.city },
                     ].map(r => (
-                      <div key={r.l}>
+                      <div key={r.l} className="min-w-0">
                         <span className="text-gray-400 text-[10px] uppercase tracking-wider block">{r.l}</span>
-                        <span className="text-gray-800 text-sm font-semibold">{r.v}</span>
+                        <span className="text-gray-800 text-sm font-semibold truncate block">{r.v}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                <div className="flex gap-3">
+                <div className="flex flex-wrap justify-center gap-3">
                   <button
                     onClick={() => {
                       setSent(false);
@@ -319,11 +320,11 @@ export default function EnquiryModal() {
                 {step === 0 && (
                   <div className="flex flex-col gap-4">
                     <div>
-                      <h2 className="text-lg font-extrabold text-gray-900">Tell us about yourself</h2>
+                      <h2 className="text-base sm:text-lg font-extrabold text-gray-900">Tell us about yourself</h2>
                       <p className="text-gray-400 text-xs mt-0.5">We&apos;ll use this to send your quote and follow up.</p>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       <div>
                         <label className={lbl}>
                           Full Name <span style={{ color: "var(--primary)" }}>*</span>
@@ -349,7 +350,7 @@ export default function EnquiryModal() {
                         Phone Number <span style={{ color: "var(--primary)" }}>*</span>
                       </label>
                       <div className="flex gap-2">
-                        <div className="flex items-center gap-2 bg-gray-50 border border-gray-200 px-3 rounded-lg shrink-0">
+                        <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 px-2.5 sm:px-3 rounded-lg shrink-0">
                           <span className="text-base">🇮🇳</span>
                           <span className="text-gray-500 text-sm font-medium">+91</span>
                         </div>
@@ -378,7 +379,7 @@ export default function EnquiryModal() {
                 {step === 1 && (
                   <div className="flex flex-col gap-4">
                     <div>
-                      <h2 className="text-lg font-extrabold text-gray-900">Your project details</h2>
+                      <h2 className="text-base sm:text-lg font-extrabold text-gray-900">Your project details</h2>
                       <p className="text-gray-400 text-xs mt-0.5">Select the lift type and basic project info.</p>
                     </div>
 
@@ -387,7 +388,7 @@ export default function EnquiryModal() {
                       <label className={lbl}>
                         Service Required <span style={{ color: "var(--primary)" }}>*</span>
                       </label>
-                      <div className="grid grid-cols-3 gap-2">
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                         {services.map(s => {
                           const active = form.service === s.id;
                           return (
@@ -464,7 +465,7 @@ export default function EnquiryModal() {
                 {step === 2 && (
                   <div className="flex flex-col gap-4">
                     <div>
-                      <h2 className="text-lg font-extrabold text-gray-900">Almost done!</h2>
+                      <h2 className="text-base sm:text-lg font-extrabold text-gray-900">Almost done!</h2>
                       <p className="text-gray-400 text-xs mt-0.5">Add a message (optional) and review your details.</p>
                     </div>
 
@@ -503,7 +504,7 @@ export default function EnquiryModal() {
                     {/* Summary */}
                     <div className="bg-gray-50 rounded-xl border border-gray-100 p-4">
                       <p className="text-gray-400 text-[10px] uppercase tracking-widest mb-3 font-bold">Enquiry Summary</p>
-                      <div className="grid grid-cols-2 gap-x-6 gap-y-2">
+                      <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2">
                         {[
                           { l: "Name",    v: form.name },
                           { l: "Phone",   v: `+91 ${form.phone}` },
@@ -512,7 +513,7 @@ export default function EnquiryModal() {
                           { l: "Floors",  v: form.floors || "—" },
                           { l: "City",    v: form.city },
                         ].map(r => (
-                          <div key={r.l}>
+                          <div key={r.l} className="min-w-0">
                             <span className="text-gray-400 text-[10px] uppercase tracking-wider block">{r.l}</span>
                             <span className="text-gray-800 text-xs font-semibold truncate block">{r.v}</span>
                           </div>
@@ -527,27 +528,27 @@ export default function EnquiryModal() {
 
           {/* ── Footer nav ── */}
           {!sent && (
-            <div className="shrink-0 px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-white">
+            <div className="shrink-0 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-100 flex items-center justify-between gap-2 bg-white">
               {step > 0 ? (
                 <button
                   onClick={goPrev}
-                  className="flex items-center gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors font-medium"
+                  className="flex items-center gap-1 sm:gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors font-medium shrink-0"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                   </svg>
-                  Back
+                  <span className="hidden xs:inline">Back</span>
                 </button>
               ) : (
                 <a
                   href="tel:+919819002726"
-                  className="flex items-center gap-1.5 text-xs text-gray-400 transition-colors hover:text-[var(--primary)]"
+                  className="flex items-center gap-1.5 text-xs text-gray-400 transition-colors hover:text-[var(--primary)] shrink-0"
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                       d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  +91 98190 02726
+                  <span className="hidden sm:inline">+91 98190 02726</span>
                 </a>
               )}
 
@@ -555,7 +556,7 @@ export default function EnquiryModal() {
                 <button
                   onClick={goNext}
                   disabled={step === 0 ? !step0OK : !step1OK}
-                  className="btn-red text-sm py-2.5 px-7 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0 group"
+                  className="btn-red text-sm py-2.5 px-5 sm:px-7 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0 group shrink-0"
                 >
                   Continue
                   <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -566,7 +567,7 @@ export default function EnquiryModal() {
                 <button
                   onClick={handleSubmit}
                   disabled={loading}
-                  className="btn-red text-sm py-2.5 px-7 group disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="btn-red text-sm py-2.5 px-5 sm:px-7 group disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
                 >
                   {loading ? (
                     <>

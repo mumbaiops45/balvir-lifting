@@ -112,7 +112,7 @@ export default function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden pt-[120px] pb-[130px] bg-[color-mix(in_srgb,var(--primary-dark)_20%,black)]"
+      className="relative overflow-hidden pt-[120px] pb-[130px] bg-[color-mix(in_srgb,var(--primary-light)_20%,black)]"
     >
       <style>{`
         .wcu-bento {

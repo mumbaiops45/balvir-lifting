@@ -57,16 +57,17 @@ export default function Footer() {
 
           {/* Brand — 2 cols */}
           <div className="col-span-2">
-            <Link href="/">
-              <Image
-                src="/logo.PNG"
-                alt="Company Logo"
-                width={180}
-                height={40}
-                priority
-                className="h-[10vh] object-cover"
-              />
-            </Link>
+          <Link href="/" className="flex items-center mb-4">
+          <Image
+            src="/Balvir-lifting-png (1).png"
+            alt="Balvir Lifting Logo"
+            width={260}
+            height={80}
+            priority
+            className="h-14 w-auto"
+          />
+        </Link>
+
             <p className="text-white/40 text-sm leading-relaxed mb-4 max-w-[260px]">
               Trusted supplier of multi-brand electrical, electronics, mechanical, hardware &amp; automation products. Established 2014.
             </p>
