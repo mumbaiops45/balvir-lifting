@@ -140,7 +140,7 @@ export default function WhyUs() {
 
                   {/* Number */}
                   <div className={`hidden md:block text-4xl lg:text-5xl font-extrabold leading-none transition-colors duration-300 ${
-                    isOpen ? "text-[var(--primary)]" : "text-gray-100 group-hover:text-gray-200"
+                    isOpen ? "text-[var(--primary)]" : "text-gray-400 group-hover:text-gray-600"
                   }`}>
                     {r.num}
                   </div>

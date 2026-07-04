@@ -112,9 +112,11 @@ export default function Services() {
               </h3>
               <p className="text-gray-500 text-sm leading-relaxed mb-6">{s.desc}</p>
               <div className="flex flex-wrap gap-2">
-                {s.tags.map(t => (
-                  <span key={t}
-                    className="text-[11px] text-gray-400 border border-gray-100 bg-gray-50/50 px-3 py-1 group-hover:border-red-200 group-hover:text-[var(--primary)] transition-all duration-300 rounded-sm">
+                {s.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="text-[12px] font-semibold text-gray-700 border border-gray-300 bg-white px-4 py-1.5 rounded-md group-hover:border-[var(--primary)]/30 group-hover:bg-[var(--primary)]/5 group-hover:text-[var(--primary)] transition-all duration-300"
+                  >
                     {t}
                   </span>
                 ))}

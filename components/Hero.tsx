@@ -52,7 +52,7 @@ export default function Hero() {
         loop
         playsInline
       >
-        <source src="/Hero (3).mp4" type="video/mp4" />
+        <source src="/lift.mp4" type="video/mp4" />
         <source
           src="https://videos.pexels.com/video-files/7599305/7599305-sd_960_540_25fps.mp4"
           type="video/mp4"
@@ -67,6 +67,15 @@ export default function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
+
+      {/* Angled top-left white-to-black overlay (logo/navbar zone) */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 8%, rgba(255,255,255,0.3) 14%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.5) 38%, transparent 55%)",
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center pt-24">

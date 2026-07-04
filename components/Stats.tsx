@@ -93,7 +93,7 @@ export default function Stats() {
               <div className="text-white font-semibold text-sm md:text-base mb-1">
                 {s.label}
               </div>
-              <div className="text-white/40 text-[10px] md:text-xs tracking-wider uppercase font-medium">
+              <div className="text-white/80 text-[10px] md:text-xs tracking-wider uppercase font-medium">
                 {s.sub}
               </div>
             </div>

@@ -68,14 +68,14 @@ export default function Footer() {
           />
         </Link>
 
-            <p className="text-white/40 text-sm leading-relaxed mb-4 max-w-[260px]">
+            <p className="text-white/50 text-sm leading-relaxed mb-4 max-w-[260px]">
               Trusted supplier of multi-brand electrical, electronics, mechanical, hardware &amp; automation products. Established 2014.
             </p>
 
-            <p className="text-white/35 text-xs leading-relaxed mb-2 max-w-[280px]">
+            <p className="text-white/50 text-xs leading-relaxed mb-2 max-w-[280px]">
               Shop No. 18, Plot S, Sector-2, Railway Station Road, Kharghar, Raigad, Navi Mumbai – 410210, Maharashtra, India.
             </p>
-            <p className="text-white/30 text-[11px] mb-6">GSTIN: 27ADHPA7026N1ZF</p>
+            <p className="text-white/50 text-[11px] mb-6">GSTIN: 27ADHPA7026N1ZF</p>
 
             {/* Globe + cities */}
             <div className="flex items-start gap-3 mb-6">
@@ -90,7 +90,7 @@ export default function Footer() {
                 <div className="flex flex-wrap gap-1.5">
                   {cities.map((c, i) => (
                     <span key={c}
-                      className={`text-[11px] px-2 py-0.5 ${i === 0 ? "bg-[var(--primary-light)] text-white font-semibold" : "text-white/35 border border-white/8"}`}>
+                      className={`text-[11px] px-2 py-0.5 ${i === 0 ? "bg-[var(--primary-light)] text-white font-semibold" : "text-white/70 border border-white/8"}`}>
                       {c}
                     </span>
                   ))}
@@ -114,14 +114,14 @@ export default function Footer() {
           {/* Nav columns */}
           {Object.entries(links).map(([heading, items]) => (
             <div key={heading} className="f-reveal">
-              <h4 className="text-white/50 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
+              <h4 className="text-white/70 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
                 {heading}
               </h4>
               <ul className="space-y-2.5">
                 {items.map(l => (
                   <li key={l}>
                     <a href="#"
-                      className="text-white/45 text-sm hover:text-white transition-colors duration-200">
+                      className="text-white/55 text-sm hover:text-white transition-colors duration-200">
                       {l}
                     </a>
                   </li>
@@ -140,14 +140,14 @@ export default function Footer() {
 
             {/* Left — copyright */}
             <div className="flex flex-wrap items-center gap-5">
-              <span className="text-white/40 text-xs">
+              <span className="text-white/55 text-xs">
                 © {new Date().getFullYear()} Balvir Lifting. All Rights Reserved.
               </span>
             </div>
 
             {/* Right — developer credit */}
             <div className="flex items-center gap-1.5">
-              <span className="text-white/40 text-xs">Built by</span>
+              <span className="text-white/55 text-xs">Built by</span>
               <a href="https://www.nakshatranamahacreations.com" target="_blank" rel="noopener noreferrer"
                 className="text-white/50 text-xs font-semibold hover:text-[var(--primary-light)] transition-colors">
                 Nakshatra Namaha Creations
