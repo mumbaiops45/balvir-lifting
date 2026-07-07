@@ -22,7 +22,8 @@ export default function Contact() {
   const leftRef    = useRef<HTMLDivElement>(null);
   const rightRef   = useRef<HTMLDivElement>(null);
   const [form, setForm] = useState({ name: "", email: "", phone: "", service: "", message: "" });
-  const [sent, setSent] = useState(false);
+const [sent, setSent] = useState(false);
+const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -42,7 +43,57 @@ export default function Contact() {
 
   // Updated focusing indicator to rely directly on primary variables
   const inputClass = "w-full bg-white border border-gray-200 focus:border-[var(--primary)] focus:ring-1 focus:ring-[var(--primary)] text-gray-900 placeholder-gray-300 px-4 py-3 text-sm outline-none transition-all duration-200 rounded-none shadow-xs";
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
+  setLoading(true);
+
+  try {
+    const fd = new FormData();
+
+    fd.append("_subject", `New Contact Enquiry from ${form.name}`);
+    fd.append("_captcha", "false");
+    fd.append("_template", "table");
+
+    fd.append("Name", form.name);
+    fd.append("Email", form.email);
+    fd.append("Phone", form.phone || "—");
+    fd.append("Product Category", form.service || "—");
+    fd.append("Message", form.message || "—");
+
+    const res = await fetch(
+      "https://formsubmit.co/ajax/kishore@balvir.in",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+        },
+        body: fd,
+      }
+    );
+
+    const data = await res.json();
+
+    if (data.success === true || data.success === "true") {
+      setSent(true);
+
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        service: "",
+        message: "",
+      });
+    } else {
+      alert("Failed to send enquiry.");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Something went wrong.");
+  } finally {
+    setLoading(false);
+  }
+};
   return (
     <section id="contact" ref={sectionRef} className="py-24 bg-gray-50 relative overflow-hidden">
       <div className="absolute top-0 inset-x-0 h-px bg-gray-200" />
@@ -107,7 +158,10 @@ export default function Contact() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={e => { e.preventDefault(); setSent(true); }} className="flex flex-col gap-4">
+                <form
+  onSubmit={handleSubmit}
+  className="flex flex-col gap-4"
+>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
                       <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Full Name *</label>
@@ -162,12 +216,29 @@ export default function Contact() {
                   </div>
                   
                   {/* Action submit button configured to utilize your primary theme configuration */}
-                  <button type="submit" className="inline-flex items-center gap-2 justify-center bg-gradient-to-r from-[var(--primary-light)] to-[var(--primary)] text-white font-bold w-full mt-2 py-4 text-sm tracking-widest hover:opacity-95 transition-all duration-300 rounded-sm shadow-xs hover:-translate-y-0.5">
-                    Submit Enquiry
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </button>
+                <button
+  type="submit"
+  disabled={loading}
+  className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--primary-light)] to-[var(--primary)] text-white font-bold w-full mt-2 py-4 text-sm tracking-widest rounded-sm shadow-xs hover:-translate-y-0.5 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+>
+  {loading ? "Sending..." : "Submit Enquiry"}
+
+  {!loading && (
+    <svg
+      className="w-4 h-4"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth={2}
+        d="M17 8l4 4m0 0l-4 4m4-4H3"
+      />
+    </svg>
+  )}
+</button>
                 </form>
               )}
             </div>

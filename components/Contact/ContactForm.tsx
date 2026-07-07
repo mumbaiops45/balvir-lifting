@@ -66,7 +66,7 @@ export default function ContactForm() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res  = await fetch("https://formsubmit.co/ajax/mumbaiops45@gmail.com", {
+      const res  = await fetch("https://formsubmit.co/ajax/kishore@balvir.in", {
         method: "POST",
         headers: { Accept: "application/json" },
         body: new FormData(e.currentTarget),
