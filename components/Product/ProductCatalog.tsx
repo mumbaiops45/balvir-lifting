@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState, useCallback, Fragment } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
@@ -365,8 +365,6 @@ const categories = [
     ],
   },
 
-  // ════════════════════════════════════════════════════════════════════════
-  // All categories below are UNCHANGED
   // ════════════════════════════════════════════════════════════════════════
   {
     id: "wireropes",
@@ -766,21 +764,33 @@ const categories = [
   },
 ];
 
+const SCROLL_PER_PRODUCT = 240; // px of scroll per product on desktop
+
 export default function ProductCatalog() {
   const sectionRef = useRef<HTMLElement>(null);
   const headRef = useRef<HTMLDivElement>(null);
   const tabsRef = useRef<HTMLDivElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const [active, setActive] = useState("elevator");
-  const [animating, setAnimating] = useState(false);
+  const pinRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  const detailRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const stRef = useRef<ScrollTrigger | null>(null);
+  const jumpToStartRef = useRef(false);
 
+  const [active, setActive] = useState("elevator");
+  const [activeProduct, setActiveProduct] = useState(0);
+  const [mobileOpen, setMobileOpen] = useState<number | null>(0);
+
+  const current = categories.find((c) => c.id === active)!;
+
+  /* Entrance animations */
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         headRef.current,
         { y: 60, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 1, ease: "power3.out",
+          y: 0, opacity: 1, duration: 1, ease: "power3.out", immediateRender: false,
           scrollTrigger: { trigger: headRef.current, start: "top 85%" },
         }
       );
@@ -788,278 +798,303 @@ export default function ProductCatalog() {
         tabsRef.current,
         { y: 30, opacity: 0 },
         {
-          y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.2,
+          y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.15, immediateRender: false,
           scrollTrigger: { trigger: tabsRef.current, start: "top 90%" },
-        }
-      );
-      gsap.fromTo(
-        contentRef.current,
-        { y: 40, opacity: 0 },
-        {
-          y: 0, opacity: 1, duration: 0.8, ease: "power2.out", delay: 0.4,
-          scrollTrigger: { trigger: contentRef.current, start: "top 90%" },
         }
       );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
 
+  /* Desktop only: pin + scroll-driven active product */
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section) return;
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = section.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      gsap.to(".parallax-slow", { x: x * 20, y: y * 12, duration: 1.2, ease: "power1.out" });
-      gsap.to(".parallax-fast", { x: x * 40, y: y * 24, duration: 0.8, ease: "power1.out" });
-      gsap.to(".parallax-med", { x: x * -15, y: y * -10, duration: 1, ease: "power1.out" });
-    };
-    section.addEventListener("mousemove", handleMouseMove);
-    return () => section.removeEventListener("mousemove", handleMouseMove);
-  }, []);
+    const mm = gsap.matchMedia();
 
-  const handleTabChange = useCallback(
-    (id: string) => {
-      if (animating || id === active) return;
-      setAnimating(true);
-      gsap.to(contentRef.current, {
-        opacity: 0, y: 16, duration: 0.22, ease: "power2.in",
-        onComplete: () => {
-          setActive(id);
-          gsap.fromTo(
-            contentRef.current,
-            { opacity: 0, y: -16 },
-            {
-              opacity: 1, y: 0, duration: 0.32, ease: "power3.out",
-              onComplete: () => setAnimating(false),
-            }
-          );
+    mm.add("(min-width: 768px)", () => {
+      const len = current.products.length;
+
+      const st = ScrollTrigger.create({
+        trigger: pinRef.current,
+        start: "top 90px",
+        end: () => `+=${len * SCROLL_PER_PRODUCT}`,
+        pin: true,
+        pinSpacing: true,
+        onUpdate: (self) => {
+          const idx = Math.min(len - 1, Math.floor(self.progress * len));
+          setActiveProduct((prev) => (prev === idx ? prev : idx));
         },
       });
-    },
-    [active, animating]
-  );
+      stRef.current = st;
+      ScrollTrigger.refresh();
 
+      if (jumpToStartRef.current) {
+        jumpToStartRef.current = false;
+        window.scrollTo({ top: st.start + 2 });
+      }
+
+      return () => {
+        st.kill();
+        stRef.current = null;
+      };
+    });
+
+    return () => mm.revert();
+  }, [active, current.products.length]);
+
+  /* Detail panel fade on product change (desktop) */
   useEffect(() => {
+    if (!detailRef.current) return;
     gsap.fromTo(
-      ".prod-card",
-      { y: 24, opacity: 0 },
-      { y: 0, opacity: 1, stagger: 0.08, duration: 0.45, ease: "power2.out", delay: 0.1 }
+      detailRef.current,
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }
     );
+  }, [activeProduct, active]);
+
+  /* Keep active item visible inside left list */
+  useEffect(() => {
+    const el = itemRefs.current[activeProduct];
+    const list = listRef.current;
+    if (el && list) {
+      list.scrollTo({
+        top: el.offsetTop - list.clientHeight / 2 + el.clientHeight / 2,
+        behavior: "smooth",
+      });
+    }
+  }, [activeProduct]);
+
+  const handleTabChange = useCallback((id: string) => {
+    if (id === active) return;
+    setActiveProduct(0);
+    setMobileOpen(0);
+    jumpToStartRef.current = true;
+    setActive(id);
   }, [active]);
 
-  const current = categories.find((c) => c.id === active)!;
+  /* Desktop: click a product -> scroll window to matching pin position */
+  const handleProductClick = useCallback(
+    (idx: number) => {
+      const st = stRef.current;
+      if (st) {
+        const len = current.products.length;
+        const y = st.start + ((idx + 0.5) / len) * (st.end - st.start);
+        window.scrollTo({ top: y, behavior: "smooth" });
+      } else {
+        setActiveProduct(idx);
+      }
+    },
+    [current.products.length]
+  );
+
+  const product = current.products[Math.min(activeProduct, current.products.length - 1)];
 
   return (
     <section
       ref={sectionRef}
       id="catalog"
-      className="relative overflow-hidden pt-[100px] pb-[120px] bg-[color-mix(in_srgb,var(--primary-light)_25%,black)] "
+      className="relative overflow-hidden pt-[100px] pb-[120px] bg-[color-mix(in_srgb,var(--primary)_3%,#f7f8fa)]"
     >
-      {/* Background grid */}
-      <div className="absolute inset-0 pointer-events-none bg-[length:60px_60px] bg-[image:linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)]" />
+      {/* Subtle grid */}
+      <div className="absolute inset-0 pointer-events-none bg-[length:60px_60px] bg-[image:linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)]" />
+      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-[image:linear-gradient(90deg,transparent,color-mix(in_srgb,var(--primary)_40%,transparent),transparent)]" />
 
-      {/* Ambient orbs */}
-      <div className="parallax-slow absolute top-[10%] left-[-5%] w-[500px] h-[500px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_12%,transparent)_0%,transparent_70%)]" />
-      <div className="parallax-fast absolute bottom-[5%] right-[-5%] w-[400px] h-[400px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_10%,transparent)_0%,transparent_70%)]" />
-      <div className="parallax-med absolute top-[40%] right-[20%] w-[300px] h-[300px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary-dark)_25%,transparent)_0%,transparent_70%)]" />
-      <div className="parallax-slow absolute top-0 left-0 right-0 h-px pointer-events-none bg-[image:linear-gradient(90deg,transparent,color-mix(in_srgb,var(--primary)_50%,transparent),transparent)]" />
-
-      <div className="max-w-[1280px] mx-auto px-8 relative">
+      <div className="max-w-[1280px] mx-auto px-5 md:px-8 relative">
 
         {/* Header */}
-        <div ref={headRef} className="mb-14">
+        <div ref={headRef} className="mb-12">
           <div className="flex items-center gap-2.5 mb-5">
             <div className="w-8 h-px bg-[image:linear-gradient(90deg,var(--primary),var(--primary-dark))]" />
-            <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[var(--primary-light)]">
+            <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[var(--primary)]">
               Product Catalogue — FY 2026–27
             </span>
           </div>
           <div className="flex flex-wrap justify-between items-end gap-6">
-            <div>
-              <h2 className="text-[clamp(36px,5vw,56px)] font-bold leading-[1.1] tracking-[-0.02em] m-0 text-white">
-                Elevators & Industrial
-                <br />
-                <span className="bg-[image:linear-gradient(135deg,var(--primary-light)_0%,var(--primary)_100%)] bg-clip-text text-transparent">
-                  Products We Supply
-                </span>
-              </h2>
-            </div>
-            <p className="text-white/50 text-sm leading-[1.7] max-w-[360px] m-0">
+            <h2 className="text-[clamp(34px,5vw,54px)] font-bold leading-[1.1] tracking-[-0.02em] m-0 text-[#16181d]">
+              Elevators & Industrial
+              <br />
+              <span className="bg-[image:linear-gradient(135deg,var(--primary)_0%,var(--primary-dark)_100%)] bg-clip-text text-transparent">
+                Products We Supply
+              </span>
+            </h2>
+            <p className="text-[#5c626e] text-sm leading-[1.7] max-w-[360px] m-0">
               Reliable, affordable, high-quality products sourced from trusted global
               and Indian manufacturers. Earning trust through business since 2014.
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col gap-8">
+        {/* ── TOP CATEGORY TABS ── */}
+        <div ref={tabsRef} className="flex flex-wrap gap-2.5 mb-8">
+          {categories.map((c) => {
+            const isActive = active === c.id;
+            return (
+              <button
+                key={c.id}
+                onClick={() => handleTabChange(c.id)}
+                className={`flex items-center gap-2.5 px-4 py-3 rounded-lg cursor-pointer transition-all duration-[250ms] border ${
+                  isActive
+                    ? "bg-[var(--primary)] border-[var(--primary)] text-white shadow-[0_8px_24px_-8px_color-mix(in_srgb,var(--primary)_60%,transparent)]"
+                    : "bg-white border-black/[0.08] text-[#3d4350] hover:border-[color:color-mix(in_srgb,var(--primary)_35%,transparent)]"
+                }`}
+              >
+                <span className={isActive ? "text-white" : "text-[var(--primary)]"}>{c.icon}</span>
+                <span className="text-left">
+                  <span className="block text-[13px] font-semibold leading-[1.3]">{c.shortLabel}</span>
+                  <span className={`block text-[11px] mt-0.5 ${isActive ? "text-white/70" : "text-[#8a8f9a]"}`}>
+                    {c.count} {c.count === 1 ? "product" : "products"}
+                  </span>
+                </span>
+              </button>
+            );
+          })}
+        </div>
 
-          {/* Tabs */}
-          <div ref={tabsRef} className="w-full">
-            <div className="flex flex-col md:flex-row flex-wrap gap-2.5">
-              {categories.map((c) => {
-                const isActive = active === c.id;
+        {/* ══════════ DESKTOP: pinned two-column ══════════ */}
+        <div ref={pinRef} className="hidden md:block">
+          <div className="grid grid-cols-[minmax(280px,360px)_1fr] gap-6 items-stretch h-[600px]">
+
+            {/* LEFT — product tabs */}
+            <div
+              ref={listRef}
+             className="overflow-y-auto rounded-xl border border-black/[0.08] bg-white p-3 flex flex-col gap-2 [scrollbar-width:thin] [scrollbar-color:var(--primary-light)_transparent] [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-[var(--primary-light)] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-[var(--primary)]"
+            >
+              <p className="text-[11px] font-semibold tracking-[0.15em] uppercase text-[#8a8f9a] px-2 pt-1 pb-2 m-0">
+                {current.label}
+              </p>
+              {current.products.map((p, i) => {
+                const isOn = i === activeProduct;
                 return (
-                  <Fragment key={c.id}>
-                    <button
-                      onClick={() => handleTabChange(c.id)}
-                      className={`flex-1 flex items-center gap-3 px-[18px] py-3.5 text-left cursor-pointer rounded-[5px] transition-all duration-[250ms]  ${
-                        isActive
-                          ? "border border-[color:color-mix(in_srgb,var(--primary)_50%,transparent)] bg-[color-mix(in_srgb,var(--primary)_10%,transparent)]"
-                          : "border border-white/[0.06] bg-white/[0.02]"
+                  <button
+                    key={p.title + i}
+                    ref={(el) => { itemRefs.current[i] = el; }}
+                    onClick={() => handleProductClick(i)}
+                    className={`flex items-center gap-3 px-3.5 py-3 rounded-sm text-left cursor-pointer transition-all duration-[250ms] border ${
+                      isOn
+                        ? "bg-[var(--primary-light)] border-[var(--primary-light)] text-white shadow-[0_6px_18px_-6px_color-mix(in_srgb,var(--primary)_55%,transparent)]"
+                        : "bg-transparent border-transparent text-[#3d4350] hover:bg-[color-mix(in_srgb,var(--primary)_5%,transparent)]"
+                    }`}
+                  >
+                    <span
+                      className={`w-9 h-9 rounded-lg shrink-0 flex items-center justify-center transition-colors duration-[250ms] ${
+                        isOn ? "bg-white/15 text-white" : "bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] text-[var(--primary)]"
                       }`}
                     >
-                      <span
-                        className={`w-[38px] h-[38px] rounded-lg shrink-0 flex items-center justify-center transition-all duration-[250ms] ${
-                          isActive
-                            ? "bg-[color-mix(in_srgb,var(--primary)_20%,transparent)] text-[var(--primary-light)]"
-                            : "bg-white/5 text-white/40"
-                        }`}
-                      >
-                        {c.icon}
-                      </span>
-                      <div className="min-w-0">
-                        <p className={`text-[13px] font-medium m-0 leading-[1.4] transition-colors duration-[250ms] ${isActive ? "text-white/90" : "text-white/50"}`}>
-                          {c.shortLabel}
-                        </p>
-                        <p className={`text-[11px] m-0 mt-0.5 transition-colors duration-[250ms] ${isActive ? "text-[var(--primary)]" : "text-white/30"}`}>
-                          {c.count} {c.count === 1 ? "product" : "products"}
-                        </p>
-                      </div>
-                      <div className="ml-auto shrink-0 md:hidden">
-                        {isActive ? <FiChevronUp size={18} color="var(--primary-light)" /> : <FiChevronDown size={18} color="var(--primary-light)" />}
-                      </div>
-                    </button>
-
-                    {/* Mobile accordion content */}
-                    {isActive && (
-                      <div className="block md:hidden flex-1 min-w-0" ref={contentRef}>
-                        <ContentPanel current={current} />
-                        <StatsBlock />
-                      </div>
-                    )}
-                  </Fragment>
+                      {p.icon}
+                    </span>
+                    <span className={`text-[13px] font-medium leading-[1.35] ${isOn ? "text-white" : ""}`}>
+                      {p.title}
+                    </span>
+                    <span className={`ml-auto text-[11px] font-semibold shrink-0 ${isOn ? "text-white/60" : "text-[#c0c4cc]"}`}>
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </button>
                 );
               })}
             </div>
-          </div>
 
-          {/* Desktop content panel */}
-          <div className="hidden md:block flex-1 min-w-0" ref={contentRef}>
-            <ContentPanel current={current} />
-            <StatsBlock />
-          </div>
+            {/* RIGHT — detail panel (white) */}
+            <div className="rounded-xl border border-black/[0.08] bg-white shadow-[0_20px_50px_-24px_rgba(0,0,0,0.18)] overflow-hidden flex flex-col">
+              <div className="flex items-center gap-3.5 px-8 py-5 border-b border-black/[0.06] bg-[color-mix(in_srgb,var(--primary)_100%,white)]">
+                <span className="w-11 h-11 rounded-[10px] flex items-center justify-center bg-[color-mix(in_srgb,var(--primary)_10%,white)] text-[var(--primary)]">
+                  {current.icon}
+                </span>
+                <div>
+                  <p className="text-[11px] text-white m-0 tracking-[0.1em] uppercase">{current.shortLabel}</p>
+                  <p className="text-[13px] font-medium text-white m-0 mt-0.5">
+                    Product {String(activeProduct + 1).padStart(2, "0")} of {String(current.products.length).padStart(2, "0")}
+                  </p>
+                </div>
+                <div className="ml-auto text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--primary)] bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] px-3 py-1 rounded-[20px]">
+                  FY 2026–27
+                </div>
+              </div>
 
+              <div ref={detailRef} className="p-8 flex-1 overflow-y-auto">
+                {/* <div className="flex items-start gap-4 mb-5">
+                  <div className="w-12 h-12 rounded-xl shrink-0 flex items-center justify-center bg-[image:linear-gradient(135deg,var(--primary),var(--primary-dark))] text-white">
+                    {product.icon}
+                  </div>
+                  <h3 className="text-[24px] font-bold text-[#16181d] m-0 leading-[1.25] tracking-[-0.01em]">
+                    {product.title}
+                  </h3>
+                </div> */}
+
+               
+                <ul className="list-none p-0 m-0 flex flex-col gap-3">
+                  {product.details.map((d, j) => (
+                    <li key={j} className="flex items-start gap-3 px-4 py-3 rounded-lg bg-[#f7f8fa] border border-black/[0.04]">
+                      <span className="w-[6px] h-[6px] rounded-full shrink-0 bg-[var(--primary)] mt-[8px]" />
+                      <span className="text-[14px] text-[#3d4350] leading-[1.65]">{d}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Progress bar */}
+              <div className="h-[3px] bg-black/[0.05]">
+                <div
+                  className="h-full bg-[image:linear-gradient(90deg,var(--primary),var(--primary-dark))] transition-[width] duration-300"
+                  style={{ width: `${((activeProduct + 1) / current.products.length) * 100}%` }}
+                />
+              </div>
+            </div>
+
+          </div>
         </div>
+
+        {/* ══════════ MOBILE: simple accordion, no GSAP pin ══════════ */}
+        <div className="md:hidden flex flex-col gap-2.5">
+          {current.products.map((p, i) => {
+            const isOpen = mobileOpen === i;
+            return (
+              <div key={p.title + i} className="rounded-xl border border-black/[0.08] bg-white overflow-hidden">
+                <button
+                  onClick={() => setMobileOpen(isOpen ? null : i)}
+                  className={`w-full flex items-center gap-3 px-4 py-3.5 text-left cursor-pointer transition-colors duration-200 ${
+                    isOpen ? "bg-[var(--primary-light)] text-white" : "bg-white text-[#3d4350]"
+                  }`}
+                >
+                  <span
+                    className={`w-9 h-9 rounded-lg shrink-0 flex items-center justify-center ${
+                      isOpen ? "bg-white/15 text-white" : "bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] text-[var(--primary)]"
+                    }`}
+                  >
+                    {p.icon}
+                  </span>
+                  <span className="text-[13px] font-semibold leading-[1.35]">{p.title}</span>
+                  <span className="ml-auto shrink-0">
+                    {isOpen ? <FiChevronUp size={18} /> : <FiChevronDown size={18} />}
+                  </span>
+                </button>
+
+                {isOpen && (
+                  <div className="px-4 pt-4 pb-5 border-t border-black/[0.06]">
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {p.brands.map((b) => (
+                        <span
+                          key={b}
+                          className="text-[11px] font-semibold text-[var(--primary)] bg-[color-mix(in_srgb,var(--primary)_7%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-[3px] rounded-[20px]"
+                        >
+                          {b}
+                        </span>
+                      ))}
+                    </div>
+                    <ul className="list-none p-0 m-0 flex flex-col gap-2">
+                      {p.details.map((d, j) => (
+                        <li key={j} className="flex items-start gap-2.5">
+                          <span className="w-[5px] h-[5px] rounded-full shrink-0 bg-[var(--primary)] mt-[7px]" />
+                          <span className="text-[13px] text-[#3d4350] leading-[1.6]">{d}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
-  );
-}
-
-function ContentPanel({ current }: { current: typeof categories[0] }) {
-  return (
-    <>
-      <div className="flex items-center gap-3.5 px-7 py-5 rounded-t-xl border border-white/[0.06] [border-bottom-color:color-mix(in_srgb,var(--primary)_20%,transparent)] bg-[color-mix(in_srgb,var(--primary)_5%,transparent)]">
-        <span className="w-11 h-11 rounded-[10px] flex items-center justify-center bg-[color-mix(in_srgb,var(--primary)_15%,transparent)] text-[var(--primary-light)]">
-          {current.icon}
-        </span>
-        <div>
-          <h3 className="text-[17px] font-semibold text-white m-0 leading-[1.3]">{current.label}</h3>
-          <p className="text-xs text-white/40 m-0 mt-[3px]">
-            {current.count} {current.count === 1 ? "product" : "products"} in this category
-          </p>
-        </div>
-        <div className="ml-auto text-[11px] font-semibold tracking-[0.1em] uppercase text-[var(--primary-light)] bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] px-3 py-1 rounded-[20px]">
-          FY 2026–27
-        </div>
-      </div>
-      <div className="p-6 border border-white/[0.06] border-t-0 rounded-b-xl bg-white/[0.01] flex flex-col gap-4">
-        {current.products.map((p, i) => (
-          <ProductCard key={i} product={p} index={i} />
-        ))}
-      </div>
-    </>
-  );
-}
-
-function StatsBlock() {
-  return (
-    <div className="mt-6 p-5 border border-white/[0.06] rounded-xl bg-white/[0.02]">
-      <p className="text-[11px] text-white/40 mb-4 tracking-[0.1em] uppercase">
-        Why Balvir Lifting
-      </p>
-      {[
-        { val: "2014", label: "Established" },
-        { val: "6+", label: "Product segments" },
-        { val: "Global", label: "Sourcing network" },
-        { val: "Pan India", label: "Service coverage" },
-      ].map((s) => (
-        <div key={s.val} className="flex justify-between items-center py-2 border-b border-white/[0.04]">
-          <span className="text-xs text-white/50">{s.label}</span>
-          <span className="text-[13px] font-semibold text-[var(--primary-light)]">{s.val}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function ProductCard({
-  product,
-  index,
-}: {
-  product: { title: string; icon: React.ReactNode; brands: string[]; details: string[] };
-  index: number;
-}) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const accentRef = useRef<HTMLDivElement>(null);
-  const [hovered, setHovered] = useState(false);
-
-  const handleEnter = () => {
-    setHovered(true);
-    gsap.to(accentRef.current, { scaleY: 1, duration: 0.3, ease: "power2.out" });
-    gsap.to(cardRef.current, { borderColor: "color-mix(in srgb, var(--primary) 30%, transparent)", duration: 0.25 });
-  };
-
-  const handleLeave = () => {
-    setHovered(false);
-    gsap.to(accentRef.current, { scaleY: 0, duration: 0.25, ease: "power2.in" });
-    gsap.to(cardRef.current, { borderColor: "rgba(255,255,255,0.06)", duration: 0.25 });
-  };
-
-  return (
-    <div
-      className={`prod-card relative overflow-hidden border border-white/[0.06] rounded-[10px] px-6 py-[22px] transition-[background] duration-[250ms] cursor-default ${
-        hovered ? "bg-[color-mix(in_srgb,var(--primary)_4%,transparent)]" : "bg-white/[0.02]"
-      }`}
-      ref={cardRef}
-      onMouseEnter={handleEnter}
-      onMouseLeave={handleLeave}
-    >
-      <div ref={accentRef} className="absolute left-0 top-0 bottom-0 w-[3px] origin-bottom scale-y-0 bg-[image:linear-gradient(180deg,var(--primary),var(--primary-dark))]" />
-      <div className="flex items-start gap-3.5 mb-4">
-        <div className="w-10 h-10 rounded-lg shrink-0 flex items-center justify-center bg-[color-mix(in_srgb,var(--primary)_10%,transparent)] text-[var(--primary-light)]">
-          {product.icon}
-        </div>
-        <h4 className="text-[15px] font-semibold text-white/90 m-0 leading-[1.4] pt-0.5">
-          {product.title}
-        </h4>
-      </div>
-      <div className="flex flex-wrap gap-1.5 mb-4">
-        {product.brands.map((b) => (
-          <span key={b} className="text-[11px] font-semibold text-[var(--primary-light)] bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] px-2.5 py-[3px] rounded-[20px] tracking-[0.03em]">
-            {b}
-          </span>
-        ))}
-      </div>
-      <ul className="list-none p-0 m-0 flex flex-col gap-1.5">
-        {product.details.map((d, j) => (
-          <li key={j} className="flex items-start gap-2.5">
-            <span className="w-[5px] h-[5px] rounded-full shrink-0 bg-[var(--primary)] mt-[7px]" />
-            <span className="text-[13px] text-white/50 leading-[1.6]">{d}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }

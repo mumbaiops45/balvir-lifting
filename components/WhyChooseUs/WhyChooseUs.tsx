@@ -12,6 +12,7 @@ const reasons = [
     title: "One Source, Many Brands",
     body: "A single dependable supplier for elevator accessories, wire ropes, LED lighting, cables and automation. Fewer vendors, less hassle, and one team that knows your project end to end.",
     span: "feature",
+    tag: "Single-window supply",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="3" />
@@ -24,6 +25,7 @@ const reasons = [
     title: "Strong Global Partnerships",
     body: "Long-standing relationships with CEDES, MEMCO, FERMATOR, WITTUR, KISWIRE, Usha Martin and more — genuine products, latest tech, every time.",
     span: "tall",
+    tag: "Genuine products",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="12" cy="12" r="10" />
@@ -37,6 +39,7 @@ const reasons = [
     title: "Earn Trust With Business",
     body: "Our reputation rests on one principle — a professional experience every time, with customer satisfaction as the only goal.",
     span: "normal",
+    tag: "Customer first",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
@@ -48,6 +51,7 @@ const reasons = [
     title: "Mumbai Stock, Pan-India Reach",
     body: "Stock and support in Navi Mumbai, supplying Mumbai, Delhi, Kolkata, Chennai and beyond. Competitive pricing, timely delivery, wherever your site is.",
     span: "normal",
+    tag: "Fast delivery",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z" />
@@ -60,6 +64,7 @@ const reasons = [
     title: "Reliable and Affordable",
     body: "Best quality at fair prices — dependable products, sensible pricing, zero compromise on safety.",
     span: "wide",
+    tag: "Fair pricing",
     icon: (
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <line x1="12" y1="1" x2="12" y2="23" />
@@ -68,6 +73,8 @@ const reasons = [
     ),
   },
 ];
+
+const featureBrands = ["CEDES", "MEMCO", "FERMATOR", "WITTUR", "KISWIRE", "Usha Martin"];
 
 const stats = [
   { val: "2014", label: "Established" },
@@ -85,7 +92,7 @@ export default function WhyChooseUs() {
         ".wcu-head > *",
         { y: 36, opacity: 0 },
         {
-          y: 0, opacity: 1, stagger: 0.08, duration: 0.8, ease: "power3.out",
+          y: 0, opacity: 1, stagger: 0.08, duration: 0.8, ease: "power3.out", immediateRender: false,
           scrollTrigger: { trigger: ".wcu-head", start: "top 90%" },
         }
       );
@@ -93,7 +100,7 @@ export default function WhyChooseUs() {
         ".wcu-card",
         { y: 48, opacity: 0, scale: 0.97 },
         {
-          y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 0.7, ease: "power3.out",
+          y: 0, opacity: 1, scale: 1, stagger: 0.1, duration: 0.7, ease: "power3.out", immediateRender: false,
           scrollTrigger: { trigger: ".wcu-bento", start: "top 80%" },
         }
       );
@@ -101,7 +108,7 @@ export default function WhyChooseUs() {
         ".wcu-stat",
         { y: 16, opacity: 0 },
         {
-          y: 0, opacity: 1, stagger: 0.07, duration: 0.5, ease: "power2.out",
+          y: 0, opacity: 1, stagger: 0.07, duration: 0.5, ease: "power2.out", immediateRender: false,
           scrollTrigger: { trigger: ".wcu-stats", start: "top 94%" },
         }
       );
@@ -117,27 +124,72 @@ export default function WhyChooseUs() {
       <style>{`
         .wcu-bento {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-auto-rows: minmax(190px, auto);
+          grid-template-columns: repeat(6, 1fr);
+          grid-auto-rows: minmax(210px, auto);
           gap: 18px;
         }
-        .wcu-feature { grid-column: span 2; grid-row: span 1; }
-        .wcu-tall    { grid-column: span 1; grid-row: span 2; }
-        .wcu-normal  { grid-column: span 1; }
-        .wcu-wide    { grid-column: span 2; }
+        .wcu-feature { grid-column: span 4; }
+        .wcu-tall    { grid-column: span 2; }
+        .wcu-normal  { grid-column: span 3; }
+        .wcu-wide    { grid-column: span 6; }
         @media (max-width: 900px) {
           .wcu-bento { grid-template-columns: 1fr 1fr; }
           .wcu-feature, .wcu-wide { grid-column: span 2; }
-          .wcu-tall { grid-column: span 1; grid-row: span 1; }
+          .wcu-tall, .wcu-normal { grid-column: span 1; }
         }
         @media (max-width: 560px) {
           .wcu-bento { grid-template-columns: 1fr; }
-          .wcu-feature, .wcu-wide, .wcu-tall, .wcu-normal { grid-column: span 1; grid-row: span 1; }
+          .wcu-feature, .wcu-wide, .wcu-tall, .wcu-normal { grid-column: span 1; }
         }
-        .wcu-card { transition: transform 0.4s cubic-bezier(.2,.8,.2,1), border-color 0.3s; }
-        .wcu-card:hover { transform: translateY(-4px); }
+
+        .wcu-card {
+          transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s cubic-bezier(.2,.8,.2,1);
+        }
+        .wcu-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 28px 70px -28px color-mix(in srgb, var(--primary) 40%, transparent);
+        }
+        .wcu-card:hover .wcu-topline { transform: scaleX(1); }
+        .wcu-card:hover .wcu-icon {
+          background-image: linear-gradient(135deg, var(--primary), var(--primary-dark));
+          color: #fff;
+          box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--primary) 70%, transparent);
+          transform: rotate(-4deg) scale(1.05);
+        }
+        .wcu-card:hover .wcu-shine { transform: translateX(120%) skewX(-18deg); }
+        .wcu-topline {
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
+        }
+        .wcu-icon {
+          transition: background-image 0.35s, color 0.35s, box-shadow 0.35s, transform 0.35s cubic-bezier(.2,.8,.2,1);
+        }
+        .wcu-shine {
+          position: absolute;
+          top: 0; bottom: 0;
+          width: 55%;
+          transform: translateX(-160%) skewX(-18deg);
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.045), transparent);
+          transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
+          pointer-events: none;
+        }
+
+        .wcu-tick {
+          position: absolute;
+          width: 14px; height: 14px;
+          pointer-events: none;
+          opacity: 0.5;
+          transition: opacity 0.3s;
+        }
+        .wcu-card:hover .wcu-tick { opacity: 1; }
+
         .wcu-stats { display: flex; flex-wrap: wrap; gap: 0; }
-        .wcu-stat { flex: 1 1 160px; }
+        .wcu-stat { flex: 1 1 160px; position: relative; }
+        .wcu-stat:hover .wcu-stat-glow { opacity: 1; }
+        .wcu-stat:hover .wcu-stat-val { transform: translateY(-2px); }
+        .wcu-stat-glow { transition: opacity 0.35s; }
+        .wcu-stat-val { transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
       `}</style>
 
       {/* Background grid */}
@@ -168,7 +220,7 @@ export default function WhyChooseUs() {
             </span>
           </h2>
 
-          <p className="text-white/50 text-[15px] leading-[1.7] m-0">
+          <p className="text-white/60 text-[15.5px] leading-[1.7] m-0">
             From a single Navi Mumbai office, we serve elevator contractors, OEMs and
             project teams across India — reliably, since 2014.
           </p>
@@ -182,16 +234,17 @@ export default function WhyChooseUs() {
         </div>
 
         {/* Stats strip */}
-        <div className="wcu-stats mt-[22px] border border-white/[0.07] rounded-2xl overflow-hidden bg-white/[0.015]">
+        <div className="wcu-stats mt-[22px] border border-white/[0.08] rounded-2xl overflow-hidden bg-white/[0.02] backdrop-blur-sm">
           {stats.map((s, i, arr) => (
             <div
               key={s.val}
-              className={`wcu-stat px-6 py-[30px] text-center ${i < arr.length - 1 ? "border-r border-white/[0.06]" : ""}`}
+              className={`wcu-stat px-6 py-[32px] text-center ${i < arr.length - 1 ? "md:border-r border-white/[0.06]" : ""}`}
             >
-              <p className="text-[clamp(24px,3vw,32px)] font-bold m-0 mb-1.5 bg-[image:linear-gradient(135deg,var(--primary-light),var(--primary))] bg-clip-text text-transparent">
+              <div className="wcu-stat-glow absolute inset-0 opacity-0 pointer-events-none bg-[image:radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--primary)_10%,transparent),transparent_70%)]" />
+              <p className="wcu-stat-val relative text-[clamp(26px,3vw,34px)] font-bold m-0 mb-1.5 bg-[image:linear-gradient(135deg,var(--primary-light),var(--primary))] bg-clip-text text-transparent tracking-[-0.02em]">
                 {s.val}
               </p>
-              <p className="text-[12.5px] text-white/40 m-0 tracking-[0.04em]">
+              <p className="relative text-[13px] text-white/55 m-0 tracking-[0.08em] uppercase">
                 {s.label}
               </p>
             </div>
@@ -206,13 +259,13 @@ export default function WhyChooseUs() {
 function ReasonCard({
   reason,
 }: {
-  reason: { number: string; title: string; body: string; span: string; icon: React.ReactNode };
+  reason: { number: string; title: string; body: string; span: string; tag: string; icon: React.ReactNode };
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const ringRef = useRef<HTMLDivElement>(null);
   const isFeature = reason.span === "feature";
-  const isTall = reason.span === "tall";
+  const isWide = reason.span === "wide";
 
   const handleMove = (e: React.MouseEvent) => {
     const el = cardRef.current;
@@ -221,10 +274,10 @@ function ReasonCard({
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     if (glowRef.current) {
-      glowRef.current.style.background = `radial-gradient(420px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary) 14%, transparent), transparent 60%)`;
+      glowRef.current.style.background = `radial-gradient(420px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary) 13%, transparent), transparent 60%)`;
     }
     if (ringRef.current) {
-      ringRef.current.style.background = `radial-gradient(280px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary-light) 50%, transparent), transparent 65%)`;
+      ringRef.current.style.background = `radial-gradient(300px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary-light) 55%, transparent), transparent 65%)`;
     }
   };
 
@@ -238,44 +291,91 @@ function ReasonCard({
   return (
     <div
       ref={cardRef}
-      className={`wcu-card wcu-${reason.span} relative rounded-[18px] border border-white/[0.07] bg-white/[0.022] overflow-hidden flex flex-col cursor-default ${isFeature ? "px-10 py-[38px]" : "p-[30px]"} ${isTall ? "justify-between" : "justify-start"}`}
+      className={`wcu-card wcu-${reason.span} group relative rounded-[20px] border border-white/[0.09] overflow-hidden flex flex-col justify-start cursor-default bg-[image:linear-gradient(160deg,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0.015)_45%,color-mix(in_srgb,var(--primary)_4%,transparent)_100%)] ${
+        isFeature ? "px-10 py-[38px]" : "p-[30px]"
+      } ${isWide ? "md:flex-row md:items-center md:gap-9" : ""}`}
       onMouseMove={handleMove}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
+      {/* Top accent line — draws on hover */}
+      <div className="wcu-topline absolute top-0 left-0 right-0 h-[2px] bg-[image:linear-gradient(90deg,var(--primary),var(--primary-light),transparent)]" />
+
+      {/* Diagonal shine sweep */}
+      <div className="wcu-shine" />
+
       {/* Animated gradient ring (border-light) */}
       <div
         ref={ringRef}
-        className="absolute inset-0 rounded-[18px] p-px opacity-0 pointer-events-none [-webkit-mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [-webkit-mask-composite:xor] [mask-composite:exclude]"
+        className="absolute inset-0 rounded-[20px] p-px opacity-0 pointer-events-none [-webkit-mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [-webkit-mask-composite:xor] [mask-composite:exclude]"
       />
 
       {/* Cursor spotlight glow */}
       <div ref={glowRef} className="absolute inset-0 opacity-0 pointer-events-none" />
 
+      {/* Corner glow behind number */}
+      <div className="absolute top-[-40px] right-[-40px] w-[220px] h-[220px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_8%,transparent),transparent_70%)]" />
+
+      {/* Corner ticks (bottom-left) */}
+      <svg className="wcu-tick left-4 bottom-4" viewBox="0 0 14 14" fill="none">
+        <path d="M1 13V6M1 13H8" stroke="color-mix(in srgb, var(--primary-light) 55%, transparent)" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+
       {/* Engraved number */}
       <span
-        className={`absolute font-extrabold leading-none tracking-[-0.05em] select-none pointer-events-none bg-[image:linear-gradient(180deg,color-mix(in_srgb,var(--primary-light)_16%,transparent),color-mix(in_srgb,var(--primary)_2%,transparent))] bg-clip-text text-transparent ${isFeature ? "right-7 top-[18px] text-[110px]" : "right-5 top-[14px] text-[76px]"}`}
+        className={`absolute font-extrabold leading-none tracking-[-0.05em] select-none pointer-events-none bg-[image:linear-gradient(180deg,color-mix(in_srgb,var(--primary-light)_12%,transparent),transparent)] bg-clip-text text-transparent transition-opacity duration-300 group-hover:opacity-70 ${
+          isFeature ? "right-8 top-[20px] text-[110px]" : "right-5 top-[16px] text-[76px]"
+        }`}
       >
         {reason.number}
       </span>
 
-      {/* Icon */}
-      <div className="relative z-[1] w-[50px] h-[50px] rounded-[13px] mb-[18px] flex items-center justify-center shrink-0 bg-[image:linear-gradient(135deg,color-mix(in_srgb,var(--primary)_20%,transparent),color-mix(in_srgb,var(--primary-dark)_25%,transparent))] border border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] text-[var(--primary-light)]">
-        {reason.icon}
+      {/* Icon + tag row */}
+      <div className={`relative z-[1] flex items-center gap-3.5 ${isWide ? "mb-[18px] md:mb-0 shrink-0" : "mb-[20px]"}`}>
+        <div className="wcu-icon w-[52px] h-[52px] rounded-[14px] flex items-center justify-center shrink-0 bg-[image:linear-gradient(135deg,color-mix(in_srgb,var(--primary)_20%,transparent),color-mix(in_srgb,var(--primary-dark)_25%,transparent))] border border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] text-[var(--primary-light)]">
+          {reason.icon}
+        </div>
+        <span className={`text-[10.5px] font-semibold tracking-[0.14em] uppercase text-[var(--primary-light)]/80 bg-[color-mix(in_srgb,var(--primary)_9%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-1 rounded-full ${isWide ? "md:hidden" : ""}`}>
+          {reason.tag}
+        </span>
       </div>
 
       {/* Text */}
       <div className="relative z-[1]">
         <h3
-          className={`font-semibold text-white m-0 mb-2.5 leading-[1.28] tracking-[-0.01em] ${isFeature ? "text-[22px] max-w-[360px]" : "text-[18px]"}`}
+          className={`font-semibold text-white m-0 mb-3 leading-[1.3] tracking-[-0.01em] ${
+            isFeature ? "text-[24px] max-w-[420px]" : "text-[19px] max-w-[92%]"
+          }`}
         >
           {reason.title}
         </h3>
         <p
-          className={`text-white/50 m-0 leading-[1.7] ${isFeature ? "text-[15px] max-w-[460px]" : "text-[13.5px]"}`}
+          className={`text-white/[0.72] m-0 leading-[1.75] ${
+            isFeature ? "text-[15.5px] max-w-[520px]" : "text-[14.5px]"
+          } ${isWide ? "md:max-w-[640px]" : ""}`}
         >
           {reason.body}
         </p>
+
+        {/* Feature card: brand chips row */}
+        {isFeature && (
+          <div className="flex flex-wrap gap-2 mt-6">
+            {featureBrands.map((b) => (
+              <span
+                key={b}
+                className="text-[10.5px] font-semibold tracking-[0.08em] uppercase text-white/60 bg-white/[0.04] border border-white/[0.09] px-3 py-[5px] rounded-full transition-colors duration-300 group-hover:border-[color:color-mix(in_srgb,var(--primary)_35%,transparent)] group-hover:text-white/80"
+              >
+                {b}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {isWide && (
+          <span className="hidden md:inline-flex mt-4 text-[10.5px] font-semibold tracking-[0.14em] uppercase text-[var(--primary-light)]/80 bg-[color-mix(in_srgb,var(--primary)_9%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-1 rounded-full">
+            {reason.tag}
+          </span>
+        )}
       </div>
     </div>
   );

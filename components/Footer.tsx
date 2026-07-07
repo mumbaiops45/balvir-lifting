@@ -49,7 +49,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer ref={footerRef} className="bg-black border-t border-white/5">
+    <footer ref={footerRef} className="bg-[var(--primary)] border-t border-white/5">
 
       {/* ── Main grid ─────────────────────────── */}
       <div className="max-w-7xl mx-auto px-6 lg:px-10 pt-16 pb-10">
@@ -57,14 +57,14 @@ export default function Footer() {
 
           {/* Brand — 2 cols */}
           <div className="col-span-2">
-          <Link href="/" className="flex items-center mb-4 bg-white w-fit py-3 px-4">
+           <Link href="/" className="flex items-center mb-4 bg-white w-fit py-2 px-5">
           <Image
             src="/Balvir-lifting-png (1).png"
             alt="Balvir Lifting Logo"
             width={260}
             height={80}
             priority
-            className="h-14 w-auto "
+            className="h-[12vh] w-auto"
           />
         </Link>
 
