@@ -120,16 +120,16 @@ const handleSubmit = async (e: React.FormEvent) => {
                     {i.icon}
                   </div>
                   <div>
-                    <div className="text-gray-400 text-[11px] uppercase tracking-widest mb-0.5">{i.label}</div>
+                    <div className="text-gray-700 text-[11px] uppercase tracking-widest mb-0.5">{i.label}</div>
                     <div className="text-gray-900 font-semibold text-sm">{i.val}</div>
-                    <div className="text-gray-400 text-xs mt-0.5">{i.sub}</div>
+                    <div className="text-gray-700 text-xs mt-0.5">{i.sub}</div>
                   </div>
                 </div>
               ))}
             </div>
 
             <div className="border-t border-gray-200 pt-7">
-              <div className="text-gray-400 text-[11px] uppercase tracking-widest mb-4">Supply Regions</div>
+              <div className="text-gray-800 text-[11px] uppercase tracking-widest mb-4">Supply Regions</div>
               <div className="flex flex-wrap gap-2">
                 {["Navi Mumbai","Mumbai","New Delhi","Kolkata","Chennai","Pan India"].map(r => (
                   <span key={r} className="text-xs text-gray-500 border border-gray-200 bg-white px-3 py-1.5">{r}</span>
@@ -164,13 +164,13 @@ const handleSubmit = async (e: React.FormEvent) => {
 >
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Full Name *</label>
+                      <label className="text-gray-700 text-[11px] uppercase tracking-widest block mb-2">Full Name *</label>
                       <input required type="text" value={form.name}
                         onChange={e => setForm({ ...form, name: e.target.value })}
                         placeholder="Your name" className={inputClass} />
                     </div>
                     <div>
-                      <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Email *</label>
+                      <label className="text-gray-700 text-[11px] uppercase tracking-widest block mb-2">Email *</label>
                       <input required type="email" value={form.email}
                         onChange={e => setForm({ ...form, email: e.target.value })}
                         placeholder="your@email.com" className={inputClass} />
@@ -178,13 +178,13 @@ const handleSubmit = async (e: React.FormEvent) => {
                   </div>
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Phone</label>
+                      <label className="text-gray-700 text-[11px] uppercase tracking-widest block mb-2">Phone</label>
                       <input type="tel" value={form.phone}
                         onChange={e => setForm({ ...form, phone: e.target.value })}
                         placeholder="+91 XXXXX XXXXX" className={inputClass} />
                     </div>
                     <div>
-                      <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Product Category</label>
+                      <label className="text-gray-700 text-[11px] uppercase tracking-widest block mb-2">Product Category</label>
                       <div className="relative">
                         <select value={form.service}
                           onChange={e => setForm({ ...form, service: e.target.value })}
@@ -208,7 +208,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     </div>
                   </div>
                   <div>
-                    <label className="text-gray-400 text-[11px] uppercase tracking-widest block mb-2">Requirement Details</label>
+                    <label className="text-gray-700 text-[11px] uppercase tracking-widest block mb-2">Requirement Details</label>
                     <textarea rows={4} value={form.message}
                       onChange={e => setForm({ ...form, message: e.target.value })}
                       placeholder="Product, brand, quantity, specifications, delivery location..."

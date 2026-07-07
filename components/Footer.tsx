@@ -23,8 +23,10 @@ export default function Footer() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      const elements = footerRef.current?.querySelectorAll(".f-reveal") ?? [];
+
       gsap.fromTo(
-        footerRef.current?.querySelectorAll(".f-reveal") ?? [],
+        elements,
         {
           y: 20,
           opacity: 0,
@@ -37,15 +39,33 @@ export default function Footer() {
           ease: "power3.out",
           scrollTrigger: {
             trigger: footerRef.current,
-            start: "top 88%",
+            start: "top 95%",
+            once: true,
           },
         }
       );
 
-      ScrollTrigger.refresh();
+      // Safety fallback: if ScrollTrigger somehow never fires
+      // (e.g. layout shift from late-loading logo/fonts pushed
+      // the trigger point past where it was calculated), force
+      // the footer content to be visible after a short delay.
+      const fallback = window.setTimeout(() => {
+        gsap.to(elements, { opacity: 1, y: 0, duration: 0.4 });
+      }, 1500);
+
+      return () => window.clearTimeout(fallback);
     }, footerRef);
 
-    return () => ctx.revert();
+    // Recalculate trigger positions once images/fonts have
+    // fully loaded, since late layout shifts can throw off
+    // "top 95%" if calculated too early.
+    const handleLoad = () => ScrollTrigger.refresh();
+    window.addEventListener("load", handleLoad);
+
+    return () => {
+      ctx.revert();
+      window.removeEventListener("load", handleLoad);
+    };
   }, []);
 
   return (
@@ -135,7 +155,7 @@ export default function Footer() {
                   +91 98190 02726
                 </a>
               </div>
-              <a href="mailto:kishore@balvir.in" className="text-white/70 text-xs hover:text-white transition-colors mt-3 inline-block">
+              <a href="mailto:kishore@balvir.in" className="text-white/45 text-xs hover:text-white transition-colors mt-3 inline-block">
                 kishore@balvir.in
               </a>
             </div>
@@ -151,14 +171,14 @@ export default function Footer() {
 
             {/* Left — copyright */}
             <div className="flex flex-wrap items-center gap-5">
-              <span className="text-white/65 text-xs">
+              <span className="text-white/55 text-xs">
                 © {new Date().getFullYear()} Balvir Lifting. All Rights Reserved.
               </span>
             </div>
 
             {/* Right — developer credit */}
             <div className="flex items-center gap-1.5">
-              <span className="text-white/65 text-xs">Built by</span>
+              <span className="text-white/55 text-xs">Built by</span>
               <a href="https://www.nakshatranamahacreations.com" target="_blank" rel="noopener noreferrer"
                 className="text-white/65 text-xs font-semibold hover:text-[var(--primary-light)] transition-colors">
                 Nakshatra Namaha Creations

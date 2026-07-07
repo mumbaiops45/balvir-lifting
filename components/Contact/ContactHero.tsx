@@ -89,7 +89,7 @@ export default function ProductInquiryHero() {
             Let&apos;s Find the
             <br />
             <span className="text-[var(--primary-light)]">
-              Right Products for You
+              Right Products <br /> for You
             </span>
           </h1>
 
