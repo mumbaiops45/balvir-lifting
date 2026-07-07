@@ -94,13 +94,13 @@ export default function ProductInquiryHero() {
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-36 w-full">
         <div ref={contentRef} className="max-w-3xl">
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
-            Let's Find the
-            <br />
-            <span className="text-[var(--primary-light)]">
-              Right Products for You
-            </span>
-          </h1>
+    <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
+  Let&apos;s Find the
+  <br />
+  <span className="text-[var(--primary-light)]">
+    Right Products for You
+  </span>
+</h1>
 
           <div className="w-16 h-[3px] bg-blue-600 mb-7" />
 
