@@ -14,7 +14,7 @@ export default function AboutPage() {
     <main>
       <WhyChooseUsHero />
     <WhyChooseUs />
-      <CTA />
+     <CTA variant="light" /> 
     </main>
   );
 }

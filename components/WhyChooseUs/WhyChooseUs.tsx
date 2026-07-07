@@ -119,7 +119,7 @@ export default function WhyChooseUs() {
   return (
     <section
       ref={sectionRef}
-      className="relative overflow-hidden pt-[120px] pb-[130px] bg-[color-mix(in_srgb,var(--primary-light)_20%,black)]"
+      className="relative overflow-hidden pt-[120px] pb-[130px] bg-[color-mix(in_srgb,var(--primary)_3%,#f7f8fa)]"
     >
       <style>{`
         .wcu-bento {
@@ -143,17 +143,19 @@ export default function WhyChooseUs() {
         }
 
         .wcu-card {
-          transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s cubic-bezier(.2,.8,.2,1);
+          transition: transform 0.45s cubic-bezier(.2,.8,.2,1), box-shadow 0.45s cubic-bezier(.2,.8,.2,1), border-color 0.45s;
         }
         .wcu-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 28px 70px -28px color-mix(in srgb, var(--primary) 40%, transparent);
+          border-color: color-mix(in srgb, var(--primary) 30%, transparent);
+          box-shadow: 0 28px 60px -24px color-mix(in srgb, var(--primary) 25%, transparent);
         }
         .wcu-card:hover .wcu-topline { transform: scaleX(1); }
         .wcu-card:hover .wcu-icon {
           background-image: linear-gradient(135deg, var(--primary), var(--primary-dark));
           color: #fff;
-          box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--primary) 70%, transparent);
+          border-color: transparent;
+          box-shadow: 0 10px 28px -10px color-mix(in srgb, var(--primary) 55%, transparent);
           transform: rotate(-4deg) scale(1.05);
         }
         .wcu-card:hover .wcu-shine { transform: translateX(120%) skewX(-18deg); }
@@ -163,26 +165,17 @@ export default function WhyChooseUs() {
           transition: transform 0.5s cubic-bezier(.2,.8,.2,1);
         }
         .wcu-icon {
-          transition: background-image 0.35s, color 0.35s, box-shadow 0.35s, transform 0.35s cubic-bezier(.2,.8,.2,1);
+          transition: background-image 0.35s, color 0.35s, box-shadow 0.35s, border-color 0.35s, transform 0.35s cubic-bezier(.2,.8,.2,1);
         }
         .wcu-shine {
           position: absolute;
           top: 0; bottom: 0;
           width: 55%;
           transform: translateX(-160%) skewX(-18deg);
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.045), transparent);
+          background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--primary) 5%, transparent), transparent);
           transition: transform 0.9s cubic-bezier(.2,.8,.2,1);
           pointer-events: none;
         }
-
-        .wcu-tick {
-          position: absolute;
-          width: 14px; height: 14px;
-          pointer-events: none;
-          opacity: 0.5;
-          transition: opacity 0.3s;
-        }
-        .wcu-card:hover .wcu-tick { opacity: 1; }
 
         .wcu-stats { display: flex; flex-wrap: wrap; gap: 0; }
         .wcu-stat { flex: 1 1 160px; position: relative; }
@@ -192,35 +185,36 @@ export default function WhyChooseUs() {
         .wcu-stat-val { transition: transform 0.35s cubic-bezier(.2,.8,.2,1); }
       `}</style>
 
-      {/* Background grid */}
-      <div className="absolute inset-0 pointer-events-none bg-[length:64px_64px] bg-[image:linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_90%_70%_at_50%_0%,#000_40%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_90%_70%_at_50%_0%,#000_40%,transparent_100%)]" />
+      {/* Background grid — same as catalog */}
+      <div className="absolute inset-0 pointer-events-none bg-[length:60px_60px] bg-[image:linear-gradient(rgba(0,0,0,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(0,0,0,0.03)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_90%_70%_at_50%_0%,#000_40%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_90%_70%_at_50%_0%,#000_40%,transparent_100%)]" />
 
-      {/* Ambient orbs */}
-      <div className="absolute top-[-8%] right-[8%] w-[560px] h-[560px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_12%,transparent)_0%,transparent_70%)]" />
-      <div className="absolute bottom-0 left-[-4%] w-[460px] h-[460px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary-dark)_25%,transparent)_0%,transparent_70%)]" />
+      {/* Soft ambient tints */}
+      <div className="absolute top-[-8%] right-[8%] w-[560px] h-[560px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_6%,transparent)_0%,transparent_70%)]" />
+      <div className="absolute bottom-0 left-[-4%] w-[460px] h-[460px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary-light)_7%,transparent)_0%,transparent_70%)]" />
 
-      {/* Top rule */}
-      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-[image:linear-gradient(90deg,transparent,color-mix(in_srgb,var(--primary)_50%,transparent),transparent)]" />
+      {/* Top rule — same as catalog */}
+      <div className="absolute top-0 left-0 right-0 h-px pointer-events-none bg-[image:linear-gradient(90deg,transparent,color-mix(in_srgb,var(--primary)_40%,transparent),transparent)]" />
 
       <div className="max-w-[1240px] mx-auto px-8 relative">
 
-        {/* Header */}
+        {/* Header — catalog style */}
         <div className="wcu-head text-center max-w-[720px] mx-auto mb-16">
-          <div className="inline-flex items-center gap-2.5 mb-[22px] px-4 py-[7px] rounded-full border border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] bg-[color-mix(in_srgb,var(--primary)_8%,transparent)]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[var(--primary-light)] shadow-[0_0_10px_var(--primary-light)]" />
-            <span className="text-[11px] font-semibold tracking-[0.22em] uppercase text-[var(--primary-light)]">
+          <div className="inline-flex items-center justify-center gap-2.5 mb-5">
+            <div className="w-8 h-px bg-[image:linear-gradient(90deg,var(--primary),var(--primary-dark))]" />
+            <span className="text-[11px] font-semibold tracking-[0.25em] uppercase text-[var(--primary)]">
               Why Balvir Lifting
             </span>
+            <div className="w-8 h-px bg-[image:linear-gradient(90deg,var(--primary-dark),var(--primary))]" />
           </div>
 
-          <h2 className="text-[clamp(34px,5vw,56px)] font-bold leading-[1.08] tracking-[-0.025em] m-0 mb-5 text-white">
+          <h2 className="text-[clamp(34px,5vw,56px)] font-bold leading-[1.08] tracking-[-0.025em] m-0 mb-5 text-[#16181d]">
             Five reasons customers{" "}
-            <span className="bg-[image:linear-gradient(135deg,var(--primary)_0%,var(--primary-light)_60%,var(--primary-light)_100%)] bg-clip-text text-transparent">
+            <span className="bg-[image:linear-gradient(135deg,var(--primary)_0%,var(--primary-dark)_100%)] bg-clip-text text-transparent">
               choose us
             </span>
           </h2>
 
-          <p className="text-white/60 text-[15.5px] leading-[1.7] m-0">
+          <p className="text-[#5c626e] text-[15.5px] leading-[1.7] m-0">
             From a single Navi Mumbai office, we serve elevator contractors, OEMs and
             project teams across India — reliably, since 2014.
           </p>
@@ -233,18 +227,18 @@ export default function WhyChooseUs() {
           ))}
         </div>
 
-        {/* Stats strip */}
-        <div className="wcu-stats mt-[22px] border border-white/[0.08] rounded-2xl overflow-hidden bg-white/[0.02] backdrop-blur-sm">
+        {/* Stats strip — white card like catalog panels */}
+        <div className="wcu-stats mt-[22px] border border-black/[0.08] rounded-2xl overflow-hidden bg-white shadow-[0_20px_50px_-24px_rgba(0,0,0,0.12)]">
           {stats.map((s, i, arr) => (
             <div
               key={s.val}
-              className={`wcu-stat px-6 py-[32px] text-center ${i < arr.length - 1 ? "md:border-r border-white/[0.06]" : ""}`}
+              className={`wcu-stat px-6 py-[32px] text-center ${i < arr.length - 1 ? "md:border-r border-black/[0.06]" : ""}`}
             >
-              <div className="wcu-stat-glow absolute inset-0 opacity-0 pointer-events-none bg-[image:radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--primary)_10%,transparent),transparent_70%)]" />
-              <p className="wcu-stat-val relative text-[clamp(26px,3vw,34px)] font-bold m-0 mb-1.5 bg-[image:linear-gradient(135deg,var(--primary-light),var(--primary))] bg-clip-text text-transparent tracking-[-0.02em]">
+              <div className="wcu-stat-glow absolute inset-0 opacity-0 pointer-events-none bg-[image:radial-gradient(ellipse_at_center,color-mix(in_srgb,var(--primary)_7%,transparent),transparent_70%)]" />
+              <p className="wcu-stat-val relative text-[clamp(26px,3vw,34px)] font-bold m-0 mb-1.5 bg-[image:linear-gradient(135deg,var(--primary),var(--primary-dark))] bg-clip-text text-transparent tracking-[-0.02em]">
                 {s.val}
               </p>
-              <p className="relative text-[13px] text-white/55 m-0 tracking-[0.08em] uppercase">
+              <p className="relative text-[13px] text-[#8a8f9a] m-0 tracking-[0.08em] uppercase">
                 {s.label}
               </p>
             </div>
@@ -263,7 +257,6 @@ function ReasonCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
-  const ringRef = useRef<HTMLDivElement>(null);
   const isFeature = reason.span === "feature";
   const isWide = reason.span === "wide";
 
@@ -274,24 +267,21 @@ function ReasonCard({
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
     if (glowRef.current) {
-      glowRef.current.style.background = `radial-gradient(420px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary) 13%, transparent), transparent 60%)`;
-    }
-    if (ringRef.current) {
-      ringRef.current.style.background = `radial-gradient(300px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary-light) 55%, transparent), transparent 65%)`;
+      glowRef.current.style.background = `radial-gradient(420px circle at ${x}px ${y}px, color-mix(in srgb, var(--primary) 7%, transparent), transparent 60%)`;
     }
   };
 
   const handleEnter = () => {
-    gsap.to([glowRef.current, ringRef.current], { opacity: 1, duration: 0.3 });
+    gsap.to(glowRef.current, { opacity: 1, duration: 0.3 });
   };
   const handleLeave = () => {
-    gsap.to([glowRef.current, ringRef.current], { opacity: 0, duration: 0.35 });
+    gsap.to(glowRef.current, { opacity: 0, duration: 0.35 });
   };
 
   return (
     <div
       ref={cardRef}
-      className={`wcu-card wcu-${reason.span} group relative rounded-[20px] border border-white/[0.09] overflow-hidden flex flex-col justify-start cursor-default bg-[image:linear-gradient(160deg,rgba(255,255,255,0.05)_0%,rgba(255,255,255,0.015)_45%,color-mix(in_srgb,var(--primary)_4%,transparent)_100%)] ${
+      className={`wcu-card wcu-${reason.span} group relative rounded-[20px] border border-black/[0.08] bg-white overflow-hidden flex flex-col justify-start cursor-default shadow-[0_12px_32px_-20px_rgba(0,0,0,0.15)] ${
         isFeature ? "px-10 py-[38px]" : "p-[30px]"
       } ${isWide ? "md:flex-row md:items-center md:gap-9" : ""}`}
       onMouseMove={handleMove}
@@ -304,26 +294,15 @@ function ReasonCard({
       {/* Diagonal shine sweep */}
       <div className="wcu-shine" />
 
-      {/* Animated gradient ring (border-light) */}
-      <div
-        ref={ringRef}
-        className="absolute inset-0 rounded-[20px] p-px opacity-0 pointer-events-none [-webkit-mask:linear-gradient(#000_0_0)_content-box,linear-gradient(#000_0_0)] [-webkit-mask-composite:xor] [mask-composite:exclude]"
-      />
-
       {/* Cursor spotlight glow */}
       <div ref={glowRef} className="absolute inset-0 opacity-0 pointer-events-none" />
 
-      {/* Corner glow behind number */}
-      <div className="absolute top-[-40px] right-[-40px] w-[220px] h-[220px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_8%,transparent),transparent_70%)]" />
-
-      {/* Corner ticks (bottom-left) */}
-      <svg className="wcu-tick left-4 bottom-4" viewBox="0 0 14 14" fill="none">
-        <path d="M1 13V6M1 13H8" stroke="color-mix(in srgb, var(--primary-light) 55%, transparent)" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
+      {/* Corner tint behind number */}
+      <div className="absolute top-[-40px] right-[-40px] w-[220px] h-[220px] rounded-full pointer-events-none bg-[image:radial-gradient(circle,color-mix(in_srgb,var(--primary)_5%,transparent),transparent_70%)]" />
 
       {/* Engraved number */}
       <span
-        className={`absolute font-extrabold leading-none tracking-[-0.05em] select-none pointer-events-none bg-[image:linear-gradient(180deg,color-mix(in_srgb,var(--primary-light)_12%,transparent),transparent)] bg-clip-text text-transparent transition-opacity duration-300 group-hover:opacity-70 ${
+        className={`absolute font-extrabold leading-none tracking-[-0.05em] select-none pointer-events-none text-[color:color-mix(in_srgb,var(--primary)_9%,transparent)] transition-colors duration-300 group-hover:text-[color:color-mix(in_srgb,var(--primary)_16%,transparent)] ${
           isFeature ? "right-8 top-[20px] text-[110px]" : "right-5 top-[16px] text-[76px]"
         }`}
       >
@@ -332,10 +311,10 @@ function ReasonCard({
 
       {/* Icon + tag row */}
       <div className={`relative z-[1] flex items-center gap-3.5 ${isWide ? "mb-[18px] md:mb-0 shrink-0" : "mb-[20px]"}`}>
-        <div className="wcu-icon w-[52px] h-[52px] rounded-[14px] flex items-center justify-center shrink-0 bg-[image:linear-gradient(135deg,color-mix(in_srgb,var(--primary)_20%,transparent),color-mix(in_srgb,var(--primary-dark)_25%,transparent))] border border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] text-[var(--primary-light)]">
+        <div className="wcu-icon w-[52px] h-[52px] rounded-[14px] flex items-center justify-center shrink-0 bg-[color-mix(in_srgb,var(--primary)_8%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_20%,transparent)] text-[var(--primary)]">
           {reason.icon}
         </div>
-        <span className={`text-[10.5px] font-semibold tracking-[0.14em] uppercase text-[var(--primary-light)]/80 bg-[color-mix(in_srgb,var(--primary)_9%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-1 rounded-full ${isWide ? "md:hidden" : ""}`}>
+        <span className={`text-[10.5px] font-semibold tracking-[0.14em] uppercase text-[var(--primary)] bg-[color-mix(in_srgb,var(--primary)_7%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-1 rounded-full ${isWide ? "md:hidden" : ""}`}>
           {reason.tag}
         </span>
       </div>
@@ -343,14 +322,14 @@ function ReasonCard({
       {/* Text */}
       <div className="relative z-[1]">
         <h3
-          className={`font-semibold text-white m-0 mb-3 leading-[1.3] tracking-[-0.01em] ${
+          className={`font-semibold text-[#16181d] m-0 mb-3 leading-[1.3] tracking-[-0.01em] ${
             isFeature ? "text-[24px] max-w-[420px]" : "text-[19px] max-w-[92%]"
           }`}
         >
           {reason.title}
         </h3>
         <p
-          className={`text-white/[0.72] m-0 leading-[1.75] ${
+          className={`text-[#5c626e] m-0 leading-[1.75] ${
             isFeature ? "text-[15.5px] max-w-[520px]" : "text-[14.5px]"
           } ${isWide ? "md:max-w-[640px]" : ""}`}
         >
@@ -363,7 +342,7 @@ function ReasonCard({
             {featureBrands.map((b) => (
               <span
                 key={b}
-                className="text-[10.5px] font-semibold tracking-[0.08em] uppercase text-white/60 bg-white/[0.04] border border-white/[0.09] px-3 py-[5px] rounded-full transition-colors duration-300 group-hover:border-[color:color-mix(in_srgb,var(--primary)_35%,transparent)] group-hover:text-white/80"
+                className="text-[10.5px] font-semibold tracking-[0.08em] uppercase text-[#5c626e] bg-[#f7f8fa] border border-black/[0.08] px-3 py-[5px] rounded-full transition-colors duration-300 group-hover:border-[color:color-mix(in_srgb,var(--primary)_30%,transparent)] group-hover:text-[var(--primary)]"
               >
                 {b}
               </span>
@@ -372,7 +351,7 @@ function ReasonCard({
         )}
 
         {isWide && (
-          <span className="hidden md:inline-flex mt-4 text-[10.5px] font-semibold tracking-[0.14em] uppercase text-[var(--primary-light)]/80 bg-[color-mix(in_srgb,var(--primary)_9%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-1 rounded-full">
+          <span className="hidden md:inline-flex mt-4 text-[10.5px] font-semibold tracking-[0.14em] uppercase text-[var(--primary)] bg-[color-mix(in_srgb,var(--primary)_7%,transparent)] border border-[color:color-mix(in_srgb,var(--primary)_22%,transparent)] px-2.5 py-1 rounded-full">
             {reason.tag}
           </span>
         )}

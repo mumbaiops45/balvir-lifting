@@ -17,7 +17,7 @@ export default function AboutPage() {
       <CompanyStory />
       <VisionMission />
       {/* <Segments /> */}
-      <CTA />
+      <CTA variant="light" /> 
     </main>
   );
 }

@@ -63,7 +63,7 @@ export default function Navbar() {
           />
         </Link>
 
-        <ul className="hidden lg:flex items-center gap-4">
+        <ul className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
             <li key={l.href}>
               <Link
@@ -84,7 +84,7 @@ export default function Navbar() {
         </ul>
 
         <div className="hidden lg:flex items-center gap-4">
-          <a
+          {/* <a
             href="tel:+919819002726"
             className="text-[13px] font-semibold text-gray-700 hover:text-[var(--primary)] transition-colors flex items-center gap-2"
           >
@@ -102,7 +102,7 @@ export default function Navbar() {
               />
             </svg>
             +91 98190 02726
-          </a>
+          </a> */}
 
           <button
             onClick={toggle}

@@ -14,7 +14,7 @@ export default function AboutPage() {
     <main>
       <FAQHero />
     <FAQ />
-      <CTA />
+   <CTA variant="light" /> 
     </main>
   );
 }

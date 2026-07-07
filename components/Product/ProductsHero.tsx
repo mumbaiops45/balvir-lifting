@@ -1,5 +1,4 @@
-﻿
-"use client";
+﻿"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -15,7 +14,6 @@ export default function ProductsHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax background
       gsap.to(bgRef.current, {
         yPercent: 25,
         ease: "none",
@@ -27,14 +25,10 @@ export default function ProductsHero() {
         },
       });
 
-      // Content entrance
       if (contentRef.current) {
         gsap.fromTo(
           contentRef.current.children,
-          {
-            y: 60,
-            opacity: 0,
-          },
+          { y: 60, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -69,28 +63,16 @@ export default function ProductsHero() {
           className="object-cover"
         />
       </div>
-     <div className="absolute inset-0 bg-black/60" />
-      {/* Main Dark Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-      {/* Blue Radial Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
+      {/* Overlays — same as Home Hero */}
+           {/* Base wash */}
+      <div className="absolute inset-0 bg-[var(--primary-light)]/50" />
 
-      {/* Bottom Cinematic Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
+      {/* Left-to-right readability gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] via-[var(--primary-light)]/30 to-transparent" />
 
-      {/* Angled Top Left Overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 8%, rgba(255,255,255,0.3) 14%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.5) 38%, transparent 55%)",
-        }}
-      />
-
-      {/* Ambient Glows */}
-      <div className="absolute top-1/4 right-1/3 w-[36rem] h-[36rem] rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+      {/* Top + bottom cinematic vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary-light)]/40 via-transparent to-[var(--primary-light)]/70" />
 
       {/* Decorative Vertical Lines */}
       <div className="absolute inset-y-0 left-1/3 w-px bg-white/5 pointer-events-none" />
@@ -119,22 +101,10 @@ export default function ProductsHero() {
           {/* Category Cards */}
           <div className="flex flex-wrap gap-4 mt-10">
             {[
-              {
-                title: "Elevators",
-                sub: "Accessories & Components",
-              },
-              {
-                title: "Wire Ropes",
-                sub: "Industrial Grade",
-              },
-              {
-                title: "Infrastructure",
-                sub: "Engineering Solutions",
-              },
-              {
-                title: "Industrial",
-                sub: "Mechanical Products",
-              },
+              { title: "Elevators", sub: "Accessories & Components" },
+              { title: "Wire Ropes", sub: "Industrial Grade" },
+              { title: "Infrastructure", sub: "Engineering Solutions" },
+              { title: "Industrial", sub: "Mechanical Products" },
             ].map((item) => (
               <div
                 key={item.title}
@@ -157,4 +127,3 @@ export default function ProductsHero() {
     </section>
   );
 }
-

@@ -14,7 +14,6 @@ export default function AboutHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax background
       gsap.to(bgRef.current, {
         yPercent: 25,
         ease: "none",
@@ -26,14 +25,10 @@ export default function AboutHero() {
         },
       });
 
-      // Content entrance
       if (contentRef.current) {
         gsap.fromTo(
           contentRef.current.children,
-          {
-            y: 60,
-            opacity: 0,
-          },
+          { y: 60, opacity: 0 },
           {
             y: 0,
             opacity: 1,
@@ -69,29 +64,16 @@ export default function AboutHero() {
         />
       </div>
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/60" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50  to-transparent" />
+      {/* ===== Overlays — primary-light only ===== */}
 
-      {/* Blue radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
+      {/* Base wash */}
+      <div className="absolute inset-0 bg-[var(--primary-light)]/50" />
 
-      {/* Bottom cinematic overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
+      {/* Left-to-right readability gradient */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] via-[var(--primary-light)]/30 to-transparent" />
 
-      {/* Angled top left white to black overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 8%, rgba(255,255,255,0.3) 14%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.5) 38%, transparent 55%)",
-        }}
-      />
-
-      {/* Ambient glows */}
-      <div className="absolute top-1/3 left-1/4 w-[32rem] h-[32rem] rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
-
-      <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+      {/* Top + bottom cinematic vignette */}
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary-light)]/40 via-transparent to-[var(--primary-light)]/70" />
 
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 pt-32 w-full">
@@ -102,9 +84,9 @@ export default function AboutHero() {
             <span className="text-[var(--primary-light)]">Since 2014</span>
           </h1>
 
-          <div className="w-16 h-[3px] bg-blue-600 mb-7" />
+          <div className="w-16 h-[3px] bg-white/80 mb-7" />
 
-          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-xl">
+          <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-xl">
             Founded in Navi Mumbai, Balvir Lifting earns trust with every order
             as a premier multi brand supplier of genuine engineering,
             electrical, electronics and mechanical components across Mumbai,
@@ -114,31 +96,19 @@ export default function AboutHero() {
           {/* Stat Cards */}
           <div className="flex flex-wrap gap-4 mt-10">
             {[
-              {
-                value: "2014",
-                label: "Established",
-              },
-              {
-                value: "Multi Brand",
-                label: "Engineering Portfolio",
-              },
-              {
-                value: "Pan India",
-                label: "Reliable Supply",
-              },
-              {
-                value: "Trust",
-                label: "Built With Every Order",
-              },
+              { value: "2014", label: "Established" },
+              { value: "Multi Brand", label: "Engineering Portfolio" },
+              { value: "Pan India", label: "Reliable Supply" },
+              { value: "Trust", label: "Built With Every Order" },
             ].map((item) => (
               <div
                 key={item.value}
-                className="bg-white/10 backdrop-blur-md border border-white/10 px-6 py-4 transition-all duration-300 hover:bg-white/15"
+                className="bg-white/10 backdrop-blur-md border border-white/15 px-6 py-4 transition-all duration-300 hover:bg-white/20 hover:border-white/25"
               >
                 <div className="text-xl font-bold text-white">
                   {item.value}
                 </div>
-                <div className="text-white/60 text-xs uppercase tracking-wider mt-1">
+                <div className="text-white/70 text-xs uppercase tracking-wider mt-1">
                   {item.label}
                 </div>
               </div>

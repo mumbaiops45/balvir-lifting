@@ -13,7 +13,7 @@ export default function AboutPage() {
     <main>
       <BrandsHero />
     <BrandsGrid />
-      <CTA />
+  <CTA variant="light" /> 
     </main>
   );
 }

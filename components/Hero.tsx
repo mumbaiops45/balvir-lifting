@@ -61,21 +61,15 @@ export default function Hero() {
 
       {/* Overlays */}
 
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-[var(--primary)]/90" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/90 via-[var(--primary)]/60 to-transparent" />
 
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
 
-      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/40 via-transparent to-[var(--primary)]/70" />
 
       {/* Angled top-left white-to-black overlay (logo/navbar zone) */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 8%, rgba(255,255,255,0.3) 14%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.5) 38%, transparent 55%)",
-        }}
-      />
+      
 
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center pt-24">

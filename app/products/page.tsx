@@ -16,7 +16,7 @@ export default function ProductsPage() {
       <ProductsHero />
       <ProductCatalog />
       <WireRopesSection />
-      <CTA />
+      <CTA variant="light" /> 
     </main>
   );
 }
