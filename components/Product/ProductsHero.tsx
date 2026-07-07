@@ -1,4 +1,5 @@
-﻿"use client";
+﻿
+"use client";
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
@@ -9,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function ProductsHero() {
   const sectionRef = useRef<HTMLElement>(null);
-  const bgRef      = useRef<HTMLDivElement>(null);
+  const bgRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -30,76 +31,130 @@ export default function ProductsHero() {
       if (contentRef.current) {
         gsap.fromTo(
           contentRef.current.children,
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.4 }
+          {
+            y: 60,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            delay: 0.4,
+          }
         );
       }
     }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[75vh] flex items-end overflow-hidden bg-dark-950"
+      className="relative min-h-[75vh] flex items-end overflow-hidden"
     >
-      {/* Parallax BG */}
+      {/* Parallax Background */}
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-gradient-to-br from-[#040914] via-dark-900 to-[#0a0a0a]"
-      />
-      
-      {/* Background Image */}
-      <div className="absolute inset-0">
+        className="absolute inset-0"
+        style={{ willChange: "transform" }}
+      >
         <Image
           src="/Product/Product.jpg"
           alt="Balvir Lifting Product Spectrum"
           fill
           priority
-          className="object-cover opacity-20"
+          className="object-cover"
         />
       </div>
+     <div className="absolute inset-0 bg-black/60" />
+      {/* Main Dark Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-      <div className="absolute inset-0 grid-tex-dark opacity-40 pointer-events-none" />
+      {/* Blue Radial Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
 
-      {/* Blue glow accents */}
-      <div className="absolute top-1/4 right-1/3 w-[36rem] h-[36rem] rounded-full bg-blue-600/12 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-64 h-64 rounded-full bg-blue-500/10 blur-2xl pointer-events-none" />
+      {/* Bottom Cinematic Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
 
-      {/* Decorative lines */}
+      {/* Angled Top Left Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 8%, rgba(255,255,255,0.3) 14%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.5) 38%, transparent 55%)",
+        }}
+      />
+
+      {/* Ambient Glows */}
+      <div className="absolute top-1/4 right-1/3 w-[36rem] h-[36rem] rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-1/4 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
+
+      {/* Decorative Vertical Lines */}
       <div className="absolute inset-y-0 left-1/3 w-px bg-white/5 pointer-events-none" />
       <div className="absolute inset-y-0 right-1/3 w-px bg-white/5 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-36 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-20 pt-36 w-full">
         <div ref={contentRef} className="max-w-3xl">
-       
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-7">
-            Our Complete<br />
-            <span className="text-[var(--primary-light)]">Product Range</span>
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
+            Our Complete
+            <br />
+            <span className="text-[var(--primary-light)]">
+              Product Range
+            </span>
           </h1>
-          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
-            Multi-brand electrical, electronics, mechanical and hardware products for elevators, wire ropes, infrastructure and industrial applications. Browse by category below.
+
+          <div className="w-16 h-[3px] bg-blue-600 mb-7" />
+
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl">
+            Multi brand electrical, electronics, mechanical and hardware
+            products for elevators, steel wire ropes, infrastructure and
+            industrial applications. Browse our complete portfolio of trusted
+            brands and genuine components.
           </p>
 
-          {/* Category badges */}
-          <div className="flex flex-wrap gap-3 mt-9">
+          {/* Category Cards */}
+          <div className="flex flex-wrap gap-4 mt-10">
             {[
-              "Elevators",
-              "Wire Ropes",
-              "Infrastructure",
-              "Industrial Applications",
-            ].map(b => (
-              <span key={b} className="border border-white/10 text-white/50 text-xs font-medium px-4 py-2 bg-white/[0.02] backdrop-blur-sm">
-                {b}
-              </span>
+              {
+                title: "Elevators",
+                sub: "Accessories & Components",
+              },
+              {
+                title: "Wire Ropes",
+                sub: "Industrial Grade",
+              },
+              {
+                title: "Infrastructure",
+                sub: "Engineering Solutions",
+              },
+              {
+                title: "Industrial",
+                sub: "Mechanical Products",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="bg-white/10 backdrop-blur-md border border-white/10 px-6 py-4 transition-all duration-300 hover:bg-white/15"
+              >
+                <div className="text-white font-bold text-sm">
+                  {item.title}
+                </div>
+                <div className="text-white/60 text-xs uppercase tracking-wider mt-1">
+                  {item.sub}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Bottom fade */}
+      {/* Bottom Fade */}
       <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white to-transparent" />
     </section>
   );
 }
+

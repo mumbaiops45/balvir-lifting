@@ -67,7 +67,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className={"fixed inset-x-0 top-0 z-50 border-b-2 transition-all duration-500 " + navBg}
+      className={"fixed inset-x-0 top-0 z-50 transition-all duration-500 " + navBg}
     >
       <div className="max-w-7xl mx-auto pl-12 flex items-center justify-between">
         <Link href="/" className="flex items-center">

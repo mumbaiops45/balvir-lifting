@@ -57,14 +57,14 @@ export default function Footer() {
 
           {/* Brand — 2 cols */}
           <div className="col-span-2">
-          <Link href="/" className="flex items-center mb-4">
+          <Link href="/" className="flex items-center mb-4 bg-white w-fit py-3 px-4">
           <Image
             src="/Balvir-lifting-png (1).png"
             alt="Balvir Lifting Logo"
             width={260}
             height={80}
             priority
-            className="h-14 w-auto"
+            className="h-14 w-auto "
           />
         </Link>
 

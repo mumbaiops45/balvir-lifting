@@ -14,7 +14,7 @@ export default function WhyChooseUsHero() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Parallax background
+      // Parallax Background
       gsap.to(bgRef.current, {
         yPercent: 25,
         ease: "none",
@@ -26,75 +26,129 @@ export default function WhyChooseUsHero() {
         },
       });
 
-      // Content entrance
+      // Content Animation
       if (contentRef.current) {
         gsap.fromTo(
           contentRef.current.children,
-          { y: 60, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.4 }
+          {
+            y: 60,
+            opacity: 0,
+          },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.15,
+            ease: "power3.out",
+            delay: 0.4,
+          }
         );
       }
     }, sectionRef);
+
     return () => ctx.revert();
   }, []);
 
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[70vh] flex items-end overflow-hidden bg-dark-950"
+      className="relative min-h-[70vh] flex items-end overflow-hidden"
     >
-      {/* Parallax BG layer */}
+      {/* Parallax Background */}
       <div
         ref={bgRef}
-        className="absolute inset-0 bg-gradient-to-br from-dark-950 via-dark-900 to-[#040d1a]"
-      />
-      
-      {/* Background Image */}
-      <div className="absolute inset-0">
+        className="absolute inset-0"
+        style={{ willChange: "transform" }}
+      >
         <Image
-          src="/whyUs/Why.jpg" // Update this asset path as needed
+          src="/whyUs/Why.jpg"
           alt="Balvir Lifting Quality Assurance"
           fill
           priority
-          className="object-cover opacity-15"
+          className="object-cover"
         />
       </div>
+ <div className="absolute inset-0 bg-black/50" />
+      {/* Main Dark Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
 
-      {/* Blue glow accents */}
+      {/* Blue Radial Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
+
+      {/* Bottom Cinematic Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/70" />
+
+      {/* Angled Top Left Overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.6) 8%, rgba(255,255,255,0.3) 14%, rgba(0,0,0,0.15) 20%, rgba(0,0,0,0.35) 28%, rgba(0,0,0,0.5) 38%, transparent 55%)",
+        }}
+      />
+
+      {/* Ambient Glows */}
       <div className="absolute top-1/3 left-1/4 w-[32rem] h-[32rem] rounded-full bg-blue-600/15 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-blue-500/10 blur-2xl pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-72 h-72 rounded-full bg-blue-500/10 blur-3xl pointer-events-none" />
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-10 pb-16 pt-32 w-full">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pb-16 pt-32 w-full">
         <div ref={contentRef} className="max-w-4xl">
-    
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
-            Why Buyers Across<br />
-            <span className="text-[var(--primary-light)]">Mumbai Trust Us</span>
+            Why Buyers Across
+            <br />
+            <span className="text-[var(--primary-light)]">
+              Mumbai Trust Us
+            </span>
           </h1>
 
-          <p className="text-white/60 text-base md:text-lg leading-relaxed max-w-2xl">
-            From heavy industrial yards to precision engineering facilities, procurement teams rely on Balvir Lifting. We eliminate supply chain friction through uncompromised component authenticity, transparent lead times, and an exhaustive inventory network that keeps your operations moving forward.
+          <div className="w-16 h-[3px] bg-blue-600 mb-7" />
+
+          <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-2xl mb-10">
+            From heavy industrial yards to precision engineering facilities,
+            procurement teams rely on Balvir Lifting. We eliminate supply chain
+            friction through uncompromised component authenticity, transparent
+            lead times and an extensive inventory network that keeps your
+            operations moving forward.
           </p>
 
-          {/* Core Trust Pillars */}
-          <div className="flex flex-wrap gap-3 mt-8">
+          {/* Trust Cards */}
+          <div className="flex flex-wrap gap-4">
             {[
-              { v: "0% Counterfeit Risk", l: "100% Traceable OEM Paperwork" },
-              { v: "On-Time Dispatch", l: "Optimized Logistics Across MH" },
-              { v: "High Fulfillment", l: "Massive Ready-to-Ship Inventory" },
-              { v: "Expert Assistance", l: "Technical Matching & Support" },
-            ].map(s => (
-              <div key={s.v} className="border border-white/10 px-5 py-2.5 backdrop-blur-sm bg-white/[0.02]">
-                <div className="text-white font-bold text-sm">{s.v}</div>
-                <div className="text-white/40 text-[11px] tracking-wide mt-0.5">{s.l}</div>
+              {
+                title: "0% Counterfeit Risk",
+                subtitle: "100% Traceable OEM Paperwork",
+              },
+              {
+                title: "On Time Dispatch",
+                subtitle: "Optimized Logistics",
+              },
+              {
+                title: "High Fulfillment",
+                subtitle: "Ready To Ship Inventory",
+              },
+              {
+                title: "Expert Assistance",
+                subtitle: "Technical Product Support",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="bg-white/10 backdrop-blur-md border border-white/10 px-6 py-4 transition-all duration-300 hover:bg-white/15"
+              >
+                <div className="text-white font-bold text-sm">
+                  {item.title}
+                </div>
+                <div className="text-white/60 text-xs uppercase tracking-wider mt-1">
+                  {item.subtitle}
+                </div>
               </div>
             ))}
           </div>
         </div>
       </div>
 
-      {/* Bottom fade to white (Matches your layout transition) */}
+      {/* Bottom Fade */}
       <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-white to-transparent" />
     </section>
   );
