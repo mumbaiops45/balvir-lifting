@@ -206,7 +206,7 @@ export default function Footer() {
             <div className="flex flex-col items-start">
               <div className="flex items-center gap-2.5 border border-[var(--primary-light)]/30 bg-[var(--primary-dark)]/20 px-4 py-2.5 w-fit">
                 <div className="w-1.5 h-1.5 bg-[var(--primary-light)] rounded-full animate-pulse" />
-                <span className="text-[var(--primary-light)] text-xs font-bold uppercase tracking-widest">Sales</span>
+                <span className="text-white text-xs font-bold uppercase tracking-widest">Sales</span>
                 <a href="tel:+919819002726" className="text-white/60 text-xs hover:text-white transition-colors">
                   +91 98190 02726
                 </a>
@@ -236,7 +236,7 @@ export default function Footer() {
             <div className="flex items-center gap-1.5">
               <span className="text-white/55 text-xs">Built by</span>
               <a href="https://www.nakshatranamahacreations.com" target="_blank" rel="noopener noreferrer"
-                className="text-white/65 text-xs font-semibold hover:text-[var(--primary-light)] transition-colors">
+                className="text-white/65 text-xs font-semibold transition-colors">
                 Nakshatra Namaha Creations
               </a>
             </div>

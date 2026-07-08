@@ -88,7 +88,7 @@ export default function CTA({ variant = "default" }: CTAProps) {
         >
           Need Reliable
           <br />
-          <span className="text-[var(--primary-light)]">
+          <span className="">
             Industrial Products?
           </span>
         </h2>

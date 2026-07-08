@@ -52,14 +52,14 @@ export default function Navbar() {
       className="fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-xl border-b border-gray-200 pt-1 pb-2 shadow-sm transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center ml-2">
+        <Link href="/" className="flex  items-center ml-2">
           <Image
             src="/Balvir-lifting-png (1).png"
             alt="Balvir Lifting Logo"
             width={260}
             height={80}
             priority
-            className="h-[12vh] w-auto"
+            className="h-[12vh] w-auto "
           />
         </Link>
 

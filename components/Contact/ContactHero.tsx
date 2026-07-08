@@ -69,13 +69,17 @@ export default function ProductInquiryHero() {
         />
       </div>
           {/* Base wash */}
-      <div className="absolute inset-0 bg-[var(--primary-light)]/50" />
+   {/* Base wash */}
+<div className="absolute inset-0 bg-[var(--primary-light)]/60" />
 
-      {/* Left-to-right readability gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)] via-[var(--primary-light)]/30 to-transparent" />
+{/* Left heavy → Right lighter */}
+<div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light)] via-[var(--primary-light)]/60 to-[var(--primary)]/70" />
 
-      {/* Top + bottom cinematic vignette */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary-light)]/40 via-transparent to-[var(--primary-light)]/70" />
+{/* Extra left darkness */}
+<div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light] to-black" />
+
+{/* Cinematic vignette */}
+<div className="absolute inset-0 bg-gradient-to-t from-black/20  to-black/70" />
       {/* Angled Top Left Overlay */}
     
       {/* Ambient Glows */}

@@ -52,25 +52,23 @@ export default function Hero() {
         loop
         playsInline
       >
-        <source src="/lift.mp4" type="video/mp4" />
+        <source src="/heroelavator.mp4" type="video/mp4" />
         <source
           src="https://videos.pexels.com/video-files/7599305/7599305-sd_960_540_25fps.mp4"
           type="video/mp4"
         />
       </video>
+{/* Base wash */}
+<div className="absolute inset-0 bg-[var(--primary-light)]/60" />
 
-      {/* Overlays */}
+{/* Left heavy → Right lighter */}
+<div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light)] via-[var(--primary-light)]/60 to-[var(--primary)]/70" />
 
-      <div className="absolute inset-0 bg-[var(--primary)]/90" />
-      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary)]/90 via-[var(--primary)]/60 to-transparent" />
+{/* Extra left darkness */}
+<div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light] to-black" />
 
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_50%,rgba(15,52,96,0.25),transparent_40%)]" />
-
-      <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary)]/40 via-transparent to-[var(--primary)]/70" />
-
-      {/* Angled top-left white-to-black overlay (logo/navbar zone) */}
-      
-
+{/* Cinematic vignette */}
+<div className="absolute inset-0 bg-gradient-to-t from-black/20  to-black/70" />
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center pt-6 md:pt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-5 gap-12 items-center">
