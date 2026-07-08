@@ -94,7 +94,7 @@ export default function FAQHero() {
           </p>
 
           {/* Help Cards */}
-          <div className="flex flex-wrap gap-4">
+          <div className="grid grid-cols-2 md:flex  gap-4 mt-10">
             {[
               { title: "Instant Clarity", subtitle: "Ordering & Documentation" },
               { title: "Pan India Logistics", subtitle: "Delivery & Shipping" },

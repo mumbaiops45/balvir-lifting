@@ -95,7 +95,7 @@ export default function WhyChooseUsHero() {
           </p>
 
           {/* Trust Cards */}
-          <div className="flex flex-wrap gap-4">
+          <div className="grid grid-cols-2 md:flex  gap-4 mt-10">
             {[
               { title: "0% Counterfeit Risk", subtitle: "100% Traceable OEM Paperwork" },
               { title: "On Time Dispatch", subtitle: "Optimized Logistics" },

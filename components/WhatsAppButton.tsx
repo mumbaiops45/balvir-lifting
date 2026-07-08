@@ -7,20 +7,22 @@ const CLIENT_WA = "919819002726";   // Country code + number, no +
 
 /* ── 5-question flow ───────────────────────── */
 const QUESTIONS = [
-  { id: "name",    label: "What is your full name?",                    type: "text",   placeholder: "e.g. Rajiv Mehta" },
-  { id: "phone",   label: "Your contact number?",                       type: "tel",    placeholder: "e.g. 98765 43210" },
-  { id: "service", label: "Which service do you need?",                 type: "select",
-    options: ["Passenger Elevator", "Home / Villa Lift", "Goods Lift", "Hydraulic Lift", "Escalator", "Modernisation", "Annual Maintenance"] },
-  { id: "floors",  label: "How many floors does your building have?",   type: "text",   placeholder: "e.g. G + 10" },
-  { id: "city",    label: "Which city are you located in?",             type: "text",   placeholder: "e.g. Mumbai" },
+  { id: "name", label: "What is your full name?", type: "text", placeholder: "e.g. Rajiv Mehta" },
+  { id: "phone", label: "Your contact number?", type: "tel", placeholder: "e.g. 98765 43210" },
+  {
+    id: "service", label: "Which service do you need?", type: "select",
+    options: ["Passenger Elevator", "Home / Villa Lift", "Goods Lift", "Hydraulic Lift", "Escalator", "Modernisation", "Annual Maintenance"]
+  },
+  { id: "floors", label: "How many floors does your building have?", type: "text", placeholder: "e.g. G + 10" },
+  { id: "city", label: "Which city are you located in?", type: "text", placeholder: "e.g. Mumbai" },
 ];
 
 export default function WhatsAppButton() {
-  const [open,       setOpen]       = useState(false);
-  const [bubble,     setBubble]     = useState(false);
-  const [step,       setStep]       = useState(0);          // 0 = greeting, 1-5 = questions, 6 = done
-  const [answers,    setAnswers]    = useState<Record<string, string>>({});
-  const [inputVal,   setInputVal]   = useState("");
+  const [open, setOpen] = useState(false);
+  const [bubble, setBubble] = useState(false);
+  const [step, setStep] = useState(0);          // 0 = greeting, 1-5 = questions, 6 = done
+  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [inputVal, setInputVal] = useState("");
   const inputRef = useRef<HTMLInputElement | HTMLSelectElement>(null);
 
   /* Attention bubble after 5 s */
@@ -55,7 +57,7 @@ export default function WhatsAppButton() {
 
   const handleSubmit = () => {
     if (!inputVal.trim()) return;
-    const q    = QUESTIONS[step - 1];
+    const q = QUESTIONS[step - 1];
     const next = { ...answers, [q.id]: inputVal.trim() };
     setAnswers(next);
     setInputVal("");
@@ -111,8 +113,8 @@ export default function WhatsAppButton() {
                 {step === 0
                   ? "👋 Hi! I'll help you with a quick enquiry. May I ask you 5 short questions?"
                   : step === 6
-                  ? "✅ Thank you! Your enquiry has been sent to our team. We'll call you within 2 hours."
-                  : `Question ${step} of 5`}
+                    ? "✅ Thank you! Your enquiry has been sent to our team. We'll call you within 2 hours."
+                    : `Question ${step} of 5`}
               </p>
               {step >= 1 && step <= 5 && (
                 <p className="text-gray-900 font-semibold text-sm mt-1">{currentQ?.label}</p>
@@ -202,9 +204,14 @@ export default function WhatsAppButton() {
 
       {/* Attention bubble */}
       {bubble && !open && (
-        <div className="fixed bottom-[88px] right-5 z-[60] bg-white text-gray-700 text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-gray-100 whitespace-nowrap font-jakarta flex items-center gap-2">
+        <div className="hidden md:flex fixed bottom-[88px] right-5 z-[60] bg-white text-gray-700 text-xs font-semibold px-4 py-2.5 rounded-full shadow-lg border border-gray-100 whitespace-nowrap font-jakarta items-center gap-2">
           <span>💬</span> Chat with us — Quick enquiry!
-          <button onClick={() => setBubble(false)} className="text-gray-400 hover:text-gray-600 ml-1">×</button>
+          <button
+            onClick={() => setBubble(false)}
+            className="text-gray-400 hover:text-gray-600 ml-1"
+          >
+            ×
+          </button>
         </div>
       )}
 

@@ -9,11 +9,32 @@ import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const links = {
-  Company: ["About Us", "Our Vision", "Our Goal", "Contact Us"],
-  Products: ["Elevators & Escalators", "Steel Wire Ropes", "LED Lighting & Elevator AC", "Cables & Wires", "Other Accessories"],
-  Segments: ["Elevator OEMs / Users", "Consultants & Contractors", "EPCs & Interiors"],
-};
+/* Quick Links — same as Navbar */
+const quickLinks = [
+  { label: "Home", href: "/" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Products", href: "/products" },
+  { label: "Brands & Partners", href: "/brands-partners" },
+  { label: "Why Choose Us", href: "/why-choose-us" },
+  { label: "FAQs", href: "/faqs" },
+  { label: "Contact Us", href: "/contact" },
+];
+
+/* Products — /products with category anchors */
+const productLinks = [
+  { label: "Elevators & Escalators", href: "/products#elevator" },
+  { label: "Steel Wire Ropes", href: "/products#wireropes" },
+  { label: "LED Lighting & Elevator AC", href: "/products#led" },
+  { label: "Cables & Wires", href: "/products#cables" },
+  { label: "Other Accessories", href: "/products#accessories" },
+];
+
+/* Segments — plain text, no links */
+const segments = [
+  "Elevator OEMs / Users",
+  "Consultants & Contractors",
+  "EPCs & Interiors",
+];
 
 const cities = ["Navi Mumbai", "New Delhi", "Mumbai", "Kolkata", "Chennai"];
 
@@ -98,24 +119,59 @@ export default function Footer() {
             <p className="text-white/65 text-[11px]">GSTIN: 27ADHPA7026N1ZF</p>
           </div>
 
-          {/* Nav columns */}
-          {Object.entries(links).map(([heading, items]) => (
-            <div key={heading} className="f-reveal">
-              <h4 className="text-white/70 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
-                {heading}
-              </h4>
-              <ul className="space-y-2.5">
-                {items.map(l => (
-                  <li key={l}>
-                    <a href="#"
-                      className="text-white/65 text-sm hover:text-white transition-colors duration-200">
-                      {l}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {/* Quick Links */}
+          <div className="f-reveal">
+            <h4 className="text-white/70 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
+              Quick Links
+            </h4>
+            <ul className="space-y-2.5">
+              {quickLinks.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-white/65 text-sm hover:text-white transition-colors duration-200"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Products */}
+          <div className="f-reveal">
+            <h4 className="text-white/70 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
+              Products
+            </h4>
+            <ul className="space-y-2.5">
+              {productLinks.map((l) => (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    className="text-white/65 text-sm hover:text-white transition-colors duration-200"
+                  >
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Segments — plain text, hover white only */}
+          <div className="f-reveal">
+            <h4 className="text-white/70 text-[10px] font-bold uppercase tracking-[0.22em] mb-4">
+              Segments
+            </h4>
+            <ul className="space-y-2.5">
+              {segments.map((s) => (
+                <li key={s}>
+                  <span className="text-white/65 text-sm hover:text-white transition-colors duration-200 cursor-default">
+                    {s}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
         </div>
 

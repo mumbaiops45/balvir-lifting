@@ -94,7 +94,7 @@ export default function AboutHero() {
           </p>
 
           {/* Stat Cards */}
-          <div className="flex flex-wrap gap-4 mt-10">
+          <div className="grid grid-cols-2 md:flex  gap-4 mt-10">
             {[
               { value: "2014", label: "Established" },
               { value: "Multi Brand", label: "Engineering Portfolio" },

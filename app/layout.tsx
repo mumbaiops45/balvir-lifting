@@ -22,6 +22,9 @@ export const metadata: Metadata = {
     "Balvir Lifting — leading supplier of multi-brand elevator accessories, steel wire ropes, LED lighting, cables and automation products. Established 2014, Pan-India supply.",
   keywords:
     "Balvir Lifting, elevator accessories, wire ropes, KISWIRE, CEDES, Fermator, Wittur, LED lighting, flat travelling cables, industrial automation, Navi Mumbai",
+      icons: {
+    icon: "/Balvir-lifting-jpg.jpeg",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

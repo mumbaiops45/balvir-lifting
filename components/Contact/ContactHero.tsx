@@ -102,7 +102,7 @@ export default function ProductInquiryHero() {
           </p>
 
           {/* Contact Cards */}
-          <div className="flex flex-wrap gap-4">
+          <div className="grid grid-cols-2 md:flex  gap-4 mt-10">
             <a
               href="tel:+919819002726"
               className="bg-white/10 backdrop-blur-md border border-white/10 px-6 py-4 hover:bg-white/15 transition-all duration-300"

@@ -94,7 +94,7 @@ export default function BrandsHero() {
           </p>
 
           {/* Value Cards */}
-          <div className="flex flex-wrap gap-4">
+          <div className="grid grid-cols-2 md:flex  gap-4 mt-10">
             {[
               { title: "100% Genuine", subtitle: "Direct Manufacturer Sourcing" },
               { title: "Full Warranty", subtitle: "OEM Backed Products" },

@@ -1,596 +1,403 @@
 ﻿"use client";
 
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
+import { useEffect, useState, FormEvent } from "react";
+import { createPortal } from "react-dom";
 import { useModal } from "@/context/ModalContext";
-import { LogoSVG } from "./LogoImage";
 
-const services = [
-  { id: "passenger", label: "Passenger Elevator", icon: "🏢" },
-  { id: "home",      label: "Home / Villa Lift",  icon: "🏠" },
-  { id: "goods",     label: "Goods & Freight",     icon: "📦" },
-  { id: "hydraulic", label: "Hydraulic Lift",      icon: "⚙️" },
-  { id: "escalator", label: "Escalator",           icon: "↕️" },
-  { id: "modernise", label: "Modernisation",       icon: "🔧" },
+/* ─────────────────────────────────────────────────────────────
+   PRODUCT DATA — from Balvir Lifting product catalogue
+   Category → Products (dependent dropdown)
+────────────────────────────────────────────────────────────── */
+const PRODUCT_MAP: Record<string, string[]> = {
+  "Elevator & Escalator Accessories": [
+    "Flat Travelling Cables",
+    "Wire Bundles",
+    "Display Cable Bundles",
+    "Steel Wire Ropes — Elevator",
+    "LED Lights — 75 mm Cutout, Round / Square",
+    "Cabin Fans — 300 mm",
+    "Blower Fans — 330 × 45 mm",
+    "Overload Sensors — All Types",
+    "Infra-Red Door Sensors — 154 Beams",
+    "Final Limit Switches",
+    "Safety Limit Switches",
+    "Maintenance Box",
+    "Junction Box",
+    "Cable Hangers — Big / Small",
+    "Door Springs",
+    "Manual Landing Doors — Revati Type",
+    "Auto Doors — Fermator / Fermator Type",
+    "Door Closers",
+    "Door Magnets",
+  ],
+  "Steel Wire Ropes": [
+    "Elevator Wire Ropes",
+    "Offshore & Shipping Ropes",
+    "Construction, Crane & Material-Handling Ropes",
+    "KISWIRE Ropes",
+  ],
+  "LED Lighting & Elevator Air Conditioning": [
+    "Round LED Panels — SMD / COB",
+    "Cabin Fans & Blower Fans",
+    "Elevator Air Conditioning System",
+  ],
+  "Cables & Wires": [
+    "Flat Travelling Cables",
+    "Wire Bundles & Display Cable Bundles",
+    "Shielded Multi-Core Cables",
+    "CCTV & Multimedia Cables",
+    "Industrial Cables & Wires",
+  ],
+  "Industrial Automation & Analytical": [
+    "Industrial Automation Products",
+    "Control & Monitoring Systems",
+    "Analytical Instruments",
+    "Process Equipment",
+  ],
+  "Other Accessories & Hardware": [
+    "Overload & Door Sensors",
+    "Limit Switches & Safety Switches",
+    "Junction & Maintenance Boxes",
+    "Cable Hangers",
+    "Motion Sensors & Intercoms",
+  ],
+};
+
+const QUANTITY_OPTIONS = [
+  "1 – 5 units",
+  "6 – 25 units",
+  "26 – 100 units",
+  "100+ units / Bulk order",
+  "Not sure — need guidance",
 ];
 
-const STEPS = ["Your Details", "Your Project", "Submit"];
-
-const trust = [
-  "ISO 9001:2015 Certified",
-  "25+ Years Experience",
-  "3,000+ Lifts Installed",
-  "24 / 7 Breakdown Support",
-  "EN 81 & BIS Approved",
+const REQUIREMENT_TYPES = [
+  "New Installation",
+  "Replacement / Spare Parts",
+  "Maintenance Contract Supply",
+  "Bulk / Dealer Enquiry",
 ];
 
+/* ─────────────────────────────────────────────────────────────
+   ENQUIRY MODAL — wired to ModalContext (no props needed)
+
+   Usage in app/layout.tsx:
+     <ModalProvider>
+       <Navbar />
+       {children}
+       <EnquiryModal />
+     </ModalProvider>
+
+   FIXES:
+   1. createPortal → document.body
+      `position: fixed` breaks when any ancestor has transform /
+      filter / backdrop-blur (Navbar GSAP y-transform, hero blur
+      layers). Portal escapes the animated tree.
+
+   2. Form internal scroll: `flex-1 min-h-0` on the <form>.
+      Flex children default to min-height:auto, so the form was
+      taking full content height and its overflow-y-auto never
+      activated — nothing scrolled inside the card, wheel events
+      fell through to the page.
+
+   3. Background scroll lock: overflow hidden on BOTH <html> and
+      <body> with scrollbar-width compensation (no layout shift),
+      plus `overscroll-contain` on the form so reaching the end
+      of the form's scroll never chains to the page.
+────────────────────────────────────────────────────────────── */
 export default function EnquiryModal() {
-  const { open, toggle } = useModal();
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const cardRef    = useRef<HTMLDivElement>(null);
-  const bodyRef    = useRef<HTMLDivElement>(null);
+  const { open, close } = useModal();
+  const [mounted, setMounted] = useState(false);
+  const [category, setCategory] = useState("");
+  const [product, setProduct] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  const [step, setStep]       = useState(0);
-  const [sent, setSent]       = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [form, setForm]       = useState({
-    name: "", phone: "", email: "", company: "",
-    service: "", floors: "", city: "", buildingType: "",
-    timeline: "", message: "",
-  });
+  // portal only after mount → no hydration mismatch
+  useEffect(() => setMounted(true), []);
 
-  /* ── Open / close animation ── */
+  // ── SCROLL LOCK (html + body) + Escape close ────────────────
   useEffect(() => {
-    if (open) {
-      document.body.style.overflow = "hidden";
-      gsap.fromTo(overlayRef.current, { opacity: 0 }, { opacity: 1, duration: 0.25 });
-      gsap.fromTo(cardRef.current,
-        { scale: 0.93, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.45, ease: "power3.out" }
-      );
-    } else {
-      document.body.style.overflow = "";
-      gsap.to(cardRef.current,
-        { scale: 0.95, opacity: 0, duration: 0.3, ease: "power2.in",
-          onComplete: () => { gsap.set(overlayRef.current, { opacity: 0 }); setStep(0); setSent(false); } }
-      );
+    if (!open) return;
+
+    const html = document.documentElement;
+    const body = document.body;
+
+    // compensate for scrollbar disappearing → no layout jump
+    const scrollbarW = window.innerWidth - html.clientWidth;
+
+    const prevHtmlOverflow = html.style.overflow;
+    const prevBodyOverflow = body.style.overflow;
+    const prevBodyPadding = body.style.paddingRight;
+
+    html.style.overflow = "hidden";
+    body.style.overflow = "hidden";
+    if (scrollbarW > 0) body.style.paddingRight = `${scrollbarW}px`;
+
+    // If you use Lenis smooth scroll, also uncomment:
+    // window.lenis?.stop();
+    // If you use GSAP ScrollSmoother, also uncomment:
+    // ScrollSmoother.get()?.paused(true);
+
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
+    window.addEventListener("keydown", onKey);
+
+    return () => {
+      html.style.overflow = prevHtmlOverflow;
+      body.style.overflow = prevBodyOverflow;
+      body.style.paddingRight = prevBodyPadding;
+      // window.lenis?.start();
+      // ScrollSmoother.get()?.paused(false);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open, close]);
+
+  // reset form state whenever modal fully closes
+  useEffect(() => {
+    if (!open) {
+      const t = setTimeout(() => {
+        setSent(false);
+        setCategory("");
+        setProduct("");
+      }, 300);
+      return () => clearTimeout(t);
     }
   }, [open]);
 
-  /* ── Step transition ── */
-  const animateStep = (dir: "next" | "prev") => {
-    const el = bodyRef.current;
-    if (!el) return;
-    gsap.fromTo(el,
-      { x: dir === "next" ? 30 : -30, opacity: 0 },
-      { x: 0, opacity: 1, duration: 0.35, ease: "power3.out" }
-    );
-  };
-  const goNext = () => { setStep(s => s + 1); setTimeout(() => animateStep("next"), 10); };
-  const goPrev = () => { setStep(s => s - 1); setTimeout(() => animateStep("prev"), 10); };
+  if (!mounted || !open) return null;
 
-  /* ── Escape ── */
-  useEffect(() => {
-    const h = (e: KeyboardEvent) => { if (e.key === "Escape" && open) toggle(); };
-    window.addEventListener("keydown", h);
-    return () => window.removeEventListener("keydown", h);
-  }, [open, toggle]);
+const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  setSubmitting(true);
 
-  const f = (k: keyof typeof form, v: string) => setForm(p => ({ ...p, [k]: v }));
+  const form = e.currentTarget;
+  const data = Object.fromEntries(new FormData(form));
 
-  const handleSubmit = async () => {
-    setLoading(true);
-    try {
-      const fd = new FormData();
-      fd.append("_subject",      `New Enquiry from ${form.name} — Balvir Lifting`);
-      fd.append("_captcha",      "false");
-      fd.append("_template",     "table");
-      fd.append("Name",          form.name);
-      fd.append("Phone",         `+91 ${form.phone}`);
-      fd.append("Email",         form.email);
-      fd.append("Company",       form.company || "—");
-      fd.append("Service",       services.find(s => s.id === form.service)?.label ?? "—");
-      fd.append("Floors",        form.floors || "—");
-      fd.append("City",          form.city);
-      fd.append("Building Type", form.buildingType || "—");
-      fd.append("Timeline",      form.timeline || "—");
-      fd.append("Message",       form.message || "—");
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/kishore@balvir.in", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        // ── FormSubmit config ──
+        _subject: `New Enquiry — ${data.product || "Product"} (${data.name})`,
+        _template: "table",   // clean table layout in email
+        _captcha: "false",    // no captcha page
 
-      const res = await fetch("https://formsubmit.co/ajax/kishore@balvir.in", {
-        method: "POST",
-        headers: { Accept: "application/json" },
-        body: fd,
-      });
-      const data = await res.json();
-      if (data.success === "true" || data.success === true) setSent(true);
-    } catch { /* silent */ } finally { setLoading(false); }
-  };
+        // ── Form fields ──
+        "Full Name": data.name,
+        "Company": data.company || "—",
+        "Phone / WhatsApp": data.phone,
+        "Email": data.email || "—",
+        "City": data.city,
+        "Requirement Type": data.requirementType,
+        "Product Category": data.category,
+        "Product": data.product,
+        "Quantity": data.quantity || "—",
+        "Details": data.message || "—",
+      }),
+    });
 
-  /* ── Shared field styles ── */
-  const inp = [
-    "w-full bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-300",
-    "px-3.5 py-2.5 text-sm outline-none transition-all rounded-lg",
-    "focus:border-[var(--primary)] focus:bg-white",
-  ].join(" ");
+    const json = await res.json();
 
-  const lbl = "text-gray-400 text-[10px] font-bold uppercase tracking-widest block mb-1";
+    if (res.ok && json.success !== "false") {
+      setSent(true);
+    } else {
+      alert("Something went wrong. Please try again or call us directly.");
+    }
+  } catch {
+    alert("Network error. Please check your connection and try again.");
+  } finally {
+    setSubmitting(false);
+  }
+};
 
-  const step0OK = !!(form.name && form.phone && form.email);
-  const step1OK = !!(form.service && form.city);
+  const inputCls =
+    "w-full rounded-lg border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 outline-none transition-colors focus:border-[var(--primary)] focus:ring-2 focus:ring-[var(--primary)]/15";
+  const labelCls =
+    "mb-1.5 block text-xs font-semibold uppercase tracking-wide text-gray-600";
 
-  /* ── Reusable pill toggle style ── */
-  const pill = (active: boolean) =>
-    `px-3 py-1.5 rounded-full text-[11px] font-semibold border transition-all ${
-      active
-        ? "text-white border-[var(--primary)]"
-        : "bg-white text-gray-500 border-gray-200 hover:border-gray-400"
-    }`;
-
-  return (
-    <>
-      {/* Overlay */}
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[999] flex items-center justify-center p-4 sm:p-6"
+      data-lenis-prevent
+      role="dialog"
+      aria-modal="true"
+      aria-label="Product Enquiry Form"
+    >
+      {/* Backdrop — blocks wheel/touch from reaching the page */}
       <div
-        ref={overlayRef}
-        onClick={toggle}
-        className="fixed inset-0 z-[70] bg-black/55 backdrop-blur-sm"
-        style={{ opacity: 0, pointerEvents: open ? "auto" : "none" }}
+        className="absolute inset-0 bg-black/50 backdrop-blur-sm overscroll-none touch-none"
+        onClick={close}
+        onWheel={(e) => e.preventDefault()}
       />
 
       {/* Card */}
-      <div
-        ref={cardRef}
-        className="fixed z-[80] inset-x-3 top-1/2 -translate-y-1/2 sm:inset-x-4 md:inset-x-auto md:left-1/2 md:-translate-x-1/2 md:w-[860px] flex flex-col md:flex-row rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.45)]"
-        style={{ opacity: 0, maxHeight: "calc(100dvh - 24px)", pointerEvents: open ? "auto" : "none" }}
-      >
-
-        {/* ── LEFT panel (hidden on mobile, compact strip on tablet) ── */}
-        <div
-          className="hidden md:flex w-full md:w-[260px] shrink-0 flex-col justify-between p-7 relative"
-          style={{
-            background:
-              "linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%)",
-          }}
-        >
-          {/* grid texture */}
-          <div
-            className="absolute inset-0 opacity-10"
-            style={{
-              backgroundImage:
-                "linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px)",
-              backgroundSize: "28px 28px",
-            }}
-          />
-
-          <div className="relative flex flex-col gap-6">
-            <LogoSVG height={36} variant="dark" />
-
-            <div>
-              <h3 className="text-white text-lg font-extrabold leading-snug">
-                Get Your Free<br />Site Estimate
-              </h3>
-              <p className="text-white/55 text-xs mt-1.5 leading-relaxed">
-                Our engineers respond within 2 hours on business days.
-              </p>
-            </div>
-
-            <ul className="flex flex-col gap-2.5">
-              {trust.map(t => (
-                <li key={t} className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                    <svg className="w-2.5 h-2.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <span className="text-white/70 text-[12px]">{t}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="relative border-t border-white/15 pt-5">
-            <p className="text-white/65 text-[12px] italic leading-relaxed">
-              &ldquo;Impeccable safety record. The ride quality is exceptional.&rdquo;
-            </p>
-            <p className="text-white/40 text-[11px] mt-2 font-semibold">— Rajiv Mehta · Skyline Developers</p>
-          </div>
+      <div className="relative z-10 flex max-h-[90vh] w-full max-w-lg flex-col overflow-hidden rounded-2xl bg-white shadow-2xl">
+        {/* Header */}
+        <div className="relative shrink-0 bg-[var(--primary)] px-6 py-5">
+          <h3 className="text-lg font-bold text-white">Get a Quote</h3>
+          <p className="mt-0.5 text-xs text-white/80">
+            Tell us your requirement — our team will share a quote and follow up.
+          </p>
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close enquiry form"
+            className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/30"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" />
+            </svg>
+          </button>
         </div>
 
-        {/* ── RIGHT panel ── */}
-        <div className="flex-1 bg-white flex flex-col min-h-0">
-
-          {/* Header — step indicators */}
-          <div className="px-4 sm:px-6 pt-4 sm:pt-5 pb-3 sm:pb-4 border-b border-gray-100 flex items-center justify-between shrink-0">
-            <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto">
-              {STEPS.map((s, i) => (
-                <div key={s} className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-                  {/* step circle */}
-                  <div
-                    className="w-6 h-6 rounded-full flex items-center justify-center text-[11px] font-bold transition-all duration-300 shrink-0"
-                    style={{
-                      backgroundColor:
-                        i < step  ? "#22c55e"              /* green-500 — completion only */
-                        : i === step ? "var(--primary)"
-                        : "#F3F4F6",
-                      color:
-                        i < step || i === step ? "#fff" : "#9CA3AF",
-                    }}
-                  >
-                    {i < step ? "✓" : i + 1}
-                  </div>
-                  <span
-                    className={`text-[11px] font-semibold hidden sm:block whitespace-nowrap ${
-                      i === step ? "text-gray-800" : "text-gray-300"
-                    }`}
-                  >
-                    {s}
-                  </span>
-                  {i < STEPS.length - 1 && (
-                    <div
-                      className="w-3 sm:w-5 h-px mx-0.5 transition-colors duration-300 shrink-0"
-                      style={{ backgroundColor: i < step ? "#22c55e" : "#E5E7EB" }}
-                    />
-                  )}
-                </div>
-              ))}
-            </div>
-
-            {/* Close button */}
-            <button
-              onClick={toggle}
-              aria-label="Close"
-              className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center text-gray-400 transition-all hover:border-[var(--primary)] hover:text-[var(--primary)] shrink-0 ml-2"
-            >
-              <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+        {/* Body */}
+        {sent ? (
+          <div className="flex flex-col items-center justify-center px-6 py-14 text-center">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[var(--primary)]/10 text-[var(--primary)]">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6L9 17l-5-5" />
               </svg>
+            </div>
+            <h4 className="text-lg font-bold text-gray-900">Enquiry sent</h4>
+            <p className="mt-1.5 max-w-xs text-sm text-gray-500">
+              Thank you. Our team will contact you within one working day with a quotation.
+            </p>
+            <button
+              type="button"
+              onClick={close}
+              className="mt-6 rounded-lg bg-[var(--primary)] px-6 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--primary-dark)]"
+            >
+              Done
             </button>
           </div>
-
-          {/* Body */}
-          <div ref={bodyRef} className="flex-1 px-4 sm:px-6 py-4 sm:py-5 overflow-y-auto min-h-0">
-
-            {sent ? (
-              /* ── Success ── */
-              <div className="min-h-full flex flex-col items-center justify-center gap-4 text-center py-4">
-                <div
-                  className="w-16 h-16 rounded-full flex items-center justify-center border-2 shrink-0"
-                  style={{
-                    backgroundColor: "color-mix(in srgb, var(--primary) 8%, white)",
-                    borderColor: "var(--primary)",
-                  }}
-                >
-                  <svg
-                    className="w-8 h-8"
-                    style={{ color: "var(--primary)" }}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-
-                <div>
-                  <h3 className="text-gray-900 text-lg sm:text-xl font-extrabold mb-1">Enquiry Submitted!</h3>
-                  <p className="text-gray-400 text-sm max-w-xs mx-auto leading-relaxed">
-                    Our team will contact you within{" "}
-                    <strong className="text-gray-700">2 business hours.</strong>
-                  </p>
-                </div>
-
-                <div className="bg-gray-50 rounded-xl border border-gray-100 p-4 w-full max-w-sm text-left">
-                  <div className="grid grid-cols-2 gap-x-4 gap-y-2">
-                    {[
-                      { l: "Name",    v: form.name },
-                      { l: "Phone",   v: `+91 ${form.phone}` },
-                      { l: "Service", v: services.find(s => s.id === form.service)?.label ?? "—" },
-                      { l: "City",    v: form.city },
-                    ].map(r => (
-                      <div key={r.l} className="min-w-0">
-                        <span className="text-gray-400 text-[10px] uppercase tracking-wider block">{r.l}</span>
-                        <span className="text-gray-800 text-sm font-semibold truncate block">{r.v}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap justify-center gap-3">
-                  <button
-                    onClick={() => {
-                      setSent(false);
-                      setStep(0);
-                      setForm({ name:"",phone:"",email:"",company:"",service:"",floors:"",city:"",buildingType:"",timeline:"",message:"" });
-                    }}
-                    className="text-sm border border-gray-200 text-gray-600 px-5 py-2.5 rounded-lg hover:bg-gray-50 transition-colors"
-                  >
-                    New Enquiry
-                  </button>
-                  <button
-                    onClick={toggle}
-                    className="btn-red text-sm px-5 py-2.5 rounded-lg font-semibold"
-                  >
-                    Close
-                  </button>
-                </div>
+        ) : (
+          <form
+            onSubmit={handleSubmit}
+            className="flex-1 min-h-0 overflow-y-auto overscroll-contain px-6 py-5"
+          >
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              {/* Name */}
+              <div>
+                <label htmlFor="enq-name" className={labelCls}>Full Name *</label>
+                <input id="enq-name" name="name" required placeholder="Your name" className={inputCls} />
               </div>
 
-            ) : (
-              <>
-                {/* ── Step 0: Details ── */}
-                {step === 0 && (
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <h2 className="text-base sm:text-lg font-extrabold text-gray-900">Tell us about yourself</h2>
-                      <p className="text-gray-400 text-xs mt-0.5">We&apos;ll use this to send your quote and follow up.</p>
-                    </div>
+              {/* Company */}
+              <div>
+                <label htmlFor="enq-company" className={labelCls}>Company Name</label>
+                <input id="enq-company" name="company" placeholder="Company / Firm" className={inputCls} />
+              </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div>
-                        <label className={lbl}>
-                          Full Name <span style={{ color: "var(--primary)" }}>*</span>
-                        </label>
-                        <input
-                          type="text" required value={form.name}
-                          onChange={e => f("name", e.target.value)}
-                          placeholder="Rajiv Mehta" className={inp}
-                        />
-                      </div>
-                      <div>
-                        <label className={lbl}>Company</label>
-                        <input
-                          type="text" value={form.company}
-                          onChange={e => f("company", e.target.value)}
-                          placeholder="Company name" className={inp}
-                        />
-                      </div>
-                    </div>
+              {/* Phone */}
+              <div>
+                <label htmlFor="enq-phone" className={labelCls}>Phone / WhatsApp *</label>
+                <input
+                  id="enq-phone" name="phone" type="tel" required
+                  inputMode="numeric" pattern="[0-9+\-\s]{10,15}"
+                  placeholder="+91 98XXX XXXXX" className={inputCls}
+                />
+              </div>
 
-                    <div>
-                      <label className={lbl}>
-                        Phone Number <span style={{ color: "var(--primary)" }}>*</span>
-                      </label>
-                      <div className="flex gap-2">
-                        <div className="flex items-center gap-1.5 bg-gray-50 border border-gray-200 px-2.5 sm:px-3 rounded-lg shrink-0">
-                          <span className="text-base">🇮🇳</span>
-                          <span className="text-gray-500 text-sm font-medium">+91</span>
-                        </div>
-                        <input
-                          type="tel" required value={form.phone}
-                          onChange={e => f("phone", e.target.value)}
-                          placeholder="98190 02726" className={inp}
-                        />
-                      </div>
-                    </div>
+              {/* Email */}
+              <div>
+                <label htmlFor="enq-email" className={labelCls}>Email</label>
+                <input id="enq-email" name="email" type="email" placeholder="you@company.com" className={inputCls} />
+              </div>
 
-                    <div>
-                      <label className={lbl}>
-                        Email Address <span style={{ color: "var(--primary)" }}>*</span>
-                      </label>
-                      <input
-                        type="email" required value={form.email}
-                        onChange={e => f("email", e.target.value)}
-                        placeholder="rajiv@company.com" className={inp}
-                      />
-                    </div>
-                  </div>
-                )}
+              {/* City */}
+              <div>
+                <label htmlFor="enq-city" className={labelCls}>City / Location *</label>
+                <input id="enq-city" name="city" required placeholder="e.g. Navi Mumbai" className={inputCls} />
+              </div>
 
-                {/* ── Step 1: Project ── */}
-                {step === 1 && (
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <h2 className="text-base sm:text-lg font-extrabold text-gray-900">Your project details</h2>
-                      <p className="text-gray-400 text-xs mt-0.5">Select the lift type and basic project info.</p>
-                    </div>
+              {/* Requirement type */}
+              <div>
+                <label htmlFor="enq-type" className={labelCls}>Requirement Type *</label>
+                <select id="enq-type" name="requirementType" required defaultValue="" className={inputCls}>
+                  <option value="" disabled>Select requirement</option>
+                  {REQUIREMENT_TYPES.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
 
-                    {/* Service cards */}
-                    <div>
-                      <label className={lbl}>
-                        Service Required <span style={{ color: "var(--primary)" }}>*</span>
-                      </label>
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {services.map(s => {
-                          const active = form.service === s.id;
-                          return (
-                            <button
-                              key={s.id}
-                              type="button"
-                              onClick={() => f("service", s.id)}
-                              className="flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border-2 text-center transition-all"
-                              style={{
-                                borderColor: active ? "var(--primary)" : "#E5E7EB",
-                                backgroundColor: active
-                                  ? "color-mix(in srgb, var(--primary) 8%, white)"
-                                  : "white",
-                              }}
-                            >
-                              <span className="text-xl leading-none">{s.icon}</span>
-                              <span
-                                className="text-[10px] font-semibold leading-tight"
-                                style={{ color: active ? "var(--primary)" : "#6B7280" }}
-                              >
-                                {s.label}
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3">
-                      <div>
-                        <label className={lbl}>Floors</label>
-                        <input
-                          type="text" value={form.floors}
-                          onChange={e => f("floors", e.target.value)}
-                          placeholder="e.g. G + 10" className={inp}
-                        />
-                      </div>
-                      <div>
-                        <label className={lbl}>
-                          City <span style={{ color: "var(--primary)" }}>*</span>
-                        </label>
-                        <input
-                          type="text" required value={form.city}
-                          onChange={e => f("city", e.target.value)}
-                          placeholder="Mumbai" className={inp}
-                        />
-                      </div>
-                    </div>
-
-                    {/* Building type pills */}
-                    <div>
-                      <label className={lbl}>Building Type</label>
-                      <div className="flex flex-wrap gap-1.5">
-                        {["Residential","Commercial","Hospital","Hotel","Industrial","Mall"].map(t => {
-                          const active = form.buildingType === t;
-                          return (
-                            <button
-                              key={t}
-                              type="button"
-                              onClick={() => f("buildingType", t)}
-                              className={pill(active)}
-                              style={active ? { backgroundColor: "var(--primary)" } : {}}
-                            >
-                              {t}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* ── Step 2: Confirm ── */}
-                {step === 2 && (
-                  <div className="flex flex-col gap-4">
-                    <div>
-                      <h2 className="text-base sm:text-lg font-extrabold text-gray-900">Almost done!</h2>
-                      <p className="text-gray-400 text-xs mt-0.5">Add a message (optional) and review your details.</p>
-                    </div>
-
-                    {/* Timeline pills */}
-                    <div>
-                      <label className={lbl}>Expected Timeline</label>
-                      <div className="flex flex-wrap gap-1.5">
-                        {["Immediately","1–3 Months","3–6 Months","Planning Stage"].map(t => {
-                          const active = form.timeline === t;
-                          return (
-                            <button
-                              key={t}
-                              type="button"
-                              onClick={() => f("timeline", t)}
-                              className={pill(active)}
-                              style={active ? { backgroundColor: "var(--primary)" } : {}}
-                            >
-                              {t}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className={lbl}>Message (optional)</label>
-                      <textarea
-                        rows={2}
-                        value={form.message}
-                        onChange={e => f("message", e.target.value)}
-                        placeholder="Special requirements, access constraints, questions..."
-                        className={`${inp} resize-none`}
-                      />
-                    </div>
-
-                    {/* Summary */}
-                    <div className="bg-gray-50 rounded-xl border border-gray-100 p-4">
-                      <p className="text-gray-400 text-[10px] uppercase tracking-widest mb-3 font-bold">Enquiry Summary</p>
-                      <div className="grid grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2">
-                        {[
-                          { l: "Name",    v: form.name },
-                          { l: "Phone",   v: `+91 ${form.phone}` },
-                          { l: "Email",   v: form.email },
-                          { l: "Service", v: services.find(s => s.id === form.service)?.label ?? "—" },
-                          { l: "Floors",  v: form.floors || "—" },
-                          { l: "City",    v: form.city },
-                        ].map(r => (
-                          <div key={r.l} className="min-w-0">
-                            <span className="text-gray-400 text-[10px] uppercase tracking-wider block">{r.l}</span>
-                            <span className="text-gray-800 text-xs font-semibold truncate block">{r.v}</span>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* ── Footer nav ── */}
-          {!sent && (
-            <div className="shrink-0 px-4 sm:px-6 py-3 sm:py-4 border-t border-gray-100 flex items-center justify-between gap-2 bg-white">
-              {step > 0 ? (
-                <button
-                  onClick={goPrev}
-                  className="flex items-center gap-1 sm:gap-1.5 text-sm text-gray-400 hover:text-gray-700 transition-colors font-medium shrink-0"
+              {/* Category */}
+              <div className="sm:col-span-2">
+                <label htmlFor="enq-category" className={labelCls}>Product Category *</label>
+                <select
+                  id="enq-category" name="category" required value={category}
+                  onChange={(e) => { setCategory(e.target.value); setProduct(""); }}
+                  className={inputCls}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                  <span className="hidden xs:inline">Back</span>
-                </button>
-              ) : (
-                <a
-                  href="tel:+919819002726"
-                  className="flex items-center gap-1.5 text-xs text-gray-400 transition-colors hover:text-[var(--primary)] shrink-0"
-                >
-                  <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                  <span className="hidden sm:inline">+91 98190 02726</span>
-                </a>
-              )}
+                  <option value="" disabled>Select category</option>
+                  {Object.keys(PRODUCT_MAP).map((c) => (
+                    <option key={c} value={c}>{c}</option>
+                  ))}
+                </select>
+              </div>
 
-              {step < 2 ? (
-                <button
-                  onClick={goNext}
-                  disabled={step === 0 ? !step0OK : !step1OK}
-                  className="btn-red text-sm py-2.5 px-5 sm:px-7 disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:shadow-none disabled:hover:translate-y-0 group shrink-0"
+              {/* Product — dependent on category */}
+              <div className="sm:col-span-2">
+                <label htmlFor="enq-product" className={labelCls}>Product *</label>
+                <select
+                  id="enq-product" name="product" required value={product}
+                  onChange={(e) => setProduct(e.target.value)}
+                  disabled={!category}
+                  className={`${inputCls} disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-400`}
                 >
-                  Continue
-                  <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                  </svg>
-                </button>
-              ) : (
-                <button
-                  onClick={handleSubmit}
-                  disabled={loading}
-                  className="btn-red text-sm py-2.5 px-5 sm:px-7 group disabled:opacity-60 disabled:cursor-not-allowed shrink-0"
-                >
-                  {loading ? (
-                    <>
-                      <svg className="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z" />
-                      </svg>
-                      Sending…
-                    </>
-                  ) : (
-                    <>
-                      Submit Enquiry
-                      <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </>
-                  )}
-                </button>
-              )}
+                  <option value="" disabled>
+                    {category ? "Select product" : "Select a category first"}
+                  </option>
+                  {(PRODUCT_MAP[category] || []).map((p) => (
+                    <option key={p} value={p}>{p}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Quantity */}
+              <div className="sm:col-span-2">
+                <label htmlFor="enq-qty" className={labelCls}>Approximate Quantity</label>
+                <select id="enq-qty" name="quantity" defaultValue="" className={inputCls}>
+                  <option value="" disabled>Select quantity range</option>
+                  {QUANTITY_OPTIONS.map((q) => (
+                    <option key={q} value={q}>{q}</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Message */}
+              <div className="sm:col-span-2">
+                <label htmlFor="enq-msg" className={labelCls}>Requirement Details</label>
+                <textarea
+                  id="enq-msg" name="message" rows={3}
+                  placeholder="Specifications, core size, dia, brand preference, site details…"
+                  className={`${inputCls} resize-none`}
+                />
+              </div>
             </div>
-          )}
-        </div>
+
+            <button
+              type="submit"
+              disabled={submitting}
+              className="mt-5 flex w-full items-center justify-center gap-2 rounded-lg bg-[var(--primary)] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--primary-dark)] disabled:opacity-60"
+            >
+              {submitting ? "Sending…" : "Submit Enquiry"}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" />
+              </svg>
+            </button>
+
+            <p className="mt-3 text-center text-[11px] text-gray-400">
+              Your details are used only to respond to this enquiry.
+            </p>
+          </form>
+        )}
       </div>
-    </>
+    </div>,
+    document.body
   );
 }

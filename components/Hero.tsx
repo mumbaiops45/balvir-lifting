@@ -72,7 +72,7 @@ export default function Hero() {
       
 
       {/* Content */}
-      <div className="relative z-10 flex-1 flex items-center pt-24">
+      <div className="relative z-10 flex-1 flex items-center pt-6 md:pt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-5 gap-12 items-center">
 
           {/* Left Content */}

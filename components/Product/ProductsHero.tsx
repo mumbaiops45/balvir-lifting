@@ -99,7 +99,7 @@ export default function ProductsHero() {
           </p>
 
           {/* Category Cards */}
-          <div className="flex flex-wrap gap-4 mt-10">
+          <div className="grid grid-cols-2 md:flex gap-4 mt-10">
             {[
               { title: "Elevators", sub: "Accessories & Components" },
               { title: "Wire Ropes", sub: "Industrial Grade" },
