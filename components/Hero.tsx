@@ -52,7 +52,7 @@ export default function Hero() {
         loop
         playsInline
       >
-        <source src="/heroelavator.mp4" type="video/mp4" />
+        <source src="/herovideo.mp4" type="video/mp4" />
         <source
           src="https://videos.pexels.com/video-files/7599305/7599305-sd_960_540_25fps.mp4"
           type="video/mp4"
