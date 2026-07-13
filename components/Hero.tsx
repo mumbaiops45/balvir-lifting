@@ -58,17 +58,14 @@ export default function Hero() {
           type="video/mp4"
         />
       </video>
-{/* Base wash */}
-<div className="absolute inset-0 bg-[var(--primary-light)]/60" />
+{/* Base overlay */}
+<div className="absolute inset-0 bg-[rgba(1,22,85,0.12)]" />
 
-{/* Left heavy → Right lighter */}
-<div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light)] via-[var(--primary-light)]/60 to-[var(--primary)]/70" />
-
-{/* Extra left darkness */}
-<div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light] to-black" />
+{/* Left dark → Right lighter */}
+<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(1,22,85,0.62)_0%,rgba(1,22,85,0.44)_35%,rgba(1,22,85,0.18)_70%,rgba(1,22,85,0.06)_100%)]" />
 
 {/* Cinematic vignette */}
-<div className="absolute inset-0 bg-gradient-to-t from-black/20  to-black/70" />
+<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(1,22,85,0.15),transparent_45%,rgba(1,22,85,0.08))]" />
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center pt-6 md:pt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-5 gap-12 items-center">

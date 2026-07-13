@@ -103,7 +103,7 @@ export default function Footer() {
   className="flex items-center h-[15vh] overflow-hidden py-4 mb-2 bg-white w-fit"
 >
   <Image
-    src="/logo.jpeg"
+    src="/newlogo.jpeg"
     alt="Balvir Lifting Logo"
     width={260}
     height={260}

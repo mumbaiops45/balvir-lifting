@@ -49,7 +49,7 @@ export default function Navbar() {
   return (
     <nav
       ref={navRef}
-      className="fixed inset-x-0 top-0 z-50 bg-white backdrop-blur-xl border-b border-gray-200 pt-1 pb-1 shadow-sm transition-all duration-300"
+      className="fixed inset-x-0 top-0 z-50 bg-[var(--primary)] backdrop-blur-xl  pt-1 pb-1 shadow-sm transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
       <Link
@@ -57,7 +57,7 @@ export default function Navbar() {
   className="flex items-center h-[13vh] overflow-hidden"
 >
   <Image
-    src="/logo.jpeg"
+    src="/newlogo.jpeg"
     alt="Balvir Lifting Logo"
     width={260}
     height={260}
@@ -70,7 +70,7 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="relative group text-[14px] font-bold tracking-wide text-gray-700 hover:text-[var(--primary)] transition-colors"
+                className="relative group text-[14px] font-bold tracking-wide text-white hover:text-white transition-colors"
               >
                 {l.label}
                 <span
@@ -108,7 +108,7 @@ export default function Navbar() {
 
           <button
             onClick={toggle}
-            className="bg-[var(--primary)] hover:bg-[var(--primary-dark)] text-white rounded-md text-[13px] font-semibold py-2.5 px-6 transition-all duration-300"
+            className="bg-white  [var(--primary-dark)] rounded-md text-[13px] font-semibold py-2.5 px-6 transition-all duration-300"
           >
             Get a Quote
           </button>
