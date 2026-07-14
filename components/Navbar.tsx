@@ -51,10 +51,10 @@ export default function Navbar() {
       ref={navRef}
       className="fixed inset-x-0 top-0 z-50 bg-[var(--primary)] backdrop-blur-xl  pt-1 pb-1 shadow-sm transition-all duration-300"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center h-[13vh] overflow-hidden"
+          className="flex items-center h-[14vh] overflow-hidden"
         >
           <Image
             src="/newlogo.jpeg"
@@ -62,7 +62,7 @@ export default function Navbar() {
             width={260}
             height={260}
             priority
-            className="w-auto h-36 mt-2 object-contain"
+            className="w-auto h-44 mt-4 object-contain"
           />
         </Link>
         <ul className="hidden lg:flex items-center gap-6">

@@ -98,19 +98,19 @@ export default function Footer() {
 
           {/* Brand — 2 cols */}
           <div className="col-span-2">
-           <Link
-  href="/"
-  className="flex items-center h-[15vh] overflow-hidden py-4 mb-2 bg-white w-fit"
->
-  <Image
-    src="/newlogo.jpeg"
-    alt="Balvir Lifting Logo"
-    width={260}
-    height={260}
-    priority
-    className="w-auto h-36 mt-2 object-contain"
-  />
-</Link>
+         <Link
+          href="/"
+          className="flex items-center h-[14vh] overflow-hidden mb-4"
+        >
+          <Image
+            src="/newlogo.jpeg"
+            alt="Balvir Lifting Logo"
+            width={260}
+            height={260}
+            priority
+            className="w-auto h-44 mt-4 object-contain"
+          />
+        </Link>
 
             <p className="text-white/65 text-sm leading-relaxed mb-4 max-w-[260px]">
               Trusted supplier of multi-brand electrical, electronics, mechanical, hardware &amp; automation products. Established 2014.
