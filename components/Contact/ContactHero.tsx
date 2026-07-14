@@ -92,7 +92,7 @@ export default function ProductInquiryHero() {
           <h1 className="text-5xl md:text-7xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
             Let&apos;s Find the
             <br />
-            <span className="text-[var(--primary-light)]">
+            <span className="text-white">
               Right Products <br /> for You
             </span>
           </h1>

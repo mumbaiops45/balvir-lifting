@@ -66,8 +66,7 @@ export default function AboutHero() {
 
       {/* ===== Overlays — primary-light only ===== */}
 
-      {/* Base wash */}
-<div className="absolute inset-0 bg-[var(--primary-light)]/60" />
+    <div className="absolute inset-0 bg-[var(--primary-light)]/60" />
 
 {/* Left heavy → Right lighter */}
 <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light)] via-[var(--primary-light)]/60 to-[var(--primary)]/70" />
@@ -84,7 +83,7 @@ export default function AboutHero() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
             Built on Trust,
             <br />
-            <span className="text-[var(--primary-light)]">Since 2014</span>
+            <span className="text-white">Since 2014</span>
           </h1>
 
           <div className="w-16 h-[3px] bg-white/80 mb-7" />

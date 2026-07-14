@@ -52,33 +52,32 @@ export default function Navbar() {
       className="fixed inset-x-0 top-0 z-50 bg-[var(--primary)] backdrop-blur-xl  pt-1 pb-1 shadow-sm transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12 flex items-center justify-between">
-      <Link
-  href="/"
-  className="flex items-center h-[13vh] overflow-hidden"
->
-  <Image
-    src="/newlogo.jpeg"
-    alt="Balvir Lifting Logo"
-    width={260}
-    height={260}
-    priority
-    className="w-auto h-36 mt-2 object-contain"
-  />
-</Link>
+        <Link
+          href="/"
+          className="flex items-center h-[13vh] overflow-hidden"
+        >
+          <Image
+            src="/newlogo.jpeg"
+            alt="Balvir Lifting Logo"
+            width={260}
+            height={260}
+            priority
+            className="w-auto h-36 mt-2 object-contain"
+          />
+        </Link>
         <ul className="hidden lg:flex items-center gap-6">
           {links.map((l) => (
             <li key={l.href}>
               <Link
                 href={l.href}
-                className="relative group text-[14px] font-bold tracking-wide text-white hover:text-white transition-colors"
+                className="relative group text-[14px] font-bold tracking-wide text-gray-300 hover:text-white transition-colors"
               >
                 {l.label}
                 <span
-                  className={`absolute -bottom-1 left-0 h-px bg-[var(--primary)] transition-all duration-300 ${
-                    isActive(l.href)
+                  className={`absolute -bottom-1 left-0 h-px bg-white transition-all duration-300 ${isActive(l.href)
                       ? "w-full"
                       : "w-0 group-hover:w-full"
-                  }`}
+                    }`}
                 />
               </Link>
             </li>
@@ -120,44 +119,39 @@ export default function Navbar() {
           aria-label="Toggle menu"
         >
           <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              open ? "rotate-45 translate-y-2" : ""
-            }`}
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "rotate-45 translate-y-2" : ""
+              }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              open ? "opacity-0" : ""
-            }`}
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "opacity-0" : ""
+              }`}
           />
           <span
-            className={`block w-6 h-0.5 bg-gray-800 transition-all duration-300 ${
-              open ? "-rotate-45 -translate-y-2" : ""
-            }`}
+            className={`block w-6 h-0.5 bg-white transition-all duration-300 ${open ? "-rotate-45 -translate-y-2" : ""
+              }`}
           />
         </button>
       </div>
 
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 ${
-          open ? "max-h-96" : "max-h-0"
-        }`}
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${open ? "max-h-92" : "max-h-0"
+          }`}
       >
         <div className="bg-white border-t border-gray-100 shadow-lg px-6 pt-4 pb-6 flex flex-col gap-1">
           {links.map((l) => (
             <Link
               key={l.href}
               href={l.href}
-              className={`text-sm font-medium py-2.5 border-b border-gray-100 transition-colors ${
-                isActive(l.href)
+              className={`text-sm font-medium py-2.5 border-b border-gray-100 transition-colors ${isActive(l.href)
                   ? "text-[var(--primary)]"
                   : "text-gray-700 hover:text-[var(--primary)]"
-              }`}
+                }`}
             >
               {l.label}
             </Link>
           ))}
 
-          <div className="flex gap-3 mt-3">
+          <div className="flex gap-3 my-2">
             <a
               href="tel:+919819002726"
               className="flex-1 text-center border border-gray-200 text-gray-700 text-sm font-medium py-3"

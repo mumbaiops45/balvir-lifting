@@ -58,14 +58,16 @@ export default function Hero() {
           type="video/mp4"
         />
       </video>
-{/* Base overlay */}
-<div className="absolute inset-0 bg-[rgba(1,22,85,0.12)]" />
+      <div className="absolute inset-0 bg-[var(--primary-light)]/60" />
 
-{/* Left dark → Right lighter */}
-<div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(1,22,85,0.62)_0%,rgba(1,22,85,0.44)_35%,rgba(1,22,85,0.18)_70%,rgba(1,22,85,0.06)_100%)]" />
+      {/* Left heavy → Right lighter */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light)] via-[var(--primary-light)]/60 to-[var(--primary)]/70" />
 
-{/* Cinematic vignette */}
-<div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(1,22,85,0.15),transparent_45%,rgba(1,22,85,0.08))]" />
+      {/* Extra left darkness */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[var(--primary-light] to-black" />
+
+      {/* Cinematic vignette */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/20  to-black/70" />
       {/* Content */}
       <div className="relative z-10 flex-1 flex items-center pt-6 md:pt-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full grid lg:grid-cols-5 gap-12 items-center">
@@ -75,15 +77,15 @@ export default function Hero() {
             ref={contentRef}
             className="lg:col-span-3"
           >
-            <h1 className="md:text-7xl xl:text-[82px] font-extrabold text-white leading-[1.03] tracking-[-0.03em] mb-5">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[1.03] tracking-[-0.03em] mb-5">
               Elevating Spaces.
               <br />
-              <span className="text-[var(--primary-light)]">
+              <span className="text-white">
                 Earning Trust.
               </span>
             </h1>
 
-            <div className="w-16 h-[3px] bg-blue-600 mb-7" />
+            <div className="w-16 h-[3px] bg-white mb-7" />
 
             <p className="text-white/70 text-base md:text-lg leading-relaxed max-w-[720px] mb-10">
               Mumbai&apos;s trusted multi-brand supplier of elevator accessories,

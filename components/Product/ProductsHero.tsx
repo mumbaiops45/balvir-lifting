@@ -88,7 +88,7 @@ export default function ProductsHero() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
             Our Complete
             <br />
-            <span className="text-[var(--primary-light)]">
+            <span className="text-white">
               Product Range
             </span>
           </h1>

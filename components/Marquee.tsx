@@ -55,7 +55,7 @@ export default function Marquee() {
   return (
     <div
       className="relative overflow-hidden py-3.5 select-none"
-      style={{ backgroundColor: "#07192E" }}
+      style={{ backgroundColor: "var(--primary)" }}
     >
       {/* Left / right fade */}
       <div

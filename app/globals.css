@@ -125,7 +125,7 @@ html.lenis, html.lenis body { height: auto; }
 
 .btn-red:hover {
   background-color: var(--primary-light);
-  box-shadow: 0 8px 30px rgba(209, 77, 64, 0.4);
+  
 }
 
 .btn-outline-dark {

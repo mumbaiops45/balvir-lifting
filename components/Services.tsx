@@ -104,7 +104,7 @@ export default function Services() {
               <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-[var(--primary)] scale-y-0 group-hover:scale-y-100 transition-transform duration-300 origin-bottom" />
 
               {/* Number overlay with very subtle group hover text color */}
-              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-blue-300/90 transition-colors duration-300 leading-none mb-4 select-none">
+              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-[var(--primary)]  transition-colors duration-300 leading-none mb-4 select-none">
                 {s.num}
               </div>
               <h3 className="text-gray-900 font-bold text-xl mb-3 group-hover:text-[var(--primary)] transition-colors duration-300">

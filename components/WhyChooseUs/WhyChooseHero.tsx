@@ -83,7 +83,7 @@ export default function WhyChooseUsHero() {
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold text-white leading-[0.95] tracking-tight mb-6">
             Why Buyers Across
             <br />
-            <span className="text-[var(--primary-light)]">
+            <span className="text-white">
               Mumbai Trust Us
             </span>
           </h1>
