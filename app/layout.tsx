@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   keywords:
     "Balvir Lifting, elevator accessories, wire ropes, KISWIRE, CEDES, Fermator, Wittur, LED lighting, flat travelling cables, industrial automation, Navi Mumbai",
       icons: {
-    icon: "/logo.jpeg",
+    icon: "/newlogo.jpeg",
   },
 };
 
